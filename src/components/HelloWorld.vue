@@ -2,7 +2,7 @@
   <div class="hello">
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav>
-          <b-nav-item href="#">HOME</b-nav-item>
+          <b-nav-item href="#">HOME PROY&ANT</b-nav-item>
 
           <!-- Navbar dropdowns -->
           <b-nav-item-dropdown text="Lang" right>
