@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Nav from './components/HelloWorld.vue'
+import Nav from './components/Login.vue'
 
 export default {
   name: 'App',
@@ -22,6 +22,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
