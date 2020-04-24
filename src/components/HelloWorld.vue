@@ -36,9 +36,6 @@
       >
       </b-carousel-slide>
 
-    
-
-      
     </b-carousel>
   </div>
 
@@ -58,6 +55,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger">Login</a>
           </li>
         </ul>
       </div>
@@ -104,8 +107,6 @@
     </div>
     <!-- /.container -->
   </footer>
-
-
 
   </div>
 </template>
