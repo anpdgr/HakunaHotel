@@ -22,7 +22,7 @@
                     <b-form-group id="ipg-uname" >
                         <b-form-input
                             id="ip-uname"
-                            v-model="form.fname"
+                            v-model="form.username"
                             required
                             placeholder="Username"
                         ></b-form-input>
@@ -30,6 +30,7 @@
 
                         <b-form-group id="ipg-pass">
                         <b-form-input
+                            type="password"
                             id="ip-pass"
                             v-model="form.password"
                             required
@@ -39,8 +40,9 @@
 
                         <b-form-group id="ipg-cpass">
                         <b-form-input
+                            type="password"
                             id="ip-cpass"
-                            v-model="form.password"
+                            v-model="form.cpassword"
                             required
                             placeholder="Confirm your password"
                         ></b-form-input>
@@ -66,8 +68,9 @@
       return {
         form: {
           email: '',
+          username:'',
           password:'',
-          username:''
+          cpassword:'',
 
         },
         show: true
