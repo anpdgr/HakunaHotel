@@ -27,7 +27,7 @@
     </body>
 </template>
 
-<style>
+<style scoped>
 body{
     background-image: url('../assets/hotel.home.jpg');
     background-size: cover;

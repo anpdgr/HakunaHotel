@@ -4,7 +4,11 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App.vue'
 import router from './router'
+import Vuelidate from 'vuelidate'
+import 'bootstrap/dist/css/bootstrap.main.css'
 
+
+Vue.use(Vuelidate)
 Vue.config.productionTip = false
 
 new Vue({
