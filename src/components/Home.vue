@@ -44,7 +44,8 @@
         </b-carousel-slide>
       </b-carousel>
     </div>
-    <section id="room" style="padding:50px">
+<button v-on:click="check=1">LOGIN</button>
+     <section id="room" style="padding:50px">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">

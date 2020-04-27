@@ -1,51 +1,80 @@
 <template>
-    <body>
-            <div style="max-width: 500px; margin: auto; padding-top:200px">
-                <div class="container" >
-                    <b-card style="max-width:30rem; padding:30px 20px; float: middle;" >
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Sign in</h3>
-                            </div>
-                            <div class="panel-body">
-                                <form action='/'>
-                                    <div class="form-group" style="padding-top:20px">
-                                        <label for="username" class="control-label sr-only">Add your username.</label>
-                                        <input type="username" class="form-control" id="username" placeholder="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password" class="control-label sr-only">Add your password.</label>
-                                        <input type="password" class="form-control" id="password" placeholder="password">
-                                    </div>
-                                    <button v-on:click="check=1" class="btn btn-primary pull-right" >Sign in</button>
-                                </form>
-                            </div>
+    <body id="login">
+        <div id="box">
+          
+            <b-card style="max-width:30rem; padding:30px; float: middle;"> 
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sign in</h3>
+                        <br>
+                    </div>
+                    <b-form @submit="onSubmit">
+                        
+                    <b-form-group id="ipg-uname" >
+                        <b-form-input
+                            id="ip-uname"
+                            v-model="form.fname"
+                            required
+                            placeholder="Username"
+                        ></b-form-input>
+                        </b-form-group>
+
+                        <b-form-group id="ipg-pass">
+                        <b-form-input
+                            id="ip-pass"
+                            v-model="form.password"
+                            required
+                            placeholder="Password"
+                        ></b-form-input>
+                        </b-form-group>
+
+                        <div style="float: left;">
+                        <b-button type="submit" variant="primary" >Sign in</b-button>
                         </div>
-                        <div id='back' style="text-align:right">
-                            <a href='/'>Back to home</a>
-                        </div>
-                    </b-card>           
+                    </b-form>
                 </div>
-            </div>
+            </b-card>
+        </div>
     </body>
 </template>
 
 <script>
-export default {
-    data () {
-        return{
-            check: 0
-        }
+  export default {
+    data() {
+      return {
+        form: {
+          password:'',
+          username:''
+
+        },
+        show: true
+      }
+    },
+    methods: {
+      onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
+      }
     }
-}
+  }
 </script>
 
 <style scoped>
-body{
-    background-image: url('../assets/hotel.home.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100vh;
-}
+    #back{
+        text-align: right;
+    }
+    #box{
+        max-width: 500px; 
+        margin: auto;
+        padding-top: 100px;
+    }
+    body {
+        background-image: url('../assets/hotel.home.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100vh;
+    }
+
+
 </style>
