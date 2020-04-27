@@ -21,6 +21,7 @@
 
                         <b-form-group id="ipg-pass">
                         <b-form-input
+                            type="password"
                             id="ip-pass"
                             v-model="form.password"
                             required
@@ -47,8 +48,9 @@
     data() {
       return {
         form: {
-          password:'',
-          username:''
+
+          username:'',
+          password:''
 
         },
         show: true
@@ -57,7 +59,7 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        //alert(JSON.stringify(this.form))
       }
     }
   }
