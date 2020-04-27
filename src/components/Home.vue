@@ -44,6 +44,7 @@
         </b-carousel-slide>
       </b-carousel>
     </div>
+<button v-on:click="check=1">LOGIN</button>
     <section id="room">
       <div class="container">
         <div class="row">
