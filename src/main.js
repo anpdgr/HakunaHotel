@@ -10,7 +10,7 @@ import router from './router'
 
 //Vue.use(Vuelidate)
 Vue.config.productionTip = false
-Vue.use(vueCountryRegionSelect)
+//Vue.use(vueCountryRegionSelect)
 
 new Vue({
   router,
