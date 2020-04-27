@@ -31,10 +31,10 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="register">Sign up</a>
+              <a class="nav-link js-scroll-trigger" href="register">My profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="login">Sign in</a>
+              <a v-on:click="check=0" class="nav-link js-scroll-trigger" href='/'>Sign out</a>
             </li>
           </ul>
         </div>

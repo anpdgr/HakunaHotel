@@ -5,10 +5,10 @@
                     <b-card style="max-width:30rem; padding:30px 20px; float: middle;" >
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Login</h3>
+                                <h3 class="panel-title">Sign in</h3>
                             </div>
                             <div class="panel-body">
-                                <form>
+                                <form action='/'>
                                     <div class="form-group" style="padding-top:20px">
                                         <label for="username" class="control-label sr-only">Add your username.</label>
                                         <input type="username" class="form-control" id="username" placeholder="username">
@@ -17,9 +17,12 @@
                                         <label for="password" class="control-label sr-only">Add your password.</label>
                                         <input type="password" class="form-control" id="password" placeholder="password">
                                     </div>
-                                    <button class="btn btn-primary pull-right">Sign In</button>
+                                    <button v-on:click="check=1" class="btn btn-primary pull-right" >Sign in</button>
                                 </form>
                             </div>
+                        </div>
+                        <div id='back' style="text-align:right">
+                            <a href='/'>Back to home</a>
                         </div>
                     </b-card>           
                 </div>
@@ -27,7 +30,17 @@
     </body>
 </template>
 
-<style>
+<script>
+export default {
+    data () {
+        return{
+            check: 0
+        }
+    }
+}
+</script>
+
+<style scoped>
 body{
     background-image: url('../assets/hotel.home.jpg');
     background-size: cover;
