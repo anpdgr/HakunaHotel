@@ -17,13 +17,14 @@ npm run serve
 ### Compiles and minifies for production
 ```
 yarn build
-#
+#or
 npm run build
 ```
 
 ### Lints and fixes files
 ```
 yarn lint
+#or
 npm lint
 ```
 
