@@ -1,5 +1,5 @@
 <template>
-    <body>
+    <body id='regis'>
         <div id = 'box'>
              <b-card border-varient='Primary' class="container">
                 <div class="panel panel-primary">
@@ -31,6 +31,7 @@
 
 <script>
 export default {
+    name:'regis',
     data: () => ({
         email: '',
         username: '',

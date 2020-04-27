@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div id='HelloWorld' class="hello">
     <div>
     <b-carousel
       id="carousel-1"

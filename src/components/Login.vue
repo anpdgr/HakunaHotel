@@ -1,7 +1,7 @@
 <template>
     <body>
-            <div style="max-width: 500px; margin: auto; padding-top:200px">
-                <div class="container" >
+            <div style="max-width: 500px; margin:auto; padding-top:200px;">
+                <div class="container">
                     <b-card style="max-width:30rem; padding:30px 20px; float: middle;" >
                         <div class="panel panel-primary">
                             <div class="panel-heading">
