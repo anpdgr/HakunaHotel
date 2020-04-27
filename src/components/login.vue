@@ -33,6 +33,10 @@
                         </div>
                     </b-form>
                 </div>
+                <br><br>
+                <div id='back'>
+                    <a href='/'>Back to home</a>
+                </div>
             </b-card>
         </div>
     </body>
