@@ -7,23 +7,28 @@
 
     <slide />
 
-    <button v-on:click="check = 1">LOGIN</button>
+        <!-- check
+login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
+login1 -> book -> payment -->
+
+    <button v-on:click="check = 1">Login as customer</button>
+    <a href='shome'> <button>Login as staff</button> </a>
+    <a href='mhome'> <button>Login as manager</button> </a>
+
 
     <section id="room" style="padding:50px">
       <roomSec />
     </section>
 
     <section id="services" class="bg-light">
-      <service />
+      <serviceSec />
     </section>
 
     <section id="contact">
-      <contact />
+      <contactSec />
     </section>
 
-    <!-- check
-login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
-login1 -> book -> payment -->
+
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -42,8 +47,8 @@ import NavLogIn from "../Nav.vue";
 import NavLogOut from "../NavLO.vue";
 import slide from "./SlidePic.vue";
 import roomSec from "./RoomSection.vue";
-import service from "./Services.vue";
-import contact from "./ContactUs.vue";
+import serviceSec from "./Services.vue";
+import contactSec from "./ContactUs.vue";
 
 export default {
   name: "HelloWorld",
@@ -52,8 +57,8 @@ export default {
     NavLogOut,
     slide,
     roomSec,
-    service,
-    contact,
+    serviceSec,
+    contactSec,
   },
   props: {
     msg: String,
@@ -82,5 +87,3 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->

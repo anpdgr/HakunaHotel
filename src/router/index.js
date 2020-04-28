@@ -1,8 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../components/HomeElem/Home.vue'
 import Reg from '../components/Register.vue'
 import LogIn from '../components/login.vue'
+
+
+import StatusHotel from '../components/StatusHotel.vue'
+
+import sHome from '../components/StaffRole/StaffHome.vue'
+import sEdit from '../components/StaffRole/Edit_staff.vue'
+import sAddCode from '../components/StaffRole/AddCode.vue'
+import sCheckIn from '../components/StaffRole/CheckIn.vue'
+
+import mView from '../components/Manager/ViewStaff.vue'
+import mHome from '../components/Manager/HomeMng.vue'
+
+import MyProfile from '../components/CusRole/myprofile.vue'
+import cEdit from '../components/CusRole/Edit_cus.vue'
+import booking from '../components/CusRole/BookForm.vue'
+import bookHis from '../components/CusRole/BookHis.vue'
+import payment from '../components/CusRole/Payment.vue'
 
 Vue.use(VueRouter)
 
@@ -21,7 +39,75 @@ const routes = [
         path: '/login',
         name: 'log',
         component: LogIn
-    }
+    },
+
+//staff and manager page
+    {
+        path: '/status',         //Status Hotel
+        name: 'StatusHotel',
+        component: StatusHotel,
+    },
+    {
+        path: '/sedit',         //Staff edit his profile
+        name: 'SEdit',
+        component: sEdit,
+    },
+    {
+        path: '/checkin',       //check-in form
+        name: 'CheckIn',
+        component: sCheckIn,
+    },
+    {
+        path: '/addcode',       //Add promo code
+        name: 'SAddCode',
+        component: sAddCode,
+    },
+    
+//manager page
+    {
+        path: '/mhome',         //เหมือน sHome แค่เพิ่ม menu mView
+        name: 'MHome',
+        component: mHome,
+    },
+    {
+        path: '/mviews',        //Manager view staff info
+        name: 'MViews',
+        component: mView,
+    },
+
+//staff page
+    {
+        path: '/shome',
+        name: 'SHome',
+        component: sHome,
+    },
+
+//customer page
+    {
+        path: '/myprofile',         //show customer profile
+        name: 'MyProfile',
+        component: MyProfile,
+    },
+    {
+        path: '/cedit',         //customer edit his profile
+        name: 'CEdit',
+        component: cEdit,
+    },
+    {
+        path: '/booking',         //booking form
+        name: 'Booking',
+        component: booking,
+    },
+    {
+        path: '/mybook',         //customer view his book his
+        name: 'BookHis',
+        component: bookHis,
+    },
+    {
+        path: '/payment',         //customer's payment
+        name: 'Payment',
+        component: payment,
+    },
 ]
 
 const router = new VueRouter({
