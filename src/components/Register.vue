@@ -49,7 +49,7 @@
                         </b-form-group>
 
                         <div style="float: left;">
-                        <b-button type="submit" variant="primary" >Sign up</b-button>
+                        <b-button  formtarget='_blank' type="submit" variant="primary" >Sign up</b-button>
                         </div>
                     </b-form>
                 </div>
@@ -80,6 +80,7 @@
       onSubmit(evt) {
         evt.preventDefault()
         //alert(JSON.stringify(this.form))
+        this.$router.push('login')
       }
     }
   }
