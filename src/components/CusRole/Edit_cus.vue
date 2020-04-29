@@ -1,6 +1,7 @@
 <template>
-  <div id="editcus" style="float:right;">
-    <b-card title="Edit profile" style="margin:auto; padding:30px" align="left"  >
+  <div id="editcus">
+    <STnav/>
+    <b-card id='card' title="Edit your profile">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
 
@@ -93,7 +94,11 @@
 </template>
 
 <script>
+  import STnav from './SideTopNav_cus.vue'
   export default {
+    components:{
+        STnav,
+    },
     data() {
       return {
         form: {
@@ -113,6 +118,7 @@
       onSubmit(evt) {
         evt.preventDefault()
         //alert(JSON.stringify(this.form))
+        this.$router.push('myprofile')
       },
       onReset(evt) {
         evt.preventDefault()
@@ -134,11 +140,16 @@
   }
 </script>
 
+
 <style scoped>
-  #editcus {
+  #editcus{
     
+    margin: auto;
+  }
+  #card{
+    max-width: 50rem; 
+    margin:100px 100px 100px 400px;    
+    padding:30px;
     
   }
-
-
 </style>

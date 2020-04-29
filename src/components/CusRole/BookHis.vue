@@ -1,11 +1,11 @@
 <template>
     <div>
-        <!-- <NavLO/>
-        <br><br><br><br> -->
-        <p>BookHisForCus</p>
-        
-        <a href='#'> <button>Review</button> </a>
-        <a href='#'> <button>Cancel</button> </a>
+        <STnav/>
+        <b-card id='card' title="Your History" >
+            
+            <a href='#'> <button>Review</button> </a>
+            <a href='#'> <button>Cancel</button> </a>
+        </b-card>
     </div>
 </template>
 
@@ -13,10 +13,20 @@
 อย่าลืมตุ่มยกเลิกการจองก่อนถึงวัน check-in
 
 <script>
-//import NavLO from '../NavLO.vue'
+import STnav from './SideTopNav_cus.vue'
 export default {
     components:{
-        //NavLO
-    }
+        STnav,
+    },
+    
 }
 </script>
+
+<style scoped>
+#card{
+    max-width: 50rem; 
+    margin:100px 100px 100px 400px;    
+    padding:30px;
+    
+  }
+</style>
