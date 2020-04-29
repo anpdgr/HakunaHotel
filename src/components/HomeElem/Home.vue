@@ -26,7 +26,7 @@ login1 -> book -> payment -->
     <a href='mhome'> <button>Login as manager</button> </a>
 
 
-    <section id="room" style="padding:50px; margin-top:250px">
+    <section id="room" style="padding:50px; margin-top:180px">
       <roomSec />
     </section>
 

@@ -13,19 +13,21 @@
     </div>
   </div>
   <!-- room card -->
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img
-          src="@/assets/delux_ub_tw.jpg"
-          alt="DUT"
-          style="width:350px;height:240px;"
-        />
-      </div>
-      <div class="flip-card-back">
-        <h1>DELUXE URBAN TWIN BED</h1>
-        <p>Architect & Engineer</p>
-        <p>We love that guy</p>
+  <div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img
+            src="@/assets/delux_ub_tw.jpg"
+            alt="DUT"
+            style="width:350px;height:240px;"
+          />
+        </div>
+        <div class="flip-card-back">
+          <h1>DELUXE URBAN TWIN BED</h1>
+          <p>Architect & Engineer</p>
+          <p>We love that guy</p>
+        </div>
       </div>
     </div>
   </div>
