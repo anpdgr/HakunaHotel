@@ -5,8 +5,8 @@
 </template>
 
 <script>
+//import Home from './components/HomeElem/textwel.vue'
 import Home from './components/route.vue'
-
 export default {
   name: 'App',
   components: {

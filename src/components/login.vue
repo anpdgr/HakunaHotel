@@ -36,7 +36,7 @@
                 </div>
                 <br><br>
                 <div id='back' style="text-align: right;">
-                    <a href='register'>I didn't have an account</a>
+                    <a href='register' style="text-decoration: underline;">I didn't have an account</a>
                     <br>
                     <a href='/'>Back to home</a>
                 </div>

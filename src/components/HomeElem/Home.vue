@@ -6,24 +6,37 @@
     </div>
 
     <slide />
+  
+    <section id="checkavi" style="padding:50px; margin:-350px 50px 50px ">
+      <checkavi />
+    </section>  
 
-    <button v-on:click="check = 1">LOGIN</button>
+    <section id="weltx" style="padding:50px; margin:-800px 50px 50px ">
+      <weltx />
+    </section>  
 
-    <section id="room" style="padding:50px">
+        <!-- check
+login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
+login1 -> book -> payment -->
+
+    <button v-on:click="check = 1">Login as customer</button>
+    <a href='shome'> <button>Login as staff</button> </a>
+    <a href='mhome'> <button>Login as manager</button> </a>
+
+
+    <section id="room" style="padding:50px; margin-top:250px">
       <roomSec />
     </section>
 
     <section id="services" class="bg-light">
-      <service />
+      <serviceSec />
     </section>
 
     <section id="contact">
-      <contact />
+      <contactSec />
     </section>
 
-    <!-- check
-login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
-login1 -> book -> payment -->
+
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -41,9 +54,11 @@ login1 -> book -> payment -->
 import NavLogIn from "../Nav.vue";
 import NavLogOut from "../NavLO.vue";
 import slide from "./SlidePic.vue";
+import weltx from "./Weltext.vue";
+import checkavi from "./CheckAvi.vue";
 import roomSec from "./RoomSection.vue";
-import service from "./Services.vue";
-import contact from "./ContactUs.vue";
+import serviceSec from "./Services.vue";
+import contactSec from "./ContactUs.vue";
 
 export default {
   name: "HelloWorld",
@@ -51,9 +66,11 @@ export default {
     NavLogIn,
     NavLogOut,
     slide,
+    weltx,
+    checkavi,
     roomSec,
-    service,
-    contact,
+    serviceSec,
+    contactSec,
   },
   props: {
     msg: String,
@@ -82,5 +99,3 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
