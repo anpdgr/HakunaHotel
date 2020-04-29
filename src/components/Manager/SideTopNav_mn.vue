@@ -1,15 +1,15 @@
 <template>
+<!-- EditStaff+Checkin+AddCode+StatusHotel -->
 <div>
-    <NavLO/>
+    <mnNav/>
     <!-- Side navigation -->
     <div class="sidenav">
       <div id="head">
-         <b-img id='pic' src=@/assets/social.jpg  ></b-img>
-         <a style="font-size:20px; color: #818181;" href="/myprofile">username</a>
+         <b-img id='pic' src=@/assets/mn.jpg  ></b-img>
+         <a style="font-size:20px; color: #818181;" href="/mhome">username</a>
       </div>
       <div id='menu' >
-        <a style="font-size:20px;" href="/cedit">Edit profile</a>
-        <a style="font-size:20px;" href="/mybook">Book history</a>
+        <a style="font-size:20px;" href="/medit">Edit profile</a>
         <a style="font-size:20px;" href="/">Sign out</a>
       </div>
     </div>
@@ -66,10 +66,10 @@
 </style>
 
 <script>
-import NavLO from '../NavLO.vue'
+import mnNav from '../Nav_mn.vue'
 export default {
   components:{
-        NavLO
+        mnNav
     }
   
 }

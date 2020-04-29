@@ -15,6 +15,7 @@ import sCheckIn from '../components/StaffRole/CheckIn.vue'
 
 import mView from '../components/Manager/ViewStaff.vue'
 import mHome from '../components/Manager/HomeMng.vue'
+import mEdit from '../components/Manager/Edit_staff(mn).vue'
 
 import MyProfile from '../components/CusRole/myprofile.vue'
 import cEdit from '../components/CusRole/Edit_cus.vue'
@@ -48,11 +49,6 @@ const routes = [
         component: StatusHotel,
     },
     {
-        path: '/sedit',         //Staff edit his profile
-        name: 'SEdit',
-        component: sEdit,
-    },
-    {
         path: '/checkin',       //check-in form
         name: 'CheckIn',
         component: sCheckIn,
@@ -74,12 +70,22 @@ const routes = [
         name: 'MViews',
         component: mView,
     },
+    {
+        path: '/medit',         //Manager edit his profile
+        name: 'MEdit',
+        component: mEdit,
+    },
 
 //staff page
     {
         path: '/shome',
         name: 'SHome',
         component: sHome,
+    },
+    {
+        path: '/sedit',         //Staff edit his profile
+        name: 'SEdit',
+        component: sEdit,
     },
 
 //customer page

@@ -1,6 +1,6 @@
 <template>
   <div id="editst" >
-    <STnav/>
+    <MNnav/>
     <b-card title="Edit profile"  align="left" id="card" >
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
@@ -107,10 +107,10 @@
 </template>
 
 <script>
-  import STnav from './SideTopNav_st.vue'
+  import MNnav from './SideTopNav_mn.vue'
   export default {
     components:{
-        STnav
+        MNnav
     },
     data() {
       return {
@@ -132,7 +132,7 @@
       onSubmit(evt) {
         evt.preventDefault()
         //alert(JSON.stringify(this.form))
-        this.$router.push('shome')
+        this.$router.push('mhome')
       },
       onReset(evt) {
         evt.preventDefault()

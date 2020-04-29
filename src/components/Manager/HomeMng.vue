@@ -1,18 +1,36 @@
+<!-- ViewStaff+StatusHotel -->
 <template>
-  <!-- ViewStaff+StatusHotel -->
-  <div>
-        <p>Manager home</p>
+    <div id="all">
+        <MNnav/>
+        <div>
+        <b-card id="card" title="Your profile">
 
-        <a href='/'> <button>HOME</button> </a> 
-        <br>       
-        <p>Profile</p>
-        <a href='mviews'> <button>View staff</button> </a>
-        <br>
-        <a href='status'> <button>View hotel status</button> </a>
-        <a href='sedit'> <button>Edit my profile</button> </a>
-        <a href='checkin'> <button>Check-in form</button> </a>
-        <a href='addcode'> <button>Add code promo</button> </a>
-        <a href='addcode'> <button>Add code promo</button> </a>
+        </b-card>
+      </div>
+
     </div>
 
 </template>
+
+<script>
+import MNnav from './SideTopNav_mn.vue'
+export default {
+  components:{
+        MNnav,
+    }
+  
+}
+</script>
+
+<style scoped>
+#all{
+  margin: 100px 50px;
+  
+}
+#card{
+    max-width: 50rem; 
+    margin:100px 100px 100px 400px;    
+    padding:30px;
+    
+  }
+</style>

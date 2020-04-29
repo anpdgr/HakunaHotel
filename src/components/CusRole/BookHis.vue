@@ -1,11 +1,27 @@
 <template>
     <div>
-        <STnav/>
+        <Cusnav/>
         <b-card id='card' title="Your History" >
-            
-            <a href='#'> <button>Review</button> </a>
-            <a href='#'> <button>Cancel</button> </a>
+            <div>
+                <b-card no-body>
+                    <b-tabs card>
+                    <b-tab title="Ongoing" active>
+                        <b-card-text>Tab contents 1</b-card-text>
+                        <a> <button>cancle</button> </a>
+                    </b-tab>
+                    <b-tab title="Done">
+                        <b-card-text>Tab contents 2</b-card-text>
+                        <a href='#'> <button>Review</button> </a>
+                    </b-tab>
+                    <b-tab title="Cancled">
+                        <b-card-text>Tab contents 3</b-card-text>
+                    </b-tab>
+                    </b-tabs>
+                </b-card>
+            </div>
         </b-card>
+
+        
     </div>
 </template>
 
@@ -13,10 +29,10 @@
 อย่าลืมตุ่มยกเลิกการจองก่อนถึงวัน check-in
 
 <script>
-import STnav from './SideTopNav_cus.vue'
+import Cusnav from './SideTopNav_cus.vue'
 export default {
     components:{
-        STnav,
+        Cusnav,
     },
     
 }
@@ -24,8 +40,8 @@ export default {
 
 <style scoped>
 #card{
-    max-width: 50rem; 
-    margin:100px 100px 100px 400px;    
+    max-width: 90rem; 
+    margin:100px 100px 100px 300px;    
     padding:30px;
     
   }

@@ -1,6 +1,6 @@
 <template>
   <div id="all" >
-    <STnav/>
+    <Cusnav/>
       <div>
         <b-card id="card" title="Your profile">
 
@@ -25,10 +25,10 @@
 </style>
 
 <script>
-import STnav from './SideTopNav_cus.vue'
+import Cusnav from './SideTopNav_cus.vue'
 export default {
   components:{
-        STnav,
+        Cusnav,
     }
   
 }

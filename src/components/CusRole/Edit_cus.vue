@@ -1,7 +1,7 @@
 <template>
   <div id="editcus">
-    <STnav/>
-    <b-card id='card' title="Edit your profile">
+    <Cusnav/>
+    <b-card id='card'  align="left"  title="Edit your profile">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
 
@@ -83,21 +83,21 @@
         
         <div style="float: right;">
           <b-button type="reset" variant="danger" style="margin-right:20px;">Reset</b-button>
-          <b-button type="submit" variant="primary" >Submit</b-button>
+          <b-button type="submit" variant="primary">Submit</b-button>
         </div>
       </b-form>
     </b-card>
-    <b-card class="mt-3" header="Form Data Result">
+    <!-- <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    </b-card> -->
   </div>
 </template>
 
 <script>
-  import STnav from './SideTopNav_cus.vue'
+  import Cusnav from './SideTopNav_cus.vue'
   export default {
     components:{
-        STnav,
+        Cusnav,
     },
     data() {
       return {
@@ -114,11 +114,13 @@
         show: true
       }
     },
+
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        //alert(JSON.stringify(this.form))
+        //alert("update success")
         this.$router.push('myprofile')
+
       },
       onReset(evt) {
         evt.preventDefault()
