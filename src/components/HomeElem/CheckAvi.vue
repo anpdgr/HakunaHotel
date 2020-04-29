@@ -24,16 +24,6 @@
                 <b-form-spinbutton  v-model="form.num_guest" min="1" max="100" placeholder="--" required></b-form-spinbutton>
             </b-form-group>
 
-             <b-form-group id="ipg-email">
-                        <b-form-input
-                            id="ip-email"
-                            v-model="form.email"
-                            type="email"
-                            required
-                            placeholder="Email"
-                        ></b-form-input>
-                        </b-form-group>
-            
             <b-button id="button" type="submit" variant="secondary">Check avilable</b-button>
         </b-form>          
     </b-card>
@@ -65,7 +55,6 @@
           checkin_date: null,
           checkout_date: null,
           num_guest:'',
-          email:'',
         },
         show: true
       }
