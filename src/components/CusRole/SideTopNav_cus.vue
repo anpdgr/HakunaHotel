@@ -42,6 +42,8 @@
   padding-top: 20px;
   margin-top:50px;
 
+;
+  
 }
 
 /* The navigation menu links */

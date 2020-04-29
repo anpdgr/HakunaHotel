@@ -7,7 +7,9 @@
                     <b-tabs card>
                     <b-tab title="Ongoing" active>
                         <b-card-text>Tab contents 1</b-card-text>
-                        <a> <button>cancle</button> </a>
+                        <div id="onbook">
+                            <a> <button>cancle</button> </a>
+                        </div>
                     </b-tab>
                     <b-tab title="Done">
                         <b-card-text>Tab contents 2</b-card-text>
@@ -19,6 +21,7 @@
                     </b-tabs>
                 </b-card>
             </div>
+                            
         </b-card>
 
         
@@ -34,6 +37,7 @@ export default {
     components:{
         Cusnav,
     },
+    //test for loop data
     
 }
 </script>
@@ -45,4 +49,7 @@ export default {
     padding:30px;
     
   }
+#onbook{
+    margin: auto;
+}
 </style>

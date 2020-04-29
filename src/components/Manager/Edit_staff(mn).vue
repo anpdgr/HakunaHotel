@@ -71,16 +71,13 @@
           ></b-form-input>
         </b-form-group>
 
-        <!-- <b-form-group id="ipg-country" label="Country:" label-for="ip-country">
-          <country-select
+        <b-form-group id="ipg-country" label="Country:" label-for="ip-country">
+          <b-form-input
             id="ip-country"
-            v-model="form.country"  
-            :country="country" 
-            topCountry="US"
-            placeholder="select country"
+            v-model="form.country"
             required
-          ></country-select>
-        </b-form-group> -->
+          ></b-form-input>
+        </b-form-group>
 
         <b-form-group id="ipg-@" label="Address:" label-for="ip-@">
           <b-form-textarea

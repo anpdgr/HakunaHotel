@@ -70,14 +70,13 @@
           ></b-form-input>
         </b-form-group>
 
-        <!-- <b-form-group id="ipg-country" label="Country:" label-for="ip-country">
-          <b-form-select
+        <b-form-group id="ipg-country" label="Country:" label-for="ip-country">
+          <b-form-input
             id="ip-country"
             v-model="form.country"
-            :options="Country"
             required
-          ></b-form-select>
-        </b-form-group> -->
+          ></b-form-input>
+        </b-form-group>
 
         <br><br>
         

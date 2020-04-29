@@ -17,8 +17,8 @@
   
 }
 #card{
-    max-width: 50rem; 
-    margin:100px 100px 100px 400px;    
+    max-width: 90rem; 
+    margin:100px 100px 100px 300px;    
     padding:30px;
     
   }
