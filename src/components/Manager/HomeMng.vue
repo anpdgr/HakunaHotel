@@ -5,6 +5,7 @@
 
         <a href='/'> <button>HOME</button> </a> 
         <br>       
+        <p>Profile</p>
         <a href='mviews'> <button>View staff</button> </a>
         <br>
         <a href='status'> <button>View hotel status</button> </a>
