@@ -29,7 +29,7 @@
               <td>
                 <div id="noRoom1">
                   <b-form-select
-                    v-model="selected1"
+                    v-model="selected[0]"
                     :options="options"
                     size="sm"
                     class="mb-3"
@@ -38,9 +38,9 @@
               </td>
               <td rowspan="3">
                 <!-- rowspan = for ตามจน.รูมไทป์ -->
-                <a href="payment">
-                  <b-button id='reserve' variant="primary">Reserve</b-button>
-                </a>
+                <!-- <a href="payment"> -->
+                  <b-button id='reserve' type='submit' variant="primary" @click="check()">Reserve</b-button>
+                <!-- </a> -->
               </td>
             </tr>
 
@@ -56,7 +56,7 @@
               <td>
                 <div id="noRoom2">
                   <b-form-select
-                    v-model="selected2"
+                    v-model="selected[1]"
                     :options="options"
                     size="sm"
                     class="mb-3"
@@ -77,7 +77,7 @@
               <td>
                 <div id="noRoom3">
                   <b-form-select
-                    v-model="selected3"
+                    v-model="selected[2]"
                     :options="options"
                     size="sm"
                     class="mb-3"
@@ -88,9 +88,10 @@
           </tbody>
         </table>
 
-        <p>roomtype1: {{selected1}} rooms<br>
-           roomtype2: {{selected2}} rooms<br>
-           roomtype3: {{selected3}} rooms</p>
+        <p>roomtype1: {{selected[0]}} rooms<br>
+           roomtype2: {{selected[1]}} rooms<br>
+           roomtype3: {{selected[2]}} rooms</p>
+           <p>{{selected}}</p>
       </b-card>
     </div>
   </div>
@@ -104,7 +105,8 @@ export default {
   },
   data() {
     return {
-      selected1: 0,
+      isZero:true,
+      selected: [0,0,0],
       options: [
         { value: 0, text: "0" },
         { value: 1, text: "1" },
@@ -112,10 +114,27 @@ export default {
         { value: 3, text: "3" },
         { value: 4, text: "4" },
       ],
-      selected2: 0,
-      selected3: 0,
       //ตามจน.รูมไทป์ ฟอร์ไป (รอดาต้า)
     };
+  },
+    methods: {  
+        checkNull(){
+            for (let i = 0; i < this.selected.length; i++) {
+                if(this.selected[i] !=0){
+                    this.isZero=false;
+                }
+            }
+            return this.isZero;
+        },
+        check() {
+        if(this.checkNull())
+        {
+            alert('Please select number of rooms')
+        }
+        else{
+            this.$router.push("payment");
+        }
+        },
   },
 };
 </script>
