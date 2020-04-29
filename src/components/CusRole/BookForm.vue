@@ -87,6 +87,10 @@
             </tr>
           </tbody>
         </table>
+
+        <p>roomtype1: {{selected1}} rooms<br>
+           roomtype2: {{selected2}} rooms<br>
+           roomtype3: {{selected3}} rooms</p>
       </b-card>
     </div>
   </div>
