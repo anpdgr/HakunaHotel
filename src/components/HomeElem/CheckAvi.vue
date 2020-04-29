@@ -24,7 +24,7 @@
                 <b-form-spinbutton  v-model="form.num_guest" min="1" max="100" placeholder="--" required></b-form-spinbutton>
             </b-form-group>
 
-            <b-button id="button" type="submit" variant="secondary">Check avilable</b-button>
+            <b-button id="button" type="submit" variant="secondary" @click="check()">Check avilable</b-button>
         </b-form>          
     </b-card>
 
@@ -51,20 +51,34 @@
   export default {
     data() {
       return {
+        isNUll:true,
         form: {
           checkin_date: null,
           checkout_date: null,
-          num_guest:'',
+          num_guest: null,
         },
         show: true
       }
     },
-    methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        this.$router.push('booking')
-      },
-    }
+    methods: {  
+        checkNull(){
+            for (let i = 0; i < this.form.length; i++) {
+                if(this.form[i] !=null){
+                    this.isNULL=false;
+                }
+            }
+            return this.isNUll;
+        },
+        check() {
+        if(this.checkNull())
+        {
+            alert('Please select date')
+        }
+        else{
+            this.$router.push("booking");
+        }
+        },
+  },
   }
 </script>
 
