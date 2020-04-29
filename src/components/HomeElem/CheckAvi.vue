@@ -1,17 +1,41 @@
 <template>
     <b-card id="card" bg-variant="default" >
-         <b-form inline id="dateform">
-                    <b-form-group label="Check-in Date:" style="margin-right:20px; margin-left:20px; width: 17rem;">
-                        <b-form-datepicker v-model="checkin_date" :date-disabled-fn="dateDisabled" locale="en"></b-form-datepicker>
-                    </b-form-group>
-                    <b-form-group label="Check-out Date:" style="margin-right:20px; width: 17rem;">
-                        <b-form-datepicker v-model="checkout_date" :date-disabled-fn="dateDisabled" locale="en"></b-form-datepicker>
-                    </b-form-group>
-                    <b-form-group label="Number of guestes: " style="margin-right:30px; width: 10rem;">
-                        <b-form-spinbutton id="demo-sb" v-model="num_guest" min="1" max="100" placeholder="--"></b-form-spinbutton>
-                    </b-form-group>
-                    <b-button id="button" variant="secondary">Check avilable</b-button>
-                </b-form>
+         <b-form  @submit="onSubmit" inline id="dateform">
+
+             <b-form-group id="ipg-cin" label="Check-in Date:" style="margin-right:20px; margin-left:20px; width: 17rem;">
+                        <b-form-datepicker
+                            id="ip-cin"
+                            v-model="form.checkin_date"
+                            required
+                            placeholder="No date delected"
+                        ></b-form-datepicker>
+            </b-form-group>
+
+             <b-form-group id="ipg-cout" label="Check-out Date:" style="margin-right:20px; width: 17rem;">
+                        <b-form-datepicker
+                            id="ip-cout"
+                            v-model="form.checkout_date"
+                            required
+                            placeholder="No date delected"
+                        ></b-form-datepicker>
+            </b-form-group>
+            
+            <b-form-group label="Number of guestes: " style="margin-right:30px; width: 10rem;">
+                <b-form-spinbutton  v-model="form.num_guest" min="1" max="100" placeholder="--" required></b-form-spinbutton>
+            </b-form-group>
+
+             <b-form-group id="ipg-email">
+                        <b-form-input
+                            id="ip-email"
+                            v-model="form.email"
+                            type="email"
+                            required
+                            placeholder="Email"
+                        ></b-form-input>
+                        </b-form-group>
+            
+            <b-button id="button" type="submit" variant="secondary">Check avilable</b-button>
+        </b-form>          
     </b-card>
 
     
@@ -32,4 +56,26 @@
         margin:auto;
     }
 </style>
+
+<script>
+  export default {
+    data() {
+      return {
+        form: {
+          checkin_date: null,
+          checkout_date: null,
+          num_guest:'',
+          email:'',
+        },
+        show: true
+      }
+    },
+    methods: {
+      onSubmit(evt) {
+        evt.preventDefault()
+        this.$router.push('booking')
+      },
+    }
+  }
+</script>
 

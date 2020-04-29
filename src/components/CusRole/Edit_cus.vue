@@ -105,7 +105,6 @@
           data: null,
           country: null
         },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
         title: [{ text: 'Select One', value: null }, 'Mr.', 'Ms.', 'Miss'],
         show: true
       }
@@ -113,7 +112,7 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        //alert(JSON.stringify(this.form))
       },
       onReset(evt) {
         evt.preventDefault()
