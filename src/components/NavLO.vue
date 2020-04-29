@@ -20,15 +20,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#room">Room</a>
+              <a class="nav-link js-scroll-trigger" href="/#room">Room</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services"
+              <a class="nav-link js-scroll-trigger" href="/#services"
                 >Services</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="/#contact">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="myprofile">My account</a>

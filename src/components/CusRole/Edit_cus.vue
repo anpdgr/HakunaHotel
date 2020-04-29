@@ -1,6 +1,6 @@
 <template>
-  <div id="editcus" style="margin:50px">
-    <b-card title="Edit profile" style="max-width: 50rem; margin:auto; padding:30px" align="left"  >
+  <div id="editcus" style="float:right;">
+    <b-card title="Edit profile" style="margin:auto; padding:30px" align="left"  >
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
 
@@ -136,7 +136,7 @@
 
 <style scoped>
   #editcus {
-    margin: 50px;
+    
     
   }
 

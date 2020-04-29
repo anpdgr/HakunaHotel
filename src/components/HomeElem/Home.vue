@@ -38,7 +38,12 @@ login1 -> book -> payment -->
       <contactSec />
     </section>
 
-
+    <!-- เอามาวางตรงนี้ จะเอามาลองง -->
+    <a href='booking'> <button>Check available</button> </a>
+    <br>
+    <button v-on:click="check = 1">Login as customer</button>
+    <a href='shome'> <button>Login as staff</button> </a>
+    <a href='mhome'> <button>Login as manager</button> </a>
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -61,6 +66,7 @@ import checkavi from "./CheckAvi.vue";
 import roomSec from "./RoomSection.vue";
 import serviceSec from "./Services.vue";
 import contactSec from "./ContactUs.vue";
+
 
 export default {
   name: "HelloWorld",

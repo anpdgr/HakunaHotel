@@ -1,7 +1,7 @@
 <template>
     <div>
-        <NavLO/>
-        <br><br><br><br>
+        <!-- <NavLO/>
+        <br><br><br><br> -->
         <p>BookHisForCus</p>
         
         <a href='#'> <button>Review</button> </a>
@@ -13,10 +13,10 @@
 อย่าลืมตุ่มยกเลิกการจองก่อนถึงวัน check-in
 
 <script>
-import NavLO from '../NavLO.vue'
+//import NavLO from '../NavLO.vue'
 export default {
     components:{
-        NavLO
+        //NavLO
     }
 }
 </script>
