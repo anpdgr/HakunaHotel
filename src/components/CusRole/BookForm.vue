@@ -1,11 +1,14 @@
 <template>
   <div>
     <NavLO />
-    <br /><br /><br />
-    <p>Card check</p>
-
+    <br /><br /><br /><br />
+    <CheckAv />
+    <br />
     <div id="CARD">
-      <b-card title="Available room" sub-title="Date: ">
+      <b-card
+        title="Available room"
+        sub-title="Date: checkin_date to checkout_date Number of guests: num_guest"
+      >
         <table class="table table-bordered">
           <thead>
             <tr class="table-secondary">
@@ -17,11 +20,15 @@
             </tr>
           </thead>
           <tbody>
+            <!-- ตัวอย่างข้อมูล -->
             <tr>
               <th scope="row">
                 <div style="width:90%; margin:auto">
                   <p>Room type 1</p>
-                  <p style="font-size:small;">Description: .....................................................................</p>
+                  <p style="font-size:small;">
+                    Description:
+                    .....................................................................
+                  </p>
                 </div>
               </th>
               <td>2</td>
@@ -38,17 +45,24 @@
               </td>
               <td rowspan="3">
                 <!-- rowspan = for ตามจน.รูมไทป์ -->
-                <!-- <a href="payment"> -->
-                  <b-button id='reserve' type='submit' variant="primary" @click="check()">Reserve</b-button>
-                <!-- </a> -->
+                <b-button
+                  id="reserve"
+                  type="submit"
+                  variant="primary"
+                  @click="check()"
+                  >Reserve</b-button
+                >
               </td>
             </tr>
-
+            <!-- ตัวอย่างข้อมูล -->
             <tr>
               <th scope="row">
                 <div style="width:90%; margin:auto">
                   <p>Room type 2</p>
-                  <p style="font-size:small;">Description: .....................................................................</p>
+                  <p style="font-size:small;">
+                    Description:
+                    .....................................................................
+                  </p>
                 </div>
               </th>
               <td>3</td>
@@ -64,12 +78,15 @@
                 </div>
               </td>
             </tr>
-
+            <!-- ตัวอย่างข้อมูล -->
             <tr>
               <th scope="row">
                 <div style="width:90%; margin:auto">
                   <p>Room type 3</p>
-                  <p style="font-size:small;">Description: .....................................................................</p>
+                  <p style="font-size:small;">
+                    Description:
+                    .....................................................................
+                  </p>
                 </div>
               </th>
               <td scope="row">4</td>
@@ -88,10 +105,12 @@
           </tbody>
         </table>
 
-        <p>roomtype1: {{selected[0]}} rooms<br>
-           roomtype2: {{selected[1]}} rooms<br>
-           roomtype3: {{selected[2]}} rooms</p>
-           <p>{{selected}}</p>
+        <p>
+          roomtype1: {{ selected[0] }} rooms<br />
+          roomtype2: {{ selected[1] }} rooms<br />
+          roomtype3: {{ selected[2] }} rooms
+        </p>
+        <p>{{ selected }}</p>
       </b-card>
     </div>
   </div>
@@ -99,14 +118,17 @@
 
 <script>
 import NavLO from "../NavLO.vue";
+import CheckAv from "../HomeElem/CheckAvi";
+
 export default {
   components: {
     NavLO,
+    CheckAv,
   },
   data() {
     return {
-      isZero:true,
-      selected: [0,0,0],
+      isZero: true,
+      selected: [0, 0, 0],
       options: [
         { value: 0, text: "0" },
         { value: 1, text: "1" },
@@ -117,24 +139,31 @@ export default {
       //ตามจน.รูมไทป์ ฟอร์ไป (รอดาต้า)
     };
   },
-    methods: {  
-        checkNull(){
-            for (let i = 0; i < this.selected.length; i++) {
-                if(this.selected[i] !=0){
-                    this.isZero=false;
-                }
-            }
-            return this.isZero;
-        },
-        check() {
-        if(this.checkNull())
-        {
-            alert('Please select number of rooms')
+  methods: {
+    checkNull() {
+      for (let i = 0; i < this.selected.length; i++) {
+        if (this.selected[i] != 0) {
+          this.isZero = false;
         }
-        else{
-            this.$router.push("payment");
-        }
-        },
+      }
+      return this.isZero;
+    },
+    check() {
+      if (this.checkNull()) {
+        this.makeToast('danger','Please select number of each room type.');
+
+      } else {
+        this.$router.push("payment");
+      }
+    },
+    makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+      });
+    },
   },
 };
 </script>
@@ -146,19 +175,19 @@ export default {
 }
 table {
   table-layout: fixed;
-  width:100%;
+  width: 100%;
 }
 
 table td {
   word-wrap: break-word;
 }
-#reserve{
-    font-size:16px;
-    padding: 10px 24px;
-    transition-duration: 0.4s;
+#reserve {
+  font-size: 16px;
+  padding: 10px 24px;
+  transition-duration: 0.4s;
 }
-#reserve:hover{
-    background-color:darkblue;
-    color:white;
+#reserve:hover {
+  background-color: darkblue;
+  color: white;
 }
 </style>

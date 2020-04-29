@@ -18,9 +18,9 @@
         <!-- check
 login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
 login1 -> book -> payment -->
+  <br><br>
 
-
-    <section id="room" style="padding:50px; margin-top:250px">
+    <section id="room" style="padding:50px; margin-top:180px">
       <roomSec />
     </section>
 
@@ -32,12 +32,12 @@ login1 -> book -> payment -->
       <contactSec />
     </section>
 
+    <!-- เอามาวางตรงนี้ จะเอามาลองง -->
     <a href='booking'> <button>Check available</button> </a>
     <br>
     <button v-on:click="check = 1">Login as customer</button>
     <a href='shome'> <button>Login as staff</button> </a>
     <a href='mhome'> <button>Login as manager</button> </a>
-
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -60,6 +60,7 @@ import checkavi from "./CheckAvi.vue";
 import roomSec from "./RoomSection.vue";
 import serviceSec from "./Services.vue";
 import contactSec from "./ContactUs.vue";
+
 
 export default {
   name: "HelloWorld",

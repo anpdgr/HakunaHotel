@@ -1,13 +1,13 @@
 <template>
-    <b-card id="card" bg-variant="default" >
-         <b-form  @submit="onSubmit" inline id="dateform">
+    <b-card id="card" bg-variant="default"  >
+         <b-form inline id="dateform">
 
-             <b-form-group id="ipg-cin" label="Check-in Date:" style="margin-right:20px; margin-left:20px; width: 17rem;">
+             <b-form-group id="ipg-cin" label="Check-in Date:" style="margin-right:20px; width: 17rem;">
                         <b-form-datepicker
                             id="ip-cin"
                             v-model="form.checkin_date"
+                            :date-disabled-fn="dateDisabled" locale="en"
                             required
-                            placeholder="No date selected"
                         ></b-form-datepicker>
             </b-form-group>
 
@@ -15,16 +15,16 @@
                         <b-form-datepicker
                             id="ip-cout"
                             v-model="form.checkout_date"
+                            :date-disabled-fn="dateDisabled" locale="en"
                             required
-                            placeholder="No date selected"
                         ></b-form-datepicker>
             </b-form-group>
             
-            <b-form-group label="Number of guestes: " style="margin-right:30px; width: 10rem;">
+            <b-form-group label="Number of guests: " style="margin-right:30px; width: 10rem;">
                 <b-form-spinbutton  v-model="form.num_guest" min="1" max="100" placeholder="--" required></b-form-spinbutton>
             </b-form-group>
 
-            <b-button id="button" type="submit" variant="secondary" @click="check()">Check avilable</b-button>
+            <b-button id="button" type="submit" variant="secondary" @click="checkNull()">Check avilable</b-button>
         </b-form>          
     </b-card>
 
@@ -33,9 +33,9 @@
 
 <style scoped>
     #card{
-        padding:25px 25px;
-        width: 68rem;
-        margin:auto auto auto 50px;     
+        padding:25px 10px;
+        margin:auto 85px; 
+        align-items: center;    
     }
     #button{
         float:right;
@@ -52,6 +52,7 @@
     data() {
       return {
         isNUll:true,
+        x:0,
         form: {
           checkin_date: null,
           checkout_date: null,
@@ -62,23 +63,25 @@
     },
     methods: {  
         checkNull(){
-            for (let i = 0; i < this.form.length; i++) {
-                if(this.form[i] !=null){
-                    this.isNULL=false;
+            if(this.form.checkin_date==null|this.form.checkout_date==null|this.form.num_guest==null){
+                if(this.form.checkin_date==null|this.form.checkout_date==null){
+                     alert("please select date");
+                }
+                else{
+                    alert("please select number of guest");
                 }
             }
-            return this.isNUll;
-        },
-        check() {
-        if(this.checkNull())
-        {
-            alert('Please select date')
+            else{
+                if(this.form.checkin_date>this.form.checkout_date){
+                    alert("Invalid date");
+                }
+                else{
+                    this.$router.push('booking');
+                }
+                
+            }
         }
-        else{
-            this.$router.push("booking");
-        }
-        },
-  },
+  }
   }
 </script>
 
