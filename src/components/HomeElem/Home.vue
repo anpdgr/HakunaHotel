@@ -19,12 +19,6 @@
 login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
 login1 -> book -> payment -->
 
-    <a href='booking'> <button>Check available</button> </a>
-    <br>
-    <button v-on:click="check = 1">Login as customer</button>
-    <a href='shome'> <button>Login as staff</button> </a>
-    <a href='mhome'> <button>Login as manager</button> </a>
-
 
     <section id="room" style="padding:50px; margin-top:250px">
       <roomSec />
@@ -38,6 +32,11 @@ login1 -> book -> payment -->
       <contactSec />
     </section>
 
+    <a href='booking'> <button>Check available</button> </a>
+    <br>
+    <button v-on:click="check = 1">Login as customer</button>
+    <a href='shome'> <button>Login as staff</button> </a>
+    <a href='mhome'> <button>Login as manager</button> </a>
 
 
     <!-- Footer -->

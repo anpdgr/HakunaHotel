@@ -7,7 +7,7 @@
                             id="ip-cin"
                             v-model="form.checkin_date"
                             required
-                            placeholder="No date delected"
+                            placeholder="No date selected"
                         ></b-form-datepicker>
             </b-form-group>
 
@@ -16,7 +16,7 @@
                             id="ip-cout"
                             v-model="form.checkout_date"
                             required
-                            placeholder="No date delected"
+                            placeholder="No date selected"
                         ></b-form-datepicker>
             </b-form-group>
             
