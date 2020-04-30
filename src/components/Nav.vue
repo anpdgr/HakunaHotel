@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="body">
     <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+      class="navbar navbar-expand-lg fixed-top"
       id="mainNav"
     >
       <div class="container">
@@ -56,6 +56,9 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color:white;
+}
+#mainNav{
+  background-color:#513f2a;
 }
 </style>

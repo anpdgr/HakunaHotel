@@ -40,9 +40,10 @@ login1 -> book -> payment -->
     <a href='mhome'> <button>Login as manager</button> </a>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5" style="background-color:#513f2a;">
       <div class="container">
-        <p class="m-0 text-center text-white">
+        <br>
+        <p class="m-0 text-center text-white" style="font-size:17px">
           Copyright &copy; ปจดตบกจกรร 2020
         </p>
       </div>
@@ -101,3 +102,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>

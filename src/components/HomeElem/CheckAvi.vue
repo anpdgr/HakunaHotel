@@ -44,10 +44,11 @@
 
       <b-button
         id="button"
-        variant="success"
+        variant="dark"
         @click="checkNull()"
-        >Check avilable</b-button
+        >Check available</b-button
       >
+      <!-- variant="success" -->
     </b-form>
   </b-card>
 </template>
@@ -57,11 +58,15 @@
   padding: 25px 10px;
   margin: auto 85px;
   align-items: center;
+  border-color: #2a2818;
 }
 #button {
   float: right;
   margin-top: 30px;
   margin-left: 20px;
+  background-color:#9c472f;
+  border-color: transparent;
+  
 }
 #dateform {
   margin: auto;

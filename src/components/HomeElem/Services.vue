@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="body" class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <h2>Services we offer</h2>
@@ -13,3 +13,5 @@
     </div>
   </div>
 </template>
+
+

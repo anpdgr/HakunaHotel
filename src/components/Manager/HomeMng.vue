@@ -4,6 +4,28 @@
         <MNnav/>
         <div>
         <b-card id="card" title="Your profile">
+          <b-card-body>   
+              <b-tabs content-class="mt-3" fill>
+                    <b-tab title="About you" active>
+                        <div style="margin:70px 30px">
+                          <span style="float:left;">First name</span><br><br> 
+                          <span style="float:left;">Last name</span><br><br>
+                          <span style="float:left;">Name title</span><br><br>
+                          <span style="float:left;">Birthday</span><br><br>
+                          <span style="float:left;">Email address</span><br><br>
+                          <span style="float:left;">Phone number</span><br><br>
+                          <span style="float:left;">Country</span><br><br>
+                        </div>
+                    </b-tab>
+                    <b-tab title="About job">
+                        <div style="margin:70px 30px">
+                          <span style="float:left;">Position</span>เมเนเจ้องัย จะคัยหล่ะ<br><br>
+                          <span style="float:left;">Salary</span><br><br>
+                          <span style="float:left;">Start date</span><br><br>
+                        </div>
+                    </b-tab>               
+              </b-tabs>              
+          </b-card-body>  
 
         </b-card>
       </div>

@@ -23,6 +23,6 @@
 #card{
     background-color: transparent;
     border-color: transparent;
-    padding:100px
+    padding:100px 200px;
 }
 </style>
