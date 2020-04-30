@@ -28,7 +28,7 @@
             </b-form-group>
 
             <div style="float: left;">
-              <b-button v-on:click="check = 1" type="submit" variant="primary"
+              <b-button v-on:click="check = 1" type="submit" variant="primary" 
                 >Sign in</b-button
               >
             </div>

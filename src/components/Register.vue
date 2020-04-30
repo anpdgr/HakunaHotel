@@ -51,7 +51,7 @@
                         </b-form-group>
 
                         <div style="float: left;">
-                        <b-button  formtarget='_blank' type="submit" variant="primary" >Sign up</b-button>
+                        <b-button  formtarget='_blank' type="submit" variant="primary">Sign up</b-button>
                         </div>
                     </b-form>
                 </div>
@@ -82,8 +82,24 @@
       onSubmit(evt) {
         evt.preventDefault()
         //alert(JSON.stringify(this.form))
-        this.$router.push('login')
-      }
+        if(this.form.password!=this.form.cpassword){
+          this.makeToast("danger", "Your password and confirmation password do not match.");
+        } 
+        if(this.form.password.length<7){
+          this.makeToast("danger", "invalid password");
+        }
+        else{
+          this.$router.push('login');
+        }
+      },
+      makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+      });
+    },
     }
   }
 </script>

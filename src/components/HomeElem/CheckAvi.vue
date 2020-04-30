@@ -48,6 +48,7 @@
         @click="checkNull()"
         >Check avilable</b-button
       >
+      <!-- variant="success" -->
     </b-form>
   </b-card>
 </template>
