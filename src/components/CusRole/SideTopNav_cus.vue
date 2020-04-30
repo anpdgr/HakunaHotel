@@ -4,7 +4,7 @@
     <!-- Side navigation -->
     <div class="sidenav">
       <div id="head">
-         <b-img id='pic' src=@/assets/social.jpg  ></b-img>
+         <b-avatar variant="light" size="120px"></b-avatar>
          <a style="font-size:20px; color: #818181;" href="/myprofile">username</a>
       </div>
       <div id='menu' >

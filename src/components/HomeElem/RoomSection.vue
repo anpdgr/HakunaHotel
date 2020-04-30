@@ -12,6 +12,17 @@
       </div>
     </div>
   </div>
+
+
+  <!-- <div>
+  เอามาวางตรงนี้ จะเอามาลองง
+    <a href='booking'> <button>Check available</button> </a>
+    <br>
+    <button v-on:click="check = 1">Login as customer</button>
+    <a href='shome'> <button>Login as staff</button> </a>
+    <a href='mhome'> <button>Login as manager</button> </a>
+  </div> --> 
+ 
   <!-- room card -->
   <div>
     <div class="flip-card">
