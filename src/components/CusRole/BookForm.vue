@@ -65,7 +65,11 @@
                   </p>
                 </div>
               </th>
-              <td>3</td>
+              <td>
+                 <b-avatar variant="light"></b-avatar>
+                  <b-avatar variant="light"></b-avatar>
+                   <b-avatar variant="light"></b-avatar>
+              </td>
               <td>THB 8,900</td>
               <td>
                 <div id="noRoom2">
