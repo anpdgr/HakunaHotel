@@ -1,0 +1,12 @@
+Service:
+-Wifi
+-Breakfast
+-Tourist Information / Ticket sale
+-Laundry service
+-Gym
+-Air conditioning
+-Spa
+-Sauna
+-Baby cots
+-Free Parking
+-Free outdoor bus parking
