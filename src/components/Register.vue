@@ -60,12 +60,14 @@
                     <a href='/'>Back to home</a>
                 </div>
             </b-card>
+            <info/>
         </div>
     </body>
 </template>
 
 <script>
   export default {
+
     data() {
       return {
         form: {

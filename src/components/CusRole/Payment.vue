@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #CARD {
   max-width: 800px;
   margin: auto;
