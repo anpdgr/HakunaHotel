@@ -1,14 +1,38 @@
 <template>
-  <p>status hotel table for Staff, Manager</p>
+  <div >
+    <STnav/>
+    <Side/>
+    <div id="all">
+      <h1 >Booking</h1>
+      <a href="/checkin">checkin</a>
+      <a href="/checkin">checkout</a>
+    </div>
+  
+  </div>
 </template>
 
-<script>
-export default {
 
+
+
+
+<script>
+import STnav from '../Nav_st.vue'
+import Side from './Side_statusH.vue'
+export default {
+  components:{
+        STnav,
+        Side
+    }
+  
 }
 </script>
 
+
 <style>
+#all{
+  margin: 100px 100px auto 300px;
+  
+}
 
 </style>
 

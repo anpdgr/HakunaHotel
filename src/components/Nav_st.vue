@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/status">Hotel status</a>
+              <a class="nav-link js-scroll-trigger" href="/bookstatus">Hotel status</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/addcode">Code promotion</a>
