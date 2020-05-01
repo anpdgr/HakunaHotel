@@ -92,7 +92,7 @@
                                                 
                                             
                                         </b-form>
-                                        <b-icon icon="plus-circle" style="width:39rem"></b-icon>
+                                        
                                     </div>
                                 </b-modal>
                              </div>
@@ -127,7 +127,6 @@
 
 
 - กดจาก StatusHotel
-
 <script>
 import STnav from '../Nav_st.vue'
 import Side from './Side_statusH.vue'
@@ -138,9 +137,21 @@ export default {
     },
   methods:{
       check(){
-
+      if(this.g.tel===null | this.g.title===null | this.g.fname===null
+      | this.g.lname===null | this.g.country===null | this.roomid===null){
+        this.makeToast('danger','You have not done all the fields yet.')
       }
-
+      else{
+        this.makeToast('success','Check in success')
+      }
+    },
+      makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+      });
+    },
   },
   data() {
     return {
@@ -175,30 +186,29 @@ export default {
 </script>
 
 <style>
-#all{
-  margin: 100px 100px auto 300px;
-  
-}
-#card{
-    padding: 20px 50px;
-}
-#detail-head{
-    float:left;
-    margin:50px auto 20px auto;
-}
-#CusDetail{
-    margin: 10px auto;
+    #all{
+    margin: 100px 100px auto 300px;
     
-}
-#PayDetail{
-    margin: 10px auto;
-    float: left;
+    }
+    #card{
+        padding: 20px 50px;
+    }
+    #detail-head{
+        float:left;
+        margin:50px auto 20px auto;
+    }
+    #CusDetail{
+        margin: 10px auto;
+        
+    }
+    #PayDetail{
+        margin: 10px auto;
+        float: left;
+        
+    }
+    #roomtype_card{
+        margin: 10px;
     
-}
-#roomtype_card{
-    margin: 10px;
-   
-    
-}
-
+        
+    }
 </style>
