@@ -5,13 +5,13 @@ import Home from '../components/HomeElem/Home.vue'
 import Reg from '../components/Register.vue'
 import LogIn from '../components/login.vue'
 
-
-import StatusHotel from '../components/StatusHotel.vue'
+import Bookstatus from '../components/StatusHotel/Bookstatus.vue'
+import Roomstatus from '../components/StatusHotel/Roomstatus.vue'
 
 import sHome from '../components/StaffRole/StaffHome.vue'
 import sEdit from '../components/StaffRole/Edit_staff.vue'
 import sAddCode from '../components/StaffRole/AddCode.vue'
-import sCheckIn from '../components/StaffRole/CheckIn.vue'
+import CheckIn from '../components/StatusHotel/CheckIn.vue'
 
 import mView from '../components/Manager/ViewStaff.vue'
 import mHome from '../components/Manager/HomeMng.vue'
@@ -44,14 +44,19 @@ const routes = [
 
 //staff and manager page
     {
-        path: '/status',         //Status Hotel
-        name: 'StatusHotel',
-        component: StatusHotel,
+        path: '/bookstatus',         //Status Hotel :book
+        name: 'Bookstatus',
+        component: Bookstatus,
+    },
+    {
+        path: '/roomstatus',         //Status Hotel :room
+        name: 'Roomstatus',
+        component: Roomstatus,
     },
     {
         path: '/checkin',       //check-in form
         name: 'CheckIn',
-        component: sCheckIn,
+        component: CheckIn,
     },
     {
         path: '/addcode',       //Add promo code

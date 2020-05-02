@@ -50,9 +50,8 @@ export default {
   
 }
 #card{
-    max-width: 90rem; 
-    margin:100px 100px 100px 300px;    
+    max-width: 50rem; 
+    margin:100px 100px 100px 400px;    
     padding:30px;
-    
   }
 </style>
