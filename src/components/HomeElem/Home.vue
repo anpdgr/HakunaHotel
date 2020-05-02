@@ -100,6 +100,15 @@ export default {
       this.$router.push(path);
     },
   },
+    watch: {
+        $route: {
+            immediate: true,
+            // eslint-disable-next-line no-unused-vars
+            handler(to, from) {
+                document.title = to.meta.title || 'Hakuna hotel';
+            }
+        },
+    }
 };
 </script>
 
