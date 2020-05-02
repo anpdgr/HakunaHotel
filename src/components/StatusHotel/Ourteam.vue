@@ -1,6 +1,7 @@
 <template>
     <div>
-        <MNnav/>
+        <STnav/>
+        <Side/>
         <b-card id='card' title="Our team" >
                 <div>
                     
@@ -13,10 +14,12 @@
 Edit Staff เป็น pop-up ขึ้นมา
 
 <script>
-import MNnav from './SideTopNav_mn.vue'
+import STnav from '../Nav_st.vue'
+import Side from './Side_statusH.vue'
 export default {
     components:{
-        MNnav,
+        STnav,
+        Side
     },
     
 }

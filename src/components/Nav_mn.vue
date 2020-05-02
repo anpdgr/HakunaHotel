@@ -23,12 +23,6 @@
               <a class="nav-link js-scroll-trigger" href="/bookstatus">Hotel status</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/addcode">Code promotion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/mviews">Our team</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/mhome">My account</a>
             </li>
 

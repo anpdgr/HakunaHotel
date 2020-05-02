@@ -7,13 +7,13 @@ import LogIn from '../components/login.vue'
 
 import Bookstatus from '../components/StatusHotel/Bookstatus.vue'
 import Roomstatus from '../components/StatusHotel/Roomstatus.vue'
+import Ourteam from '../components/StatusHotel/Ourteam.vue'
 
 import sHome from '../components/StaffRole/StaffHome.vue'
 import sEdit from '../components/StaffRole/Edit_staff.vue'
 import sAddCode from '../components/StaffRole/AddCode.vue'
 import CheckIn from '../components/StatusHotel/CheckIn.vue'
 
-import mView from '../components/Manager/ViewStaff.vue'
 import mHome from '../components/Manager/HomeMng.vue'
 import mEdit from '../components/Manager/Edit_staff(mn).vue'
 
@@ -71,9 +71,9 @@ const routes = [
         component: mHome,
     },
     {
-        path: '/mviews',        //Manager view staff info
-        name: 'MViews',
-        component: mView,
+        path: '/ourteam',        //Manager view staff info
+        name: 'Ourtream',
+        component: Ourteam,
     },
     {
         path: '/medit',         //Manager edit his profile
