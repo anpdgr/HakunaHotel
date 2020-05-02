@@ -29,7 +29,7 @@ const routes = [
     {
         path: '/',
         name: 'HelloWorld',
-        component: Home
+        component: Home,
     },
     {
         path: '/register',
