@@ -78,6 +78,7 @@
     <hr />
     <h5 style="margin-top:30px"><b>Existing code</b></h5>
     <b-container fluid style="margin-top:20px;">
+
       <!-- User Interface controls -->
       <div style="margin:auto; margin-top:20px;">
         <b-row>
@@ -96,6 +97,7 @@
               </b-input-group-append>
             </b-input-group>
           </b-col>
+
         </b-row>
       </div>
       <!-- Main table element -->
@@ -110,34 +112,8 @@
         @filtered="onFiltered"
         style="margin-top:30px"
       >
-        <template v-slot:cell(name)="row">
-          {{ row.value.first }} {{ row.value.last }}
-        </template>
 
-        <template v-slot:cell(actions)="row">
-          <b-button
-            size="sm"
-            @click="info(row.item, row.index, $event.target)"
-            class="mr-1"
-          >
-            Info modal
-          </b-button>
-          <b-button size="sm" @click="row.toggleDetails">
-            {{ row.detailsShowing ? "Hide" : "Show" }} Details
-          </b-button>
-        </template>
-
-        <template v-slot:row-details="row">
-          <b-card>
-            <ul>
-              <li v-for="(value, key) in row.item" :key="key">
-                {{ key }}: {{ value }}
-              </li>
-            </ul>
-          </b-card>
-        </template>
       </b-table>
-
 
       <b-col class="my-1">
         <b-pagination
