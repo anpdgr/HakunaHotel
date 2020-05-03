@@ -3,8 +3,8 @@
     <STnav />
     <br /><br /><br />
     <hr />
-    <Side/>
-    <div id='all'>
+    <Side />
+    <div id="all">
       <div>
         <h4><b>Add code</b></h4>
         <br />
@@ -83,7 +83,6 @@
           >
         </div>
       </div>
-      </div>
       <hr />
       <h5 style="margin-top:30px"><b>Existing code</b></h5>
       <b-container fluid style="margin-top:20px;">
@@ -134,7 +133,7 @@
           <hr />
         </b-col>
       </b-container>
-
+    </div>
   </div>
 </template>
 
@@ -241,6 +240,6 @@ export default {
   margin: auto;
 }
 #all {
-  margin: 20px 280px auto 300px;
+  margin: 20px 100px auto 300px;
 }
 </style>
