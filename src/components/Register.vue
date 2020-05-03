@@ -145,13 +145,13 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       //alert(JSON.stringify(this.form))
-      if (this.form.password !== this.form.cpassword) {
+      if (this.form.password.length < 7) {
+        this.makeToast("danger", "Minimum length for password is 7");
+      } else if (this.form.password !== this.form.cpassword) {
         this.makeToast(
           "danger",
           "Your password and confirmation password do not match."
         );
-      } else if (this.form.password.length < 7) {
-        this.makeToast("danger", "Minimum length for password is 7");
       } else {
         this.$router.push("login");
       }
