@@ -1,6 +1,5 @@
 <template>
 <div style="margin:auto">
-  <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <h2>Our room type</h2>
@@ -10,7 +9,6 @@
           point for you own landing page designs! This template features:
         </p>
       </div>
-    </div>
   </div>
 
 
@@ -26,21 +24,22 @@
   <!-- room card -->
   <div> 
     <b-row>
-      <b-col v-for='item in items'  :key = 'item' >
+      <b-col v-for='item in items'  :key = 'item' style="flex: 30%; margin:30px 10px">
         <!-- <div   v-for='image in images' :key = 'image' > -->
-          <div class="flip-card" style="margin:40px 30px;">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
+          <div class="container">
+            <div>
                 <img
                   :src='item.img'
-                  alt="DUT"
-                  style="width:380px;height:250px;"
+                  class="image"
                 />
-              </div>
-              <div class="flip-card-back" style="width:300px;height:250px;">
-                <h3>{{item.type}}</h3>
-                <p>price : {{item.price}}</p>
-              </div>
+                <div class="overlay">
+                    <div class="text">
+                      <h4>{{item.type}}</h4>
+                       <p>price : {{item.price}}</p>
+
+
+                    </div>
+                </div>
             </div>
           </div>
         <!-- </div> -->
@@ -51,50 +50,50 @@
 </template>
 
 <style scoped>
-/* flip card */
-.flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+.image {
+  
+  width:380px;
+  height:250px;
 }
 
-/* This container is needed to position the front and back side */
-.flip-card-inner {
+.container {
   position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  width:380px;
+  height:250px;
+  float: center;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
+
+.container:hover .overlay {
+  opacity: 0.8;
 }
 
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width:400px;
+  height:250px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #77503b ;
+  padding:10px;
 }
+ 
+ /* 9c472f  77503b b98672 2a2818 513f2a cd986b  */
 
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
-
-/* Style the back side */
-.flip-card-back {
-  background-color: dodgerblue;
+.text {
   color: white;
-  transform: rotateY(180deg);
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 </style>
 
