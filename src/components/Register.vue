@@ -6,7 +6,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">Sign up</h3>
           </div>
-          <b-form @submit="onSubmit">
+          <b-form >
             <br />
 
             <b-form-group id="ipg-email">
@@ -106,7 +106,7 @@
             </b-form-group>
 
             <div style="float: left;">
-              <b-button formtarget="_blank" type="submit" variant="primary"
+              <b-button formtarget="_blank"  variant="primary" @click="check()"
                 >Sign up</b-button
               >
             </div>
@@ -130,11 +130,11 @@ export default {
         username: "",
         password: "",
         cpassword: "",
-        tel: "",
         title: null,
         fname: "",
         lname: "",
-        data: null,
+        birthday: "",
+        tel: "",
         country: null,
       },
       title: [{ text: "Name title", value: null }, "Mr.", "Ms.", "Miss"],
@@ -142,19 +142,34 @@ export default {
     };
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
+    check() {
       //alert(JSON.stringify(this.form))
-      if (this.form.password != this.form.cpassword) {
+      if(this.form.email===null|this.form.username===null|this.form.password===null|this.form.cpassword===null|
+        this.form.title===null|this.form.fname===null|this.form.lname===null|this.form.birthday===null|this.form.tell===null|this.form.country===null){
+          this.makeToast(
+          "danger",
+          "Please fill out all field"
+        );
+      }
+      
+      else{
+        if (this.form.password != this.form.cpassword) {
         this.makeToast(
           "danger",
           "Your password and confirmation password do not match."
         );
       }
       if (this.form.password.length < 7) {
-        this.makeToast("danger", "invalid password");
-      } else {
+          this.makeToast("danger", "invalid password");
+      }
+      else{
         this.$router.push("login");
+
+      }
+        
+          
+        
+
       }
     },
     makeToast(variant = null, text) {

@@ -113,6 +113,7 @@
         </b-button>
       </template>
 
+
       <template v-slot:row-details="row">
         <b-card>
           <ul>

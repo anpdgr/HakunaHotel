@@ -11,7 +11,7 @@
       <checkavi />
     </section>  
 
-    <section id="weltx" style="padding:50px; margin:-800px 50px 50px ">
+    <section id="weltx" style="padding:50px; margin:-800px auto auto auto; float:center ">
       <weltx />
     </section>  
 
