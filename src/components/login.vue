@@ -1,22 +1,27 @@
 <template>
   <body id="login">
     <div id="box">
+      <!-- Box login -->
       <b-card style="max-width:30rem; padding:30px; float: middle;">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Sign in</h3>
             <br>
           </div>
+          <!-- Form sign in -->
           <b-form @submit="onSubmit">
             <b-form-group id="ipg-uname">
+
+              <!-- input user -->
               <b-form-input
                 id="ip-uname"
-                v-model="form.fname"
+                v-model="form.username"
                 required
                 placeholder="Username"
               ></b-form-input>
             </b-form-group>
 
+            <!-- input pass -->
             <b-form-group id="ipg-pass">
               <b-form-input
                 type="password"
@@ -29,8 +34,11 @@
 
             <div style="float: left;">
               <b-button v-on:click="check = 1" type="submit" variant="primary" 
-                >Sign in</b-button
-              >
+                >Sign in</b-button>
+
+              <b-button @click="TestUser" type="button" 
+                >devuser</b-button>
+            
             </div>
           </b-form>
         </div>
@@ -49,20 +57,60 @@
 export default {
   data() {
     return {
+      c:false,
       form: {
         username: "",
         password: "",
       },
+      users:[],
       show: true,
       check: 0,
     };
+  },
+  mounted() {
+    this.fetchUsers();
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form))
-      this.$router.push("/");
+      this.CheckUser();
+      if(!this.c)
+        alert("username or password incorrect");
+      else{
+        alert("login");
+        this.$router.push("/");
+      }
     },
+    fetchUsers() {
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/login.php?action=read")
+        .then(response => {
+          this.users = response.data.data;
+          console.log(this.users);
+           console.log(response.data);
+        });
+    },
+    TestUser(){
+      this.form = {
+        username: "testuser",
+        password: "password"
+      }
+
+
+    },
+    CheckUser(){
+       this.users.forEach(this.ck);      
+    },
+    ck(value){
+      if(value["User_ID"] === this.form.username)
+      {
+        if(value["Password"] == this.form.password)
+          this.c = true;
+      }
+      // console.log(JSON.stringify(value["User_ID"]));
+    }
+    
   },
 };
 </script>

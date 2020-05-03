@@ -4,13 +4,13 @@
       <div>
         <b-card id="card" title="Your profile">
           <b-card-body style="margin:40px">
-              <span style="float:left;">First name</span><br><br> 
-              <span style="float:left;">Last name</span><br><br>
-              <span style="float:left;">Name title</span><br><br>
-              <span style="float:left;">Birthday</span><br><br>
-              <span style="float:left;">Email address</span><br><br>
-              <span style="float:left;">Phone number</span><br><br>
-              <span style="float:left;">Country</span><br><br>
+              <span style="float:left;">First name : </span><br><br> 
+              <span style="float:left;">Last name : </span><br><br>
+              <span style="float:left;">Name title : </span><br><br>
+              <span style="float:left;">Birthday : </span><br><br>
+              <span style="float:left;">Email address : </span><br><br>
+              <span style="float:left;">Phone number : </span><br><br>
+              <span style="float:left;">Country : </span><br><br>
             </b-card-body>  
 
 
