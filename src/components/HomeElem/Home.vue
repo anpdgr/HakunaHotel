@@ -20,7 +20,7 @@ login0 -> login -> book(ที่เชคว่างไปแล้ว) -> pay
 login1 -> book -> payment -->
   <br><br>
 
-    <section id="room" style="padding:50px; margin-top:180px">
+    <section id="room" style="padding:50px; margin-top:300px">
       <roomSec />
     </section>
 

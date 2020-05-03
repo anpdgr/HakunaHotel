@@ -73,6 +73,7 @@
 </template>
 
 <script>
+
 import STnav from "../Nav_st.vue";
 import Side from "./Side_statusH.vue";
 export default {
