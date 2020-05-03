@@ -196,10 +196,7 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
-<<<<<<< HEAD
-=======
       //alert(JSON.stringify(this.form))
->>>>>>> 2b94819a386383be65fce58d94df267873e4fa45
       if (this.form.password.length < 7) {
         this.makeToast("danger", "Minimum length for password is 7");
       } else if (this.form.password !== this.form.cpassword) {
