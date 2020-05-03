@@ -4,6 +4,15 @@
     <Side />
 
     <div id="all">
+      <div id="summary" style="float:right">
+      <b-button id="show-btn"  variant="success"   @click="showModalstaff">see summary</b-button>
+
+      <b-modal ref="my-modal-staff" hide-footer title="Summary" >
+        <div class="d-block text-center">
+          <h3>staff summary</h3>
+        </div>
+      </b-modal>
+    </div>
       <h5 style="margin-top:30px"><b>Staff information</b></h5>
       <b-container fluid>
         <!-- User Interface controls -->
@@ -337,6 +346,12 @@ export default {
       if (item._showDetails === true) return "table-secondary";
       else return;
     },
+    showModalstaff() {
+        this.$refs['my-modal-staff'].show()
+      },
+      hideModalstaff() {
+        this.$refs['my-modal-staff'].hide()
+      },
   },
 };
 </script>

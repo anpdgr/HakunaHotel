@@ -3,9 +3,19 @@
     <STnav/>
     <Side/>
   <div id="all">
+    <div id="summary" style="float:right">
+      <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
+
+      <b-modal ref="my-modal" hide-footer title="Summary" >
+        <div class="d-block text-center">
+          <h3>booking summary</h3>
+        </div>
+      </b-modal>
+    </div>
     <div >
       <h1>Booking</h1><br><br>
     </div>
+    
     <b-container  fluid>
     <!-- User Interface controls -->
     <b-row>
@@ -98,6 +108,9 @@
         <div v-if="row.item.status == 'check-in'">
           <a size="sm" @click="done()">check-out</a>
         </div>
+        <b-button variant="light" size="sm" @click="row.toggleDetails">
+              {{ row.detailsShowing ? "Hide" : "Show" }} more details
+        </b-button>
       </template>
 
       <template v-slot:row-details="row">
@@ -219,7 +232,13 @@ export default {
       },
       done(){
         this.row.item.status = 'cancle'
-      }
+      },
+      showModal() {
+        this.$refs['my-modal'].show()
+      },
+      hideModal() {
+        this.$refs['my-modal'].hide()
+      },
     }
     
   
