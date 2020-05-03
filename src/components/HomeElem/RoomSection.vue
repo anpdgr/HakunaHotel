@@ -1,6 +1,5 @@
 <template>
 <div style="margin:auto">
-  <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <h2>Our room type</h2>
@@ -10,7 +9,6 @@
           point for you own landing page designs! This template features:
         </p>
       </div>
-    </div>
   </div>
 
 
@@ -26,24 +24,22 @@
   <!-- room card -->
   <div> 
     <b-row>
-      <b-col v-for='item in items'  :key = 'item'>
+      <b-col v-for='item in items'  :key = 'item' style="flex: 30%; margin:30px 10px">
         <!-- <div   v-for='image in images' :key = 'image' > -->
-          <div class="flip-card" style="margin:40px;">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
+          <div class="container">
+            <div>
                 <img
                   :src='item.img'
-                  alt="DUT"
-                  style="width:320px;height:220px;"
+                  class="image"
                 />
-              </div>
-              <div class="flip-card-back">
-                <h3>{{item.type}}</h3>
-                <p>price : {{item.price}}</p>
-              </div>
-            </div>
-            <div v-if="item===3">
-              <br>
+                <div class="overlay">
+                    <div class="text">
+                      <h4>{{item.type}}</h4>
+                       <p>price : {{item.price}}</p>
+
+
+                    </div>
+                </div>
             </div>
           </div>
         <!-- </div> -->
@@ -54,50 +50,50 @@
 </template>
 
 <style scoped>
-/* flip card */
-.flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+.image {
+  
+  width:380px;
+  height:250px;
 }
 
-/* This container is needed to position the front and back side */
-.flip-card-inner {
+.container {
   position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  width:380px;
+  height:250px;
+  float: center;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
+
+.container:hover .overlay {
+  opacity: 0.8;
 }
 
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width:400px;
+  height:250px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #77503b ;
+  padding:10px;
 }
+ 
+ /* 9c472f  77503b b98672 2a2818 513f2a cd986b  */
 
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
-
-/* Style the back side */
-.flip-card-back {
-  background-color: dodgerblue;
+.text {
   color: white;
-  transform: rotateY(180deg);
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 </style>
 
@@ -105,25 +101,6 @@
 export default {
   data(){
     return{
-      images : [
-         {
-            url : require('@/assets/delux_ub_tw.jpg'),
-            name : 'My Image 1',
-         },
-         {
-            url : require('@/assets/b.home.jpg'),
-            name : 'My Image 2'
-         },
-         {
-            url : require('@/assets/delux_ub_tw.jpg'),
-            name : 'My Image 2'
-         },
-         {
-            url : require('@/assets/delux_ub_tw.jpg'),
-            name : 'My Image 2'
-         },
-
-      ],
       
       items:[
         { type: "Dulux Executive King Bed", limit:4,price:4957,
@@ -141,15 +118,15 @@ export default {
         
         { type: "Dulux Urban Twin Bed",limit:4,price:4494,
           des: 'Complete with sweeping cityscape views, enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style. Service: -Wifi -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Gym -Spa -Sauna -Baby cots -Free Parking -Free outdoor parking',
-          img:require('@/assets/delux_ub_tw.jpg')},
+          img:require('@/assets/delux_u_tw.jpg')},
+
+        { type: "Premier Lux King Bed",limit:4,price:7472,
+          des: 'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux King Bed. Room are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories. - Complimentary Wi-Fi - Personalized check - in and check – out - Concierge service - Open Daily 07:00 hrs. – 21:00 hrs. - Breakfast at The living from 07:00 hrs. –11:00 hrs. - Afternoon tea from 14:00 hrs. – 16:00 hrs. - Happy hours from 17.30 hrs. – 19:30 hrs. - All day refreshments: coffee, tea, soft drinks, cookies and snacks - Two hours per stay complimentary usage of The Living Board Room (Upon availability) - Complimentary late check out until 16:00 hrs. (Upon availability) - Complimentary pressing service 2 items per day (Non - accumulative) - Complimentary local call (Mobile phone excluded) Service: -Wifi -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Gym -Spa -Safety box -Sauna -Babysitter -Bath',
+          img:require('@/assets/pre_k.jpg')},
 
         { type: "Premier Lux Twin Bed", limit:4,price:7472,
           des: 'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux Twin BedRoom are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories. - Complimentary Wi-Fi - Personalized check - in and check – out - Concierge service - Open Daily 07:00 hrs. – 21:00 hrs. - Breakfast at The living from 07:00 hrs. –11:00 hrs. - Afternoon tea from 14:00 hrs. – 16:00 hrs. - Happy hours from 17.30 hrs. – 19:30 hrs. - All day refreshments: coffee, tea, soft drinks, cookies and snacks - Two hours per stay complimentary usage of The Living Board Room (Upon availability) - Complimentary late check out until 16:00 hrs. (Upon availability) - Complimentary pressing service 2 items per day (Non - accumulative) - Complimentary local call (Mobile phone excluded) Service: -Wifi -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Gym -Spa -Sauna -Baby cots -Free Parking -Bath',
           img:require('@/assets/pre_tw.jpg')},
-        
-        { type: "Premier Lux King Bed",limit:4,price:7472,
-          des: 'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux King Bed. Room are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories. - Complimentary Wi-Fi - Personalized check - in and check – out - Concierge service - Open Daily 07:00 hrs. – 21:00 hrs. - Breakfast at The living from 07:00 hrs. –11:00 hrs. - Afternoon tea from 14:00 hrs. – 16:00 hrs. - Happy hours from 17.30 hrs. – 19:30 hrs. - All day refreshments: coffee, tea, soft drinks, cookies and snacks - Two hours per stay complimentary usage of The Living Board Room (Upon availability) - Complimentary late check out until 16:00 hrs. (Upon availability) - Complimentary pressing service 2 items per day (Non - accumulative) - Complimentary local call (Mobile phone excluded) Service: -Wifi -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Gym -Spa -Safety box -Sauna -Babysitter -Bath',
-          img:require('@/assets/pre_k.jpg')},
 
         { type: "Ocean Junior Suite", limit:4,price:8765,
           des: 'Generous spaces, and equally generous views of the sea adorn these opulently furnished suites. Picture perfect rooms, outfitted to inspire all those who enter, the Ocean Junior Suite will have guests wishing they never had to leave. Beautifully devised and impeccably designed, every inch is a testament to refinement in the art of hospitality. Pristine bathrooms of marble with furnishings that will have you melting into an abyss of plush euphoria are just inklings of the grandeur this suites has to offer. - Complimentary Wi-Fi - Personalized check - in and check – out - Concierge service - Open Daily 07:00 hrs. – 21:00 hrs. - Breakfast at The living from 07:00 hrs. –11:00 hrs. - Afternoon tea from 14:00 hrs. – 16:00 hrs. - Happy hours from 17.30 hrs. – 19:30 hrs. - All day refreshments: coffee, tea, soft drinks, cookies and snacks - Two hours per stay complimentary usage of The Living Board Room (Upon availability) - Complimentary late check out until 16:00 hrs. (Upon availability) - Complimentary pressing service 2 items per day (Non - accumulative) - Complimentary local call (Mobile phone excluded) Service: -Wifi -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Gym -Spa -Sauna -Baby cots -Free Parking -Bath',
