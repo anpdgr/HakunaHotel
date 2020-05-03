@@ -203,11 +203,11 @@
         <b-button
                     id="Confirm"
                     type="submit"
-                    variant="success"
+                    variant="outline-primary"
                     @click="check()"
                     style="float:right; margin:20px"
                 >
-                    OK
+                    submit
                 </b-button>
   </div>
 </template>
@@ -272,6 +272,7 @@
           }
           
           else{
+
               this.form1.roomid = this.selectroomid
               this.guest.push(this.form1)
               
@@ -289,6 +290,7 @@
               }
               
               alert(JSON.stringify(this.guest))
+              this.makeToast('success','Add information this room success !') 
          
           }
       },

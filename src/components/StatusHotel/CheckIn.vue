@@ -32,11 +32,9 @@
                             <p>{{item.Qroom}} rooms</p>
                             <div id="roomdetail">
                                 <b-button v-b-modal.modal-center>Add information</b-button>
-                                <div>
                                     <b-modal id="modal-center" centered title="Add information"  hide-footer>
                                          <guest/>                            
                                     </b-modal>
-                                </div>
                             </div>
                         </b-card>
                     </div>
