@@ -124,12 +124,12 @@
             <div style="float: left;">
               
               <!-- sign up button -->
-              <b-button formtarget="_blank" type="submit" variant="primary"
+              <b-button formtarget="_blank" @click.alt="UseDev" type="submit" variant="primary"
                 >Sign up</b-button
               >
 
               <!-- alert button -->
-              <b-button formtarget="_blank" @click="UseDev">dummy</b-button>
+              <!-- <b-button formtarget="_blank" @click="UseDev">dummy</b-button> -->
 
             </div>
           </b-form>
@@ -196,6 +196,7 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
+      //alert(JSON.stringify(this.form))
       if (this.form.password.length < 7) {
         this.makeToast("danger", "Minimum length for password is 7");
       } else if (this.form.password !== this.form.cpassword) {
@@ -208,7 +209,7 @@ export default {
         this.addUser();
         this.form.name = this.form.fname +" "+ this.form.lname;
         alert(JSON.stringify(this.newUser))
-        // this.$router.push("login");
+        this.$router.push("login");
       }
     },
     makeToast(variant = null, text) {
