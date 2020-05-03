@@ -11,7 +11,7 @@
       <checkavi />
     </section>  
 
-    <section id="weltx" style="margin:-800px auto auto auto; float:center">
+    <section id="weltx" style="padding:50px; margin:-800px auto auto auto; float:center ">
       <weltx />
     </section>  
 
@@ -20,7 +20,7 @@ login0 -> login -> book(ที่เชคว่างไปแล้ว) -> pay
 login1 -> book -> payment -->
   <br><br>
 
-    <section id="room" style="padding:50px; margin-top:180px">
+    <section id="room" style="padding:50px; margin-top:300px">
       <roomSec />
     </section>
 
