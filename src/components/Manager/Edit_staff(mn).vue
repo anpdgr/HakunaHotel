@@ -159,7 +159,7 @@
   }
   #card{
     max-width: 50rem; 
-    margin:100px 100px 100px 400px;    
+    margin: 100px auto 100px 440px;     
     padding:30px;
     
   }

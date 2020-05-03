@@ -33,18 +33,8 @@
                             <div id="roomdetail">
                                 <b-button v-b-modal.modal-center>Add information</b-button>
                                 <div>
-                                    <b-modal id="modal-center" centered title="Add information" v-for='count in 1' :key='count'>
-                                        <b-form-select-group>
-                                            <h6>Select room ID</h6>
-                                            <b-form-select style="width:8rem; margin:10px" 
-                                                v-model="roomid" :options="op_roomid">
-                                            </b-form-select>
-                                        </b-form-select-group>
-                                        <br><br>
-                                        <div id="guest">
-                                            <h6>Guest information</h6>
-                                            <guest/>                            
-                                        </div>
+                                    <b-modal id="modal-center" centered title="Add information"  hide-footer>
+                                         <guest/>                            
                                     </b-modal>
                                 </div>
                             </div>
@@ -98,16 +88,6 @@ export default {
         //{ roomtype: "Premier Lux Twin Bed", Qroom: 1,limitG:2},
         { roomtype: "Urban Junior Suite", Qroom: 2 ,limitG:4},
       ],
-
-      roomid: null,
-        op_roomid: [
-          { value: 1, text: '1000' },
-          { value: 2, text: '1001' },
-          { value: 3, text: '1002' },
-          { value: 4, text: '1003' },
-          { value: 5, text: '1004' },
-          
-        ],
     };
   }
   

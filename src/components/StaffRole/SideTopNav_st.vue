@@ -42,7 +42,7 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
   margin-top:50px;
-
+  
 }
 
 /* The navigation menu links */
@@ -64,6 +64,9 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+
 </style>
 
 <script>

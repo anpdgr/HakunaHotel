@@ -1,6 +1,8 @@
 <template>
   <div id="editst" >
-    <STnav/>
+    <div style="margin-right:300px">
+      <STnav/>
+    </div>
     <b-card title="Edit profile"  align="left" id="card" >
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
@@ -158,8 +160,8 @@
     
   }
   #card{
-    max-width: 90rem; 
-    margin:100px 100px 100px 300px;    
+    max-width: 50rem; 
+    margin: 100px auto 100px 440px;    
     padding:30px;
     
   }
