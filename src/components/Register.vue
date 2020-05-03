@@ -196,10 +196,7 @@ export default {
     },
     onSubmit(evt) {
       evt.preventDefault();
-<<<<<<< HEAD
       //alert(JSON.stringify(this.form))
-=======
->>>>>>> 35da59f9571e4fa96ea9653998877a8cc108e4d9
       if (this.form.password.length < 7) {
         this.makeToast("danger", "Minimum length for password is 7");
       } else if (this.form.password !== this.form.cpassword) {
@@ -212,7 +209,7 @@ export default {
         this.addUser();
         this.form.name = this.form.fname +" "+ this.form.lname;
         alert(JSON.stringify(this.newUser))
-        // this.$router.push("login");
+        this.$router.push("login");
       }
     },
     makeToast(variant = null, text) {
