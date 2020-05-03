@@ -124,12 +124,12 @@
             <div style="float: left;">
               
               <!-- sign up button -->
-              <b-button formtarget="_blank" type="submit" variant="primary"
+              <b-button formtarget="_blank" @click.alt="UseDev" type="submit" variant="primary"
                 >Sign up</b-button
               >
 
               <!-- alert button -->
-              <b-button formtarget="_blank" @click="UseDev">dummy</b-button>
+              <!-- <b-button formtarget="_blank" @click="UseDev">dummy</b-button> -->
 
             </div>
           </b-form>
