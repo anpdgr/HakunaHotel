@@ -4,6 +4,15 @@
     <STnav />
     <Side />
     <div id="all">
+      <div id="summary" style="float:right">
+      <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
+
+      <b-modal ref="my-modal" hide-footer title="Summary" >
+        <div class="d-block text-center">
+          <h3>room summary</h3>
+        </div>
+      </b-modal>
+    </div>
       <h1>Room</h1>
       <b-row>
         <b-col lg="6" class="my-1">
@@ -163,6 +172,12 @@ export default {
         onSelect() {
         this.filter = this.selected_type;
     },
+    showModal() {
+        this.$refs['my-modal'].show()
+      },
+      hideModal() {
+        this.$refs['my-modal'].hide()
+      },
   },
 };
 </script>

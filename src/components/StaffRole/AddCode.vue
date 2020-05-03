@@ -4,7 +4,17 @@
     <br /><br /><br />
     <hr />
     <Side/>
+    <div id="summary" style="float:right; margin-right:100px">
+      <b-button id="show-btn"  variant="success"   @click="showModalcode">see summary</b-button>
+
+      <b-modal ref="my-modal-code" hide-footer title="Summary" >
+        <div class="d-block text-center">
+          <h3>code summary</h3>
+        </div>
+      </b-modal>
+    </div>
     <div id='all'>
+      
       <div>
         <h4><b>Add code</b></h4>
         <br />
@@ -231,6 +241,12 @@ export default {
         toaster: "b-toaster-bottom-center",
       });
     },
+    showModalcode() {
+        this.$refs['my-modal-code'].show()
+      },
+      hideModalcode() {
+        this.$refs['my-modal-code'].hide()
+      },
   },
 };
 </script>
