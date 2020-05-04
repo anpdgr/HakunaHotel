@@ -1,12 +1,13 @@
 Service:
-x Tourist Information / Ticket sale
-x Free Parking
-x Free outdoor bus parking
+x Tour package
+x Shutter bus services
 x Wifi
 x Breakfast
-x Laundry service
-x Gym
+x Laundry services
+x Fitness center
 x Spa
 x Sauna
-- Butler service
-- Baby cots
+x Swimming pool
+x Butler service
+x Business center
+x Baby cots
