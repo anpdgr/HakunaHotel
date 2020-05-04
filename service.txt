@@ -8,4 +8,5 @@ x Laundry service
 x Gym
 x Spa
 x Sauna
--Baby cots
+- Butler service
+- Baby cots
