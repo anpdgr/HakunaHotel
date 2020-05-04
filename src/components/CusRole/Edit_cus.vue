@@ -109,6 +109,16 @@
           data: null,
           country: null
         },
+        newUser: {
+          userid: "",
+          pass: "",
+          title: "",
+          cusname: "",
+          tel: "",
+          email: "",
+          country: "",
+          DOB: ""
+        },
         title: [{ text: 'Select One', value: null }, 'Mr.', 'Ms.', 'Miss'],
         show: true
       }
@@ -136,7 +146,19 @@
         this.$nextTick(() => {
           this.show = true
         })
-      }
+      },
+      setNewUser(){
+        this.newUser= {
+          userid: this.form.username,
+          pass: this.form.password,
+          title: this.form.title,
+          cusname: this.form.fname + " " + this.form.lname,
+          tel: this.form.tel,
+          email: this.form.email,
+          country: this.form.country,
+          DOB: this.form.birthday
+        }
+      },
     }
   }
 </script>

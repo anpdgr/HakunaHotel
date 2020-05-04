@@ -173,7 +173,8 @@ export default {
         cusname: "",
         tel: "",
         email: "",
-        country: ""
+        country: "",
+        DOB: ""
       }
       
     };
@@ -229,7 +230,8 @@ export default {
         cusname: this.form.fname + " " + this.form.lname,
         tel: this.form.tel,
         email: this.form.email,
-        country: this.form.country
+        country: this.form.country,
+        DOB: this.form.birthday
       }
     },
     // axios post data
@@ -258,7 +260,8 @@ export default {
             cusname: "",
             tel: "",
             email: "",
-            country: ""
+            country: "",
+            DOB : ""
           };
           if(response.data.error){
             console.log(response.data.error);
