@@ -24,7 +24,7 @@ login1 -> book -> payment -->
       <roomSec />
     </section>
 
-    <section id="services" class="bg-light">
+    <section id="services">
       <serviceSec />
     </section>
 
@@ -113,4 +113,7 @@ export default {
 </script>
 
 <style scoped>
+#services{
+  background-color:antiquewhite;
+}
 </style>

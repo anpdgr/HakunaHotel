@@ -1,96 +1,172 @@
 <template>
-  <div id="body" class="container">
-    <div class="row">
+  <div style="margin:auto; padding-bottom:50px">
+    <div class="row" style="padding-top:50px">
       <div class="col-lg-8 mx-auto">
-        <h2>Services we offer</h2>
+        <h1><mark>Services & Facilities</mark></h1>
         <p class="lead">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio
-          velit inventore.
+          This is a great place to talk about your webpage. This template is
+          purposefully unstyled so you can use it as a boilerplate or starting
+          point for you own landing page designs! This template features:
         </p>
-        <div id="card">
-          <div class="containerr" id="swimmingpool">
-            <img src="@/assets/SVswimmingpool.jpg" alt="Avatar" class="image" />
-            <div class="overlay">
-              <h3><b>Swimming pool</b></h3>
-              <p>Swimming pool suay2 clean2 d ngarm Rama8</p>
-            </div>
-          </div>
-
-          <div class="containerr" id="wifi">
-            <img src="@/assets/SVwifi.jpg" alt="Avatar" class="image" />
-            <div class="overlay">
-              <h3><b>Free Wi-Fi</b></h3>
-              <p>Free Wi-Fi for all guests 24/7</p>
-            </div>
-          </div>
-
-          <div class="containerr" id="breakfast">
-            <img src="@/assets/SVbreakfast.jpg" alt="Avatar" class="image" />
-            <div class="overlay">
-              <h3><b>Breakfast</b></h3>
-              <p>Breakfast delicious t sud</p>
-            </div>
-          </div>
-
-          <div class="containerr" id="gym">
-            <img src="@/assets/SVgym.jpg" alt="Avatar" class="image" />
-            <div class="overlay">
-              <h3>GYM</h3>
-              <p>GYM d d ja eiei</p>
-            </div>
-          </div>
-
-
-        </div>
       </div>
+    </div>
+
+    <div>
+      <b-row>
+        <b-col
+          v-for="item in items"
+          :key="item"
+          style="flex: 30%; margin:10px 10px; padding:-10px;"
+          xl="*"
+        >
+          <!-- <div   v-for='image in images' :key = 'image' > -->
+          <div class="container">
+            <div>
+              <img :src="item.img" class="image" />
+              <div class="overlay">
+                <div class="text">
+                  <h3>
+                    <b>{{ item.head }}</b>
+                  </h3>
+                  <p>{{ item.description }}</p><br>
+                  <p><i>{{item.time}}</i></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        {
+          head: "Tour Packages",
+          description: "More than 40 half-day or full day tours available for our staying guests.",
+          time: 'Tour desk: daily opened 8.00-16.00',
+          img: require("@/assets/SVtour.jpg"),
+        },
+        {
+          head: "Shuttle Bus Services",
+          description: "For a small extra charge, we will get you to your destination in comfort.",
+          img: require("@/assets/SVbus2.jpg"),
+        },
+        {
+          head: "Laundry Services",
+          description: "We provide laundry, dry cleaning, and press services",
+          time: 'daily opened 10.00-21.00',
+          img: require("@/assets/SVlaundry.jpg"),
+        },
+        {
+          head: "Butler Services",
+          description: "During your stay at Hakuna Hotel, your private Butler is on hand to take care of every little detail.",
+          img: require("@/assets/SVbutler.jpg"),
+        },
+
+        {
+          head: "Free Wi-Fi",
+          description: "All day, every day, use our free high-speed Wi-Fi to stay connected throughout your stay in our luxury hotel.",
+          img: require("@/assets/SVwifi.jpg"),
+        },
+        {
+          head: "Breakfast",
+          description: "In the morning treat yourself to a delight from one of the best selection of breakfasts from us.",
+          time: 'daily opened 6.30-10.30',
+          img: require("@/assets/SVbreakfast4.jpg"),
+        },
+        {
+          head: "Swimming Pool",
+          description: "A fantastic outdoor pool which you can chill out and relax.",
+          time: 'daily opened 7.00-21.00',
+          img: require("@/assets/SVswimmingpool2.jpg"),
+        },
+        {
+          head: "Sauna",
+          description: "Healthy sweating in the sauna, deep warmth in the infrared cabin, circulation-stimulating.",
+          time: 'Daily opened 8.00-22.00',
+          img: require("@/assets/SVsauna.jpg"),
+        },
+        {
+          head: "Spa",
+          description: "Find your retreat at our Spa, the soulful and enchanting escape into a world of relaxation.",
+          time: 'daily opened 8.00-21.00',
+          img: require("@/assets/SVspa.jpg"),
+        },
+        {
+          head: "Fitness Center",
+          time: 'daily opened 5.00-22.00',
+          description: "You can still be healthy while away from home with our Fitness Center, complete with staff and all the necessities.",
+          img: require("@/assets/SVgym.jpg"),
+        },
+        {
+          head: "Business Lounge",
+          description: "A quiet environment with office space, newspapers as well as computers and printers that can be freely used.",
+          time: 'daily opened for 24 hours',
+          img: require("@/assets/SVbucenter.jpg"),
+        },
+        {
+          head: "Baby Cots",
+          description: "Children under 2 stay free of charge using a baby cot.",
+          img: require("@/assets/SVbabycot.jpg"),
+        },
+      ],
+    };
+  },
+};
+</script>
+
 <style scoped>
-* {
-  box-sizing: border-box;
-}
-
-/* Container needed to position the overlay. Adjust the width as needed */
-.containerr {
-  position: relative;
-  width: 50%;
-  max-width: 300px;
-}
-
-/* Make the image to responsive */
 .image {
-  display: block;
-  width: 380px;
-  height: 250px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px;
+  width: 400px;
+  height: 270px;
+  border-radius: 25%;
 }
 
-/* The overlay effect - lays on top of the container and over the image */
-.overlay {
-  position: absolute;
-  bottom: 0;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1;
-  width: 380px;
-  height: 250px;
-  transition: 0.5s ease;
-  opacity: 0;
-  color: white;
-  font-size: 20px;
-  padding-top: 50px;
-  text-align: center;
+.container {
+  position: relative;
+  width: 530px;
+  height: 270px;
+  float: center;
 }
 
-/* When you mouse over the container, fade in the overlay title */
-.containerr:hover .overlay {
+.container:hover .overlay {
   opacity: 0.7;
 }
 
-#card{
-  display: block;
+.overlay {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 410px;
+  height: 280px;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color:#faeccf;
+  padding: 10px;
+  border-radius: 25%;
+}
+
+/* 9c472f  77503b b98672 2a2818 513f2a cd986b  */
+
+.text {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 </style>
