@@ -7,7 +7,9 @@
 <script>
 //import Home from './components/CusRole/sidebar_cus.vue'
 import Home from './components/route.vue'
-//import Home from './components/Manager/MngEditStaff.vue'
+
+//for test
+//import Home from './components/HomeElem/test.vue'
 
 
 export default {
