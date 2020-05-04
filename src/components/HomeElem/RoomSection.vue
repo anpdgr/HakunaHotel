@@ -24,7 +24,7 @@
   <!-- room card -->
   <div> 
     <b-row>
-      <b-col v-for='item in items'  :key = 'item' style="flex: 30%; margin:30px 10px">
+      <b-col v-for='(item,index) in items'  :key = 'index' style="flex: 30%; margin:30px 10px">
         <!-- <div   v-for='image in images' :key = 'image' > -->
           <div class="container">
             <div>
@@ -34,10 +34,25 @@
                 />
                 <div class="overlay">
                     <div class="text">
+                      
                       <h5>{{item.type}}</h5>
-                       <p>price : {{item.price}}</p>
+                      <p>price : {{item.price}}</p>
                        
-                       <b-button  variant="outline-secondary" href="shome">view more</b-button>
+                      <b-button  variant="outline-secondary" v-b-modal.modal-scrollable>view more</b-button>
+                      <b-modal  id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
+                        <b-button style="float:right" href="#review">see review</b-button>
+                        
+                        <h5>{{item.type}}</h5>
+                        <p>price per night : {{item.price}} </p>
+                        <img :src="item.img" style="width:100%"/>
+                        <p class="my-4" ><b>Description</b><br>{{item.des}} </p>
+                        <section id="review">
+                          
+                          <h5>Review</h5>
+                          
+                        </section>
+                        
+                      </b-modal>
                       
                     </div>
                 </div>
@@ -45,6 +60,7 @@
           </div>
         <!-- </div> -->
       </b-col>
+      
     </b-row>
   </div>
 </div>
@@ -140,6 +156,16 @@ export default {
       ]
     }
 
+  },
+  methods:{
+    scrollIntoView(evt) {
+      evt.preventDefault();
+      const href = evt.target.getAttribute("href");
+      const el = href ? document.querySelector(href) : null;
+      if (el) {
+        this.$refs.content.scrollTop = el.offsetTop;
+      }
+    }
   }
 }
 </script>
