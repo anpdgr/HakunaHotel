@@ -1,91 +1,121 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    require './contacts.php';
-    if ($con->connect_error) {
-        die("Connection failed: " . $con->connect_error);
+    #                     read me
+    #               + can edit
+    #               - can't edit
+    #               use $ to assign var don't define datatype
+
+    header('Access-Control-Allow-Origin: *');                              # -
+    # import data from contacts.php file    
+    require './contacts.php';                                              # -
+    # check connecting database
+    if ($con->connect_error) {                                             # -
+        die("Connection failed: " . $con->connect_error);                  # -
     }
+    # when connected to database
     else {
-        #echo "Connected successfully<br>";
-        $result = array();
-        $action = '';
+        # echo "Connected successfully<br>";
+        # var for result from database in select command
+        $result = array();                                                 # -
+        # var for knowed this action do which sql command
+        $action = '';                                                      # -
 
-        if(isset($_GET['action'])){
-            $action = $_GET['action'];
+        # check superposition var in _GET
+        if(isset($_GET['action'])){                                        # -
+            $action = $_GET['action'];                                     # -
         }
 
-        if($action == 'read'){
-            $sql = $con->query('SELECT * FROM Customer');
-            $users = array();
-
-            while($row = $sql->fetch_assoc()){
-                array_push($users,$row);
+        # select command
+        if($action == 'read'){                                             # -
+            # edit sql command here
+            $sql = $con->query('SELECT * FROM Customer');                  # +
+            # var buff for data in database
+            $users = array();                                              # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($users,$row);                                   # -
             }
-            $result['data'] = $users;
-            
+            $result['data'] = $users;                                      # -
         }
 
+        # insert command
+        if($action == 'add'){                                              # -
+            # edit var here
+            # create var for insert to database and key in axios
+            #var               key
+            $userid = $_POST['userid'];                                    # +
+            $pass = $_POST['pass'];                                        # +
+            $title = $_POST['title'];                                      # +
+            $cusname = $_POST['cusname'];                                  # +
+            $tel = $_POST['tel'];                                          # +
+            $email = $_POST['email'];                                      # +
+            $country = $_POST['country'];                                  # +
+            $DOB = $_POST['DOB'];                                          # +
 
-        if($action == 'add'){
-            $userid = $_POST['userid'];
-            $pass = $_POST['pass'];
-            $title = $_POST['title'];
-            $cusname = $_POST['cusname'];
-            $tel = $_POST['tel'];
-            $email = $_POST['email'];
-            $country = $_POST['country'];
-            $DOB = $_POST['DOB'];
-
-            $sql = $con->query("INSERT INTO Customer VALUES ('$userid', '$pass', '$title', '$cusname', '$tel', '$email', '$country', '$DOB')") ;
+            #edit sql command here
+            $sql = $con->query("INSERT INTO Customer VALUES ('$userid', '$pass', '$title', '$cusname', '$tel', '$email', '$country', '$DOB')") ; # +
             
-            if($sql){
-                $result['message'] = "added successfully";
+            # return status likes console log
+            if($sql){                                                      # -
+                $result['message'] = "added successfully";                 # -
             }
             else {
-                $result['error'] = true;
-                $result['massage'] = "added fail";
+                $result['error'] = true;                                   # -
+                $result['massage'] = "added fail";                         # -
             }
         }
 
-        if($action == 'update'){
-            $userid = $_POST['userid'];
-            $pass = $_POST['pass'];
-            $title = $_POST['title'];
-            $cusname = $_POST['cusname'];
-            $tel = $_POST['tel'];
-            $email = $_POST['email'];
-            $country = $_POST['country'];
-            $DOB = $_POST['DOB'];
 
-            $sql = $con->query(" UPDATE Customer SET User_ID = '$userid', Password = '$pass',
-                                 Name_Title = '$title', Customer_Name = '$cusname', Tel_No = '$tel',
-                                 Email = '$email', Customer_Country = '$country', DoB = '$DOB'
-                                 WHERE User_ID = '$userid' ");
+        # update command
+        if($action == 'update'){                                           # -
+            # edit var here
+            # create var for update to database and key in axios
+            #var               key
+            $userid = $_POST['userid'];                                    # +
+            $pass = $_POST['pass'];                                        # + 
+            $title = $_POST['title'];                                      # +
+            $cusname = $_POST['cusname'];                                  # +
+            $tel = $_POST['tel'];                                          # +
+            $email = $_POST['email'];                                      # +
+            $country = $_POST['country'];                                  # +
+            $DOB = $_POST['DOB'];                                          # +
+
+            #edit sql command here
+            $sql = $con->query(" UPDATE Customer SET User_ID = '$userid', Password = '$pass',               # +
+                                 Name_Title = '$title', Customer_Name = '$cusname', Tel_No = '$tel',        # +
+                                 Email = '$email', Customer_Country = '$country', DoB = '$DOB'              # +
+                                 WHERE User_ID = '$userid' ");                                              # +
             
-            if($sql){
-                $result['message'] = "updated successfully";
+            # return status likes console log
+            if($sql){                                                      # -
+                $result['message'] = "updated successfully";               # -
             }
             else {
-                $result['error'] = true;
-                $result['massage'] = "updated fail";
+                $result['error'] = true;                                   # -
+                $result['massage'] = "updated fail";                       # -
             }
         }
 
-        if($action == 'delete'){
-            $userid = $_POST['userid'];
+        # delete command
+        if($action == 'delete'){                                           # -
+            # edit var here
+            # assign var refer to which line would to delete
+            $userid = $_POST['userid'];                                    # +
 
-            $sql = $con->query(" DELETE FROM Customer WHERE User_ID = '$userid' ") ;
+            #edit sql here
+            $sql = $con->query(" DELETE FROM Customer WHERE User_ID = '$userid' ") ;                        # +
             
-            if($sql){
-                $result['message'] = "deleted successfully";
+            # return status likes console log
+            if($sql){                                                      # -
+                $result['message'] = "deleted successfully";               # -
             }
             else {
-                $result['error'] = true;
-                $result['massage'] = "deleted fail";
+                $result['error'] = true;                                   # -
+                $result['massage'] = "deleted fail";                       # -
             }
         }
 
-        
-        echo json_encode($result);
+        #return data in page Don't edit!!!
+        echo json_encode($result);                                         # -
         
     }
 ?>
