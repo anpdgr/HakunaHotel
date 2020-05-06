@@ -28,5 +28,14 @@ yarn lint
 npm lint
 ```
 
+### install axios and vuex
+```
+npm install --save axios vue-axios
+npm add vuex
+#or
+yarn install --save axios vue-axios
+yarn add vuex
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
