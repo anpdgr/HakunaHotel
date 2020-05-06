@@ -3,10 +3,8 @@
     <div class="row">
       <div class="col-lg-8 mx-auto">
         <h2>Our room type</h2>
-        <p class="lead">
-          This is a great place to talk about your webpage. This template is
-          purposefully unstyled so you can use it as a boilerplate or starting
-          point for you own landing page designs! This template features:
+        <p style="font-size:100%" class="lead">
+         The 236 spacious and comfortable rooms and suites at the Hakuna Hotel include several different room types (Deluxe Urban Room, Deluxe Ocean Room, Premier Ocean Room, Urban Junior Suite, Ocean Junior Suite and Marina Suite) to provide the perfect accommodation option for the different needs of our guests, whatever the reason for their stay. Our luxury hotel near Paradise beach is an oasis of comfort.
         </p>
       </div>
   </div>
@@ -39,9 +37,9 @@
                       <p>price : {{item.price}}</p>
                        
                       <b-button  variant="outline-secondary" v-b-modal.modal-scrollable>view more</b-button>
-                      <b-modal  id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
+                      <b-modal  v-if="index===0" id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
                         <b-button style="float:right" href="#review">see review</b-button>
-                        
+                        {{index}}
                         <h5>{{item.type}}</h5>
                         <p>price per night : {{item.price}} </p>
                         <img :src="item.img" style="width:100%"/>

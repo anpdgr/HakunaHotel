@@ -2,7 +2,7 @@
   <body id="regis">
     <!-- sign up box -->
     <div id="box">
-      <b-card border-varient="Primary" class="container" style="padding:5px">
+      <b-card border-varient="Primary" class="container" style="padding:5px; margin:50px">
         <div id="left" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Sign up</h3>
@@ -52,7 +52,6 @@
                 required
                 placeholder="Confirm your password"
               ></b-form-input>
-
             <!-- Details regis -->
             </b-form-group>
             <div style="margin-top:30px; margin-bottom:30px"><hr /></div>
@@ -137,6 +136,8 @@
         <br /><br />
         <!-- return to home page -->
         <div id="back">
+          <a href="login">I already have an account</a>
+          <br />
           <a href="/">Back to home</a>
         </div>
       </b-card>
@@ -294,7 +295,6 @@ export default {
 #box {
   max-width: 550px;
   margin: auto;
-  padding-top: 35px;
 }
 #left {
   max-width: 30rem;
@@ -305,8 +305,9 @@ export default {
 body {
   background-image: url("../assets/hotel.home.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center center;
-  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
 }
 </style>

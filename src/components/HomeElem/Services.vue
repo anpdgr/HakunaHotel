@@ -2,11 +2,15 @@
   <div style="margin:auto; padding-bottom:50px">
     <div class="row" style="padding-top:50px">
       <div class="col-lg-8 mx-auto">
-        <h1><mark>Services & Facilities</mark></h1>
-        <p class="lead">
-          This is a great place to talk about your webpage. This template is
-          purposefully unstyled so you can use it as a boilerplate or starting
-          point for you own landing page designs! This template features:
+        <h2>Services & Facilities</h2>
+        <p class="lead" style='font-size:100%'>
+          Whether you are travelling for business or pleasure,
+          the luxury hotel services offered by the five star Hakuna Hotel 
+          make it an ideal choice for your stay in here. 
+          The hotel’s luxurious surroundings, comfort, thoughtful
+          touches and a personalized service sets it apart from any other
+          hotel, allowing you to feel like being at home from your very
+          first steps into the hotel.
         </p>
       </div>
     </div>

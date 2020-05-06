@@ -3,15 +3,17 @@
     <STnav/>
     <Side/>
   <div id="all">
+
     <div id="summary" style="float:right">
       <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
-
-      <b-modal ref="my-modal" hide-footer title="Summary" >
-        <div class="d-block text-center">
-          <h3>booking summary</h3>
+      <b-modal ref="my-modal" hide-footer title="Booking summary" style="padding:10px; float:center" size="lg" >
+        <div class="chart-wrapper" >
+          <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
       </b-modal>
     </div>
+
+
     <div >
       <h1>Booking</h1><br><br>
     </div>
@@ -100,17 +102,22 @@
       <!-- <template v-slot:cell(name)="row">
         {{ row.value.first }} {{ row.value.last }}
       </template> -->
+      
+      <template v-slot:cell(info)="row">
+        <b-button variant="light" size="sm" @click="row.toggleDetails">
+              {{ row.detailsShowing ? "Hide" : "Show" }} info
+        </b-button>
+       
+      </template>
 
       <template v-slot:cell(actions)="row">
-        <div v-if="row.item.status == 'booking'">
+         <div v-if="row.item.status == 'booking'">
           <a size="sm" href="/checkin">check-in</a>
         </div>
         <div v-if="row.item.status == 'check-in'">
           <a size="sm" @click="done()">check-out</a>
         </div>
-        <b-button variant="light" size="sm" @click="row.toggleDetails">
-              {{ row.detailsShowing ? "Hide" : "Show" }} more details
-        </b-button>
+        
       </template>
 
 
@@ -152,13 +159,44 @@
 <script>
 import STnav from '../Nav_st.vue'
 import Side from './Side_statusH.vue'
+
+
 export default {
   components:{
         STnav,
-        Side
+        Side,
+        
     },
+    //for chart summary
+    mounted:function(){
+      
+      this.totalRows = this.items.length // Set the initial number of items
+    },
+    
     data() {
       return {
+        chartOptionsBar: {
+            xAxis: {
+                data: ['booking', 'check-in', 'check-out', 'cancel']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                type: 'bar',
+                data: [63, 75, 24, 92]
+                }
+            ],
+            title: {
+                text: 'Number of booking',
+                x: 'center',
+                textStyle: {
+                fontSize: 24
+                }
+            },
+            color: ['#127ac2']
+        },
         items: [
           { status: 'cancle', cusid: 'CUS0001', bookid: 'A1000' },
           { status: 'check-in', cusid: 'CUS0001', bookid: 'A1001'  },
@@ -184,7 +222,8 @@ export default {
             sortByFormatted: true,
             filterByFormatted: true
           },
-          { key: 'actions', label: 'Actions' }
+          { key: 'actions', label: 'Actions' },
+          { key: 'info', label: 'Info' },
         ],
         totalRows: 1,
         currentPage: 1,
@@ -212,10 +251,6 @@ export default {
           })
       }
     },
-    mounted() {
-      // Set the initial number of items
-      this.totalRows = this.items.length
-    },
     methods: {
       info(item, index, button) {
         this.infoModal.title = `Row index: ${index}`
@@ -240,6 +275,7 @@ export default {
       hideModal() {
         this.$refs['my-modal'].hide()
       },
+      
     }
     
   
@@ -250,9 +286,11 @@ export default {
 <style>
 #all{
   margin: 100px 100px auto 300px;
-  
 }
-
+.chart-wrapper {
+  width: 100%;
+  height: 500px;
+}
 </style>
 
 

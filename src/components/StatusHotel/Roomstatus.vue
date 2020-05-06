@@ -7,9 +7,9 @@
       <div id="summary" style="float:right">
       <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
 
-      <b-modal ref="my-modal" hide-footer title="Summary" >
-        <div class="d-block text-center">
-          <h3>room summary</h3>
+      <b-modal ref="my-modal" hide-footer title="room summary" size="lg">
+        <div class="chart-wrapper" >
+          <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
       </b-modal>
     </div>
@@ -20,7 +20,7 @@
 
             <b-form-group
               label="Room type"
-              label-cols-sm="3"
+              label-cols-sm="5"
               label-align-sm="right"
               label-size="sm"
               label-for="selectType"
@@ -32,7 +32,7 @@
                   id="selectType"
                   :options="type_options"
                   class="w-75"
-                  style="margin-top:30px; width:20rem"
+                  style="margin-top:30px; margin-left:100px"
                   @change="onSelect"
                 >
                 </b-form-select>
@@ -83,6 +83,28 @@ export default {
   },
   data() {
     return {
+      chartOptionsBar: {
+            xAxis: {
+                data: ['avaiable', 'reserved']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                type: 'bar',
+                data: [200, 47]
+                }
+            ],
+            title: {
+                text: 'Number of room',
+                x: 'center',
+                textStyle: {
+                fontSize: 24
+                }
+            },
+            color: ['#127ac2']
+        },
       type_options: [
         { value: null, text: "All" },
         { value: "Dulux Urban Twin Bed", text: "Dulux Urban Twin Bed" },
@@ -186,5 +208,9 @@ export default {
 <style>
 #all {
   margin: 100px 100px auto 300px;
+}
+.chart-wrapper {
+  width: 100%;
+  height: 500px;
 }
 </style>
