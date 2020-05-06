@@ -241,6 +241,7 @@ export default {
         .post("http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=add",formData)
         .then(response => {
           //set var to default
+          console.log(response);
           this.form = {
             email: "",
             username: "",
