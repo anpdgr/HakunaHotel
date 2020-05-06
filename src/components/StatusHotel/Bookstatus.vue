@@ -286,14 +286,11 @@ export default {
 <style>
 #all{
   margin: 100px 100px auto 300px;
-  
-  
 }
 .chart-wrapper {
   width: 100%;
   height: 500px;
 }
-
 </style>
 
 

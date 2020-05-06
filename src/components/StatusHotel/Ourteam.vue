@@ -7,13 +7,13 @@
       <div id="summary" style="float:right">
       <b-button id="show-btn"  variant="success"   @click="showModalstaff">see summary</b-button>
 
-      <b-modal ref="my-modal-staff" hide-footer title="Summary" size="lg" >
-        <div class="d-block text-center">
-          <h3>staff summary</h3>
+      <b-modal ref="my-modal-staff" hide-footer title="Summary" size='lg'>
+        <div class="chart-wrapper">
+          <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
       </b-modal>
     </div>
-      <h5 style="margin-top:30px"><b>Staff information</b></h5>
+      <h1 style="margin-top:30px">Staff information</h1>
       <b-container fluid>
         <!-- User Interface controls -->
         <b-row>
@@ -199,6 +199,28 @@ export default {
   components: { STnav, Side },
   data() {
     return {
+            chartOptionsBar: {
+        xAxis: {
+          data: ["IT", "housekeeper","DBA","dev"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            type: "bar",
+            data: [63, 5,45,9],
+          },
+        ],
+        title: {
+          text: "Quarterly Sales Results",
+          x: "center",
+          textStyle: {
+            fontSize: 24,
+          },
+        },
+        color: ["#127ac2"],
+      },
       items: [
         {
           id: "ST_0002",
@@ -364,5 +386,9 @@ export default {
 }
 #all {
   margin: 100px 100px auto 300px;
+}
+.chart-wrapper {
+  width: 100%;
+  height: 500px;
 }
 </style>

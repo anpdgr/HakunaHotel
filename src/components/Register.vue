@@ -52,7 +52,6 @@
                 required
                 placeholder="Confirm your password"
               ></b-form-input>
-
             <!-- Details regis -->
             </b-form-group>
             <div style="margin-top:30px; margin-bottom:30px"><hr /></div>
@@ -137,6 +136,8 @@
         <br /><br />
         <!-- return to home page -->
         <div id="back">
+          <a href="login">I already have an account</a>
+          <br />
           <a href="/">Back to home</a>
         </div>
       </b-card>
@@ -293,7 +294,6 @@ export default {
 #box {
   max-width: 550px;
   margin: auto;
-  
 }
 #left {
   max-width: 30rem;
@@ -308,6 +308,5 @@ body {
   min-width: 100%;
   min-height: 100%;
   position: absolute;
-
 }
 </style>
