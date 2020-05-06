@@ -20,7 +20,7 @@
 
             <b-form-group
               label="Room type"
-              label-cols-sm="3"
+              label-cols-sm="5"
               label-align-sm="right"
               label-size="sm"
               label-for="selectType"
@@ -32,7 +32,7 @@
                   id="selectType"
                   :options="type_options"
                   class="w-75"
-                  style="margin-top:30px; width:20rem"
+                  style="margin-top:30px; margin-left:100px"
                   @change="onSelect"
                 >
                 </b-form-select>

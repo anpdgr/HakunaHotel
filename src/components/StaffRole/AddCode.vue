@@ -3,18 +3,22 @@
     <STnav />
     <br /><br /><br />
     <hr />
-    <Side/>
+    <Side />
     <div id="summary" style="float:right; margin-right:100px">
-      <b-button id="show-btn"  variant="success"   @click="showModalcode">see summary</b-button>
+      <b-button id="show-btn" variant="success" @click="showModalcode"
+        >see summary</b-button
+      >
 
-      <b-modal ref="my-modal-code" hide-footer title="Summary" >
+      <b-modal v-model='ModalProps' ref="my-modal-code" hide-footer title="Summary">
         <div class="d-block text-center">
           <h3>code summary</h3>
+          <canvas id="graph" width="400" height="400"></canvas>
+          <p>try</p>
         </div>
       </b-modal>
     </div>
-    <div id='all'>
-      
+
+    <div id="all">
       <div>
         <h4><b>Add code</b></h4>
         <br />
@@ -150,6 +154,7 @@
 <script>
 import STnav from "../Nav_st.vue";
 import Side from "../StatusHotel/Side_statusH.vue";
+import Chart from "chart.js";
 
 export default {
   components: {
@@ -208,10 +213,30 @@ export default {
         });
     },
   },
-  mounted() {
+  /*mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
-  },
+  },*/
+
+mounted:function(){
+      this.totalRows = this.items.length // Set the initial number of items
+      var ctx = document.getElementById('graph').getCotext('2d')
+      var bar = new Chart( ctx ,{
+        type: 'bar',
+        data:{
+          labels: ['booking','check-in','check-out','cancle'],
+          datasets:[
+            {
+              label: '# of book',
+              data: [88,70,100,5]
+            }
+          ]
+        }
+      })
+      console.log(bar)
+    },
+
+
   methods: {
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
@@ -241,11 +266,11 @@ export default {
       });
     },
     showModalcode() {
-        this.$refs['my-modal-code'].show()
-      },
-      hideModalcode() {
-        this.$refs['my-modal-code'].hide()
-      },
+      this.$refs["my-modal-code"].show();
+    },
+    hideModalcode() {
+      this.$refs["my-modal-code"].hide();
+    },
   },
 };
 </script>
@@ -257,5 +282,14 @@ export default {
 }
 #all {
   margin: 20px 100px auto 300px;
+}
+canvas {
+  max-width: 100%;
+}
+.container-canvas {
+  /* This could be done in one single declaration. See the extended sample. */
+  margin-right: auto;
+  margin-left: auto;
+  width: 800px;
 }
 </style>
