@@ -85,7 +85,7 @@ export default {
     return {
       chartOptionsBar: {
             xAxis: {
-                data: ['booking', 'check-in', 'check-out', 'cancel']
+                data: ['avaiable', 'reserved']
             },
             yAxis: {
                 type: 'value'
@@ -93,11 +93,11 @@ export default {
             series: [
                 {
                 type: 'bar',
-                data: [63, 75, 24, 92]
+                data: [200, 47]
                 }
             ],
             title: {
-                text: 'Number of booking',
+                text: 'Number of room',
                 x: 'center',
                 textStyle: {
                 fontSize: 24
