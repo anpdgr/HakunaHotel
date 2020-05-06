@@ -57,7 +57,7 @@
 export default {
   data() {
     return {
-      c:false,
+      c:0,
       form: {
         username: "",
         password: "",
@@ -75,11 +75,15 @@ export default {
       evt.preventDefault();
       // alert(JSON.stringify(this.form))
       this.CheckUser();
-      if(!this.c)
+      if(this.c === 0)
         alert("username or password incorrect");
-      else{
-        alert("login");
+      else if(this.c === 1){
+        alert("User login");
         this.$router.push("/");
+      }
+      else if(this.c === 2){
+        alert("Staff login");
+        this.$router.push("/shome");
       }
     },
     fetchUsers() {
@@ -100,13 +104,23 @@ export default {
 
     },
     CheckUser(){
-       this.users.forEach(this.ck);      
+       this.users.forEach(this.checkUP);      
     },
-    ck(value){
+    checkUP(value){
       if(value["User_ID"] === this.form.username)
       {
-        if(value["Password"] == this.form.password)
-          this.c = true;
+        if(value["Password"] == this.form.password){
+          this.c = 1;
+          // this.$store.dispatch("AcSetUser",value["User_ID"]);
+        }
+          
+      }
+      else if(value["Staff_ID"] === this.form.username){
+        if(value["Password"] == this.form.password){
+          this.c = 2;
+          // this.$store.dispatch("AcSetUser",value["Staff_ID"]);
+        }
+          
       }
       // console.log(JSON.stringify(value["User_ID"]));
     }

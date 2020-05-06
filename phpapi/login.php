@@ -13,15 +13,16 @@
             $action = $_GET['action'];
         }
 
-        if($action == 'read'){
-            $sql = $con->query('SELECT User_ID,Password FROM Customer');
-            $users = array();
-
-            while($row = $sql->fetch_assoc()){
-                array_push($users,$row);
+        if($action == 'read'){                                             # -
+            # edit sql command here
+            $sql = $con->query('SELECT User_ID,Staff_ID,Password FROM History_Account WHERE Available = "Y"');           # +
+            # var buff for data in database
+            $users = array();                                              # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($users,$row);                                   # -
             }
-            $result['data'] = $users;
-            
+            $result['data'] = $users;                                      # -
         }
         
         echo json_encode($result);
