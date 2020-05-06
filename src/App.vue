@@ -9,7 +9,7 @@
 import Home from './components/route.vue'
 
 //for test
-//import Home from './components/HomeElem/test.vue'
+//import Home from './components/StatusHotel/test.vue'
 
 
 export default {

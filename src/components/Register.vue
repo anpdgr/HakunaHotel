@@ -2,7 +2,7 @@
   <body id="regis">
     <!-- sign up box -->
     <div id="box">
-      <b-card border-varient="Primary" class="container" style="padding:5px">
+      <b-card border-varient="Primary" class="container" style="padding:5px; margin:50px">
         <div id="left" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Sign up</h3>
@@ -293,7 +293,7 @@ export default {
 #box {
   max-width: 550px;
   margin: auto;
-  padding-top: 35px;
+  
 }
 #left {
   max-width: 30rem;
@@ -304,8 +304,10 @@ export default {
 body {
   background-image: url("../assets/hotel.home.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center center;
-  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+
 }
 </style>
