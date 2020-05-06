@@ -4,7 +4,7 @@
         <div vertical >
             <a href="/bookstatus">Booking</a><br><br>
             <a href="/roomstatus">Room</a><br><br>
-            <a href="/addcode">CodePromotion</a><br><br>
+            <a href="/addcode">Code Promotion</a><br><br>
             <a href="/ourteam">Our team</a>
         </div>
      </b-card>

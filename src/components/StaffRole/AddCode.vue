@@ -9,96 +9,89 @@
         >see summary</b-button
       >
 
-      <b-modal v-model='ModalProps' ref="my-modal-code" hide-footer title="Summary">
-        <div class="d-block text-center">
-          <h3>code summary</h3>
-          <canvas id="graph" width="400" height="400"></canvas>
-          <p>try</p>
+      <b-modal ref="my-modal-code" hide-footer title="Summary" size="lg">
+        <div class="chart-wrapper">
+          <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
       </b-modal>
     </div>
 
     <div id="all">
-      <div>
-        <h4><b>Add code</b></h4>
+      <div></div>
+      <div id="addSection">
+        <h1>Add code</h1>
         <br />
-        <div id="addSection">
-          <b-form inline id="idname">
-            <b-form-group class="mb-0" label="Code ID:" label-for="id">
-              <b-form-input
-                id="id"
-                required
-                v-model="cID"
-                placeholder="Enter Code ID"
-                style="margin-left:10px; margin-right:50px; width: 15rem;"
-              ></b-form-input>
-            </b-form-group>
+        <b-form inline id="idname">
+          <b-form-group class="mb-0" label="Code ID:" label-for="id">
+            <b-form-input
+              id="id"
+              required
+              v-model="cID"
+              placeholder="Enter Code ID"
+              style="margin-left:10px; margin-right:50px; width: 15rem;"
+            ></b-form-input>
+          </b-form-group>
 
-            <b-form-group class="mb-0" label="Code name:" label-for="name">
-              <b-form-input
-                id="name"
-                v-model="cName"
-                placeholder="Enter Code name"
-                style="width: 15rem;"
-              ></b-form-input>
-            </b-form-group>
-          </b-form>
-          <br />
-          <b-form inline id="discountlimit">
-            <b-form-group class="mb-0" label="Discount:" label-for="discount">
-              <b-form-input
-                id="discount"
-                v-model="cDiscount"
-                placeholder="Enter discount in THB"
-                style="margin-left:7px; margin-right:100px; width: 15rem;"
-              ></b-form-input>
-            </b-form-group>
+          <b-form-group class="mb-0" label="Code name:" label-for="name">
+            <b-form-input
+              id="name"
+              v-model="cName"
+              placeholder="Enter Code name"
+              style="width: 15rem;"
+            ></b-form-input>
+          </b-form-group>
+        </b-form>
+        <br />
+        <b-form inline id="discountlimit">
+          <b-form-group class="mb-0" label="Discount:" label-for="discount">
+            <b-form-input
+              id="discount"
+              v-model="cDiscount"
+              placeholder="Enter discount in THB"
+              style="margin-left:7px; margin-right:100px; width: 15rem;"
+            ></b-form-input>
+          </b-form-group>
 
-            <b-form-group class="mb-0" label="Limit:" label-for="limit">
-              <b-form-input
-                id="limit"
-                v-model="cLimit"
-                placeholder="Enter limit used"
-                style="width: 15rem;"
-              ></b-form-input>
-            </b-form-group>
-          </b-form>
-          <br />
-          <b-form inline id="dateform">
-            <b-form-group
-              class="mb-0"
-              label="Start date:"
-              label-for="StartDate"
-            >
-              <b-form-datepicker
-                id="StartDate"
-                v-model="cStartD"
-                placeholder="Select start date"
-                style="margin-right:43px; width: 15rem;"
-              ></b-form-datepicker>
-            </b-form-group>
+          <b-form-group class="mb-0" label="Limit:" label-for="limit">
+            <b-form-input
+              id="limit"
+              v-model="cLimit"
+              placeholder="Enter limit used"
+              style="width: 15rem;"
+            ></b-form-input>
+          </b-form-group>
+        </b-form>
+        <br />
+        <b-form inline id="dateform">
+          <b-form-group class="mb-0" label="Start date:" label-for="StartDate">
+            <b-form-datepicker
+              id="StartDate"
+              v-model="cStartD"
+              placeholder="Select start date"
+              style="margin-right:43px; width: 15rem;"
+            ></b-form-datepicker>
+          </b-form-group>
 
-            <b-form-group
-              class="mb-0"
-              label="Expired date:"
-              label-for="ExpiredDate"
-            >
-              <b-form-datepicker
-                id="ExpiredDate"
-                v-model="cExpriedD"
-                placeholder="Select expired date"
-                style="width: 15rem;"
-              ></b-form-datepicker>
-            </b-form-group>
-          </b-form>
-          <br />
-          <b-button id="button" type="submit" variant="dark" @click="checkAdd()"
-            >Add</b-button
+          <b-form-group
+            class="mb-0"
+            label="Expired date:"
+            label-for="ExpiredDate"
           >
-        </div>
+            <b-form-datepicker
+              id="ExpiredDate"
+              v-model="cExpriedD"
+              placeholder="Select expired date"
+              style="width: 15rem;"
+            ></b-form-datepicker>
+          </b-form-group>
+        </b-form>
+        <br />
+        <b-button id="button" type="submit" variant="dark" @click="checkAdd()"
+          >Add</b-button
+        >
       </div>
       <hr />
-      <h5 style="margin-top:30px"><b>Existing code</b></h5>
+      <h5 style="margin-top:30px; padding-right:130px"><b>Existing code</b></h5>
       <b-container fluid style="margin-top:20px;">
         <!-- User Interface controls -->
         <div style="margin:auto; margin-top:20px;">
@@ -154,7 +147,6 @@
 <script>
 import STnav from "../Nav_st.vue";
 import Side from "../StatusHotel/Side_statusH.vue";
-import Chart from "chart.js";
 
 export default {
   components: {
@@ -163,6 +155,28 @@ export default {
   },
   data() {
     return {
+      chartOptionsBar: {
+        xAxis: {
+          data: ["FIRST100", "LIMIT5"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            type: "bar",
+            data: [63, 5],
+          },
+        ],
+        title: {
+          text: "Quarterly Sales Results",
+          x: "center",
+          textStyle: {
+            fontSize: 24,
+          },
+        },
+        color: ["#127ac2"],
+      },
       cID: null,
       cName: null,
       cDiscount: null,
@@ -174,7 +188,7 @@ export default {
           id: "FIRST100",
           Cname: "First use",
           discount: "THB 100",
-          limit: 5,
+          limit: null,
           sDate: "07/02/19",
           eDate: "08/02/19",
         },
@@ -213,29 +227,10 @@ export default {
         });
     },
   },
-  /*mounted() {
+  mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
-  },*/
-
-mounted:function(){
-      this.totalRows = this.items.length // Set the initial number of items
-      var ctx = document.getElementById('graph').getCotext('2d')
-      var bar = new Chart( ctx ,{
-        type: 'bar',
-        data:{
-          labels: ['booking','check-in','check-out','cancle'],
-          datasets:[
-            {
-              label: '# of book',
-              data: [88,70,100,5]
-            }
-          ]
-        }
-      })
-      console.log(bar)
-    },
-
+  },
 
   methods: {
     onFiltered(filteredItems) {
@@ -291,5 +286,9 @@ canvas {
   margin-right: auto;
   margin-left: auto;
   width: 800px;
+}
+.chart-wrapper {
+  width: 100%;
+  height: 500px;
 }
 </style>
