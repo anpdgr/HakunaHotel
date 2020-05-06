@@ -7,7 +7,7 @@
       <div id="summary" style="float:right">
       <b-button id="show-btn"  variant="success"   @click="showModalstaff">see summary</b-button>
 
-      <b-modal ref="my-modal-staff" hide-footer title="Summary" >
+      <b-modal ref="my-modal-staff" hide-footer title="Summary" size="lg" >
         <div class="d-block text-center">
           <h3>staff summary</h3>
         </div>

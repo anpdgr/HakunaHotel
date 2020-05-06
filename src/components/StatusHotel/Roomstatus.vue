@@ -7,9 +7,9 @@
       <div id="summary" style="float:right">
       <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
 
-      <b-modal ref="my-modal" hide-footer title="Summary" >
-        <div class="d-block text-center">
-          <h3>room summary</h3>
+      <b-modal ref="my-modal" hide-footer title="room summary" size="lg">
+        <div class="chart-wrapper" >
+          <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
       </b-modal>
     </div>
@@ -83,6 +83,28 @@ export default {
   },
   data() {
     return {
+      chartOptionsBar: {
+            xAxis: {
+                data: ['booking', 'check-in', 'check-out', 'cancel']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                type: 'bar',
+                data: [63, 75, 24, 92]
+                }
+            ],
+            title: {
+                text: 'Number of booking',
+                x: 'center',
+                textStyle: {
+                fontSize: 24
+                }
+            },
+            color: ['#127ac2']
+        },
       type_options: [
         { value: null, text: "All" },
         { value: "Dulux Urban Twin Bed", text: "Dulux Urban Twin Bed" },
@@ -186,5 +208,9 @@ export default {
 <style>
 #all {
   margin: 100px 100px auto 300px;
+}
+.chart-wrapper {
+  width: 100%;
+  height: 500px;
 }
 </style>

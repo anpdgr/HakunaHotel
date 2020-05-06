@@ -6,7 +6,7 @@
 
     <div id="summary" style="float:right">
       <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
-      <b-modal ref="my-modal" hide-footer title="Booking summary" style="padding:10px" size="lg">
+      <b-modal ref="my-modal" hide-footer title="Booking summary" style="padding:10px; float:center" size="lg" >
         <div class="chart-wrapper" >
           <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
@@ -159,7 +159,7 @@
 <script>
 import STnav from '../Nav_st.vue'
 import Side from './Side_statusH.vue'
-import Chart from 'chart.js'
+
 
 export default {
   components:{
@@ -171,28 +171,13 @@ export default {
     mounted:function(){
       
       this.totalRows = this.items.length // Set the initial number of items
-      var ctx = document.getElementById('graph').getContext('2d')
-      var bar = new Chart( ctx ,{
-        type: 'bar',
-        data:{
-          labels: ['booking','check-in','check-out','cancle'],
-          datasets:[
-            {
-              label: '# of book',
-              data: [88,70,100,5]
-            }
-          ]
-        }
-      })
-      this.beforePrintHandler ()
-      console.log(bar)
     },
     
     data() {
       return {
         chartOptionsBar: {
             xAxis: {
-                data: ['Q1', 'Q2', 'Q3', 'Q4']
+                data: ['booking', 'check-in', 'check-out', 'cancel']
             },
             yAxis: {
                 type: 'value'
@@ -204,7 +189,7 @@ export default {
                 }
             ],
             title: {
-                text: 'Quarterly Sales Results',
+                text: 'Number of booking',
                 x: 'center',
                 textStyle: {
                 fontSize: 24
@@ -290,12 +275,6 @@ export default {
       hideModal() {
         this.$refs['my-modal'].hide()
       },
-      beforePrintHandler () {
-      for (var graph in Chart.instances) {
-          Chart.instances[graph].resize();
-        }
-      }
-      
       
     }
     
