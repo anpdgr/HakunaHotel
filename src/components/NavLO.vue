@@ -5,7 +5,7 @@
       id="mainNav"
     >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
         <button
           class="navbar-toggler"
           type="button"
@@ -20,24 +20,26 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#room">Room</a>
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="room">Room</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#services"
-                >Services</a
-              >
+              <button id="btn" class="nav-link js-scroll-trigger" @click="sv">Services</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#contact">Contact</a>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="ct">Contact</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="myprofile">My account</a>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
             </li>
-
+            <!-- link to logout(home page) (need fix) -->
             <li class="nav-item">
-              <a v-on:click="check=0" class="nav-link js-scroll-trigger" href='/'>Sign out</a>
+              <a id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger" href="/">Sign out</a>
+              <!-- <b-button @click="logout">lo</b-button> -->
             </li>
           </ul>
+          
+             
+            
         </div>
       </div>
     </nav>
@@ -45,6 +47,18 @@
 </template>
 
 <style scoped>
+#mainNav{
+  padding: 15px 16px;
+}
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -60,3 +74,42 @@ a {
   color: #42b983;
 }
 </style>
+
+
+<script>
+export default {
+  mounted() {
+    this.anchorHashCheck();
+  },
+   methods:{
+      anchorHashCheck() {
+      if (window.location.hash === this.$route.hash) {
+        const el = document.getElementById(this.$route.hash.slice(1));
+        if (el) {
+          window.scrollTo(0, el.offsetTop);
+        }
+      }
+    },
+      logout(){
+      this.$store.dispatch("AcUser",'owo');
+      },
+
+      room(){
+          this.$router.push('/#room')
+       },
+       sv(){
+          this.$router.push('/#services')
+       },
+       ct(){
+          this.$router.push('/#contact')
+       },
+        myprofile(){
+          this.$router.push('myprofile')
+       },
+        home(){
+          this.$router.push('/')
+       },
+        
+   }
+}
+</script>

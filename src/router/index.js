@@ -32,6 +32,11 @@ const routes = [
         component: Home,
     },
     {
+        path: '/#services',
+        name: 'HelloWorld',
+        component: Home,
+    },
+    {
         path: '/register',
         name: 'regis',
         component: Reg
