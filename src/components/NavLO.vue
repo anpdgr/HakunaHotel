@@ -30,7 +30,7 @@
 
             <!-- slide to room -->
             <li class="nav-item">
-              <button id="btn"  class="nav-link js-scroll-trigger" @click="room">Room</button>
+              <button id="btn"  class="nav-link js-scroll-trigger" href="/room">Room</button>
             </li>
 
             <!-- slide to services -->
@@ -42,12 +42,12 @@
 
             <!-- slide to contact -->
             <li class="nav-item">
-              <button id="btn"  class="nav-link js-scroll-trigger" @click="contact">Contact</button>
+              <button id="btn"  class="nav-link js-scroll-trigger" href="/contact">Contact</button>
             </li>
 
             <!-- link to myprofile -->
             <li class="nav-item">
-              <button id="btn"  class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="account">My account</button>
             </li>
 
             <!-- link to logout(home page) (need fix) -->
@@ -79,7 +79,7 @@ export default {
     //   // console.log('owo');
     //   // this.$router.push("myprofile");
     // }
-   room(){
+      room(){
           this.$router.push('room')
        },
         home(){
@@ -95,9 +95,7 @@ export default {
        account(){
           this.$router.push('myprofile')
        },
-       login(){
-          this.$router.push('login')
-       },
+
   }
 }
 </script>

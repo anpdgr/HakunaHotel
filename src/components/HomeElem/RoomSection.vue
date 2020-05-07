@@ -2,8 +2,8 @@
 <div style="margin:auto">
     <div class="row">
       <div class="col-lg-8 mx-auto">
-        <h2>Our room type</h2>
-        <p style="font-size:100%" class="lead">
+        <h2 style="text-align:center">Our room type</h2>
+        <p style="font-size:100%; text-align:center" class="lead">
          The 236 spacious and comfortable rooms and suites at the Hakuna Hotel include several different room types (Deluxe Urban Room, Deluxe Ocean Room, Premier Ocean Room, Urban Junior Suite, Ocean Junior Suite and Marina Suite) to provide the perfect accommodation option for the different needs of our guests, whatever the reason for their stay. Our luxury hotel near Paradise beach is an oasis of comfort.
         </p>
       </div>

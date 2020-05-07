@@ -1,9 +1,9 @@
 <template>
   <div style="margin:auto; padding-bottom:50px">
     <div class="row" style="padding-top:50px">
-      <div class="col-lg-8 mx-auto">
-        <h2>Services & Facilities</h2>
-        <p class="lead" style='font-size:100%'>
+      <div  class="col-lg-8 mx-auto">
+        <h2 style="text-align:center">Services & Facilities</h2>
+        <p class="lead" style='font-size:100%; text-align:center'>
           Whether you are travelling for business or pleasure,
           the luxury hotel services offered by the five star Hakuna Hotel 
           make it an ideal choice for your stay in here. 
@@ -132,6 +132,7 @@ export default {
   width: 400px;
   height: 270px;
   border-radius: 25%;
+  float: center;
 }
 
 .container {

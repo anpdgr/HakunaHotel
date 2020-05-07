@@ -185,7 +185,7 @@ export default {
           this.$router.push('login')
        },
     home(){
-          this.$router.push('home')
+          this.$router.push('/')
        },
     // default user easy click
     UseDev(){

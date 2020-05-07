@@ -3,9 +3,9 @@
      <b-card style="max-width: 10rem; float:left; margin: auto 50px"   class="text-center" > 
         <div vertical >
             <button class="btn" @click="book()"><p style="color:#2688D9">Booking</p></button><br><br>
-            <a class="btn" @click="room()"><p style="color:#2688D9">Room</p></a><br><br>
-            <a class="btn" @click="code()"><p style="color:#2688D9">Code Promotion</p></a><br><br>
-            <a class="btn" @click="team()"><p style="color:#2688D9">Our team</p></a>
+            <button class="btn" @click="room()"><p style="color:#2688D9">Room</p></button><br><br>
+            <button class="btn" @click="code()"><p style="color:#2688D9">Code Promotion</p></button><br><br>
+            <button class="btn" @click="team()"><p style="color:#2688D9">Our team</p></button>
         </div>
      </b-card>
     </div>

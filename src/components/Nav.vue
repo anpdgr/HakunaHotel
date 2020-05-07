@@ -6,7 +6,7 @@
     >
     <!--                       bar before login                         -->
       <div class="container">
-        <button id="btn" class="navbar-brand js-scroll-trigger"  @click="home">Hakuna Hotel</button>
+        <a  class="navbar-brand js-scroll-trigger"  href="/">Hakuna Hotel</a>
         <!-- just show global state -->
         <p>{{$store.getters.getUser}}</p>
         <!-- ปุ่มอะไรอะ -->
@@ -27,29 +27,29 @@
 
             <!-- slide to room -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger"  @click="room">Room</button>
+              <a  class="nav-link js-scroll-trigger"  href="/#room">Room</a>
             </li>
 
             <!-- slide to services -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger"  @click="service"
-                >Services</button
+              <a  class="nav-link js-scroll-trigger"  href="/#services"
+                >Services</a
               >
             </li>
 
             <!-- slide to contact -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger"  @click="contact">Contact</button>
+              <a  class="nav-link js-scroll-trigger"  href="/#contact">Contact</a>
             </li>
 
             <!-- link to register form -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger"  @click="regis">Sign up</button>
+              <a  class="nav-link js-scroll-trigger"  href="/register">Sign up</a>
             </li>
 
             <!-- link to login -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger"  @click="login">Sign in</button>
+              <a  class="nav-link js-scroll-trigger"  href="/login">Sign in</a>
             </li>
             
           </ul>

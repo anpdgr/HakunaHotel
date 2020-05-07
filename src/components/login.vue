@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     regis(){
-          this.$router.push('mhome')
+          this.$router.push('register')
        },
     home(){
           this.$router.push('/')

@@ -37,6 +37,9 @@
 </template>
 
 <style scoped>
+#mainNav{
+  padding: 15px 16px;
+}
 #btn {
   border: none;
   background-color:transparent;
