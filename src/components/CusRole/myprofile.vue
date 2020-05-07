@@ -1,5 +1,6 @@
 <template>
   <div id="all" >
+    <NavLo/>
     <Cusnav/>
       <div>
         <b-card id="card" title="Your profile">
@@ -31,15 +32,18 @@
     max-width: 50rem; 
     margin:100px 100px 100px 400px;    
     padding:30px;
+    text-align: center;
     
   }
 </style>
 
 <script>
 import Cusnav from './SideTopNav_cus.vue'
+import NavLo from '../NavLO.vue'
 export default {
   components:{
         Cusnav,
+        NavLo
     },
     data(){
       return{

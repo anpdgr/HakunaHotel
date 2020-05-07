@@ -2,7 +2,7 @@
     <b-card id="card">
         <div id="divwel">
             <p id="welcome" > Welcome to Hakuna </p><br>
-            <span style="font-size:20px; color: white; text-shadow: 1px 1px black; font-family:Avenir, Helvetica, Arial, sans-serif">Hakuna is one of the best luxury hotels in our state. We offer high-quality accommodation with a wide variety of rooms, additional services, and amenities available to all our guests.</span>
+            <span style="font-size:20px; color: white; text-shadow: 1px 1px black; font-family:Avenir, Helvetica, Arial, sans-serif; text-align:center">Hakuna is one of the best luxury hotels in our state. We offer high-quality accommodation with a wide variety of rooms, additional services, and amenities available to all our guests.</span>
         </div> 
     </b-card>
 </template>
@@ -19,6 +19,7 @@
   }
 #divwel{
     margin: auto;
+    float: center;
     
   }
 #card{

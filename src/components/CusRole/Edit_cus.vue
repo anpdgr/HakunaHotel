@@ -1,5 +1,6 @@
 <template>
   <div id="editcus">
+    <NavLO/>
     <Cusnav/>
     <b-card id='card'  align="left"  title="Edit your profile">
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -93,10 +94,12 @@
 </template>
 
 <script>
+  import NavLO from '../NavLO.vue'  
   import Cusnav from './SideTopNav_cus.vue'
   export default {
     components:{
         Cusnav,
+        NavLO,
     },
     data() {
       return {

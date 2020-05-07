@@ -8,9 +8,9 @@
          <button id="btn" style="font-size:20px; color: #818181;" @click="account">{{$store.getters.getUser}}</button>
       </div>
       <div id='menu' >
-        <button id="btn" style="font-size:20px; color:#2688D9" @click="cedit">Edit profile</button><br><br>
-        <button id="btn" style="font-size:20px; color:#2688D9" @click="mybook">Book history</button><br><br>
-        <button id="btn" style="font-size:20px; color:#2688D9" @click="home">Sign out</button>
+        <button id="btn" style="font-size:18px; color:#343a40" @click="cedit">Edit profile</button><br><br>
+        <button id="btn" style="font-size:18px; color:#343a40" @click="mybook">Book history</button><br><br>
+        <button id="btn" style="font-size:18px; color:#343a40" @click="home">Sign out</button>
       </div>
     </div>
 </div>
@@ -36,7 +36,8 @@
   align-items: center;
 }
 #head{
-  margin: 50px;
+  margin: 50px 50px 40px 50px;
+  padding: 20px;
 }
 
 .sidenav {
@@ -77,7 +78,7 @@
 </style>
 
 <script>
-import NavLO from '../NavLO'
+import NavLO from '../NavLO.vue'
 export default {
   components:{
         NavLO

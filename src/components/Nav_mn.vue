@@ -25,7 +25,7 @@
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="account">My account</button>
             </li>
-
+      
             <li class="nav-item">
               <button id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger" @click="home">Sign out</button>
             </li>

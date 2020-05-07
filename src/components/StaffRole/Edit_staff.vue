@@ -3,7 +3,7 @@
     <div style="margin-right:300px">
       <STnav/>
     </div>
-    <b-card title="Edit profile"  align="left" id="card" >
+    <b-card title="Edit profile"  align="left" id="card" style="text-align:center" >
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
         <!-- ipg = input group -->

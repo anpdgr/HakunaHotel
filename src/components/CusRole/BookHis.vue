@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavLO/>
     <Cusnav />
     <b-card id="card" title="Your History">
       <div>
@@ -183,6 +184,7 @@
 +review ด้วย อย่าลืมตุ่มยกเลิกการจองก่อนถึงวัน check-in
 
 <script>
+import NavLO from '../NavLO.vue'
 import Cusnav from "./SideTopNav_cus.vue";
 export default {
   data() {
@@ -193,6 +195,7 @@ export default {
   },
   components: {
     Cusnav,
+    NavLO,
   },
   methods: {
     showModal() {
