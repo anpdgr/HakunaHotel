@@ -1,38 +1,62 @@
 <template>
+  <!-- first step booking -->
   <b-card id="card" bg-variant="default">
+    <!-- box -->
     <b-form inline id="dateform">
+      <!-- Checkin Date block -->
       <b-form-group
         id="ipg-cin"
         label="Check-in Date:"
         style="margin-right:20px; width: 17rem;"
       >
-        <b-form-datepicker
+        <!-- input box checkin date -->
+        <!--<b-form-datepicker
           id="ip-cin"
           v-model="form.checkin_date"
           :date-disabled-fn="dateDisabled"
           locale="en"
           required
-        ></b-form-datepicker>
-      </b-form-group>
-
-      <b-form-group
-        id="ipg-cout"
-        label="Check-out Date:"
-        style="margin-right:20px; width: 17rem;"
-      >
+        ></b-form-datepicker>-->
+        
+        <!-- fix bug console -->
         <b-form-datepicker
-          id="ip-cout"
-          v-model="form.checkout_date"
-          :date-disabled-fn="dateDisabled"
+          id="ip-cin"
+          v-model="form.checkin_date"
           locale="en"
           required
         ></b-form-datepicker>
       </b-form-group>
 
+      <!-- Checkout Date block -->
+      <b-form-group
+        id="ipg-cout"
+        label="Check-out Date:"
+        style="margin-right:20px; width: 17rem;"
+      >
+        <!-- input checkout date -->
+        <!--<b-form-datepicker
+          id="ip-cout"
+          v-model="form.checkout_date"
+          :date-disabled-fn="dateDisabled"
+          locale="en"
+          required
+        ></b-form-datepicker>-->
+        
+        <!-- fix bug console -->
+        <b-form-datepicker
+          id="ip-cout"
+          v-model="form.checkout_date"
+          locale="en"
+          required
+        ></b-form-datepicker>
+      </b-form-group>
+
+      <!-- Num guest block -->
       <b-form-group
         label="Number of guests: "
         style="margin-right:30px; width: 10rem;"
       >
+        <!-- input num guest -->
         <b-form-spinbutton
           v-model="form.num_guest"
           min="1"
@@ -42,6 +66,7 @@
         ></b-form-spinbutton>
       </b-form-group>
 
+      <!-- submit button -->
       <b-button
         id="button"
         variant="dark"
@@ -77,13 +102,17 @@
 export default {
   data() {
     return {
+      // ?? didn't use
       isNUll: true,
+      // ?? didn't use
       x: 0,
+      // form input
       form: {
         checkin_date: null,
         checkout_date: null,
         num_guest: null,
       },
+      // ?? didn't use
       show: true,
     };
   },
@@ -103,13 +132,18 @@ export default {
             this.makeToast("danger", "Please select number of guests.");
             }
       } else {
+            // check date
             if (this.form.checkin_date > this.form.checkout_date) {
+            // use method makeToast
             this.makeToast("danger", "Invalid date");
             } else {
+            // go booking page 
+            // this port is so good
             this.$router.push("booking");
             }
       }
     },
+    // create toast
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {
         title: "Notice!",

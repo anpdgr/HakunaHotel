@@ -15,17 +15,18 @@
       </div>
     </div>
 
+    <!-- show services -->
     <div>
       <b-row>
+        <!-- row -->
         <b-col
-          v-for="item in items"
-          :key="item"
+          v-for="(item,index) in items" :key="index"
           style="flex: 30%; margin:10px 10px; padding:-10px;"
           xl="*"
         >
           <!-- <div   v-for='image in images' :key = 'image' > -->
           <div class="container">
-            <div>
+            <div >
               <img :src="item.img" class="image" />
               <div class="overlay">
                 <div class="text">
@@ -49,6 +50,7 @@
 export default {
   data() {
     return {
+      // services
       items: [
         {
           head: "Tour Packages",

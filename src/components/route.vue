@@ -1,8 +1,15 @@
 <template>
-  <div>
+  <div id='routed'>
+    <!-- show page its router link to -->
     <router-view></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'routed'
+}
+</script>
 
 <style scoped>
     body {
