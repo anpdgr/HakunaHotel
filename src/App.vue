@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="pp">
     <Home/>
   </div>
 </template>
@@ -13,7 +13,7 @@ import Home from './components/route.vue'
 
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     Home
   }
