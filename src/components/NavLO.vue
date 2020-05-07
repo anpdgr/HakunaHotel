@@ -5,7 +5,7 @@
       id="mainNav"
     >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <button id="btn"  class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
         <!-- <b-button @click="goHome" type="button">Hakuna Hotel {{c}}</b-button> -->
         <!-- <p>{{$store.getters.getUser}}</p> -->
         <button
@@ -22,22 +22,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#room">Room</a>
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="room">Room</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#services"
-                >Services</a
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="service"
+                >Services</button
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#contact">Contact</a>
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="contact">Contact</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="myprofile">My account</a>
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href='/'>Sign out</a>
+              <button id="btn"  class="nav-link js-scroll-trigger" @click="home">Sign out</button>
               <!-- <b-button @click="logout">lo</b-button> -->
             </li>
           </ul>
@@ -63,12 +63,40 @@ export default {
     //   // console.log('owo');
     //   // this.$router.push("myprofile");
     // }
+   room(){
+          this.$router.push('room')
+       },
+        home(){
+          this.$router.push('/')
+       },
+        service(){
+          this.$router.push('service')
+       },
+       contact(){
+          this.$router.push('contact')
+       },
+
+       account(){
+          this.$router.push('myprofile')
+       },
+       login(){
+          this.$router.push('login')
+       },
   }
 }
 </script>
 
 
 <style scoped>
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 h3 {
   margin: 40px 0 0;
 }

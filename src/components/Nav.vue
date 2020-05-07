@@ -5,7 +5,7 @@
       id="mainNav"
     >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <button id="btn" class="navbar-brand js-scroll-trigger"  @click="home">Hakuna Hotel</button>
         <p>{{$store.getters.getUser}}</p>
         <button
           class="navbar-toggler"
@@ -21,21 +21,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#room">Room</a>
+              <button id="btn" class="nav-link js-scroll-trigger"  @click="room">Room</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#services"
-                >Services</a
+              <button id="btn" class="nav-link js-scroll-trigger"  @click="service"
+                >Services</button
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#contact">Contact</a>
+              <button id="btn" class="nav-link js-scroll-trigger"  @click="contact">Contact</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="register">Sign up</a>
+              <button id="btn" class="nav-link js-scroll-trigger"  @click="regis">Sign up</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="login">Sign in</a>
+              <button id="btn" class="nav-link js-scroll-trigger"  @click="login">Sign in</button>
             </li>
           </ul>
         </div>
@@ -45,6 +45,15 @@
 </template>
 
 <style scoped>
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -63,3 +72,30 @@ a {
   background-color:#513f2a;
 }
 </style>
+
+<script>
+export default {
+   methods:{
+        room(){
+          this.$router.push('room')
+       },
+        home(){
+          this.$router.push('/')
+       },
+        service(){
+          this.$router.push('service')
+       },
+       contact(){
+          this.$router.push('contact')
+       },
+
+       regis(){
+          this.$router.push('register')
+       },
+       login(){
+          this.$router.push('login')
+       },
+       
+   }
+}
+</script>

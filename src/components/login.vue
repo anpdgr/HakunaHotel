@@ -44,9 +44,9 @@
         </div>
         <br /><br />
         <div id="back" style="text-align: right;">
-          <a href="register">I didn't have an account</a>
+          <button id="btn"  @click="regis">I didn't have an account</button>
           <br />
-          <a href="/">Back to home</a>
+          <button id="btn" @click="home">Back to home</button>
         </div>
       </b-card>
     </div>
@@ -71,6 +71,12 @@ export default {
     this.fetchUsers();
   },
   methods: {
+    regis(){
+          this.$router.push('mhome')
+       },
+    home(){
+          this.$router.push('/')
+       },
     onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form))
@@ -134,6 +140,17 @@ export default {
 </script>
 
 <style scoped>
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: #2688D9;
+  
+}
+
 #back {
   text-align: right;
 }

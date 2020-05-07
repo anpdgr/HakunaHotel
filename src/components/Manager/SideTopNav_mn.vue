@@ -6,17 +6,26 @@
     <div class="sidenav">
       <div id="head">
          <b-img id='pic' src=@/assets/mn.jpg  ></b-img>
-         <a style="font-size:20px; color: #818181;" href="/mhome">username</a>
+         <button id="btn" style="font-size:20px; color: #818181;" @click="account">username</button>
       </div>
       <div id='menu' >
-        <a style="font-size:20px;" href="/medit">Edit profile</a>
-        <a style="font-size:20px;" href="/">Sign out</a>
+        <button id="btn" style="font-size:20px; color:#2688D9" @click="edit">Edit profile</button><br><br>
+        <button id="btn" style="font-size:20px; color:#2688D9" @click="home">Sign out</button>
       </div>
     </div>
 </div>
 </template>
 
 <style scoped> 
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 #menu{
   margin-left:70px ;
   text-align: left;
@@ -70,7 +79,19 @@ import mnNav from '../Nav_mn.vue'
 export default {
   components:{
         mnNav
-    }
+    },
+    methods:{
+        account(){
+          this.$router.push('mhome')
+       },
+        home(){
+          this.$router.push('/')
+       },
+        edit(){
+          this.$router.push('medit')
+       },
+       
+   }
   
 }
 </script>

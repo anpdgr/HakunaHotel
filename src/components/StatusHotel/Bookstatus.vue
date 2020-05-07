@@ -112,7 +112,7 @@
 
       <template v-slot:cell(actions)="row">
          <div v-if="row.item.status == 'booking'">
-          <a size="sm" href="/checkin">check-in</a>
+          <button id="btn" size="sm" @click="checkin">check-in</button>
         </div>
         <div v-if="row.item.status == 'check-in'">
           <a size="sm" @click="done()">check-out</a>
@@ -275,6 +275,9 @@ export default {
       hideModal() {
         this.$refs['my-modal'].hide()
       },
+      checkin(){
+          this.$router.push('checkin')
+       },
       
     }
     
@@ -284,6 +287,15 @@ export default {
 
 
 <style>
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 #all{
   margin: 100px 100px auto 300px;
 }
