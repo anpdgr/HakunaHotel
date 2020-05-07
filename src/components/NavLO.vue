@@ -6,14 +6,7 @@
     >
     <!--                       bar after login                         -->
       <div class="container">
-<<<<<<< HEAD
         <button id="btn"  class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
-=======
-        <!--             link to home page (need fix)              -->
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
-
-        <!-- Test -->
->>>>>>> a7f4cf5ffc5df0fec6fe5799f1887f207fde137b
         <!-- <b-button @click="goHome" type="button">Hakuna Hotel {{c}}</b-button> -->
         <p>{{$store.getters.getUser}}</p>
 
@@ -42,13 +35,9 @@
 
             <!-- slide to services -->
             <li class="nav-item">
-<<<<<<< HEAD
               <button id="btn"  class="nav-link js-scroll-trigger" @click="service"
                 >Services</button
               >
-=======
-              <a class="nav-link js-scroll-trigger" href="/#services">Services</a>
->>>>>>> a7f4cf5ffc5df0fec6fe5799f1887f207fde137b
             </li>
 
             <!-- slide to contact -->

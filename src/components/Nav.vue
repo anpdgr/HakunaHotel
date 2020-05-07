@@ -6,13 +6,8 @@
     >
     <!--                       bar before login                         -->
       <div class="container">
-<<<<<<< HEAD
         <button id="btn" class="navbar-brand js-scroll-trigger"  @click="home">Hakuna Hotel</button>
-=======
-        <!--             link to home page (need fix)                   -->
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
         <!-- just show global state -->
->>>>>>> a7f4cf5ffc5df0fec6fe5799f1887f207fde137b
         <p>{{$store.getters.getUser}}</p>
         <!-- ปุ่มอะไรอะ -->
         <button
@@ -37,13 +32,9 @@
 
             <!-- slide to services -->
             <li class="nav-item">
-<<<<<<< HEAD
               <button id="btn" class="nav-link js-scroll-trigger"  @click="service"
                 >Services</button
               >
-=======
-              <a class="nav-link js-scroll-trigger" href="/#services">Services</a>
->>>>>>> a7f4cf5ffc5df0fec6fe5799f1887f207fde137b
             </li>
 
             <!-- slide to contact -->
