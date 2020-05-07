@@ -6,6 +6,8 @@
     >
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <!-- <b-button @click="goHome" type="button">Hakuna Hotel {{c}}</b-button> -->
+        <!-- <p>{{$store.getters.getUser}}</p> -->
         <button
           class="navbar-toggler"
           type="button"
@@ -35,7 +37,8 @@
             </li>
 
             <li class="nav-item">
-              <a v-on:click="check=0" class="nav-link js-scroll-trigger" href='/'>Sign out</a>
+              <a class="nav-link js-scroll-trigger" href='/'>Sign out</a>
+              <!-- <b-button @click="logout">lo</b-button> -->
             </li>
           </ul>
         </div>
@@ -43,6 +46,27 @@
     </nav>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      // c:0
+    }
+  },
+  methode:{
+    logout(){
+      this.$store.dispatch("AcUser",'owo');
+    },
+    // goHome(){
+    //   this.c++;
+    //   // console.log('owo');
+    //   // this.$router.push("myprofile");
+    // }
+  }
+}
+</script>
+
 
 <style scoped>
 h3 {
@@ -59,4 +83,8 @@ li {
 a {
   color: #42b983;
 }
+p {
+  color: white
+}
+
 </style>

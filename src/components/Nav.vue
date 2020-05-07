@@ -6,6 +6,7 @@
     >
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <p>{{$store.getters.getUser}}</p>
         <button
           class="navbar-toggler"
           type="button"

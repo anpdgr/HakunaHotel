@@ -36,7 +36,7 @@
               <b-button v-on:click="check = 1" type="submit" variant="primary" 
                 >Sign in</b-button>
 
-              <b-button @click="TestUser" type="button" 
+              <b-button @click="TestUser" @click.alt="StaffUser" type="button" 
                 >devuser</b-button>
             
             </div>
@@ -97,11 +97,15 @@ export default {
     },
     TestUser(){
       this.form = {
-        username: "testuser",
-        password: "password"
+        username: "noey_1",
+        password: "12345"
       }
-
-
+    },
+    StaffUser(){
+      this.form = {
+        username: "ST_0002",
+        password: "Sun0001"
+      }
     },
     CheckUser(){
        this.users.forEach(this.checkUP);      
@@ -111,14 +115,14 @@ export default {
       {
         if(value["Password"] == this.form.password){
           this.c = 1;
-          // this.$store.dispatch("AcSetUser",value["User_ID"]);
+          this.$store.dispatch("AcUser",value["User_ID"]);
         }
           
       }
       else if(value["Staff_ID"] === this.form.username){
         if(value["Password"] == this.form.password){
           this.c = 2;
-          // this.$store.dispatch("AcSetUser",value["Staff_ID"]);
+          this.$store.dispatch("AcUser",value["Staff_ID"]);
         }
           
       }

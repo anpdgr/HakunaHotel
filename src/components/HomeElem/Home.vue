@@ -1,8 +1,11 @@
 <template>
   <div id="HelloWorld" class="hello">
     <div id="Test">
-      <div v-if="check === 0"><NavLogIn /></div>
-      <div v-else-if="check === 1"><NavLogOut /></div>
+      <!-- <div v-if="check === 0"><NavLogIn /></div>
+      <div v-else-if="check === 1"><NavLogOut /></div> -->
+
+      <div v-if="$store.getters.getUser == ';w;'"><NavLogIn /></div>
+      <div v-else-if="$store.getters.getUser != ';w;'"><NavLogOut /></div>
     </div>
 
     <slide />

@@ -42,7 +42,9 @@ export default {
         Cusnav,
     },
     data(){
-      
+      return{
+        
+      }
     }
     
   

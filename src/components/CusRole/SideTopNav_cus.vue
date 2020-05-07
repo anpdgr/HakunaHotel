@@ -5,7 +5,7 @@
     <div class="sidenav">
       <div id="head">
          <b-avatar variant="light" size="120px"></b-avatar>
-         <a style="font-size:20px; color: #818181;" href="/myprofile">username</a>
+         <a style="font-size:20px; color: #818181;" href="/myprofile">{{$store.getters.getUser}}</a>
       </div>
       <div id='menu' >
         <a style="font-size:20px;" href="/cedit">Edit profile</a>
@@ -68,7 +68,7 @@
 </style>
 
 <script>
-import NavLO from '../NavLO.vue'
+import NavLO from '../NavLO'
 export default {
   components:{
         NavLO

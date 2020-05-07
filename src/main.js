@@ -8,6 +8,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Chart from 'chart.js'
 import "@/plugins/echarts";
+import store from './store'
 
 Vue.use(VueAxios, axios)
 //import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -19,7 +20,7 @@ Vue.config.productionTip = false
 
 //BootstrapVue,
 new Vue({
-  
+  store,
   router,
   Chart,
   render: h => h(App),
