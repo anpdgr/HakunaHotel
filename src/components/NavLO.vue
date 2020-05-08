@@ -1,9 +1,6 @@
 <template>
   <div>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-      id="mainNav"
-    >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
         <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
         <button
@@ -20,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <button id="btn"  class="nav-link js-scroll-trigger" @click="room">Room</button>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="room">Room</button>
             </li>
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="sv">Services</button>
@@ -31,15 +28,10 @@
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
             </li>
-            <!-- link to logout(home page) (need fix) -->
             <li class="nav-item">
-              <a id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger" href="/">Sign out</a>
-              <!-- <b-button @click="logout">lo</b-button> -->
+              <button id="btn" class="nav-link js-scroll-trigger" @click="logout">Sign out</button>
             </li>
           </ul>
-          
-             
-            
         </div>
       </div>
     </nav>
@@ -47,17 +39,16 @@
 </template>
 
 <style scoped>
-#mainNav{
+#mainNav {
   padding: 15px 16px;
 }
 #btn {
   border: none;
-  background-color:transparent;
+  background-color: transparent;
   padding: 0px;
   font-size: 16px;
   cursor: pointer;
   display: inline-block;
-  
 }
 h3 {
   margin: 40px 0 0;
@@ -81,8 +72,8 @@ export default {
   mounted() {
     this.anchorHashCheck();
   },
-   methods:{
-      anchorHashCheck() {
+  methods: {
+    anchorHashCheck() {
       if (window.location.hash === this.$route.hash) {
         const el = document.getElementById(this.$route.hash.slice(1));
         if (el) {
@@ -90,26 +81,35 @@ export default {
         }
       }
     },
-      logout(){
-      this.$store.dispatch("AcUser",'owo');
-      },
-
-      room(){
-          this.$router.push('/#room')
-       },
-       sv(){
-          this.$router.push('/#services')
-       },
-       ct(){
-          this.$router.push('/#contact')
-       },
-        myprofile(){
-          this.$router.push('myprofile')
-       },
-        home(){
-          this.$router.push('/')
-       },
-        
-   }
-}
+    logout() {
+      this.makeToast('success','you already sign out');
+      setTimeout(() => {
+        this.$store.dispatch("AcUser", null);
+      }, 1000);
+    },
+    room() {
+      this.$router.push("/#room");
+    },
+    sv() {
+      this.$router.push("/#services");
+    },
+    ct() {
+      this.$router.push("/#contact");
+    },
+    myprofile() {
+      this.$router.push("myprofile");
+    },
+    home() {
+      this.$router.push("/");
+    },
+    makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+      });
+    },
+  }
+};
 </script>

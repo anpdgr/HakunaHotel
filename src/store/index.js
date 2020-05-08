@@ -7,7 +7,7 @@ export default new Vuex.Store({
   // Global var
   state: {
     count:1,
-    user:";w;"
+    user:null
   },
   // Ref state
   getters:{

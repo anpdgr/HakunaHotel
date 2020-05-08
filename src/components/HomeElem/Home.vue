@@ -9,9 +9,9 @@
 
       <!--                          Bar                              -->
       <!-- before login -->
-      <div v-if="$store.getters.getUser == ';w;'"><NavLogIn /></div>
+      <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
       <!-- after  login -->
-      <div v-else-if="$store.getters.getUser != ';w;'"><NavLogOut /></div>
+      <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
     </div>
 
     <!-- use component slide -->
