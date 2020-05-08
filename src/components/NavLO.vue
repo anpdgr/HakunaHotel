@@ -1,9 +1,8 @@
 <template>
   <div>
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-      id="mainNav"
-    >
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+
      <!--                       bar after login                         -->
       <div class="container">
          <!--             link to home page               -->
@@ -21,31 +20,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <!-- slide to room -->
+
+            <!-- slide to room   !!Can't use!!-->
             <li class="nav-item">
-              <button id="btn"  class="nav-link js-scroll-trigger" @click="room">Room</button>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="room">Room</button>
             </li>
-            <!-- slide to services -->
+
+            <!-- slide to services   !!Can't use!!-->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="sv">Services</button>
             </li>
-            <!-- slide to contact -->
+            
+            <!-- slide to contact   !!Can't use!!-->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="ct">Contact</button>
             </li>
+
             <!-- link to my profile -->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
             </li>
-            <!-- link to logout(home page) (need fix) -->
-            <li class="nav-item">
-              <a id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger" href="/">Sign out</a>
-            <!-- <b-button @click="logout">lo</b-button> -->
-            </li>
-          </ul>
-          
-             
             
+            <!-- Sign out -->
+            <li class="nav-item">
+              <button id="btn" class="nav-link js-scroll-trigger" @click="logout">Sign out</button>
+            </li>
+
+          </ul>
         </div>
       </div>
     </nav>
@@ -53,17 +54,16 @@
 </template>
 
 <style scoped>
-#mainNav{
+#mainNav {
   padding: 15px 16px;
 }
 #btn {
   border: none;
-  background-color:transparent;
+  background-color: transparent;
   padding: 0px;
   font-size: 16px;
   cursor: pointer;
   display: inline-block;
-  
 }
 h3 {
   margin: 40px 0 0;
@@ -98,27 +98,36 @@ export default {
         }
       }
     },
-    // นี่คือไยง่ะ
-      logout(){
-      this.$store.dispatch("AcUser",'owo');
-      },
-      //  method for เปลี่ยนหน้า
-      room(){
-          this.$router.push('/#room')
-       },
-       sv(){
-          this.$router.push('/#services')
-       },
-       ct(){
-          this.$router.push('/#contact')
-       },
-        myprofile(){
-          this.$router.push('myprofile')
-       },
-        home(){
-          this.$router.push('/')
-       },
-        
-   }
-}
+    logout() {
+      this.makeToast('success','you already sign out');
+      setTimeout(() => {
+        this.$store.dispatch("AcUser", null);
+        this.home();
+      }, 1500);
+    },
+    room() {
+      this.$router.push("/#room");
+    },
+    sv() {
+      this.$router.push("/#services");
+    },
+    ct() {
+      this.$router.push("/#contact");
+    },
+    myprofile() {
+      this.$router.push("/myprofile");
+    },
+    home() {
+      this.$router.push("/");
+    },
+    makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+      });
+    },
+  }
+};
 </script>
