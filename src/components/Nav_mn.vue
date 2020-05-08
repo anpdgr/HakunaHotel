@@ -4,7 +4,9 @@
       class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
       id="mainNav"
     >
+    <!--                       bar after login as manager                          -->
       <div class="container">
+        <!--             link to home page               -->
         <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
         <button
           class="navbar-toggler"
@@ -19,13 +21,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+            <!-- link to Hotel status -->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="booktus">Hotel status</button>
             </li>
+            <!-- link to my account -->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="account">My account</button>
             </li>
-      
+            <!-- link to home -->
             <li class="nav-item">
               <button id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger" @click="home">Sign out</button>
             </li>
@@ -68,6 +72,7 @@ a {
 <script>
 export default {
    methods:{
+    //  method for เปลี่ยนหน้า
         booktus(){
           this.$router.push('bookstatus')
        },

@@ -181,6 +181,7 @@ export default {
     };
   },
   methods: {
+    //  method for เปลี่ยนหน้า
     login(){
           this.$router.push('login')
        },

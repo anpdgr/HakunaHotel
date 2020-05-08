@@ -44,8 +44,10 @@
         </div>
         <br /><br />
         <div id="back" style="text-align: right;">
+          <!-- link to register page -->
           <button id="btn"  @click="regis">I didn't have an account</button>
           <br />
+          <!-- link to home -->
           <button id="btn" @click="home">Back to home</button>
         </div>
       </b-card>
@@ -71,6 +73,7 @@ export default {
     this.fetchUsers();
   },
   methods: {
+    //  method for เปลี่ยนหน้า
     regis(){
           this.$router.push('register')
        },
@@ -92,6 +95,7 @@ export default {
         this.$router.push("/shome");
       }
     },
+    // ดึงข้อมูลจาก db เพื่อเช็ค username  ที่ login 
     fetchUsers() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/login.php?action=read")
@@ -101,6 +105,7 @@ export default {
            console.log(response.data);
         });
     },
+    // ตัว test 
     TestUser(){
       this.form = {
         username: "noey_1",
