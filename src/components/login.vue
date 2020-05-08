@@ -8,10 +8,12 @@
           <h3 class="panel-title">Sign in</h3>
           <br />
         </div>
+
         <!-- Form sign in -->
         <b-form @submit="onSubmit">
+
+          <!-- input user -->
           <b-form-group id="ipg-uname">
-            <!-- input user -->
             <b-form-input id="ip-uname" v-model="form.username" required placeholder="Username"></b-form-input>
           </b-form-group>
 
@@ -27,8 +29,11 @@
           </b-form-group>
 
           <div style="float: left;">
-            <b-button v-on:click="check = 1" type="submit" variant="primary">Sign in</b-button>
 
+            <!-- sign in button -->
+            <b-button type="submit" variant="primary">Sign in</b-button>
+
+            <!-- testuser button -->
             <b-button @click="TestUser" @click.alt="StaffUser" type="button">devuser</b-button>
           </div>
         </b-form>
@@ -36,10 +41,12 @@
       <br />
       <br />
       <div id="back" style="text-align: right;">
+       
         <!-- link to register page -->
         <button id="btn" @click="regis">I didn't have an account</button>
         <br />
-        <!-- link to home -->
+      
+       <!-- link to home -->
         <button id="btn" @click="home">Back to home</button>
       </div>
     </b-card>
@@ -51,13 +58,22 @@
 export default {
   data() {
     return {
+      // check status user 0:didn't login  1:customer   2:staff
       c: 0,
+
+      // input form
       form: {
         username: "",
         password: ""
       },
+
+      // fetch data form DB
       users: [],
+
+      // didn't use
       show: true,
+
+      // didn't use
       check: 0
     };
   },
@@ -72,19 +88,26 @@ export default {
     home() {
       this.$router.push("/");
     },
+    // When click button sign in
     onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form))
       this.CheckUser();
+
+      // sign in failed
       if (this.c === 0)
         this.makeToast("danger", "username or password incorrect");
       // alert("username or password incorrect");
+
+      // sign in user
       else if (this.c === 1) {
         this.makeToast("success", "User login");
         // alert("User login");
         setTimeout(() => {
           this.$router.push("/");
         }, 1500);
+
+        // sign in staff
       } else if (this.c === 2) {
         this.makeToast("success", "Staff login");
         // alert("Staff login");
@@ -116,9 +139,12 @@ export default {
         password: "Sun0001"
       };
     },
+
+    // foe loop user from DB
     CheckUser() {
       this.users.forEach(this.checkUP);
     },
+    // check login
     checkUP(value) {
       if (value["User_ID"] === this.form.username) {
         if (value["Password"] == this.form.password) {
@@ -133,6 +159,7 @@ export default {
       }
       // console.log(JSON.stringify(value["User_ID"]));
     },
+    // สร้างกล่องข้อความ
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {
         title: "Notice!",

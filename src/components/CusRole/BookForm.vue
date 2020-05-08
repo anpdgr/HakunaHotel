@@ -1,6 +1,10 @@
 <template>
   <div>
-    <NavLO />
+    <!--                          Bar                              -->
+      <!-- before login -->
+      <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
+      <!-- after  login -->
+      <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
     <br /><br /><br /><br />
     <CheckAv />
     <br />
@@ -121,12 +125,14 @@
 </template>
 
 <script>
-import NavLO from "../NavLO.vue";
+import NavLogOut from "../NavLO.vue";
+import NavLogIn from "../Nav.vue";
 import CheckAv from "../HomeElem/CheckAvi";
 
 export default {
   components: {
-    NavLO,
+    NavLogOut,
+    NavLogIn,
     CheckAv,
   },
   data() {

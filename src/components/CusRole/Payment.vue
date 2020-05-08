@@ -108,7 +108,7 @@ export default {
         this.makeToast("danger", "Please select one payment method.");
       } else {
         this.makeToast("success", "Success");
-        setTimeout(() => this.$router.push({ path: "/" }), 2000);
+        setTimeout(() => this.$router.push({ path: "/" }), 1500);
       }
     },
     makeToast(variant = null, text) {

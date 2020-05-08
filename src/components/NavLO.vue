@@ -38,7 +38,7 @@
 
             <!-- link to my profile -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">{{$store.getters.getUser}}</button>
             </li>
             
             <!-- Sign out -->
