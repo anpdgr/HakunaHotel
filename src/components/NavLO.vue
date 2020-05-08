@@ -20,25 +20,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <!-- slide to room -->
+
+            <!-- slide to room   !!Can't use!!-->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="room">Room</button>
             </li>
-            <!-- slide to services -->
+
+            <!-- slide to services   !!Can't use!!-->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="sv">Services</button>
             </li>
-            <!-- slide to contact -->
+            
+            <!-- slide to contact   !!Can't use!!-->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="ct">Contact</button>
             </li>
+
             <!-- link to my profile -->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
             </li>
+            
+            <!-- Sign out -->
             <li class="nav-item">
               <button id="btn" class="nav-link js-scroll-trigger" @click="logout">Sign out</button>
             </li>
+
           </ul>
         </div>
       </div>
@@ -107,7 +114,7 @@ export default {
       this.$router.push("/#contact");
     },
     myprofile() {
-      this.$router.push("myprofile");
+      this.$router.push("/myprofile");
     },
     home() {
       this.$router.push("/");
