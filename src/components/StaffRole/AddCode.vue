@@ -4,11 +4,12 @@
     <br /><br /><br />
     <hr />
     <Side />
+    <!-- ปุ่ม summary code id แต่อยากให้เปลี่ยนเป็น code name  -->
     <div id="summary" style="float:right; margin-right:100px">
       <b-button id="show-btn" variant="success" @click="showModalcode"
         >see summary</b-button
       >
-
+      <!-- chart  -->
       <b-modal ref="my-modal-code" hide-footer title="Summary" size="lg">
         <div class="chart-wrapper">
           <chart :options="chartOptionsBar" style="float:center"></chart>
@@ -21,7 +22,9 @@
       <div id="addSection">
         <h1>Add code</h1>
         <br />
+        <!-- form for add code  -->
         <b-form inline id="idname">
+          <!-- input code id -->
           <b-form-group class="mb-0" label="Code ID:" label-for="id">
             <b-form-input
               id="id"
@@ -31,7 +34,7 @@
               style="margin-left:10px; margin-right:50px; width: 15rem;"
             ></b-form-input>
           </b-form-group>
-
+          <!-- input code name  -->
           <b-form-group class="mb-0" label="Code name:" label-for="name">
             <b-form-input
               id="name"
@@ -43,6 +46,7 @@
         </b-form>
         <br />
         <b-form inline id="discountlimit">
+          <!-- input discount  -->
           <b-form-group class="mb-0" label="Discount:" label-for="discount">
             <b-form-input
               id="discount"
@@ -51,7 +55,7 @@
               style="margin-left:7px; margin-right:100px; width: 15rem;"
             ></b-form-input>
           </b-form-group>
-
+          <!-- input limit  -->
           <b-form-group class="mb-0" label="Limit:" label-for="limit">
             <b-form-input
               id="limit"
@@ -63,6 +67,7 @@
         </b-form>
         <br />
         <b-form inline id="dateform">
+          <!-- input start date -->
           <b-form-group class="mb-0" label="Start date:" label-for="StartDate">
             <b-form-datepicker
               id="StartDate"
@@ -71,7 +76,7 @@
               style="margin-right:43px; width: 15rem;"
             ></b-form-datepicker>
           </b-form-group>
-
+          <!-- input ex date -->
           <b-form-group
             class="mb-0"
             label="Expired date:"
@@ -86,6 +91,7 @@
           </b-form-group>
         </b-form>
         <br />
+        <!-- ปุ่ม submit -->
         <b-button id="button" type="submit" variant="dark" @click="checkAdd()"
           >Add</b-button
         >
@@ -183,6 +189,7 @@ export default {
       cLimit: null,
       cStartD: null,
       cExpriedD: null,
+      // post code promotion ที่มีใน db 
       items: [
         {
           id: "FIRST100",

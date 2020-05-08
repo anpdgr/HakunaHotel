@@ -5,8 +5,10 @@
   <div id="all">
 
     <div id="summary" style="float:right">
+      <!-- ปุ่มดู summary status booking -->
       <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
       <b-modal ref="my-modal" hide-footer title="Booking summary" style="padding:10px; float:center" size="lg" >
+        <!-- chart detail  -->
         <div class="chart-wrapper" >
           <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
@@ -31,6 +33,7 @@
           label-for="filterInput"
           class="mb-0"
         >
+        <!-- input text for filter -->
           <b-input-group size="sm">
             <b-form-input
               v-model="filter"
@@ -38,6 +41,7 @@
               id="filterInput"
               placeholder="Type to Search"
             ></b-form-input>
+            <!-- cleat text in filter box -->
             <b-input-group-append>
               <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
             </b-input-group-append>
@@ -53,6 +57,7 @@
           label-size="sm"
           description="Leave all unchecked to filter on all data"
           class="mb-0">
+          <!-- check box for filter  -->
           <b-form-checkbox-group v-model="filterOn" class="mt-1">
             <b-form-checkbox value="bookid">Booking ID</b-form-checkbox>
             <b-form-checkbox value="cusid">Customer ID</b-form-checkbox>
@@ -60,7 +65,7 @@
           </b-form-checkbox-group>
         </b-form-group>
       </b-col>
-
+      <!-- setting number of row's booking data in per page -->
       <b-col sm="5" md="6" class="my-1">
         <b-form-group
           label="Per page"
@@ -107,7 +112,6 @@
         <b-button variant="light" size="sm" @click="row.toggleDetails">
               {{ row.detailsShowing ? "Hide" : "Show" }} info
         </b-button>
-       
       </template>
 
       <template v-slot:cell(actions)="row">
@@ -117,9 +121,7 @@
         <div v-if="row.item.status == 'check-in'">
           <a size="sm" @click="done()">check-out</a>
         </div>
-        
       </template>
-
 
       <template v-slot:row-details="row">
         <b-card>
@@ -269,12 +271,14 @@ export default {
       done(){
         this.row.item.status = 'cancle'
       },
+      //for model
       showModal() {
         this.$refs['my-modal'].show()
       },
       hideModal() {
         this.$refs['my-modal'].hide()
       },
+      //เปลี่ยนหน้า
       checkin(){
           this.$router.push('checkin')
        },

@@ -3,10 +3,12 @@
     <div style="margin-right:300px">
       <STnav/>
     </div>
+    <!-- ปล ถ้า  placeholder เป็นข้อมูลปัจจุบันก็ดีนะ ทุก edit-->
     <b-card title="Edit profile"  align="left" id="card" style="text-align:center" >
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <br>
         <!-- ipg = input group -->
+        <!-- edit first name  -->
         <b-form-group id="ipg-fname" label="First Name:" label-for="ip-fname">
           <b-form-input
             id="ip-fname"
@@ -15,7 +17,7 @@
             placeholder="enter first name"
           ></b-form-input>
         </b-form-group>
-
+         <!-- edit last name  -->
         <b-form-group id="ipg-lname" label="Last Name:" label-for="ip-lname">
           <b-form-input
             id="ip-lname"
@@ -24,7 +26,7 @@
             placeholder="enter last name"
           ></b-form-input>
         </b-form-group>
-
+        <!-- edit title  -->
         <b-form-group id="ipg-title" label="Name title:" label-for="ip-title">
           <b-form-select
             id="ip-title"
@@ -34,7 +36,7 @@
             required
           ></b-form-select>
         </b-form-group>
-
+        <!-- edit DOB  -->
         <b-form-group id="ipg-birthday" label="Birthday:" label-for="ip-birthday">
           <b-form-datepicker 
             id="ip-birthday"
@@ -43,7 +45,7 @@
             placeholder="-- select date --"
           ></b-form-datepicker>
         </b-form-group>
-        
+        <!-- edit email  -->
         <b-form-group
           id="ipg-email"
           label="Email address:"
@@ -58,7 +60,7 @@
             placeholder="enter email"
           ></b-form-input>
         </b-form-group>
-
+        <!-- edit tel no. -->
         <b-form-group
           id="ipg-tel"
           label="Phone number:"
@@ -72,15 +74,15 @@
             placeholder="enter phone number"
           ></b-form-input>
         </b-form-group>
-
+        <!-- 
         <b-form-group id="ipg-country" label="Country:" label-for="ip-country">
           <b-form-input
             id="ip-country"
             v-model="form.country"
             required
           ></b-form-input>
-        </b-form-group>
-
+        </b-form-group> -->
+        <!-- edit address  -->
         <b-form-group id="ipg-@" label="Address:" label-for="ip-@">
           <b-form-textarea
             id="ip-@"
@@ -120,7 +122,7 @@
           fname: '',
           lname: '',
           data: null,
-          country: null,
+          // country: null,
           address: null,
         },
         title: [{ text: 'Select One', value: null }, 'Mr.', 'Ms.', 'Miss'],
@@ -142,7 +144,7 @@
         this.form.fname = ''
         this.form.lname = ''
         this.form.birthday = null
-        this.form.country = null
+        // this.form.country = null
         this.form.address = null
         // Trick to reset/clear native browser form validation state
         this.show = false

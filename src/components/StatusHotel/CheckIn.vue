@@ -4,17 +4,20 @@
         <Side/>
         <div id="all">
             <b-card id="card">
+                <!-- ส่วนรายละเอียด -->
                 <h1>Check-in</h1>
                 <div id='detail-head' style="text-align:left;">
+                    <!-- show Bookingid ที่กำลัง check in -->
                     <b style="font-size:120%;">Booking no.</b><br><br>
                 <b-row>
+                    <!-- show cusdetail  -->
                     <b-col id='CusDetail'>
                         <b style="font-size:120%;">Customer detail</b><br><br>
                         <p>ID :</p>
                         <p>Name :</p>
                         <p>Phone :</p>
                     </b-col>
-                    
+                    <!-- show payment detail  -->
                     <b-col id='PayDetail'>
                         <b style="font-size:120%;">Payment detail</b><br><br>
                         <p >Method :</p>
@@ -24,10 +27,10 @@
                 </b-row>    
                     <hr style="width:100%">
                 </div>
-               
+               <!-- ส่วน checkin -->
                 <div id="bookdetail">
                     <b style="font-size:120%;">Booking Detail</b><br>
-                    
+                    <!-- show roomtype ที่จอง -->
                     <div v-for='(item,index) in items' :key='index'>
                         <b-card  id="roomtype_card" >  
                             <div style="text-align:left;">                    
@@ -40,6 +43,7 @@
                                     <div id="roomdetail" v-if="index === 0">
                                         <b-modal id="modal-center" centered title="Add information"  hide-footer>
                                             <div id="guest form">
+                                                <!-- เลือกเลขห้อง -->
                                                 <b-form-select-group>
                                                     <h6>Select room ID</h6>
                                                     <b-form-select style="width:8rem; margin:10px" 
@@ -51,6 +55,7 @@
                                                 <div id="guest">
                                                     <h6>Guest information</h6>                        
                                                 </div>
+                                                <!-- guest info  -->
                                                 <b-tabs card>
                                                     <b-tab title="* Guest 1" active>
                                                         <b-form id="G1">
@@ -240,6 +245,7 @@
                                                         </b-form> 
                                                     </b-tab>
                                                 </b-tabs>
+                                                <!-- submit checkin  -->
                                                 <b-button
                                                             id="Confirm"
                                                             type="submit"
@@ -262,7 +268,7 @@
                 </div>
 
 
-
+                <!-- confirm checkin  -->
                 <b-button
                     v-b-tooltip.hover
                     title="Please make sure that your information is correct"
@@ -284,12 +290,7 @@
     
 
 </template>
-
-
-
-
-
-- กดจาก StatusHotel
+<!--กดจาก StatusHotel-->
 <script>
 import STnav from '../Nav_st.vue'
 import Side from './Side_statusH.vue'
@@ -303,11 +304,13 @@ export default {
   data() {
     return {
       roomsucces:0,
+    //   booked roomtype 
       items: [
         { roomtype: "Dulux Executive Twin Bed", Qroom: 1 },
         { roomtype: "Premier Lux Twin Bed", Qroom: 3},
         { roomtype: "Urban Junior Suite", Qroom: 2},
       ],
+    //   roomid ที่ตรงกับ roomtype 
       selectroomid: null,
         op_roomid: [
           { value: 1000, text: '1000' },
@@ -317,6 +320,7 @@ export default {
           { value: 1004, text: '1004' },
           
         ],
+        // form เก็บ guest ในแต่ละ roomid
         form1: 
           {id:null,
           tel:null,
@@ -362,6 +366,7 @@ export default {
           this.makeToast('success','Check-in success !') 
 
       }, 
+    //   check ว่ามีการกรอกฟอร์มม้าย
       check(){ 
           if(this.form1===null){
               this.makeToast('danger','1 guest for minimum')  
