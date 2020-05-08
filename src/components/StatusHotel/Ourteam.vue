@@ -5,8 +5,9 @@
 
     <div id="all">
       <div id="summary" style="float:right">
+        <!-- ปุ่มดู summary staff position -->
       <b-button id="show-btn"  variant="success"   @click="showModalstaff">see summary</b-button>
-
+        <!-- chart detail  -->
       <b-modal ref="my-modal-staff" hide-footer title="Summary" size='lg'>
         <div class="chart-wrapper">
           <chart :options="chartOptionsBar" style="float:center"></chart>
@@ -123,7 +124,7 @@
         </b-table>
 
 
-        <!-- Info modal -->
+        <!-- Info edit modal ปล ถ้า  placeholder เป็นข้อมูลปัจจุบันก็ดีนะ ทุก edit-->
           <b-modal ref="editModal" title="Edit staff information" hide-footer>
               <div id="editST">
                 {{infoModalContent}}
@@ -131,7 +132,8 @@
                   <b-form-input
                     id="ip-position"
                     v-model="editPosition"
-                    placeholder="Enter new position"
+                    placeholder="Enter new position" 
+                  
                   ></b-form-input>
                 </b-form-group>
 
@@ -221,6 +223,7 @@ export default {
         },
         color: ["#127ac2"],
       },
+      // staff info 
       items: [
         {
           id: "ST_0002",

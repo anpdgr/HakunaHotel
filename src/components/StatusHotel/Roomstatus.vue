@@ -5,9 +5,11 @@
     <Side />
     <div id="all">
       <div id="summary" style="float:right">
+        <!-- ปุ่ม summary status ห้อง -->
       <b-button id="show-btn"  variant="success"   @click="showModal">see summary</b-button>
 
       <b-modal ref="my-modal" hide-footer title="room summary" size="lg">
+        <!-- chart -->
         <div class="chart-wrapper" >
           <chart :options="chartOptionsBar" style="float:center"></chart>
         </div>
@@ -26,6 +28,7 @@
               label-for="selectType"
               class="mb-0"
             >
+            <!-- filter type  -->
               <b-input-group size="sm">
                 <b-form-select
                   v-model="selected_type"
@@ -105,6 +108,7 @@ export default {
             },
             color: ['#127ac2']
         },
+        // post roomtype name's data
       type_options: [
         { value: null, text: "All" },
         { value: "Dulux Urban Twin Bed", text: "Dulux Urban Twin Bed" },
@@ -117,6 +121,7 @@ export default {
         { value: "Ocean Junior Suite", text: "Ocean Junior Suite" },
         { value: "Marina Suite", text: "Marina Suite" },
       ],
+      // post room detail
       items: [
         {
           Type: "Premier Lux Twin Bed",

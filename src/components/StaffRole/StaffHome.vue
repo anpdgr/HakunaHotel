@@ -15,7 +15,7 @@
                           <span style="float:left;">Birthday</span><br><br>
                           <span style="float:left;">Email address</span><br><br>
                           <span style="float:left;">Phone number</span><br><br>
-                          <span style="float:left;">Country</span><br><br>
+                          <!-- <span style="float:left;">Country</span><br><br> -->
                         </div>
                     </b-tab>
                     <b-tab title="About job">

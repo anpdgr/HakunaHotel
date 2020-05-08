@@ -9,7 +9,9 @@
          <button id="btn" style="font-size:20px; color: #818181;" @click="account">username</button>
       </div>
       <div id='menu' >
+        <!-- link to edit page -->
         <button id="btn" style="font-size:18px; color:#2688D9" @click="edit">Edit profile</button><br><br>
+        <!-- link to home  -->
         <button id="btn" style="font-size:18px; color:#2688D9" @click="home">Sign out</button>
       </div>
     </div>
@@ -75,12 +77,14 @@
 </style>
 
 <script>
+// import manager bar 
 import mnNav from '../Nav_mn.vue'
 export default {
   components:{
         mnNav
     },
     methods:{
+      //  method for เปลี่ยนหน้า
         account(){
           this.$router.push('mhome')
        },

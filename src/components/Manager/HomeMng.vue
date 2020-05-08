@@ -1,4 +1,5 @@
 <!-- ViewStaff+StatusHotel -->
+<!-- home manager -->
 <template>
     <div id="all">
         <MNnav/>
@@ -6,8 +7,10 @@
         <b-card id="card" title="Your profile">
           <b-card-body>   
               <b-tabs content-class="mt-3" fill>
+                <!-- tab bar about u -->
                     <b-tab title="About you" active>
                         <div style="margin:70px 30px">
+                          <!-- show profile -->
                           <span style="float:left;">First name</span><br><br> 
                           <span style="float:left;">Last name</span><br><br>
                           <span style="float:left;">Name title</span><br><br>
@@ -17,8 +20,10 @@
                           <span style="float:left;">Country</span><br><br>
                         </div>
                     </b-tab>
+                    <!-- tab bar about job  -->
                     <b-tab title="About job">
                         <div style="margin:70px 30px">
+                          <!-- show detail about job  -->
                           <span style="float:left;">Position</span>เมเนเจ้องัย จะคัยหล่ะ<br><br>
                           <span style="float:left;">Salary</span><br><br>
                           <span style="float:left;">Start date</span><br><br>
@@ -35,6 +40,7 @@
 </template>
 
 <script>
+// import manager bar 
 import MNnav from './SideTopNav_mn.vue'
 export default {
   components:{
