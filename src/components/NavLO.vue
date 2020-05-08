@@ -1,14 +1,9 @@
 <template>
   <div>
-<<<<<<< HEAD
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-=======
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-      id="mainNav"
-    >
+
      <!--                       bar after login                         -->
->>>>>>> d1f2d5e1be5a2dafb72a94fb8f40a120bbd29c1f
       <div class="container">
          <!--             link to home page               -->
         <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
@@ -42,12 +37,7 @@
               <button id="btn" class="nav-link js-scroll-trigger" @click="myprofile">My account</button>
             </li>
             <li class="nav-item">
-<<<<<<< HEAD
               <button id="btn" class="nav-link js-scroll-trigger" @click="logout">Sign out</button>
-=======
-              <a id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger" href="/">Sign out</a>
-            <!-- <b-button @click="logout">lo</b-button> -->
->>>>>>> d1f2d5e1be5a2dafb72a94fb8f40a120bbd29c1f
             </li>
           </ul>
         </div>
@@ -91,14 +81,9 @@ export default {
   mounted() {
     this.anchorHashCheck();
   },
-<<<<<<< HEAD
-  methods: {
-    anchorHashCheck() {
-=======
    methods:{
     //  ทำไรง่ะ
       anchorHashCheck() {
->>>>>>> d1f2d5e1be5a2dafb72a94fb8f40a120bbd29c1f
       if (window.location.hash === this.$route.hash) {
         const el = document.getElementById(this.$route.hash.slice(1));
         if (el) {
@@ -106,7 +91,6 @@ export default {
         }
       }
     },
-<<<<<<< HEAD
     logout() {
       this.makeToast('success','you already sign out');
       setTimeout(() => {
@@ -138,29 +122,4 @@ export default {
     },
   }
 };
-=======
-    // นี่คือไยง่ะ
-      logout(){
-      this.$store.dispatch("AcUser",'owo');
-      },
-      //  method for เปลี่ยนหน้า
-      room(){
-          this.$router.push('/#room')
-       },
-       sv(){
-          this.$router.push('/#services')
-       },
-       ct(){
-          this.$router.push('/#contact')
-       },
-        myprofile(){
-          this.$router.push('myprofile')
-       },
-        home(){
-          this.$router.push('/')
-       },
-        
-   }
-}
->>>>>>> d1f2d5e1be5a2dafb72a94fb8f40a120bbd29c1f
 </script>
