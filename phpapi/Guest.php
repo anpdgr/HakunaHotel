@@ -44,12 +44,13 @@
             #var               key
             $guestid = $_POST['guestid'];                                  # +
             $title = $_POST['title'];                                      # +
-            $guestname = $_POST['guestname'];                              # +
+            $guestfname = $_POST['guestfname'];                            # +
+            $guestlname = $_POST['guestlname'];                            # +
             $country = $_POST['country'];                                  # +
             $tel = $_POST['tel'];                                          # +
 
             #edit sql command here
-            $sql = $con->query("INSERT INTO Guest VALUES ('$guestid', '$title', '$guestname', '$country', '$tel')") ; # +
+            $sql = $con->query("INSERT INTO Guest VALUES ('$guestid', '$title', '$guestfname', '$guestlname', '$country', '$tel')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -69,14 +70,15 @@
             #var               key
             $guestid = $_POST['guestid'];                                  # +
             $title = $_POST['title'];                                      # +
-            $guestname = $_POST['guestname'];                              # +
+            $guestfname = $_POST['guestfname'];                            # +
+            $guestlname = $_POST['guestlname'];                            # +
             $country = $_POST['country'];                                  # +
             $tel = $_POST['tel'];                                          # +
 
             #edit sql command here
-            $sql = $con->query(" UPDATE Guest SET Guest_ID = '$guestid', Name_Title = '$title',                     # +
-                                 Guest_Name = '$guestname', Guest_Country = '$country', Tel_No = '$tel'             # +
-                                 WHERE Guest_ID = '$guestid' ");                                                    # +
+            $sql = $con->query(" UPDATE Guest SET Guest_ID = '$guestid', Name_Title = '$title', Guest_FirstName = '$guestfname',        # +
+                                 Guest_LastName = '$guestlname', Guest_Country = '$country', Tel_No = '$tel'                            # +
+                                 WHERE Guest_ID = '$guestid' ");                                                                        # +
             
             # return status likes console log
             if($sql){                                                      # -

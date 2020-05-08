@@ -45,14 +45,15 @@
             $userid = $_POST['userid'];                                    # +
             $pass = $_POST['pass'];                                        # +
             $title = $_POST['title'];                                      # +
-            $cusname = $_POST['cusname'];                                  # +
+            $cusfname = $_POST['cusfname'];                                # +
+            $cuslname = $_POST['cuslname'];                                # +
+            $DOB = $_POST['DOB'];                                          # +
             $tel = $_POST['tel'];                                          # +
             $email = $_POST['email'];                                      # +
             $country = $_POST['country'];                                  # +
-            $DOB = $_POST['DOB'];                                          # +
 
             #edit sql command here
-            $sql = $con->query("INSERT INTO Customer VALUES ('$userid', '$pass', '$title', '$cusname', '$tel', '$email', '$country', '$DOB')") ; # +
+            $sql = $con->query("INSERT INTO Customer VALUES ('$userid', '$pass', '$title', '$cusfname', '$cuslname', '$DOB', '$tel', '$email', '$country')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -73,17 +74,18 @@
             $userid = $_POST['userid'];                                    # +
             $pass = $_POST['pass'];                                        # + 
             $title = $_POST['title'];                                      # +
-            $cusname = $_POST['cusname'];                                  # +
+            $cusfname = $_POST['cusfname'];                                # +
+            $cuslname = $_POST['cuslname'];                                # +
             $tel = $_POST['tel'];                                          # +
             $email = $_POST['email'];                                      # +
             $country = $_POST['country'];                                  # +
             $DOB = $_POST['DOB'];                                          # +
 
             #edit sql command here
-            $sql = $con->query(" UPDATE Customer SET User_ID = '$userid', Password = '$pass',               # +
-                                 Name_Title = '$title', Customer_Name = '$cusname', Tel_No = '$tel',        # +
-                                 Email = '$email', Customer_Country = '$country', DoB = '$DOB'              # +
-                                 WHERE User_ID = '$userid' ");                                              # +
+            $sql = $con->query(" UPDATE Customer SET User_ID = '$userid', Password = '$pass', Name_Title = '$title',        #+
+                                 Customer_FirstName = '$cusfname', Customer_LastName = '$cuslname', DoB = '$DOB',           # +
+                                 Email = '$email', Customer_Country = '$country', Tel_No = '$tel'                           # +
+                                 WHERE User_ID = '$userid' ");                                                              # +
             
             # return status likes console log
             if($sql){                                                      # -
