@@ -102,7 +102,8 @@ export default {
       this.makeToast('success','you already sign out');
       setTimeout(() => {
         this.$store.dispatch("AcUser", null);
-      }, 1000);
+        this.home();
+      }, 1500);
     },
     room() {
       this.$router.push("/#room");
