@@ -23,9 +23,9 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody v-for="(room,index) in RoomType" :key="index">
+          <tbody >
             <!-- ตัวอย่างข้อมูล -->
-            <tr>
+            <tr v-for="(room,index) in RoomType" :key="index">
               <th scope="row">
                 <div style="width:90%; margin:auto">
                   <p>{{room.RoomType_Name}}</p>
@@ -47,17 +47,17 @@
                   ></b-form-select>
                 </div>
               </td>
-              <td rowspan="8">
+            </tr>
+            <tr rowspan="8">
                 <!-- rowspan = for ตามจน.รูมไทป์ -->
                 <b-button
                   id="reserve"
                   type="submit"
                   variant="primary"
-                  @click="check(index)"
+                  @click="check()"
                   >Reserve</b-button
                 >
-              </td>
-            </tr>
+              </tr>
             <!-- ตัวอย่างข้อมูล -->
             
           </tbody>
@@ -93,6 +93,7 @@ export default {
       isZero: true,
       // num room each roomtype
       selected: [],
+
       // option selete
       options: [
         { value: 0, text: "0" },
@@ -101,6 +102,7 @@ export default {
         { value: 3, text: "3" },
         { value: 4, text: "4" },
       ],
+      bookdata:[]
       //ตามจน.รูมไทป์ ฟอร์ไป (รอดาต้า)
     };
   },
@@ -128,14 +130,17 @@ export default {
         });
     },
     // check input
-    check(index) {
+    check() {
       if (this.checkNull()) {
         this.makeToast('danger','Please select number of each room type.');
 
       } else {
+
+        this.setData(this.RoomType,this.selected);
         // push global
-        this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
-        this.$store.dispatch("AcNRoom", this.selected[index]);
+        // this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
+        // this.$store.dispatch("AcNRoom", this.selected[index]);
+        this.$store.dispatch("AcSetRoom", this.bookdata);
         this.$store.dispatch("AcBook", true);
         // alert(this.$store.getters.getUser);
 
@@ -149,6 +154,14 @@ export default {
         }
         // 
       }
+    },
+    setData(Room,sel){
+      for(var i=0 ; i < sel.length ; i++){
+        if(sel[i]!=null){
+          this.bookdata.push({'type': Room[i].RoomType_Name , 'num_room' : sel[i] , 'price' : Room[i].Price});
+        }
+      }
+      console.log(this.bookdata);
     },
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {

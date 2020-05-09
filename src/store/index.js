@@ -12,7 +12,8 @@ export default new Vuex.Store({
       num_guest: 0,
       room: null,
       num_room: 0,
-      codepromo: null
+      codepromo: null,
+      type:null,
     },
     book:false,
     user:null
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     getBookCode(state){
       return state.booking.codepromo;
+    },
+    getBookType(state){
+      return state.booking.type;
     },
     getBook(state){
       return state.book;
@@ -78,7 +82,11 @@ export default new Vuex.Store({
     },
     statusBook(state, status){
       state.book = status;
+    },
+    setType(state,room){
+      state.booking.type = room;
     }
+
 
   },
   // Call function from component
@@ -103,6 +111,9 @@ export default new Vuex.Store({
     },
     AcCode(context, code){
       context.commit('codePro', code);
+    },
+    AcSetRoom(context, room){
+      context.commit('setType', room);
     },
     AcBook(context, status){
       context.commit('statusBook', status);
