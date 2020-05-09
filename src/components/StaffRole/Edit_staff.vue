@@ -12,37 +12,37 @@
         <b-form-group id="ipg-fname" label="First Name:" label-for="ip-fname">
           <b-form-input
             id="ip-fname"
-            v-model="form.fname"
+            v-model="staff.Staff_FirstName"
             required
-            placeholder="enter first name"
-          ></b-form-input>
+            placeholder= "Enter First name"
+          >
+          </b-form-input>
         </b-form-group>
          <!-- edit last name  -->
         <b-form-group id="ipg-lname" label="Last Name:" label-for="ip-lname">
           <b-form-input
             id="ip-lname"
-            v-model="form.lname"
+            v-model="staff.Staff_LastName"
             required
-            placeholder="enter last name"
+            placeholder= "Enter Last name"
           ></b-form-input>
         </b-form-group>
         <!-- edit title  -->
         <b-form-group id="ipg-title" label="Name title:" label-for="ip-title">
           <b-form-select
             id="ip-title"
-            v-model="form.title"
+            v-model="staff.Name_Title"
             :options="title"
-            placeholder="-- select one --"
-            required
+            placeholder= "Select one"
           ></b-form-select>
         </b-form-group>
         <!-- edit DOB  -->
         <b-form-group id="ipg-birthday" label="Birthday:" label-for="ip-birthday">
           <b-form-datepicker 
             id="ip-birthday"
-            v-model="form.birthday"
+            v-model="staff.Date_Of_Birth"
             required
-            placeholder="-- select date --"
+            placeholder= "-- Select date --"
           ></b-form-datepicker>
         </b-form-group>
         <!-- edit email  -->
@@ -54,10 +54,10 @@
         >
           <b-form-input
             id="ip-email"
-            v-model="form.email"
+            v-model="staff.Email"
             type="email"
             required
-            placeholder="enter email"
+            placeholder= "Enter email"
           ></b-form-input>
         </b-form-group>
         <!-- edit tel no. -->
@@ -68,10 +68,10 @@
         >
           <b-form-input
             id="ip-tel"
-            v-model="form.tel"
+            v-model="staff.Tel_No"
             type="tel"
             required
-            placeholder="enter phone number"
+            placeholder= "Enter phone number"
           ></b-form-input>
         </b-form-group>
         <!-- 
@@ -86,8 +86,8 @@
         <b-form-group id="ipg-@" label="Address:" label-for="ip-@">
           <b-form-textarea
             id="ip-@"
-            v-model="form.address"
-            placeholder="enter your address"
+            v-model="staff.Address"
+            placeholder= "Enter your address"
             rows="3"
             max-rows="6"
           ></b-form-textarea>
@@ -125,9 +125,17 @@
           // country: null,
           address: null,
         },
+         staff:"",
+        thisstaff:{
+          staffid:""
+        },
         title: [{ text: 'Select One', value: null }, 'Mr.', 'Ms.', 'Miss'],
         show: true
       }
+    },mounted() {
+    this.thisstaff.staffid = this.$store.getters.getUser;
+    this.fetchUsers();
+    this.updateUsers();
     },
     methods: {
       onSubmit(evt) {
@@ -151,7 +159,41 @@
         this.$nextTick(() => {
           this.show = true
         })
+      },
+     // fetch data from database
+    fetchUsers() {
+      var formData = this.toFormData(this.thisstaff);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=read",formData)
+        .then(response => {
+          this.staff = response.data.data;
+          this.staff = this.staff[0];
+          console.log(this.staff);
+          console.log(response.data);
+        });
+    },
+    // update data from database
+    updateUsers(){
+      var formData = this.toFormData(this.thisstaff);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=update",formData)
+        .then(response => {
+          this.staff = response.data.data;
+          this.staff = this.staff[0];
+          console.log(this.staff);
+          console.log(response.data);
+        });
+    },
+    // convert to formdata
+    toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
       }
+      return fd;
+    }
     }
   }
 </script>
