@@ -149,7 +149,10 @@
 export default {
   data() {
     return {
-      owo: false,
+      fetchuser: {
+        userid : ""
+      },
+      fetchlenght:0,
       form: {
         email: "",
         username: "",
@@ -215,10 +218,20 @@ export default {
         );
       } else {
         this.setNewUser();
+        this.fetchUsers();
+        if(this.fetchlenght>0){
+          this.makeToast(
+          "danger",
+          "This User_ID has already used"
+          );
+        }
+        else{
         this.addUser();
-        this.form.name = this.form.fname +" "+ this.form.lname;
-        alert(JSON.stringify(this.newUser))
-        this.$router.push("login");
+        this.makeToast("success", "Register complete");
+        setTimeout(() => {
+          this.$router.push("login");
+        }, 1500);
+        }
       }
     },
     makeToast(variant = null, text) {
@@ -235,12 +248,29 @@ export default {
         userid: this.form.username,
         pass: this.form.password,
         title: this.form.title,
-        cusname: this.form.fname + " " + this.form.lname,
+        cusfname: this.form.fname,
+        cuslname: this.form.lname,
         tel: this.form.tel,
         email: this.form.email,
         country: this.form.country,
         DOB: this.form.birthday
+      };
+      this.fetchuser ={
+        userid: this.form.username
       }
+    },
+    fetchUsers() {
+      var formData = this.toFormData(this.fetchuser);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=read",formData)
+        .then(response => {
+          this.fetchuser = response.data.data;
+          // this.user = this.user[0];
+          this.fetchlenght = this.fetchuser.length
+          console.log(this.fetchlenght);
+          // console.log(response.data);
+        });
     },
     // axios post data
     addUser(){
@@ -266,7 +296,8 @@ export default {
             userid: "",
             pass: "",
             title: "",
-            cusname: "",
+            cusfname: "",
+            cuslname: "",
             tel: "",
             email: "",
             country: "",
