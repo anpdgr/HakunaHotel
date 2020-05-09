@@ -89,8 +89,8 @@
             $salary = $_POST['salary'];                                    # +
 
             #edit sql command here
-            $sql = $con->query(" UPDATE Customer SET Staff_ID = '$staffid', Password = '$pass',                         # +
-                                 Name_Title = '$title', Staff_FirstName = '$staffname', Staff_LastName = '$STLname', Tel_No = '$tel',                     # +
+            $sql = $con->query(" UPDATE Staff SET Staff_ID = '$staffid', Password = '$pass',                         # +
+                                 Name_Title = '$title', Staff_FirstName = '$STFname', Staff_LastName = '$STLname', Tel_No = '$tel',                     # +
                                  Email = '$email', Address = '$address', Date_Of_Birth = '$DOB', Start_Date = '$SDate', # +       # +
                                  End_Date = '$EndDate', Salary = '$salary', Position = '$position'                      # +
                                  WHERE Staff_ID = '$staffid' ");                                                        # +
