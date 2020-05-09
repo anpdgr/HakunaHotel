@@ -12,8 +12,13 @@
       <b-card id="card" title="Your profile">
         <b-card-body style="margin:40px">
           
-          <!-- Name -->
-          <span style="float:left;">Name : {{user.Customer_Name}}</span>
+          <!-- First Name -->
+          <span style="float:left;">First name : {{user.Customer_FirstName}}</span>
+          <br />
+          <br />
+
+          <!-- Last Name -->
+          <span style="float:left;">Last name : {{user.Customer_LastName}}</span>
           <br />
           <br />
 

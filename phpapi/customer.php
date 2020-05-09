@@ -72,7 +72,6 @@
             # create var for update to database and key in axios
             #var               key
             $userid = $_POST['userid'];                                    # +
-            $pass = $_POST['pass'];                                        # + 
             $title = $_POST['title'];                                      # +
             $cusfname = $_POST['cusfname'];                                # +
             $cuslname = $_POST['cuslname'];                                # +
@@ -82,9 +81,9 @@
             $DOB = $_POST['DOB'];                                          # +
 
             #edit sql command here
-            $sql = $con->query(" UPDATE Customer SET User_ID = '$userid', Password = '$pass', Name_Title = '$title',        #+
-                                 Customer_FirstName = '$cusfname', Customer_LastName = '$cuslname', DoB = '$DOB',           # +
-                                 Email = '$email', Customer_Country = '$country', Tel_No = '$tel'                           # +
+            $sql = $con->query(" UPDATE Customer SET Name_Title = '$title', Customer_FirstName = '$cusfname',
+                                 Customer_LastName = '$cuslname', DoB = '$DOB', Email = '$email',
+                                 Customer_Country = '$country', Tel_No = '$tel'                           # +
                                  WHERE User_ID = '$userid' ");                                                              # +
             
             # return status likes console log

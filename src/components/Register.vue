@@ -153,6 +153,7 @@ export default {
         userid : ""
       },
       fetchlenght:0,
+      // for form register
       form: {
         email: "",
         username: "",
@@ -174,7 +175,8 @@ export default {
         userid: "",
         pass: "",
         title: "",
-        cusname: "",
+        cusfname: "",
+        cuslname: "",
         tel: "",
         email: "",
         country: "",
