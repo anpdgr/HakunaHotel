@@ -12,7 +12,7 @@
         <b-form-group id="ipg-fname" label="First Name:" label-for="ip-fname">
           <b-form-input
             id="ip-fname"
-            v-model="staff.Staff_FirstName"
+            v-model="form.fname"
             required
             placeholder= "Enter First name"
           >
@@ -22,7 +22,7 @@
         <b-form-group id="ipg-lname" label="Last Name:" label-for="ip-lname">
           <b-form-input
             id="ip-lname"
-            v-model="staff.Staff_LastName"
+            v-model="form.lname"
             required
             placeholder= "Enter Last name"
           ></b-form-input>
@@ -31,7 +31,7 @@
         <b-form-group id="ipg-title" label="Name title:" label-for="ip-title">
           <b-form-select
             id="ip-title"
-            v-model="staff.Name_Title"
+            v-model="form.title"
             :options="title"
             placeholder= "Select one"
           ></b-form-select>
@@ -40,7 +40,7 @@
         <b-form-group id="ipg-birthday" label="Birthday:" label-for="ip-birthday">
           <b-form-datepicker 
             id="ip-birthday"
-            v-model="staff.Date_Of_Birth"
+            v-model="form.dob"
             required
             placeholder= "-- Select date --"
           ></b-form-datepicker>
@@ -54,7 +54,7 @@
         >
           <b-form-input
             id="ip-email"
-            v-model="staff.Email"
+            v-model="form.email"
             type="email"
             required
             placeholder= "Enter email"
@@ -68,7 +68,7 @@
         >
           <b-form-input
             id="ip-tel"
-            v-model="staff.Tel_No"
+            v-model="form.tel"
             type="tel"
             required
             placeholder= "Enter phone number"
@@ -86,7 +86,7 @@
         <b-form-group id="ipg-@" label="Address:" label-for="ip-@">
           <b-form-textarea
             id="ip-@"
-            v-model="staff.Address"
+            v-model="form.address"
             placeholder= "Enter your address"
             rows="3"
             max-rows="6"
@@ -121,26 +121,35 @@
           title: null,
           fname: '',
           lname: '',
-          data: null,
-          // country: null,
+          dob: null,
           address: null,
         },
-         staff:"",
-        thisstaff:{
-          staffid:""
+        nowstaff:{
+           staffid : '' ,
+           title : '',
+           STFname : '',
+           STLname : '',
+           tel : '',
+           email : '',
+           address : '',
+           DOB : ''
         },
         title: [{ text: 'Select One', value: null }, 'Mr.', 'Ms.', 'Miss'],
         show: true
       }
-    },mounted() {
-    this.thisstaff.staffid = this.$store.getters.getUser;
-    this.fetchUsers();
-    this.updateUsers();
     },
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
         //alert(JSON.stringify(this.form))
+        this.setnowstaff();
+        this.Updateprofile();
+        this.makeToast("success", "Update complete");
+        // alert("Staff login");
+        setTimeout(() => {
+          this.$router.push("myprofile");
+        }, 1500);
+      //alert("update success")
         this.$router.push('shome')
       },
       onReset(evt) {
@@ -151,7 +160,7 @@
         this.form.title = ''
         this.form.fname = ''
         this.form.lname = ''
-        this.form.birthday = null
+        this.form.dob = null
         // this.form.country = null
         this.form.address = null
         // Trick to reset/clear native browser form validation state
@@ -160,42 +169,72 @@
           this.show = true
         })
       },
-     // fetch data from database
-    fetchUsers() {
-      var formData = this.toFormData(this.thisstaff);
-      this.axios
+      setnowstaff(){
+          this.nowstaff = {
+           staffid : this.$store.getters.getUser ,
+           title : this.form.title,
+           STFname : this.form.fname,
+           STLname : this.form.lname,
+           tel : this.form.tel,
+           email : this.form.email,
+           address : this.form.address,
+           DOB : this.form.dob
+          };
+      },
+      Updateprofile() {
+        var formData = this.toFormData(this.CurrentUser);
+        this.axios
         .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=read",formData)
+          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=update",
+          formData
+        )
         .then(response => {
-          this.staff = response.data.data;
-          this.staff = this.staff[0];
-          console.log(this.staff);
-          console.log(response.data);
+          //set var to default
+          console.log(response);
+          this.form = {
+          email: '',
+          tel:'',
+          title: null,
+          fname: '',
+          lname: '',
+          dob: null,
+          address: null,
+          };
+          this.nowstaff = {
+           staffid : '' ,
+           title : '',
+           STFname : '',
+           STLname : '',
+           tel : '',
+           email : '',
+           address : '',
+           DOB : ''
+          };
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
         });
-    },
-    // update data from database
-    updateUsers(){
-      var formData = this.toFormData(this.thisstaff);
-      this.axios
-        .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=update",formData)
-        .then(response => {
-          this.staff = response.data.data;
-          this.staff = this.staff[0];
-          console.log(this.staff);
-          console.log(response.data);
-        });
-    },
-    // convert to formdata
-    toFormData(obj) {
+      },
+      // convert to formdata
+      toFormData(obj) {
       var fd = new FormData();
       for (var i in obj) {
         fd.append(i, obj[i]);
       }
       return fd;
+      },
+      makeToast(variant = null, text) {
+        this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+        });
+      }
     }
-    }
-  }
+  };
 </script>
 
 <style scoped>
