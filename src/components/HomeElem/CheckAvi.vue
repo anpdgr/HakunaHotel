@@ -49,6 +49,9 @@
       <!-- submit button -->
       <b-button id="button" variant="dark" @click="checkNull()">Check available</b-button>
       <!-- variant="success" -->
+
+
+      <h1>{{this.$store.getters.getBookCkin}}   {{this.$store.getters.getBookCkout}}  {{this.$store.getters.getBookNumG}}</h1>
     </b-form>
   </b-card>
 </template>
@@ -90,6 +93,11 @@ export default {
       show: true
     };
   },
+  mounted() {
+    this.form.checkin_date = this.$store.getters.getBookCkin;
+    this.form.checkout_date = this.$store.getters.getBookCkout;
+    this.form.num_guest = this.$store.getters.getBookNumG;
+  },
   methods: {
     checkNull() {
       if (
@@ -111,6 +119,14 @@ export default {
           // use method makeToast
           this.makeToast("danger", "Invalid date");
         } else {
+
+          // push t global
+          this.$store.dispatch("AcCkIn", this.form.checkin_date);
+          this.$store.dispatch("AcCkOut",  this.form.checkout_date);
+          this.$store.dispatch("AcNumG", this.form.num_guest);
+          // console.log(this.form.checkin_date+"  "+this.form.checkout_date+"  "+this.form.num_guest);
+
+
           // go booking page
           // this port is so good
           this.$router.push("booking");

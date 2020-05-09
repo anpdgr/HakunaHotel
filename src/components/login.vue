@@ -79,6 +79,8 @@ export default {
   },
   mounted() {
     this.fetchUsers();
+    console.log(Date());
+    console.log(Date("Tomorrow"));
   },
   methods: {
     //  method for เปลี่ยนหน้า
