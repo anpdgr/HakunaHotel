@@ -10,19 +10,19 @@
             <!-- ตัวอย่างข้อมูล -->
             <p>
               Booking ID: BKXXXXXX
-              <span class="tab">Booking date: 16/09/42</span> <br />
+              <span class="tab">Booking date: {{this.$store.getters.getBookCkin}}</span> <br />
               Check-in date: 11/08/43
-              <span class="tab">Check-out date: 02/12/42</span> <br />
+              <span class="tab">Check-out date: {{this.$store.getters.getBookCkout}}</span> <br />
               Number of guests: 58 <span class="tab"></span> Billing name:
-              Warakorn Inthong<br />
+              {{this.$store.getters.getUser}}<br />
             </p>
           </div>
 
           <div>
             <h5>Rooms</h5>
             <!-- ตัวอย่างข้อมูล -->
-            <h6>Room type1</h6>
-            <p>2 rooms</p>
+            <h6>{{this.$store.getters.getBookRoom}}</h6>
+            <p>{{this.$store.getters.getBookNumRoom}} rooms</p>
           </div>
 
           <div>

@@ -27,7 +27,7 @@
         # select command
         if($action == 'read'){                                             # -
             # edit sql command here
-            $sql = $con->query('SELECT * FROM RoomType');                  # +
+            $sql = $con->query('SELECT RoomType_Name,Price,Limit_Guest FROM RoomType');                  # +
             # var buff for data in database
             $types = array();                                              # -
             # fetch data from database
@@ -35,6 +35,13 @@
                 array_push($types,$row);                                   # -
             }
             $result['data'] = $types;                                      # -
+            if($sql){                                                      # -
+                $result['message'] = "added successfully";                 # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "added fail";                         # -
+            }
         }
 
         # insert command

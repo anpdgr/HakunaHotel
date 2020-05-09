@@ -51,7 +51,7 @@
       <!-- variant="success" -->
 
 
-      <h1>{{this.$store.getters.getBookCkin}}   {{this.$store.getters.getBookCkout}}  {{this.$store.getters.getBookNumG}}</h1>
+      <!-- <h1>{{this.$store.getters.getBookCkin}}   {{this.$store.getters.getBookCkout}}  {{this.$store.getters.getBookNumG}}</h1> -->
     </b-form>
   </b-card>
 </template>

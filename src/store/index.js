@@ -10,9 +10,11 @@ export default new Vuex.Store({
       check_in: null,
       check_out: null,
       num_guest: 0,
-      room: [],
+      room: null,
+      num_room: 0,
       codepromo: null
     },
+    book:false,
     user:null
   },
   // Ref state
@@ -35,10 +37,15 @@ export default new Vuex.Store({
     getBookRoom(state){
       return state.booking.room;
     },
+    getBookNumRoom(state){
+      return state.booking.num_room;
+    },
     getBookCode(state){
       return state.booking.codepromo;
     },
-
+    getBook(state){
+      return state.book;
+    }
   },
   // Function Global
   mutations: {
@@ -51,20 +58,6 @@ export default new Vuex.Store({
     setUser(state, user){
       state.user = user;
     },
-    check_avi(state, ck_in_date, ck_out_date, num_g){
-      state.booking = {
-        check_in: ck_in_date,
-        check_out: ck_out_date,
-        num_guest: num_g
-      }
-      // console.log(ck_in_date);
-      // console.log(ck_out_date);
-      // console.log(num_g);
-
-      // state.booking.check_in = ck_in_date;
-      // state.booking.check_out = ck_out_date;
-      // state.booking.num_guest = num_g;
-    },
     ck_in(state, ck_in_date){
       state.booking.check_in = ck_in_date;
     },
@@ -74,31 +67,47 @@ export default new Vuex.Store({
     numGuest(state, num_g){
       state.booking.num_guest = num_g;
     },
-    
+    selRoom(state, type){
+      state.booking.room =type;
+    },
+    numRoom(state, num_r){
+      state.booking.num_room = num_r;
+    },
+    codePro(state, code){
+      state.booking.codepromo = code;
+    },
+    statusBook(state, status){
+      state.book = status;
+    }
+
   },
   // Call function from component
   actions: {
-    // Acadd(context){
-    //   context.commit('add');
-    // },
-    // Acdel(context){
-    //   context.commit('del');
-    // },
-    AcUser(context,user){
-      context.commit('setUser',user);
+    AcUser(context, user){
+      context.commit('setUser', user);
     },
-    // AcCkAvi(context, ck_in_date, ck_out_date, num_g){
-    //   context.commit('check_avi', ck_in_date, ck_out_date, num_g);
-    // },
-    AcCkIn(context,ck_in_date){
-      context.commit('ck_in',ck_in_date);
+    AcCkIn(context, ck_in_date){
+      context.commit('ck_in', ck_in_date);
     },
-    AcCkOut(context,ck_out_date){
-      context.commit('ck_out',ck_out_date);
+    AcCkOut(context, ck_out_date){
+      context.commit('ck_out', ck_out_date);
     },
-    AcNumG(context,num_g){
-      context.commit('numGuest',num_g);
+    AcNumG(context, num_g){
+      context.commit('numGuest', num_g);
+    },
+    AcType(context, type){
+      context.commit('selRoom', type);
+    },
+    AcNRoom(context, num_r){
+      context.commit('numRoom', num_r);
+    },
+    AcCode(context, code){
+      context.commit('codePro', code);
+    },
+    AcBook(context, status){
+      context.commit('statusBook', status);
     }
+    
   },
   modules: {
   }
