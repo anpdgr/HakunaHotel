@@ -31,7 +31,7 @@
                   <p>{{room.RoomType_Name}}</p>
                   <p style="font-size:small;">
                     Description:
-                    .....................................................................
+                    {{room.Service}}
                   </p>
                 </div>
               </th>
@@ -87,9 +87,13 @@ export default {
   },
   data() {
     return {
+      // from DB .RoomType_Name, .Price, .Limit_Guest, .Description, .Service, .SpecialService
       RoomType:[],
+      // check num room
       isZero: true,
+      // num room each roomtype
       selected: [],
+      // option selete
       options: [
         { value: 0, text: "0" },
         { value: 1, text: "1" },
@@ -104,6 +108,7 @@ export default {
     this.fetchRoomType();
   },
   methods: {
+    // check num room
     checkNull() {
       for (let i = 0; i < this.selected.length; i++) {
         if (this.selected[i] != 0) {
@@ -112,6 +117,7 @@ export default {
       }
       return this.isZero;
     },
+    // fetch data from DB
     fetchRoomType() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read")
@@ -121,18 +127,23 @@ export default {
           console.log(response.data);
         });
     },
+    // check input
     check(index) {
       if (this.checkNull()) {
         this.makeToast('danger','Please select number of each room type.');
 
       } else {
+        // push global
         this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
         this.$store.dispatch("AcNRoom", this.selected[index]);
         this.$store.dispatch("AcBook", true);
-        alert(this.$store.getters.getUser);
+        // alert(this.$store.getters.getUser);
+
+        // didn't login  make toast plz
         if(this.$store.getters.getUser == null){
           this.$router.push("/login");
         }
+        // already login  make toast plz
         else{
           this.$router.push("/payment");
         }

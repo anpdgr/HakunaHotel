@@ -15,7 +15,7 @@
 
         if($action == 'read'){                                             # -
             # edit sql command here
-            $sql = $con->query('SELECT Description FROM RoomType');           # +
+            $sql = $con->query('SELECT * FROM RoomType');           # +
             # var buff for data in database
             $users = array();                                              # -
             # fetch data from database

@@ -7,7 +7,7 @@
         <div id="content">
           <div>
             <h5>Booking details</h5>
-            <!-- ตัวอย่างข้อมูล -->
+            <!-- Bill   use global           -->
             <p>
               Booking ID: BKXXXXXX
               <span class="tab">Booking date: {{this.$store.getters.getBookCkin}}</span> <br />
@@ -18,13 +18,14 @@
             </p>
           </div>
 
+          <!-- Room -->
           <div>
             <h5>Rooms</h5>
-            <!-- ตัวอย่างข้อมูล -->
             <h6>{{this.$store.getters.getBookRoom}}</h6>
             <p>{{this.$store.getters.getBookNumRoom}} rooms</p>
           </div>
 
+          <!-- Discount -->
           <div>
             <h5>Discount</h5>
             <!-- ตัวอย่างข้อมูล -->
@@ -39,6 +40,7 @@
           </div>
           <hr>
 
+          <!-- input codepromo -->
           <div style='text-align:left;'>
             <!-- ตัวอย่างข้อมูล -->
             <h4><b>Total</b></h4>

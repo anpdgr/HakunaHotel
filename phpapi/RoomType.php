@@ -27,7 +27,7 @@
         # select command
         if($action == 'read'){                                             # -
             # edit sql command here
-            $sql = $con->query('SELECT RoomType_Name,Price,Limit_Guest FROM RoomType');                  # +
+            $sql = $con->query('SELECT * FROM RoomType');                  # +
             # var buff for data in database
             $types = array();                                              # -
             # fetch data from database
