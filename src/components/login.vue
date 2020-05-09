@@ -105,10 +105,20 @@ export default {
       else if (this.c === 1) {
         this.makeToast("success", "User login");
         // alert("User login");
-        setTimeout(() => {
-          this.$router.push("/");
-        }, 1500);
 
+        // go to payment
+        if(this.$store.getters.getBook){
+          setTimeout(() => {
+            this.$router.push("/payment");
+          }, 1500);
+        }
+
+        // go to home
+        else{
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 1500);
+        }
         // sign in staff
       } else if (this.c === 2) {
         this.makeToast("success", "Staff login");

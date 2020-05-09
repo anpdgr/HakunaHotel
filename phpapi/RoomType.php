@@ -35,6 +35,13 @@
                 array_push($types,$row);                                   # -
             }
             $result['data'] = $types;                                      # -
+            if($sql){                                                      # -
+                $result['message'] = "added successfully";                 # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "added fail";                         # -
+            }
         }
 
         # insert command
