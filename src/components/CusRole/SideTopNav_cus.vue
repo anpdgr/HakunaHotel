@@ -1,6 +1,6 @@
 <template>
 <div>
-    <NavLO/>
+    
     <!-- Side navigation -->
     <div class="sidenav">
       <div id="head">
