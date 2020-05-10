@@ -27,14 +27,14 @@
         # select command
         if($action == 'read'){                                             # -
             # edit sql command here
-            $sql = $con->query('SELECT * FROM Staff');                     # +
+            $sql = $con->query('SELECT * FROM Customer');                  # +
             # var buff for data in database
-            $staffs = array();                                             # -
+            $users = array();                                              # -
             # fetch data from database
             while($row = $sql->fetch_assoc()){                             # -
-                array_push($staffs,$row);                                  # -
+                array_push($users,$row);                                   # -
             }
-            $result['data'] = $staffs;                                     # -
+            $result['data'] = $users;                                      # -
         }
 
         # insert command
@@ -42,21 +42,18 @@
             # edit var here
             # create var for insert to database and key in axios
             #var               key
-            $staffid = $_POST['staffid'];                                  # +
+            $userid = $_POST['userid'];                                    # +
             $pass = $_POST['pass'];                                        # +
             $title = $_POST['title'];                                      # +
-            $STFname = $_POST['STFname'];                                  # +
-            $STLname = $_POST['STLname'];                                  # +
-            $position = $_POST['position'];                                # +
+            $cusfname = $_POST['cusfname'];                                # +
+            $cuslname = $_POST['cuslname'];                                # +
+            $DOB = $_POST['DOB'];                                          # +
             $tel = $_POST['tel'];                                          # +
             $email = $_POST['email'];                                      # +
-            $address = $_POST['address'];                                  # +
-            $DOB = $_POST['DOB'];                                          # +
-            $SDate = $_POST['startdate'];                                  # +
-            $EndDate = $_POST['enddate'];                                  # +
-            $salary = $_POST['salary'];                                    # +
+            $country = $_POST['country'];                                  # +
+
             #edit sql command here
-            $sql = $con->query("INSERT INTO Staff VALUES ('$staffid', '$pass', '$title', '$STFname', '$STLname', '$position', '$DOB', '$tel', '$email', '$SDate', '$EndDate', '$salary', '$address')") ; # +
+            $sql = $con->query("INSERT INTO Customer VALUES ('$userid', '$pass', '$title', '$cusfname', '$cuslname', '$DOB', '$tel', '$email', '$country')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -74,26 +71,20 @@
             # edit var here
             # create var for update to database and key in axios
             #var               key
-            $staffid = $_POST['staffid'];                                  # +
-            $pass = $_POST['pass'];                                        # +
+            $userid = $_POST['userid'];                                    # +
             $title = $_POST['title'];                                      # +
-            $STFname = $_POST['STFname'];                                  # +
-            $STLname = $_POST['STLname'];                                  # +
-            $position = $_POST['position'];                                # +
+            $cusfname = $_POST['cusfname'];                                # +
+            $cuslname = $_POST['cuslname'];                                # +
             $tel = $_POST['tel'];                                          # +
             $email = $_POST['email'];                                      # +
-            $address = $_POST['address'];                                  # +
+            $country = $_POST['country'];                                  # +
             $DOB = $_POST['DOB'];                                          # +
-            $SDate = $_POST['startdate'];                                  # +
-            $EndDate = $_POST['enddate'];                                  # +
-            $salary = $_POST['salary'];                                    # +
 
             #edit sql command here
-            $sql = $con->query(" UPDATE Staff SET Staff_ID = '$staffid', Password = '$pass',                         # +
-                                 Name_Title = '$title', Staff_FirstName = '$STFname', Staff_LastName = '$STLname', Tel_No = '$tel',                     # +
-                                 Email = '$email', Address = '$address', Date_Of_Birth = '$DOB', Start_Date = '$SDate', # +       # +
-                                 End_Date = '$EndDate', Salary = '$salary', Position = '$position'                      # +
-                                 WHERE Staff_ID = '$staffid' ");                                                        # +
+            $sql = $con->query(" UPDATE Customer SET Name_Title = '$title', Customer_FirstName = '$cusfname',
+                                 Customer_LastName = '$cuslname', DoB = '$DOB', Email = '$email',
+                                 Customer_Country = '$country', Tel_No = '$tel'                           # +
+                                 WHERE User_ID = '$userid' ");                                                              # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -109,10 +100,10 @@
         if($action == 'delete'){                                           # -
             # edit var here
             # assign var refer to which line would to delete
-            $staffid = $_POST['staffid'];                                  # +
+            $userid = $_POST['userid'];                                    # +
 
             #edit sql here
-            $sql = $con->query(" DELETE FROM Staff WHERE Staff_ID = '$staffid' ") ;                        # +
+            $sql = $con->query(" DELETE FROM Customer WHERE User_ID = '$userid' ") ;                        # +
             
             # return status likes console log
             if($sql){                                                      # -

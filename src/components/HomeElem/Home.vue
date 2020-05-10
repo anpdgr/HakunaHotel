@@ -9,9 +9,9 @@
 
       <!--                          Bar                              -->
       <!-- before login -->
-      <div v-if="$store.getters.getUser == ';w;'"><NavLogIn /></div>
+      <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
       <!-- after  login -->
-      <div v-else-if="$store.getters.getUser != ';w;'"><NavLogOut /></div>
+      <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
     </div>
 
     <!-- use component slide -->
@@ -75,9 +75,9 @@
 import NavLogIn from "../Nav.vue";//+
 import NavLogOut from "../NavLO.vue";//+
 import slide from "./SlidePic.vue";//+
-import weltx from "./Weltext.vue";// ?
+import weltx from "./Weltext.vue";//+
 import checkavi from "./CheckAvi.vue";//+
-import roomSec from "./RoomSection.vue";// ?
+import roomSec from "./RoomSection.vue";//+
 import serviceSec from "./Services.vue";//+
 import contactSec from "./ContactUs.vue";//+
 

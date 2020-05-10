@@ -1,6 +1,6 @@
 <template>
 <div>
-    <NavLO/>
+    <!-- <NavLO/> -->
     <!-- Side navigation -->
     <div class="sidenav">
       <div id="head">
@@ -78,10 +78,10 @@
 </style>
 
 <script>
-import NavLO from '../NavLO.vue'
+// import NavLO from '../NavLO.vue'
 export default {
   components:{
-        NavLO
+        // NavLO
     }
   
 }

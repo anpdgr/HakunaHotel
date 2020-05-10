@@ -12,4 +12,8 @@ PS. x = แก้แล้ว
  
  6/5/2563 by Waru
  - ไปแก้การอัพเดตข้อมูลในregis
- - ดึง login จาก his_acc
+ x ดึง login จาก his_acc
+
+8/5/2563 by Waru
+ - Nav พอใช้ this.$router เเล้วกด room services contact แล้วไม่ขยับตาม
+ - กำลังจะระเบิดข้อมูล user ใหม่หมดตอนนี้ใช้ไม่ได้
