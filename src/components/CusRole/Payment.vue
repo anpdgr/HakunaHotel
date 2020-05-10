@@ -7,29 +7,32 @@
         <div id="content">
           <div>
             <h5>Booking details</h5>
-            <!-- ตัวอย่างข้อมูล -->
+            <!-- Bill   use global           -->
             <p>
               Booking ID: BKXXXXXX
-              <span class="tab">Booking date: 16/09/42</span> <br />
+              <span class="tab">Booking date: {{this.$store.getters.getBookCkin}}</span> <br />
               Check-in date: 11/08/43
-              <span class="tab">Check-out date: 02/12/42</span> <br />
-              Number of guests: 58 <span class="tab"></span> Billing name:
-              Warakorn Inthong<br />
+              <span class="tab">Check-out date: {{this.$store.getters.getBookCkout}}</span> <br />
+              Number of guests: {{this.$store.getters.getBookNumG}} <span class="tab"></span> Billing name:
+              {{this.$store.getters.getUser}}<br />
             </p>
           </div>
 
+          <!-- Room -->
           <div>
             <h5>Rooms</h5>
-            <!-- ตัวอย่างข้อมูล -->
-            <h6>Room type1</h6>
-            <p>2 rooms</p>
+            <div v-for="(room,index) in rooms" :key="index">
+              <h6>{{room.type}} <span class="tab"/>   <span class="tab">฿{{room.price*room.num_room}}</span> </h6>
+              <p>{{room.num_room}} rooms</p>
+            </div>
           </div>
 
+          <!-- Discount -->
           <div>
             <h5>Discount</h5>
             <!-- ตัวอย่างข้อมูล -->
             <h6>Code promotion: {{code}}</h6>
-            <h6>Season discount</h6>
+            <h6>Season discount : {{season}}  {{Sdis}}</h6>
           </div>
 <br>
           <div>
@@ -39,10 +42,12 @@
           </div>
           <hr>
 
+          <!-- input codepromo -->
           <div style='text-align:left;'>
             <!-- ตัวอย่างข้อมูล -->
-            <h4><b>Total</b></h4>
+            <h4><b>Total             <span class="tab">฿{{sum}}</span>      </b></h4>
             <input v-model='code' type='text' placeholder="Code promotion">
+            <button>owo</button>
           </div>
         </div>
       </b-card>
@@ -88,6 +93,9 @@ export default {
   },
   data() {
     return {
+      sum: 0,
+      Sdis: 0,
+      Cdis: 0,
       code:'',
       value: null,
       options: [
@@ -95,7 +103,16 @@ export default {
         { text: "Online banking", value: "online" },
         { text: "Credit card", value: "card" },
       ],
+      rooms:[],
+      season:null,
+      Bill:{
+        S_Name:""
+      }
     };
+  },
+  mounted() {
+    this.rooms = this.$store.getters.getBookType;
+    this.fetchSeason()
   },
   computed: {
     state() {
@@ -103,12 +120,72 @@ export default {
     },
   },
   methods: {
+    Sum(room,type){
+      this.sum = 0;
+      this.Sdis = 0;
+      var j=0;
+      for(var i=0 ; i < room.length ; i++){
+        j=0;
+        while(j<type.length){
+          if(room[i].type == type[j].RoomType_Name){
+            this.Sdis += room[i].price * room[i].num_room * type[j].Discount/100;
+            break;
+          }
+          j++;
+        }
+        this.sum += room[i].price * room[i].num_room;
+      }
+    },
+
+    fetchSeason() {
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=read")
+        .then(response => {
+          // this.season = response.data.Name;
+          console.log(response.data.Data);
+          this.CheckDateSeason(response.data.Data);
+          this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=seasondis",this.Bill);
+        });
+    },
+
+    CheckDateSeason(season){
+      for(var i=0 ; i < season.length ; i++){
+        if(this.$store.getters.getBookCkin > season[i].Start_Date && this.$store.getters.getBookCkin < season[i].End_Date){
+          this.season = season[i].Season_Name;
+          this.Bill.S_Name = this.season;
+        }
+      }
+    },
+
+    GetDB(URL,Data) {
+      var formData = this.toFormData(Data);
+      this.axios
+        .post(
+          URL,formData)
+        .then(response => {
+          console.log(response.data.Data);
+          this.Sum(this.rooms,response.data.Data);
+        });
+    },
+    toFormData(obj){
+      var fd = new FormData();
+      for(var i in obj){
+        fd.append(i,obj[i]);
+      }
+      return fd;
+    },
+
+    
+    checkCode(){
+      
+    },
+
     check() {
       if (this.value === null) {
         this.makeToast("danger", "Please select one payment method.");
       } else {
         this.makeToast("success", "Success");
-        setTimeout(() => this.$router.push({ path: "/" }), 2000);
+        setTimeout(() => this.$router.push({ path: "/" }), 1500);
       }
     },
     makeToast(variant = null, text) {

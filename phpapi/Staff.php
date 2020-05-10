@@ -45,7 +45,8 @@
             $staffid = $_POST['staffid'];                                  # +
             $pass = $_POST['pass'];                                        # +
             $title = $_POST['title'];                                      # +
-            $staffname = $_POST['staffname'];                              # +
+            $STFname = $_POST['STFname'];                                  # +
+            $STLname = $_POST['STLname'];                                  # +
             $position = $_POST['position'];                                # +
             $tel = $_POST['tel'];                                          # +
             $email = $_POST['email'];                                      # +
@@ -55,7 +56,7 @@
             $EndDate = $_POST['enddate'];                                  # +
             $salary = $_POST['salary'];                                    # +
             #edit sql command here
-            $sql = $con->query("INSERT INTO Staff VALUES ('$staffid', '$pass', '$title', '$staffname', '$position', '$DOB', '$tel', '$email', '$SDate', '$EndDate', '$salary', '$address')") ; # +
+            $sql = $con->query("INSERT INTO Staff VALUES ('$staffid', '$pass', '$title', '$STFname', '$STLname', '$position', '$DOB', '$tel', '$email', '$SDate', '$EndDate', '$salary', '$address')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -76,7 +77,8 @@
             $staffid = $_POST['staffid'];                                  # +
             $pass = $_POST['pass'];                                        # +
             $title = $_POST['title'];                                      # +
-            $staffname = $_POST['staffname'];                              # +
+            $STFname = $_POST['STFname'];                                  # +
+            $STLname = $_POST['STLname'];                                  # +
             $position = $_POST['position'];                                # +
             $tel = $_POST['tel'];                                          # +
             $email = $_POST['email'];                                      # +
@@ -87,8 +89,8 @@
             $salary = $_POST['salary'];                                    # +
 
             #edit sql command here
-            $sql = $con->query(" UPDATE Customer SET Staff_ID = '$staffid', Password = '$pass',                         # +
-                                 Name_Title = '$title', Staff_Name = '$staffname', Tel_No = '$tel',                     # +
+            $sql = $con->query(" UPDATE Staff SET Staff_ID = '$staffid', Password = '$pass',                         # +
+                                 Name_Title = '$title', Staff_FirstName = '$STFname', Staff_LastName = '$STLname', Tel_No = '$tel',                     # +
                                  Email = '$email', Address = '$address', Date_Of_Birth = '$DOB', Start_Date = '$SDate', # +       # +
                                  End_Date = '$EndDate', Salary = '$salary', Position = '$position'                      # +
                                  WHERE Staff_ID = '$staffid' ");                                                        # +

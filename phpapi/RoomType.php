@@ -35,6 +35,13 @@
                 array_push($types,$row);                                   # -
             }
             $result['data'] = $types;                                      # -
+            if($sql){                                                      # -
+                $result['message'] = "added successfully";                 # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "added fail";                         # -
+            }
         }
 
         # insert command
@@ -46,9 +53,11 @@
             $price = $_POST['price'];                                      # +
             $limit = $_POST['limit'];                                      # +
             $description = $_POST['description'];                          # +
+            $service = $_POST['service'];                                  # +
+            $special = $_POST['special'];                                  # +
 
             #edit sql command here
-            $sql = $con->query("INSERT INTO RoomType VALUES ('$typename', '$price', '$limit', '$description')") ; # +
+            $sql = $con->query("INSERT INTO RoomType VALUES ('$typename', '$price', '$limit', '$description', '$service', '$special')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -70,10 +79,12 @@
             $price = $_POST['price'];                                      # +
             $limit = $_POST['limit'];                                      # +
             $description = $_POST['description'];                          # +
-
+            $service = $_POST['service'];
+            $special = $_POST['special'];
             #edit sql command here
             $sql = $con->query(" UPDATE RoomType SET RoomType_Name = '$typename', Price = '$price',                 # +
-                                 Limit_Guest = '$limit', Description = '$description'                               # +
+                                 Limit_Guest = '$limit', Description = '$description', Service = '$service',        # +
+                                 SpecialService = '$special'
                                  WHERE RoomType_Name = '$typename' ");                                              # +
             
             # return status likes console log
