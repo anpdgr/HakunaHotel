@@ -3,27 +3,46 @@
     <NavLO />
     <br /><br /><br />
     <div id="CARD">
-      <b-card border-variant="success" bg-variant="light" style="margin: 30px;" title="Billing">
+      <b-card
+        border-variant="success"
+        bg-variant="light"
+        style="margin: 30px;"
+        title="Billing"
+      >
         <div id="content">
           <div>
             <h5>Booking details</h5>
             <!-- Bill   use global           -->
             <p>
               Booking ID: BKXXXXXX
-              <span class="tab">Booking date: {{this.$store.getters.getBookCkin}}</span> <br />
+              <span class="tab"
+                >Booking date: {{ this.$store.getters.getBookCkin }}</span
+              >
+              <br />
               Check-in date: 11/08/43
-              <span class="tab">Check-out date: {{this.$store.getters.getBookCkout}}</span> <br />
-              Number of guests: {{this.$store.getters.getBookNumG}} <span class="tab"></span> Billing name:
-              {{this.$store.getters.getUser}}<br />
+              <span class="tab"
+                >Check-out date: {{ this.$store.getters.getBookCkout }}</span
+              >
+              <br />
+              Number of guests: {{ this.$store.getters.getBookNumG }}
+              <span class="tab"
+                >Billing name: {{ this.$store.getters.getUser }}</span
+              >
+              <br />
             </p>
           </div>
 
           <!-- Room -->
           <div>
             <h5>Rooms</h5>
-            <div v-for="(room,index) in rooms" :key="index">
-              <h6>{{room.type}} <span class="tab"/>   <span class="tab">฿{{room.price*room.num_room}}</span> </h6>
-              <p>{{room.num_room}} rooms</p>
+            <div v-for="(room, index) in rooms" :key="index">
+              <h6>
+                {{ room.type }}
+                <div style="float:right;">
+                  ฿ {{ room.price * room.num_room }}
+                </div>
+              </h6>
+              <p>{{ room.num_room }} rooms</p>
             </div>
           </div>
 
@@ -31,23 +50,44 @@
           <div>
             <h5>Discount</h5>
             <!-- ตัวอย่างข้อมูล -->
-            <h6>Code promotion: {{code}}</h6>
-            <h6>Season discount : {{season}}  {{Sdis}}</h6>
+            <h6>Code promotion: {{ code }}</h6>
+            <h6>
+              Season discount : {{ season }}
+              <div style="float:right;">฿ {{ Sdis }}</div>
+            </h6>
           </div>
-<br>
+          <br />
           <div>
             <!-- ตัวอย่างข้อมูล -->
-            <h5>Subtotal</h5>
-            <h5>Tax</h5>
+            <h5>
+              Subtotal
+              <div style="float:right;">฿...</div>
+            </h5>
+            <h5>
+              Tax
+              <div style="float:right;">฿...</div>
+            </h5>
           </div>
-          <hr>
+          <hr />
 
           <!-- input codepromo -->
-          <div style='text-align:left;'>
+          <div style="text-align:left;">
             <!-- ตัวอย่างข้อมูล -->
-            <h4><b>Total             <span class="tab">฿{{sum}}</span>      </b></h4>
-            <input v-model='code' type='text' placeholder="Code promotion">
-            <button>owo</button>
+            <h4>
+              <b
+                >Total
+                <div style="float:right;">฿{{ sum }}</div>
+              </b>
+            </h4>
+            <input v-model="code" type="text" placeholder="Code promotion" />
+            <b-button
+              variant="light"
+              type="button"
+              size="sm"
+              style="margin-left:10px"
+              @click="checkCode"
+              >Check code</b-button
+            >
           </div>
         </div>
       </b-card>
@@ -70,7 +110,10 @@
         </b-form-radio-group>
       </div>
     </div>
-    <div style="margin-top: 30px">
+    <div style="margin-top: 30px; margin-bottom:30px">
+      <b-button id="Cancel" variant="secondary" @click="cancelButton()">
+        Cancel
+      </b-button>
       <b-button
         v-b-tooltip.hover
         title="Please make sure that your information is correct"
@@ -96,23 +139,23 @@ export default {
       sum: 0,
       Sdis: 0,
       Cdis: 0,
-      code:'',
+      code: "",
       value: null,
       options: [
         { text: "Cash (hotel counter)", value: "counter" },
         { text: "Online banking", value: "online" },
         { text: "Credit card", value: "card" },
       ],
-      rooms:[],
-      season:null,
-      Bill:{
-        S_Name:""
-      }
+      rooms: [],
+      season: null,
+      Bill: {
+        S_Name: "",
+      },
     };
   },
   mounted() {
     this.rooms = this.$store.getters.getBookType;
-    this.fetchSeason()
+    this.fetchSeason();
   },
   computed: {
     state() {
@@ -120,15 +163,16 @@ export default {
     },
   },
   methods: {
-    Sum(room,type){
+    Sum(room, type) {
       this.sum = 0;
       this.Sdis = 0;
-      var j=0;
-      for(var i=0 ; i < room.length ; i++){
-        j=0;
-        while(j<type.length){
-          if(room[i].type == type[j].RoomType_Name){
-            this.Sdis += room[i].price * room[i].num_room * type[j].Discount/100;
+      var j = 0;
+      for (var i = 0; i < room.length; i++) {
+        j = 0;
+        while (j < type.length) {
+          if (room[i].type == type[j].RoomType_Name) {
+            this.Sdis +=
+              (room[i].price * room[i].num_room * type[j].Discount) / 100;
             break;
           }
           j++;
@@ -140,46 +184,50 @@ export default {
     fetchSeason() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=read")
-        .then(response => {
+        .then((response) => {
           // this.season = response.data.Name;
           console.log(response.data.Data);
           this.CheckDateSeason(response.data.Data);
-          this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=seasondis",this.Bill);
+          this.GetDB(
+            "http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=seasondis",
+            this.Bill
+          );
         });
     },
 
-    CheckDateSeason(season){
-      for(var i=0 ; i < season.length ; i++){
-        if(this.$store.getters.getBookCkin > season[i].Start_Date && this.$store.getters.getBookCkin < season[i].End_Date){
+    CheckDateSeason(season) {
+      for (var i = 0; i < season.length; i++) {
+        if (
+          this.$store.getters.getBookCkin > season[i].Start_Date &&
+          this.$store.getters.getBookCkin < season[i].End_Date
+        ) {
           this.season = season[i].Season_Name;
           this.Bill.S_Name = this.season;
         }
       }
     },
 
-    GetDB(URL,Data) {
+    GetDB(URL, Data) {
       var formData = this.toFormData(Data);
-      this.axios
-        .post(
-          URL,formData)
-        .then(response => {
-          console.log(response.data.Data);
-          this.Sum(this.rooms,response.data.Data);
-        });
+      this.axios.post(URL, formData).then((response) => {
+        console.log(response.data.Data);
+        this.Sum(this.rooms, response.data.Data);
+      });
     },
-    toFormData(obj){
+    toFormData(obj) {
       var fd = new FormData();
-      for(var i in obj){
-        fd.append(i,obj[i]);
+      for (var i in obj) {
+        fd.append(i, obj[i]);
       }
       return fd;
     },
 
-    
-    checkCode(){
-      
+    checkCode() {
+      alert("try");
     },
-
+    cancelButton() {
+      this.$router.push("booking");
+    },
     check() {
       if (this.value === null) {
         this.makeToast("danger", "Please select one payment method.");
@@ -225,9 +273,15 @@ p {
 }
 #Confirm {
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 20px;
   padding: 12px 28px;
   transition-duration: 0.4s;
+}
+#Cancel {
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-right: 20px;
 }
 #Confirm:hover {
   background-color: limegreen;

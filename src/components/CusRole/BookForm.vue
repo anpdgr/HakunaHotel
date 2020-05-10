@@ -1,21 +1,23 @@
 <template>
   <div>
     <!--                          Bar                              -->
-      <!-- before login -->
-      <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
-      <!-- after  login -->
-      <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
+    <!-- before login -->
+    <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
+    <!-- after  login -->
+    <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
     <br /><br /><br /><br />
     <CheckAv />
     <br />
     <div id="CARD">
-      <b-card
-        title="Available room"
-        sub-title="Date: checkin_date to checkout_date Number of guests: num_guest"
-      >
-        <table class="table table-bordered">
+      <b-card title="Available room">
+        <span>
+          <b>Date:</b> {{this.$store.getters.getBookCkin}} <b>to</b> {{this.$store.getters.getBookCkout}}
+          <b>Number of guests:</b> {{this.$store.getters.getBookNumG}}
+</span>
+
+        <table class="table table-hover table-bordered">
           <thead>
-            <tr class="table-secondary">
+            <tr>
               <th scope="col" width="35%">Room type</th>
               <th scope="col" width="18%">Limit guest</th>
               <th scope="col" width="15%">Price for .. nights</th>
@@ -23,43 +25,45 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             <!-- ตัวอย่างข้อมูล -->
-            <tr v-for="(room,index) in RoomType" :key="index">
-              <th scope="row">
-                <div style="width:90%; margin:auto">
-                  <p>{{room.RoomType_Name}}</p>
-                  <p style="font-size:small;">
-                    Description:
-                    {{room.Service}}
-                  </p>
-                </div>
-              </th>
-              <td>{{room.Limit_Guest}}</td>
-              <td>{{room.Price}}</td>
-              <td>
-                <div id="noRoom1">
-                  <b-form-select
-                    v-model="selected[index]"
-                    :options="options"
-                    size="sm"
-                    class="mb-3"
-                  ></b-form-select>
-                </div>
-              </td>
+            <tr v-for="(room, index) in RoomType" :key="index">
+                <th scope="row" id="1">
+                  <div style="width:90%; margin:auto">
+                    <p>{{ room.RoomType_Name }}</p>
+                    <p style="font-size:small;">
+                      Description:
+                      {{ room.Service }}
+                    </p>
+                  </div>
+                </th>
+                <td id="2">{{ room.Limit_Guest }}</td>
+                <td id="3">{{ room.Price }}</td>
+                <td id="4">
+                  <div id="noRoom1">
+                    <b-form-select
+                      v-model="selected[index]"
+                      :options="options"
+                      size="sm"
+                      class="mb-3"
+                    ></b-form-select>
+                  </div>
+                </td>
+                <td>
+                  <div v-if="index === 0">
+                    <b-button
+                      id="reserve"
+                      type="submit"
+                      @click="check()"
+                      >Reserve all</b-button
+                    >
+                  </div>
+                </td>
             </tr>
             <tr rowspan="8">
-                <!-- rowspan = for ตามจน.รูมไทป์ -->
-                <b-button
-                  id="reserve"
-                  type="submit"
-                  variant="primary"
-                  @click="check()"
-                  >Reserve</b-button
-                >
-              </tr>
+              <!-- rowspan = for ตามจน.รูมไทป์ -->
+            </tr>
             <!-- ตัวอย่างข้อมูล -->
-            
           </tbody>
         </table>
 
@@ -88,7 +92,7 @@ export default {
   data() {
     return {
       // from DB .RoomType_Name, .Price, .Limit_Guest, .Description, .Service, .SpecialService
-      RoomType:[],
+      RoomType: [],
       // check num room
       isZero: true,
       // num room each roomtype
@@ -96,13 +100,12 @@ export default {
 
       // option selete
       options: [
-        { value: 0, text: "0" },
         { value: 1, text: "1" },
         { value: 2, text: "2" },
         { value: 3, text: "3" },
         { value: 4, text: "4" },
       ],
-      bookdata:[]
+      bookdata: [],
       //ตามจน.รูมไทป์ ฟอร์ไป (รอดาต้า)
     };
   },
@@ -123,7 +126,7 @@ export default {
     fetchRoomType() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read")
-        .then(response => {
+        .then((response) => {
           this.RoomType = response.data.data;
           console.log(this.RoomType);
           console.log(response.data);
@@ -132,11 +135,9 @@ export default {
     // check input
     check() {
       if (this.checkNull()) {
-        this.makeToast('danger','Please select number of each room type.');
-
+        this.makeToast("danger", "Please select number of each room type.");
       } else {
-
-        this.setData(this.RoomType,this.selected);
+        this.setData(this.RoomType, this.selected);
         // push global
         // this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
         // this.$store.dispatch("AcNRoom", this.selected[index]);
@@ -145,20 +146,24 @@ export default {
         // alert(this.$store.getters.getUser);
 
         // didn't login  make toast plz
-        if(this.$store.getters.getUser == null){
+        if (this.$store.getters.getUser == null) {
           this.$router.push("/login");
         }
         // already login  make toast plz
-        else{
+        else {
           this.$router.push("/payment");
         }
-        // 
+        //
       }
     },
-    setData(Room,sel){
-      for(var i=0 ; i < sel.length ; i++){
-        if(sel[i]!=null){
-          this.bookdata.push({'type': Room[i].RoomType_Name , 'num_room' : sel[i] , 'price' : Room[i].Price});
+    setData(Room, sel) {
+      for (var i = 0; i < sel.length; i++) {
+        if (sel[i] != null) {
+          this.bookdata.push({
+            type: Room[i].RoomType_Name,
+            num_room: sel[i],
+            price: Room[i].Price,
+          });
         }
       }
       console.log(this.bookdata);
@@ -192,9 +197,14 @@ table td {
   font-size: 16px;
   padding: 10px 24px;
   transition-duration: 0.4s;
+  background-color: #b98672;
 }
 #reserve:hover {
-  background-color: darkblue;
+  background-color: #513f2a;
   color: white;
+}
+thead{
+  background-color:#513f2a;
+  color: aliceblue;
 }
 </style>
