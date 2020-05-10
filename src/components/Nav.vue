@@ -4,8 +4,12 @@
       class="navbar navbar-expand-lg fixed-top"
       id="mainNav"
     >
+    <!--                       bar before login                         -->
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <a  class="navbar-brand js-scroll-trigger"  href="/">Hakuna Hotel</a>
+        <!-- just show global state -->
+        <p>{{$store.getters.getUser}}</p>
+        <!-- ปุ่มอะไรอะ -->
         <button
           class="navbar-toggler"
           type="button"
@@ -17,25 +21,37 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+
+            <!-- slide to room -->
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#room">Room</a>
+              <a  class="nav-link js-scroll-trigger"  href="/#room">Room</a>
             </li>
+
+            <!-- slide to services -->
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#services"
+              <a  class="nav-link js-scroll-trigger"  href="/#services"
                 >Services</a
               >
             </li>
+
+            <!-- slide to contact -->
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/#contact">Contact</a>
+              <a  class="nav-link js-scroll-trigger"  href="/#contact">Contact</a>
             </li>
+
+            <!-- link to register form -->
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="register">Sign up</a>
+              <a  class="nav-link js-scroll-trigger"  href="/register">Sign up</a>
             </li>
+
+            <!-- link to login -->
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="login">Sign in</a>
+              <a  class="nav-link js-scroll-trigger"  href="/login">Sign in</a>
             </li>
+            
           </ul>
         </div>
       </div>
@@ -44,6 +60,15 @@
 </template>
 
 <style scoped>
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -62,3 +87,30 @@ a {
   background-color:#513f2a;
 }
 </style>
+
+<script>
+export default {
+   methods:{
+        room(){
+          this.$router.push('room')
+       },
+        home(){
+          this.$router.push('/')
+       },
+        service(){
+          this.$router.push('service')
+       },
+       contact(){
+          this.$router.push('contact')
+       },
+
+       regis(){
+          this.$router.push('register')
+       },
+       login(){
+          this.$router.push('login')
+       },
+       
+   }
+}
+</script>

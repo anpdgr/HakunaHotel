@@ -2,12 +2,18 @@
     
   <div class="chart-wrapper">
     <chart :options="chartOptionsBar"></chart>
+    <button @click="gogo()">click</button>
   </div>
 </template>
 
 
 <script>
 export default {
+  methods:{
+    gogo(){
+      this.$router.push('mhome')
+    }
+  },
   name: 'HelloWorld',
   data() {
       return{

@@ -5,7 +5,7 @@
       id="mainNav"
     >
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Hakuna Hotel</a>
+        <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
         <button
           class="navbar-toggler"
           type="button"
@@ -20,14 +20,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/bookstatus">Hotel management</a>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="booktus">Hotel management</button>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/shome">My account</a>
+              <button id="btn" class="nav-link js-scroll-trigger"  @click="account">My account</button>
             </li>
 
             <li class="nav-item">
-              <a v-on:click="check=0" class="nav-link js-scroll-trigger" href='/'>Sign out</a>
+              <button id="btn" v-on:click="check=0" class="nav-link js-scroll-trigger"  @click="home">Sign out</button>
             </li>
           </ul>
         </div>
@@ -37,6 +37,9 @@
 </template>
 
 <style scoped>
+#mainNav{
+  padding: 15px 16px;
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -51,4 +54,30 @@ li {
 a {
   color: #42b983;
 }
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 </style>
+
+<script>
+export default {
+   methods:{
+        booktus(){
+          this.$router.push('bookstatus')
+       },
+        home(){
+          this.$router.push('/')
+       },
+        account(){
+          this.$router.push('shome')
+       },
+       
+   }
+}
+</script>

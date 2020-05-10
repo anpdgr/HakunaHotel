@@ -1,37 +1,55 @@
 <template>
-  <div id="HelloWorld" class="hello">
+  <!-- Home page -->
+  <div id="Home" class="hello">
+    
     <div id="Test">
-      <div v-if="check === 0"><NavLogIn /></div>
-      <div v-else-if="check === 1"><NavLogOut /></div>
+      <!-- <div v-if="check === 0"><NavLogIn /></div>
+      <div v-else-if="check === 1"><NavLogOut /></div> -->
+
+
+      <!--                          Bar                              -->
+      <!-- before login -->
+      <div v-if="$store.getters.getUser == ';w;'"><NavLogIn /></div>
+      <!-- after  login -->
+      <div v-else-if="$store.getters.getUser != ';w;'"><NavLogOut /></div>
     </div>
 
+    <!-- use component slide -->
     <slide />
   
+    <!-- use component checkavi -->
     <section id="checkavi" style="padding:50px; margin:-350px 50px 50px ">
       <checkavi />
     </section>  
 
+    <!-- use component weltx -->
     <section id="weltx" style="padding:50px; margin:-800px auto auto auto; float:center ">
       <weltx />
     </section>  
 
-        <!-- check
-login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
-login1 -> book -> payment -->
+        <!--                  check
+        login0 -> no user -> regis -> login -> book -> payment
+        login0 -> login -> book(ที่เชคว่างไปแล้ว) -> payment
+        login1 -> book -> payment -->
   <br><br>
 
+    <!-- use component roomSec -->
     <section id="room" style="padding:50px; margin-top:300px">
       <roomSec />
     </section>
 
+    <!-- use component serviceSec -->
     <section id="services">
       <serviceSec />
     </section>
 
+    <!-- use component contactSec -->
     <section id="contact">
       <contactSec />
     </section>
 
+
+    <!--           Test button login each users         -->
     <!-- เอามาวางตรงนี้ จะเอามาลองง -->
     <a href='booking'> <button>Check available</button> </a>
     <br>
@@ -53,18 +71,19 @@ login1 -> book -> payment -->
 </template>
 
 <script>
-import NavLogIn from "../Nav.vue";
-import NavLogOut from "../NavLO.vue";
-import slide from "./SlidePic.vue";
-import weltx from "./Weltext.vue";
-import checkavi from "./CheckAvi.vue";
-import roomSec from "./RoomSection.vue";
-import serviceSec from "./Services.vue";
-import contactSec from "./ContactUs.vue";
+// import components
+import NavLogIn from "../Nav.vue";//+
+import NavLogOut from "../NavLO.vue";//+
+import slide from "./SlidePic.vue";//+
+import weltx from "./Weltext.vue";// ?
+import checkavi from "./CheckAvi.vue";//+
+import roomSec from "./RoomSection.vue";// ?
+import serviceSec from "./Services.vue";//+
+import contactSec from "./ContactUs.vue";//+
 
 
 export default {
-  name: "HelloWorld",
+  name: "Home",
   components: {
     NavLogIn,
     NavLogOut,
@@ -80,8 +99,11 @@ export default {
   },
   data() {
     return {
-      slide: 0,
+      // ???? same component name
+      // slide: 0,
+      // didn't use
       sliding: null,
+      // just action in button
       check: 0,
     };
   },

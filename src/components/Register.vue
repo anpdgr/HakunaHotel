@@ -136,9 +136,9 @@
         <br /><br />
         <!-- return to home page -->
         <div id="back">
-          <a href="login">I already have an account</a>
+          <button id="btn"  @click="login">I already have an account</button>
           <br />
-          <a href="/">Back to home</a>
+          <button id="btn"  @click="home">Back to home</button>
         </div>
       </b-card>
     </div>
@@ -181,6 +181,12 @@ export default {
     };
   },
   methods: {
+    login(){
+          this.$router.push('login')
+       },
+    home(){
+          this.$router.push('/')
+       },
     // default user easy click
     UseDev(){
       this.form = {
@@ -242,6 +248,7 @@ export default {
         .post("http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=add",formData)
         .then(response => {
           //set var to default
+          console.log(response);
           this.form = {
             email: "",
             username: "",
@@ -308,5 +315,15 @@ body {
   min-width: 100%;
   min-height: 100%;
   position: absolute;
+}
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: #2688D9;
+  
 }
 </style>

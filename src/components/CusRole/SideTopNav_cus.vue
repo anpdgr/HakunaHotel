@@ -4,19 +4,28 @@
     <!-- Side navigation -->
     <div class="sidenav">
       <div id="head">
-         <b-avatar variant="light" size="120px"></b-avatar>
-         <a style="font-size:20px; color: #818181;" href="/myprofile">username</a>
+         <b-avatar variant="light" size="120px"></b-avatar><br><br>
+         <button id="btn" style="font-size:20px; color: #818181;" @click="account">{{$store.getters.getUser}}</button>
       </div>
       <div id='menu' >
-        <a style="font-size:20px;" href="/cedit">Edit profile</a>
-        <a style="font-size:20px;" href="/mybook">Book history</a>
-        <a style="font-size:20px;" href="/">Sign out</a>
+        <button id="btn" style="font-size:18px; color:#343a40" @click="cedit">Edit profile</button><br><br>
+        <button id="btn" style="font-size:18px; color:#343a40" @click="mybook">Book history</button><br><br>
+        <button id="btn" style="font-size:18px; color:#343a40" @click="home">Sign out</button>
       </div>
     </div>
 </div>
 </template>
 
 <style scoped> 
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  
+}
 #menu{
   margin-left:70px ;
   text-align: left;
@@ -27,7 +36,8 @@
   align-items: center;
 }
 #head{
-  margin: 50px;
+  margin: 50px 50px 40px 50px;
+  padding: 20px;
 }
 
 .sidenav {
@@ -74,5 +84,27 @@ export default {
         NavLO
     }
   
+}
+</script>
+
+
+<script>
+export default {
+   methods:{
+        cedit(){
+          this.$router.push('cedit')
+       },
+        mybook(){
+          this.$router.push('mybook')
+       },
+        account(){
+          this.$router.push('myprofile')
+       },
+       home(){
+          this.$router.push('/')
+       },
+       
+       
+   }
 }
 </script>

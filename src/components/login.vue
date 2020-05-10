@@ -36,7 +36,7 @@
               <b-button v-on:click="check = 1" type="submit" variant="primary" 
                 >Sign in</b-button>
 
-              <b-button @click="TestUser" type="button" 
+              <b-button @click="TestUser" @click.alt="StaffUser" type="button" 
                 >devuser</b-button>
             
             </div>
@@ -44,9 +44,9 @@
         </div>
         <br /><br />
         <div id="back" style="text-align: right;">
-          <a href="register">I didn't have an account</a>
+          <button id="btn"  @click="regis">I didn't have an account</button>
           <br />
-          <a href="/">Back to home</a>
+          <button id="btn" @click="home">Back to home</button>
         </div>
       </b-card>
     </div>
@@ -57,7 +57,7 @@
 export default {
   data() {
     return {
-      c:false,
+      c:0,
       form: {
         username: "",
         password: "",
@@ -71,15 +71,25 @@ export default {
     this.fetchUsers();
   },
   methods: {
+    regis(){
+          this.$router.push('register')
+       },
+    home(){
+          this.$router.push('/')
+       },
     onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form))
       this.CheckUser();
-      if(!this.c)
+      if(this.c === 0)
         alert("username or password incorrect");
-      else{
-        alert("login");
+      else if(this.c === 1){
+        alert("User login");
         this.$router.push("/");
+      }
+      else if(this.c === 2){
+        alert("Staff login");
+        this.$router.push("/shome");
       }
     },
     fetchUsers() {
@@ -93,20 +103,34 @@ export default {
     },
     TestUser(){
       this.form = {
-        username: "testuser",
-        password: "password"
+        username: "noey_1",
+        password: "12345"
       }
-
-
+    },
+    StaffUser(){
+      this.form = {
+        username: "ST_0002",
+        password: "Sun0001"
+      }
     },
     CheckUser(){
-       this.users.forEach(this.ck);      
+       this.users.forEach(this.checkUP);      
     },
-    ck(value){
+    checkUP(value){
       if(value["User_ID"] === this.form.username)
       {
-        if(value["Password"] == this.form.password)
-          this.c = true;
+        if(value["Password"] == this.form.password){
+          this.c = 1;
+          this.$store.dispatch("AcUser",value["User_ID"]);
+        }
+          
+      }
+      else if(value["Staff_ID"] === this.form.username){
+        if(value["Password"] == this.form.password){
+          this.c = 2;
+          this.$store.dispatch("AcUser",value["Staff_ID"]);
+        }
+          
       }
       // console.log(JSON.stringify(value["User_ID"]));
     }
@@ -116,6 +140,17 @@ export default {
 </script>
 
 <style scoped>
+#btn {
+  border: none;
+  background-color:transparent;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: #2688D9;
+  
+}
+
 #back {
   text-align: right;
 }
