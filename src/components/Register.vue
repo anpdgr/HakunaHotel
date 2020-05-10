@@ -123,7 +123,7 @@
             <div style="float: left;">
               
               <!-- sign up button -->
-              <b-button formtarget="_blank" @click.alt="UseDev" type="submit" variant="primary"
+              <b-button formtarget="_blank" @click.alt="UseDev" type="submit"  style="background-color:#6096a8"
                 >Sign up</b-button
               >
 
@@ -136,9 +136,9 @@
         <br /><br />
         <!-- return to home page -->
         <div id="back">
-          <button id="btn"  @click="login">I already have an account</button>
+          <button id="btn"  style="color:#809aa1" @click="login">I already have an account</button>
           <br />
-          <button id="btn"  @click="home">Back to home</button>
+          <button id="btn"  style="color:#809aa1" @click="home">Back to home</button>
         </div>
       </b-card>
     </div>
@@ -343,7 +343,7 @@ export default {
   text-align: left;
 }
 body {
-  background-image: url("../assets/hotel.home.jpg");
+  background-image: url("../assets/1023.jpg");
   background-size: cover;
   background-position: center center;
   min-width: 100%;

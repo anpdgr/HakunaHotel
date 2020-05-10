@@ -28,17 +28,21 @@
 
             <!-- slide to room  !!Can't use!!-->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger" @click="room">Room</button>
+              <a class="nav-link js-scroll-trigger" href="#room">Room</a>
+              <!-- <button id="btn" class="nav-link js-scroll-trigger" @click="room">Room</button> -->
             </li>
+
 
             <!-- slide to services  !!Can't use!!-->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger" @click="sv">Services</button>
+              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <!-- <button id="btn" class="nav-link js-scroll-trigger" @click="sv">Services</button> -->
             </li>
 
             <!-- slide to contact   !!Can't use!!-->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger" @click="ct">Contact</button>
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <!-- <button id="btn" class="nav-link js-scroll-trigger" @click="ct">Contact</button> -->
             </li>
 
             <!-- link to register form -->
@@ -66,6 +70,7 @@
   cursor: pointer;
   display: inline-block;
   color: white;
+  margin-top: 8px;
 }
 h3 {
   margin: 40px 0 0;

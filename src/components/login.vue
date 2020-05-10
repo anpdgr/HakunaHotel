@@ -2,7 +2,7 @@
 <body id="login">
   <div id="box">
     <!-- Box login -->
-    <b-card style="max-width:30rem; padding:30px; float: middle;">
+    <b-card style="max-width:30rem; padding:30px; float: middle; margin-top:100px">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Sign in</h3>
@@ -29,9 +29,9 @@
           </b-form-group>
 
           <div style="float: left;">
-
+            
             <!-- sign in button -->
-            <b-button type="submit" variant="primary">Sign in</b-button>
+            <b-button type="submit"  style="background-color:#6096a8; margin-right:10px">Sign in</b-button>
 
             <!-- testuser button -->
             <b-button @click="TestUser" @click.alt="StaffUser" type="button">devuser</b-button>
@@ -41,13 +41,14 @@
       <br />
       <br />
       <div id="back" style="text-align: right;">
+
        
         <!-- link to register page -->
-        <button id="btn" @click="regis">I didn't have an account</button>
+        <button id="btn" @click="regis" style="color:#809aa1">I didn't have an account</button>
         <br />
       
        <!-- link to home -->
-        <button id="btn" @click="home">Back to home</button>
+        <button id="btn" @click="home" style="color:#809aa1">Back to home</button>
       </div>
     </b-card>
   </div>
@@ -204,7 +205,7 @@ export default {
   padding-top: 100px;
 }
 body {
-  background-image: url("../assets/hotel.home.jpg");
+  background-image: url("../assets/1023.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

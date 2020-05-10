@@ -11,22 +11,22 @@
                     <b-tab title="About you" active>
                         <div style="margin:70px 30px">
                           <!-- show profile -->
-                          <span style="float:left;">First name</span><br><br> 
-                          <span style="float:left;">Last name</span><br><br>
-                          <span style="float:left;">Name title</span><br><br>
-                          <span style="float:left;">Birthday</span><br><br>
-                          <span style="float:left;">Email address</span><br><br>
-                          <span style="float:left;">Phone number</span><br><br>
-                          <span style="float:left;">Country</span><br><br>
+                          <span style="float:left;"><b>First name</b></span><br><br> 
+                          <span style="float:left;"><b>Last name</b></span><br><br>
+                          <span style="float:left;"><b>Name title</b></span><br><br>
+                          <span style="float:left;"><b>Birthday</b></span><br><br>
+                          <span style="float:left;"><b>Email address</b></span><br><br>
+                          <span style="float:left;"><b>Phone number</b></span><br><br>
+                          <span style="float:left;"><b>Country</b></span><br><br>
                         </div>
                     </b-tab>
                     <!-- tab bar about job  -->
                     <b-tab title="About job">
                         <div style="margin:70px 30px">
                           <!-- show detail about job  -->
-                          <span style="float:left;">Position</span>เมเนเจ้องัย จะคัยหล่ะ<br><br>
-                          <span style="float:left;">Salary</span><br><br>
-                          <span style="float:left;">Start date</span><br><br>
+                          <span style="float:left;"><b>Position</b></span>เมเนเจ้องัย จะคัยหล่ะ<br><br>
+                          <span style="float:left;"><b>Salary</b></span><br><br>
+                          <span style="float:left;"><b>Start date</b></span><br><br>
                         </div>
                     </b-tab>               
               </b-tabs>              

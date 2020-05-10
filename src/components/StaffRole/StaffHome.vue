@@ -9,20 +9,20 @@
               <b-tabs content-class="mt-3" fill>
                     <b-tab title="About you" active>
                         <div style="margin:70px 30px">
-                          <span style="float:left;">First name : {{staff.Staff_FirstName}}</span><br><br> 
-                          <span style="float:left;">Last Name : {{staff.Staff_LastName}}</span><br><br>
-                          <span style="float:left;">Name title : {{staff.Name_Title}}</span><br><br>
-                          <span style="float:left;">Birthday : {{staff.Date_Of_Birth}}</span><br><br>
-                          <span style="float:left;">Address : {{staff.Address}}</span><br><br>
-                          <span style="float:left;">Phone number : {{staff.Tel_No}}</span><br><br>
+                          <span style="float:left;"><b>First name :</b> {{staff.Staff_FirstName}}</span><br><br> 
+                          <span style="float:left;"><b>Last Name :</b> {{staff.Staff_LastName}}</span><br><br>
+                          <span style="float:left;"><b>Name title :</b> {{staff.Name_Title}}</span><br><br>
+                          <span style="float:left;"><b>Birthday :</b> {{staff.Date_Of_Birth}}</span><br><br>
+                          <span style="float:left;"><b>Address :</b> {{staff.Address}}</span><br><br>
+                          <span style="float:left;"><b>Phone number :</b> {{staff.Tel_No}}</span><br><br>
                           <!-- <span style="float:left;">Country</span><br><br> -->
                         </div>
                     </b-tab>
                     <b-tab title="About job">
                         <div style="margin:70px 30px">
-                          <span style="float:left;">Position : {{staff.Position}}</span><br><br>
-                          <span style="float:left;">Salary : {{staff.Salary}}</span><br><br>
-                          <span style="float:left;">Start date : {{staff.Start_Date}}</span><br><br>
+                          <span style="float:left;"><b>Position :</b> {{staff.Position}}</span><br><br>
+                          <span style="float:left;"><b>Salary :</b> {{staff.Salary}}</span><br><br>
+                          <span style="float:left;"><b>Start date :</b> {{staff.Start_Date}}</span><br><br>
                         </div>
                     </b-tab>               
               </b-tabs>              
