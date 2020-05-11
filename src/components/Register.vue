@@ -270,7 +270,7 @@ export default {
           this.fetchuser = response.data.data;
           // this.user = this.user[0];
           this.fetchlenght = this.fetchuser.length
-          console.log(this.fetchlenght);
+          // console.log(this.fetchlenght);
           // console.log(response.data);
         });
     },
@@ -281,7 +281,7 @@ export default {
         .post("http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=add",formData)
         .then(response => {
           //set var to default
-          console.log(response);
+          // console.log(response);
           this.form = {
             email: "",
             username: "",

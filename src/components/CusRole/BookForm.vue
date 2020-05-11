@@ -128,8 +128,8 @@ export default {
         .get("http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read")
         .then((response) => {
           this.RoomType = response.data.data;
-          console.log(this.RoomType);
-          console.log(response.data);
+          // console.log(this.RoomType);
+          // console.log(response.data);
         });
     },
     // check input
@@ -166,7 +166,7 @@ export default {
           });
         }
       }
-      console.log(this.bookdata);
+      // console.log(this.bookdata);
     },
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {

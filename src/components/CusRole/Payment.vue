@@ -26,7 +26,7 @@
               <br />
               Number of guests: {{ this.$store.getters.getBookNumG }}
               <span class="tab"
-                >Billing name: {{ this.$store.getters.getUser }}</span
+                >Billing name: {{ UserName.Customer_FirstName }} {{ UserName.Customer_LastName }}</span
               >
               <br />
             </p>
@@ -39,7 +39,7 @@
               <h6>
                 {{ room.type }}
                 <div style="float:right;">
-                  ฿ {{ room.price * room.num_room }}
+                  ฿ {{ room.price * room.num_room *DiffDay}}
                 </div>
               </h6>
               <p>{{ room.num_room }} rooms</p>
@@ -50,7 +50,9 @@
           <div>
             <h5>Discount</h5>
             <!-- ตัวอย่างข้อมูล -->
-            <h6>Code promotion: {{ code }}</h6>
+            <h6>Code promotion: {{ code }}
+              <div div style="float:right;">฿ {{ Cdis }}</div>
+            </h6>
             <h6>
               Season discount : {{ season }}
               <div style="float:right;">฿ {{ Sdis }}</div>
@@ -61,11 +63,11 @@
             <!-- ตัวอย่างข้อมูล -->
             <h5>
               Subtotal
-              <div style="float:right;">฿...</div>
+              <div style="float:right;">฿ {{Tdis}}</div>
             </h5>
             <h5>
-              Tax
-              <div style="float:right;">฿...</div>
+              Tax 7%
+              <div style="float:right;">฿ {{sum*0.07}}</div>
             </h5>
           </div>
           <hr />
@@ -76,21 +78,22 @@
             <h4>
               <b
                 >Total
-                <div style="float:right;">฿{{ sum }}</div>
+                <div style="float:right;">฿{{ Tprice }}</div>
               </b>
             </h4>
-            <input v-model="code" type="text" placeholder="Code promotion" />
+            <input v-model="inputcode" type="text" placeholder="Code promotion" />
             <b-button
               variant="light"
               type="button"
               size="sm"
               style="margin-left:10px"
-              @click="checkCode"
+              @click="checkCode" 
               >Check code</b-button
             >
           </div>
         </div>
       </b-card>
+      <!-- <div>{{Allcode}}</div> -->
       <div>
         <h5>Payment method:</h5>
 
@@ -130,32 +133,63 @@
 
 <script>
 import NavLO from "../NavLO.vue";
+import moment from "moment";
 export default {
   components: {
     NavLO,
   },
   data() {
     return {
+      // about money
       sum: 0,
       Sdis: 0,
       Cdis: 0,
+      Tdis:0,
+      Tprice:0,
+
+      // about code
+      Allcode:null,
       code: "",
+      inputcode: "",
+
+      // confirm
       value: null,
+
+      // radio
       options: [
         { text: "Cash (hotel counter)", value: "counter" },
         { text: "Online banking", value: "online" },
         { text: "Credit card", value: "card" },
       ],
+
+      // DB
       rooms: [],
       season: null,
       Bill: {
         S_Name: "",
       },
+      UserName:{
+        userid:""
+      },
+
+      // about time 
+      t1:null,
+      t2:null,
+      DiffDay:null,
+
     };
   },
   mounted() {
     this.rooms = this.$store.getters.getBookType;
+    this.UserName.userid = this.$store.getters.getUser;
+    this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=user",this.UserName,"User");
+    this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=codepromo",this.UserName,"Code");
     this.fetchSeason();
+    this.t1 = new Date(this.$store.getters.getBookCkin).getTime();
+    this.t2 = new Date(this.$store.getters.getBookCkout).getTime();
+    this.DiffDay = this.CalDiffTime();
+    // console.log(moment(Date()).format('YYYY-MM-DD hh:mm:ss') < "2020-05-12 12:00:00");
+    // this.$store.getters.getBookCkin
   },
   computed: {
     state() {
@@ -163,6 +197,16 @@ export default {
     },
   },
   methods: {
+
+    // Different time
+    CalDiffTime(){
+      var milsec = this.t2 - this.t1;
+      var DiffDay =  Math.floor(milsec/1000/60/60/24);
+      return DiffDay;
+      // console.log(DiffDay);
+    },
+
+    // Sum Total price before codepromo
     Sum(room, type) {
       this.sum = 0;
       this.Sdis = 0;
@@ -179,27 +223,35 @@ export default {
         }
         this.sum += room[i].price * room[i].num_room;
       }
+      this.sum *= this.DiffDay;
+      this.Tprice = this.sum;
+      this.Sdis *= this.DiffDay;
+      this.Tdis = this.Sdis;
+      this.Tprice -= (this.Sdis + this.sum*0.07);
+      // this.PriceBfCode = this.Tprice;
     },
 
+    // Fetch season DB
     fetchSeason() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=read")
         .then((response) => {
           // this.season = response.data.Name;
-          console.log(response.data.Data);
+          // console.log(response.data.Data);
           this.CheckDateSeason(response.data.Data);
           this.GetDB(
             "http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=seasondis",
-            this.Bill
+            this.Bill,"Sum"
           );
         });
     },
 
+    // Check discout from season
     CheckDateSeason(season) {
       for (var i = 0; i < season.length; i++) {
         if (
-          this.$store.getters.getBookCkin > season[i].Start_Date &&
-          this.$store.getters.getBookCkin < season[i].End_Date
+          moment(Date()).format('YYYY-MM-DD') > season[i].Start_Date &&
+          moment(Date()).format('YYYY-MM-DD') < season[i].End_Date
         ) {
           this.season = season[i].Season_Name;
           this.Bill.S_Name = this.season;
@@ -207,11 +259,20 @@ export default {
       }
     },
 
-    GetDB(URL, Data) {
+    // All link to DB
+    GetDB(URL, Data, code) {
       var formData = this.toFormData(Data);
       this.axios.post(URL, formData).then((response) => {
-        console.log(response.data.Data);
-        this.Sum(this.rooms, response.data.Data);
+        // console.log(response.data.Data);
+        if(code == 'Sum'){
+          this.Sum(this.rooms, response.data.Data);
+        }
+        else if(code == "Code"){
+          this.Allcode = response.data.Data;
+        }
+        else if(code == "User"){
+          this.UserName = response.data.Data[0];
+        }
       });
     },
     toFormData(obj) {
@@ -222,20 +283,40 @@ export default {
       return fd;
     },
 
+    // check codepromo from input
     checkCode() {
-      alert("try");
+      for(var i=0 ; i < this.Allcode.length ; i++){
+        if(this.inputcode == this.Allcode[i].Code_ID && this.Allcode[i].Limit > 0){
+          // console.log(this.Allcode[i].StartDate);
+          if(moment(Date()).format('YYYY-MM-DD hh:mm:ss') > this.Allcode[i].StartDate && moment(Date()).format('YYYY-MM-DD hh:mm:ss') < this.Allcode[i].ExpireDate){
+            this.Cdis = this.sum * this.Allcode[i].Discount / 100;
+            this.code = this.inputcode;
+          }
+        }
+      }
+      this.Tdis = this.Cdis + this.Sdis;
+      // this.Tprice = this.PriceBfCode;
+      this.Tprice = this.sum - this.Cdis - this.Sdis - this.sum*0.07;
     },
+
+    // cancel payment
     cancelButton() {
-      this.$router.push("booking");
+      this.$store.dispatch("AcBook", false);
+      this.$router.push("/booking");
     },
+
+    // confirm payment
     check() {
       if (this.value === null) {
         this.makeToast("danger", "Please select one payment method.");
       } else {
+        this.$store.dispatch("AcBook", false);
         this.makeToast("success", "Success");
         setTimeout(() => this.$router.push({ path: "/" }), 1500);
       }
     },
+
+    // make toast 
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {
         title: "Notice!",
