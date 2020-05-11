@@ -124,6 +124,7 @@
           dob: null,
           address: null,
         },
+        //update data
         nowstaff:{
            staffid : '' ,
            title : '',
@@ -182,7 +183,7 @@
           };
       },
       Updateprofile() {
-        var formData = this.toFormData(this.CurrentUser);
+        var formData = this.toFormData(this.nowstaff);
         this.axios
         .post(
           "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=update",
