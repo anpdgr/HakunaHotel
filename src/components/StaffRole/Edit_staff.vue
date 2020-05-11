@@ -148,10 +148,10 @@
         this.makeToast("success", "Update complete");
         // alert("Staff login");
         setTimeout(() => {
-          this.$router.push("myprofile");
+          this.$router.push("shome");
         }, 1500);
       //alert("update success")
-        this.$router.push('shome')
+        // this.$router.push('shome')
       },
       onReset(evt) {
         evt.preventDefault()

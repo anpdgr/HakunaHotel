@@ -97,7 +97,8 @@ export default {
       isZero: true,
       // num room each roomtype
       selected: [],
-
+      isFail: true,
+      count:0,
       // option selete
       options: [
         { value: 1, text: "1" },
@@ -122,6 +123,17 @@ export default {
       }
       return this.isZero;
     },
+    //check num guest and num room
+    checkRoom(){
+      this.count=0;
+      for (let i = 0; i < this.selected.length; i++) {
+        this.count += this.selected[i];
+        }
+        if (this.count<=this.$store.getters.getBookNumG&&this.count>=(this.$store.getters.getBookNumG%4)+(Math.floor(this.$store.getters.getBookNumG/4))) {
+          this.isFail = false;
+        }
+      return this.isFail;
+    },
     // fetch data from DB
     fetchRoomType() {
       this.axios
@@ -136,7 +148,11 @@ export default {
     check() {
       if (this.checkNull()) {
         this.makeToast("danger", "Please select number of each room type.");
-      } else {
+      }
+      if(this.checkRoom()){
+        this.makeToast("danger", "The Number of rooms are not match with number of guest.");
+      }
+       else {
         this.setData(this.RoomType, this.selected);
         // push global
         // this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
@@ -147,7 +163,10 @@ export default {
 
         // didn't login  make toast plz
         if (this.$store.getters.getUser == null) {
+          this.makeToast("danger","You didn't log in. Please login before payment");
+          setTimeout(() => {
           this.$router.push("/login");
+        }, 2500);
         }
         // already login  make toast plz
         else {
