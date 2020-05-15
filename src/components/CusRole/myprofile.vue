@@ -95,8 +95,8 @@ export default {
         .post(
           "http://hakuna-hotel.kmutt.me/phpapi/myprofileuser.php?action=read",formData)
         .then(response => {
-          this.user = response.data.data;
-          this.user = this.user[0];
+          this.user = response.data.data[0];
+          //this.user = this.user[0];
           // console.log(this.user);
           // console.log(response.data);
         });

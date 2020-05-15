@@ -77,7 +77,7 @@
 
             #edit sql command here
             $sql = $con->query(" UPDATE CodePromo SET Code_ID = '$codeid', Code_Name='$codename',                       # +
-                                 StartDate='$SDate',ExpireDate='$ExDate',Discount='$discount',Limit = '$limit-1'        # +
+                                 StartDate='$SDate',ExpireDate='$ExDate',Discount='$discount',Limit = '$limit'        # +
                                  WHERE Code_ID = '$codeid' ");                                                          # +
             
             # return status likes console log

@@ -186,8 +186,7 @@
         var formData = this.toFormData(this.nowstaff);
         this.axios
         .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=update",
-          formData
+          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=update",formData
         )
         .then(response => {
           //set var to default

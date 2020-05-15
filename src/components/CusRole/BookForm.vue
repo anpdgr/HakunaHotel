@@ -101,6 +101,7 @@ export default {
       count:0,
       // option selete
       options: [
+        { value: 0, text: "0" },
         { value: 1, text: "1" },
         { value: 2, text: "2" },
         { value: 3, text: "3" },

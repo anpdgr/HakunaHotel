@@ -11,22 +11,22 @@
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
-                    >Booking ID: {{}}
+                    >Booking ID: {{bookDetail.bookid[0]}}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
                 <b-collapse id="collapse-2">
                   <b-card border-variant="info">
-                    Check-in date:
+                    Check-in date: {{bookDetail.checkIn[0]}}
                     <br />
-                    Check-out date: <br />
-                    Number of guests:
+                    Check-out date: {{bookDetail.checkOut[0]}}<br />
+                    Number of guests: {{bookDetail.numguest[0]}}
                     <hr />
-                    Room type 1: 2 rooms
+                    Room type {{rooms.type[0]}}: {{rooms.num_room[0]}}
                     <hr />
-                    Payment ID:
+                    Payment ID: {{payment.no[0]}}
                     <br />
-                    Total price:
+                    Total price: {{payment.total[0]}}
                     <div id="onbook">
                       <div>
                         <b-button
@@ -193,20 +193,34 @@ export default {
       comment:'',
       bookDetail:{
         bookid:'',
-        checkin:'',
-        checkout:'',
+        userid:'',
+        checkIn:'',
+        checkOut:'',
+        date:'',
         numguest:'',
-        room:''
+        status:''
       },
+      room:[],
       payment:{
-        payid:'',
-        total:''
+        no:'',
+        method:'',
+        bookid:'',
+        codeid:'',
+        total:'',
+        date:''
       }
     };
   },
   components: {
     Cusnav,
     NavLO,
+  },
+  mounted() {
+    this.room = this.$store.getters.getBookType;
+    this.bookDetail.userid = this.$store.getters.getUser;
+    this.payment.bookid = this.bookDetail.bookid;
+    this.fetchBookDetail();
+    this.fetchPayment();
   },
   methods: {
     showModal() {
@@ -238,6 +252,37 @@ export default {
         solid: true,
         toaster: "b-toaster-bottom-center",
       });
+    },
+    fetchBookDetail(){
+      var formData = this.toFormData(this.bookDetail);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/Booking.php?action=read",formData)
+        .then(response => {
+          this.bookDetail = response.data.data;
+          // console.log(this.user);
+          // console.log(response.data);
+        });
+    },
+    fetchPayment(){
+      var formData = this.toFormData(this.payment);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/Payment.php?action=read",formData)
+        .then(response => {
+          this.payment = response.data.data;
+          // console.log(this.user);
+          // console.log(response.data);
+        }
+        );
+    },
+    // convert to formdata
+    toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
     },
   },
 };

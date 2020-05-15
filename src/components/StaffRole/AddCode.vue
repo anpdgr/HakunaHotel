@@ -29,7 +29,7 @@
             <b-form-input
               id="id"
               required
-              v-model="cID"
+              v-model="code.codeid"
               placeholder="Enter Code ID"
               style="margin-left:10px; margin-right:50px; width: 15rem;"
             ></b-form-input>
@@ -38,7 +38,7 @@
           <b-form-group class="mb-0" label="Code name:" label-for="name">
             <b-form-input
               id="name"
-              v-model="cName"
+              v-model="code.codename"
               placeholder="Enter Code name"
               style="width: 15rem;"
             ></b-form-input>
@@ -50,7 +50,7 @@
           <b-form-group class="mb-0" label="Discount:" label-for="discount">
             <b-form-input
               id="discount"
-              v-model="cDiscount"
+              v-model="code.discount"
               placeholder="Enter discount in THB"
               style="margin-left:7px; margin-right:100px; width: 15rem;"
             ></b-form-input>
@@ -59,7 +59,7 @@
           <b-form-group class="mb-0" label="Limit:" label-for="limit">
             <b-form-input
               id="limit"
-              v-model="cLimit"
+              v-model="code.limit"
               placeholder="Enter limit used"
               style="width: 15rem;"
             ></b-form-input>
@@ -71,7 +71,7 @@
           <b-form-group class="mb-0" label="Start date:" label-for="StartDate">
             <b-form-datepicker
               id="StartDate"
-              v-model="cStartD"
+              v-model="code.SDate"
               placeholder="Select start date"
               style="margin-right:43px; width: 15rem;"
             ></b-form-datepicker>
@@ -84,14 +84,14 @@
           >
             <b-form-datepicker
               id="ExpiredDate"
-              v-model="cExpriedD"
+              v-model="code.ExDate"
               placeholder="Select expired date"
               style="width: 15rem;"
             ></b-form-datepicker>
           </b-form-group>
         </b-form>
         <br />
-        <!-- ปุ่ม submit -->
+        <!-- ปุ่ม submit ::: @click=chechAdd() เนยเปลี่ยนเป็น @submit="onSubmit"-->
         <b-button id="button" type="submit" variant="dark" @click="checkAdd()"
           >Add</b-button
         >
@@ -183,12 +183,14 @@ export default {
         },
         color: ["#127ac2"],
       },
-      cID: null,
-      cName: null,
-      cDiscount: null,
-      cLimit: null,
-      cStartD: null,
-      cExpriedD: null,
+      code:{
+      codeid: null,
+      codename: null,
+      discount: null,
+      limit: null,
+      SDate: null,
+      ExDate: null
+      },
       // post code promotion ที่มีใน db 
       items: [
         {
@@ -247,15 +249,16 @@ export default {
     },
     checkAdd() {
       if (
-        (this.cID === null) |
-        (this.cName === null) |
-        (this.cDiscount === null) |
-        (this.cLimit === null) |
-        (this.cStartD === null) |
-        (this.cExpriedD === null)
+        (this.code.codeid === null) |
+        (this.code.codename === null) |
+        (this.code.discount === null) |
+        (this.code.limit === null) |
+        (this.code.SDate === null) |
+        (this.code.ExDate === null)
       ) {
         this.makeToast("danger", "You have not done all the fields yet.");
       } else {
+        this.AddCode();
         this.makeToast("success", "Already added code");
       }
     },
@@ -266,6 +269,38 @@ export default {
         solid: true,
         toaster: "b-toaster-bottom-center",
       });
+    },
+    AddCode(){
+      var formData = this.toFormData(this.code);
+      this.axios
+      .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=add",formData
+        )
+        .then(response => {
+          //set var to default
+          console.log(response);
+          this.code = {
+          codeid: null,
+          codename: null,
+          discount: null,
+          limit: null,
+          SDate: null,
+          ExDate: null
+          };
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
+        });
+      },
+      // convert to formdata
+      toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
     },
     showModalcode() {
       this.$refs["my-modal-code"].show();

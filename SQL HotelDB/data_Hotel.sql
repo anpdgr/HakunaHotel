@@ -1,157 +1,40 @@
 /********************************* ROOMTYPE DATA ****************************************************/
 
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('DELUXE URBAN TWIN BED',4494,4,
-'Complete with sweeping cityscape views, enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style.
-Service:
--Wifi
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Gym
--Spa
--Sauna
--Baby cots
--Free Parking
--Free outdoor parking');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('DELUXE URBAN KING BED',4494,4,
-'Complete with sweeping cityscape views enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style.
-Service:
--Wifi
--Tourist Information / Ticket sale
--Laundry service
--Gym
--Air conditioning
--Spa
--Sauna
--Baby cots
--Free Parking
--Free outdoor bus parking');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('DELUXE EXECUTIVE TWIN BED',4957,4,
-'Sitting over ten stories, all Deluxe Executive Twin Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy. Upscale room design with a perfect amount of space is trivial features compared to the handsome furnishings and fixtures adorning this charming space.
-Service:
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Babysitter
--Gym
--Spa
--Sauna
--Access for disabled people
--Baby cots
--Wifi');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('DELUXE EXECUTIVE KING BED',4957,4,
-'Sitting over ten stories, all Deluxe Executive King Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy. Upscale room design with a perfect amount of space is trivial features compared to the handsome furnishings and fixtures adorning this charming space.
-Service:
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Babysitter
--Gym
--Spa
--Sauna
--Access for disabled people
--Jaccuzzi
--Wifi');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('PREMIER LUX TWIN BED',7472,4,
-'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux Twin BedRoom are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories.
-- Complimentary Wi-Fi
-- Personalized check - in and check – out
-- Concierge service
-- Open Daily 07:00 hrs. – 21:00 hrs.
-- Breakfast at The living from 07:00 hrs. –11:00 hrs.
-- Afternoon tea from 14:00 hrs. – 16:00 hrs.
-- Happy hours from 17.30 hrs. – 19:30 hrs.
-- All day refreshments: coffee, tea, soft drinks, cookies and snacks
-- Two hours per stay complimentary usage of The Living Board Room (Upon availability)
-- Complimentary late check out until 16:00 hrs. (Upon availability)
-- Complimentary pressing service 2 items per day (Non - accumulative)
-- Complimentary local call (Mobile phone excluded)
-Service:
--Wifi
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Gym
--Spa
--Sauna
--Baby cots
--Free Parking
--Bath');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('PREMIER LUX KING BED',7472,4,
-'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux King Bed. Room are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories.
-- Complimentary Wi-Fi
-- Personalized check - in and check – out
-- Concierge service
-- Open Daily 07:00 hrs. – 21:00 hrs.
-- Breakfast at The living from 07:00 hrs. –11:00 hrs.
-- Afternoon tea from 14:00 hrs. – 16:00 hrs.
-- Happy hours from 17.30 hrs. – 19:30 hrs.
-- All day refreshments: coffee, tea, soft drinks, cookies and snacks
-- Two hours per stay complimentary usage of The Living Board Room (Upon availability)
-- Complimentary late check out until 16:00 hrs. (Upon availability)
-- Complimentary pressing service 2 items per day (Non - accumulative)
-- Complimentary local call (Mobile phone excluded)
-Service:
--Wifi
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Gym
--Spa
--Safety box
--Sauna
--Babysitter
--Bath');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('OCEAN JUNIOR SUITE',8765,4,
-'Generous spaces, and equally generous views of the sea adorn these opulently furnished suites. Picture perfect rooms, outfitted to inspire all those who enter, the Ocean Junior Suite will have guests wishing they never had to leave. Beautifully devised and impeccably designed, every inch is a testament to refinement in the art of hospitality. Pristine bathrooms of marble with furnishings that will have you melting into an abyss of plush euphoria are just inklings of the grandeur this suites has to offer.
-- Complimentary Wi-Fi
-- Personalized check - in and check – out
-- Concierge service
-- Open Daily 07:00 hrs. – 21:00 hrs.
-- Breakfast at The living from 07:00 hrs. –11:00 hrs.
-- Afternoon tea from 14:00 hrs. – 16:00 hrs.
-- Happy hours from 17.30 hrs. – 19:30 hrs.
-- All day refreshments: coffee, tea, soft drinks, cookies and snacks
-- Two hours per stay complimentary usage of The Living Board Room (Upon availability)
-- Complimentary late check out until 16:00 hrs. (Upon availability)
-- Complimentary pressing service 2 items per day (Non - accumulative)
-- Complimentary local call (Mobile phone excluded)
-Service:
--Wifi
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Gym
--Spa
--Sauna
--Baby cots
--Free Parking
--Bath');
-INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`) VALUES ('MARINA SUITE',15806,4,
-'How can you describe a sight which takes your breath away...Masterfully conceived, this stately and palatial room is the pinnacle of luxury and class. Crowning the highest floor of Mytt Beach, this supreme suite in the sky offers commanding and unmatched views of the bay and all of Pattaya and beyond. Everything that defines 5 star accommodation can be found smartly fitted from wall to wall, floor to ceiling in this embodiment of perfection. The Marina suite sits upon the precipice of elegance and opulence for all of Pattaya to gaze at from below. Inside find seating and beds fit for kings, ample amenities and space to entertain, and marble bathrooms fixed with the finest fixtures you can find outside of a palace. This suite is a reflection of the ambition in class and grace Mytt Beach stands for.
-- Complimentary Wi-Fi
-- Personalized check - in and check – out
-- Concierge service
-- Open Daily 07:00 hrs. – 21:00 hrs.
-- Breakfast at The living from 07:00 hrs. –11:00 hrs.
-- Afternoon tea from 14:00 hrs. – 16:00 hrs.
-- Happy hours from 17.30 hrs. – 19:30 hrs.
-- All day refreshments: coffee, tea, soft drinks, cookies and snacks
-- Two hours per stay complimentary usage of The Living Board Room (Upon availability)
-- Complimentary late check out until 16:00 hrs. (Upon availability)
-- Complimentary pressing service 2 items per day (Non - accumulative)
-- Complimentary local call (Mobile phone excluded)
-Service:
--Wifi
--Tourist Information / Ticket sale
--Laundry / Dry Cleaner
--Air conditioning
--Gym
--Spa
--Sauna
--Access for disabled people
--Baby cots
--Bath');
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`) VALUES ('DELUXE URBAN TWIN BED',4494,4,
+'Complete with sweeping cityscape views, enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`) VALUES ('DELUXE URBAN KING BED',4494,4,
+'Complete with sweeping cityscape views enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`) VALUES ('DELUXE EXECUTIVE TWIN BED',4957,4,
+'All Deluxe Executive Twin Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`) VALUES ('DELUXE EXECUTIVE KING BED',4957,4,
+'All Deluxe Executive King Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy. Upscale room design with a perfect amount of space is trivial features compared to the handsome furnishings and fixtures adorning this charming space'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`, `SpecialService`) VALUES ('PREMIER LUX TWIN BED',7472,4,
+'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux Twin BedRoom are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories.'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |'
+,'> Concierge service <, >Breakfast<, >Afternoon tea<, >All day refreshments: coffee, tea, soft drinks, cookies and snacks<');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`, `SpecialService`) VALUES ('PREMIER LUX KING BED',7472,4,
+'Boasting bathtubs of marble and balconies with remarkable views the Premier Lux King Bed. Room are beaming with glitz and glamour. Overlooking tantalizing sea views hundreds of feet into the sky, each room is embellished with playful floorplans and artistic decor. Escape into a world of plush sophistication and modern design, readily equipped to provide irreplaceable and everlasting memories.'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |'
+,'> Concierge service <, >Breakfast<, >Afternoon tea<, >All day refreshments: coffee, tea, soft drinks, cookies and snacks<');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`, `SpecialService`) VALUES ('OCEAN JUNIOR SUITE',8765,4,
+'Generous spaces, and equally generous views of the sea adorn these opulently furnished suites. Picture perfect rooms, outfitted to inspire all those who enter, the Ocean Junior Suite will have guests wishing they never had to leave. Beautifully devised and impeccably designed, every inch is a testament to refinement in the art of hospitality.'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |'
+,'> Concierge service <, >Breakfast<, >Afternoon tea<, >All day refreshments: coffee, tea, soft drinks, cookies and snacks<');
+
+INSERT INTO `RoomType`(`RoomType_Name`, `Price`, `Limit_Guest`, `Description`, `Service`, `SpecialService`) VALUES ('MARINA SUITE',15806,4,
+'How can you describe a sight which takes your breath away...Masterfully conceived, this stately and palatial room is the pinnacle of luxury and class. Crowning the highest floor of Mytt Beach, this supreme suite in the sky offers commanding and unmatched views of the bay and all of Pattaya and beyond. Everything that defines 5 star accommodation. This suite is a reflection of the ambition in class and grace Mytt Beach stands for.'
+,'| Wifi | Tourist Information / Ticket sale | Laundry / Dry Cleaner | Air conditioning | Gym | Spa | Sauna | Baby cots | Free Parking/Outdoor parking |'
+,'> Concierge service <, >Breakfast<, >Afternoon tea<, >All day refreshments: coffee, tea, soft drinks, cookies and snacks<');
 
 /********************************* ROOM ****************************************************/
 
@@ -306,13 +189,13 @@ INSERT INTO `Season`(`Season_Name`, `Start_Date`, `End_Date`) VALUES ('Winter Sp
 INSERT INTO `Season`(`Season_Name`, `Start_Date`, `End_Date`) VALUES ('HAPPY TIME', '2020-01-01 00:00:00', '2021-12-31 00:00:00');
 
 /********************************* Booking ****************************************************/
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK00020030294', 'ant_1', '2020-03-23', '2020-03-25', '2020-03-23', '1', 'Cancel');
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK02398320928', 'korn_1', '2020-04-30', '2020-05-02', '2020-04-12', '1', 'Booking');
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK09324856172', 'ThomasM_', '2020-04-30', '2020-05-03', '2020-04-14', '2', 'Paid');
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK12000213234', 'noey_1', '2020-01-21', '2020-01-24', '2020-01-10', '3', 'CheckOut');
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK72349328402', 'Harry_2002', '2020-03-02', '2020-03-06', '2020-02-28', '3', 'CheckOut');
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK83729475212', 'OreoK', '2020-04-20', '2020-04-23', '2020-04-02', '2', 'CheckIn');
-INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK97283091842', 'proy_1', '2020-02-03', '2020-02-07', '2020-01-28', '1', 'CheckOut');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK800020030294', 'ant_1', '2020-03-23', '2020-03-25', '2020-03-23', '1', 'Cancel');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK802398320928', 'korn_1', '2020-04-30', '2020-05-02', '2020-04-12', '1', 'Booking');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK509324856172', 'ThomasM_', '2020-04-30', '2020-05-03', '2020-04-14', '2', 'Paid');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK112000213234', 'noey_1', '2020-01-21', '2020-01-24', '2020-01-10', '3', 'CheckOut');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK372349328402', 'Harry_2002', '2020-03-02', '2020-03-06', '2020-02-28', '3', 'CheckOut');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK483729475212', 'OreoK', '2020-04-20', '2020-04-23', '2020-04-02', '2', 'CheckIn');
+INSERT INTO `Booking`(`Booking_ID`, `User_ID`, `Checkin`, `Checkout`, `Book_Date`, `Number_Of_Guest`, `Status`) VALUES ('BK297283091842', 'proy_1', '2020-02-03', '2020-02-07', '2020-01-28', '1', 'CheckOut');
 
 /********************************* CodePromo ****************************************************/
 INSERT INTO `Codepromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Discount`, `Limit`) VALUES ('C3425', 'Aniversary 1 month', '2020-02-01', '2020-03-01', '10', '300');
@@ -328,75 +211,75 @@ INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Disc
 INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Discount`, `Limit`) VALUES ('-', 'NOT USED', '2020-01-01', '', '0', '-1');
 
 /********************************* Booking_Detail ****************************************************/
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK00020030294', 'DELUXE URBAN TWIN BED', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK02398320928', 'MARINA SUITE', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK09324856172', 'OCEAN JUNIOR SUITE', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK12000213234', 'DELUXE EXECUTIVE KING BED', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK12000213234', 'OCEAN JUNIOR SUITE', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK72349328402', 'DELUXE URBAN KING BED', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK83729475212', 'DELUXE EXECUTIVE KING BED', '1');
-INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK97283091842', 'PREMIER LUX KING BED', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK800020030294', 'DELUXE URBAN TWIN BED', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK802398320928', 'MARINA SUITE', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK509324856172', 'OCEAN JUNIOR SUITE', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK112000213234', 'DELUXE EXECUTIVE KING BED', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK112000213234', 'OCEAN JUNIOR SUITE', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK372349328402', 'DELUXE URBAN KING BED', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK483729475212', 'DELUXE EXECUTIVE KING BED', '1');
+INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK297283091842', 'PREMIER LUX KING BED', '1');
 
 /********************************* Booking_History ****************************************************/
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('1', '1', 'R0301', 'BK00020030294');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('2', '6', 'R0812', 'BK02398320928');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('3', '10', 'R0709', 'BK09324856172');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('5', '1', 'R0610', 'BK12000213234');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('6', '2', 'R0610', 'BK12000213234');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('7', '3', 'R0710', 'BK12000213234');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('8', '7', 'R0606', 'BK72349328402');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('9', '8', 'R0606', 'BK72349328402');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('10', '9', 'R0506', 'BK83729475212');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('12', '4', 'R0807', 'BK97283091842');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('11', '11', 'R0506', 'BK83729475212');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('4', '15', 'R0709', 'BK09324856172');
-INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('13', '12', 'R0606', 'BK72349328402');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('1', '1', 'R0301', 'BK800020030294');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('2', '6', 'R0812', 'BK802398320928');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('3', '10', 'R0709', 'BK509324856172');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('5', '1', 'R0610', 'BK112000213234');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('6', '2', 'R0610', 'BK112000213234');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('7', '3', 'R0710', 'BK112000213234');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('8', '7', 'R0606', 'BK372349328402');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('9', '8', 'R0606', 'BK372349328402');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('10', '9', 'R0506', 'BK483729475212');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('12', '4', 'R0807', 'BK297283091842');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('11', '11', 'R0506', 'BK483729475212');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('4', '15', 'R0709', 'BK509324856172');
+INSERT INTO `Booked_History` (`No`, `Guest_ID`, `Room_ID`, `Booking_ID`) VALUES ('13', '12', 'R0606', 'BK372349328402');
 
 /********************************* History_Account ****************************************************/
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('06', 'Angel_37', '123456', '2020-01-02', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('07', 'ant_1', 'GG4345', '2020-01-02', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('08', 'daffy_57', 'dfdfdfdfdf', '2020-01-03', 'N');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('09', 'Doraemon_34', 'Dorayaki', '2020-01-05', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('10', 'Harry_2002', 'BFS5664', '2020-01-10', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('11', 'korn_1', 'FF45322', '2020-01-13', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('12', 'Lava455', 'jj98889', '2020-01-13', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('13', 'noey_1', '12345', '2020-01-20', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('18', 'OreoK', 'Oreo2113', '2020-04-20', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('14', 'proy_1', '23444113', '2020-01-28', 'N');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('15', 'proy_1', '2444567', '2020-03-20', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('17', 'ThomasM_', 'ghost5433', '2020-04-14', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('16', 'daffy_57', 'dsdsdsdsdsd', '2020-04-03', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('01', 'ST_0001', 'Sun0001', '2020-01-01', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('02', 'ST_0345', 'Wed0345', '2020-01-01', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('03', 'ST_0502', 'Sat0502', '2020-01-01', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('04', 'ST_0563', 'Thu0563', '2020-01-01', 'Y');
-INSERT INTO `Hotel_Management`.`History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('05', 'ST_1256', 'Fri1256', '2020-01-01', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('06', 'Angel_37', '123456', '2020-01-02', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('07', 'ant_1', 'GG4345', '2020-01-02', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('08', 'daffy_57', 'dfdfdfdfdf', '2020-01-03', 'N');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('09', 'Doraemon_34', 'Dorayaki', '2020-01-05', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('10', 'Harry_2002', 'BFS5664', '2020-01-10', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('11', 'korn_1', 'FF45322', '2020-01-13', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('12', 'Lava455', 'jj98889', '2020-01-13', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('13', 'noey_1', '12345', '2020-01-20', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('18', 'OreoK', 'Oreo2113', '2020-04-20', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('14', 'proy_1', '23444113', '2020-01-28', 'N');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('15', 'proy_1', '2444567', '2020-03-20', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('17', 'ThomasM_', 'ghost5433', '2020-04-14', 'Y');
+INSERT INTO `History_Account` (`No`, `User_ID`, `Password`, `Update_time`, `Available`) VALUES ('16', 'daffy_57', 'dsdsdsdsdsd', '2020-04-03', 'Y');
+INSERT INTO `History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('01', 'ST_0001', 'Sun0001', '2020-01-01', 'Y');
+INSERT INTO `History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('02', 'ST_0345', 'Wed0345', '2020-01-01', 'Y');
+INSERT INTO `History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('03', 'ST_0502', 'Sat0502', '2020-01-01', 'Y');
+INSERT INTO `History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('04', 'ST_0563', 'Thu0563', '2020-01-01', 'Y');
+INSERT INTO `History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Available`) VALUES ('05', 'ST_1256', 'Fri1256', '2020-01-01', 'Y');
 
 /********************************* Payment ****************************************************/
-INSERT INTO `Hotel_Management`.`Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Date`) VALUES ('1', 'Online', 'BK12000213234', 'FGJ67D', '2020-01-11');
-INSERT INTO `Hotel_Management`.`Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Date`) VALUES ('2', 'Online', 'BK97283091842', '-', '2020-01-29');
-INSERT INTO `Hotel_Management`.`Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Date`) VALUES ('3', 'Online', 'BK72349328402', 'C3425', '2020-02-28');
-INSERT INTO `Hotel_Management`.`Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Date`) VALUES ('4', 'Walk-in', 'BK83729475212', '-', '2020-04-02');
-INSERT INTO `Hotel_Management`.`Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Date`) VALUES ('5', 'Online', 'BK09324856172', 'FGK68D', '2020-04-14');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('1', 'Online', 'BK112000213234', 'FGJ67D', '4220', '2020-01-11');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('2', 'Online', 'BK297283091842', '-', '7472', '2020-01-29');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('3', 'Online', 'BK372349328402', 'C3425', '4041', '2020-02-28');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('4', 'Walk-in', 'BK483729475212', '-', '4957', '2020-04-02');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('5', 'Online', 'BK509324856172', 'FGK68D', '7450', '2020-04-14');
 
 /********************************* Review ****************************************************/
-INSERT INTO `Hotel_Management`.`Review` (`No`, `Booking_ID`, `User_ID`, `Comment`, `Rate`) VALUES ('01', 'BK83729475212', 'OreoK', 'Good!\nOur stay at Hahuna was a pleasant one. The staff at reception and breakfast was nice and super helpful. They took time to take care of us by being patient and answering any questions we asked. I would definitely recommend this hotel. Near the Tram and close to good restaurants.', '5');
-INSERT INTO `Hotel_Management`.`Review` (`No`, `Booking_ID`, `User_ID`, `Comment`, `Rate`) VALUES ('02', 'BK97283091842', 'proy_1', 'ที่พักดี..สะอาดสะดวกสบาย\nที่พักดี บริการน้องพนักงานดี ฟิสเนส สระว่ายน้ำสวยสะอาด น้องๆเป็นกันเองสะดวกสบายจิงๆคร่า ..เดินทางไปไหนก็สะดวก ใกล้ร้านเสริมสวย ร้านนวด เตียงนอนใหญ่หลับสบาย ..ถ้าเลือกได้กลับมาพักที่นี่อีกแน่นอนคร่า', '5');
-INSERT INTO `Hotel_Management`.`Review` (`No`, `Booking_ID`, `User_ID`, `Comment`, `Rate`) VALUES ('03', 'BK72349328402', 'Harry_2002', '\"Highly recommended hotel\"\nThe hotel is in a great location and it is quiet. It is very clean and has great staff. The breakfast buffet is also very good. Good clean pool.', '4');
+INSERT INTO `Review` (`No`, `Booking_ID`, `User_ID`, `Comment`, `Rate`) VALUES ('01', 'BK483729475212', 'OreoK', 'Good!\nOur stay at Hahuna was a pleasant one. The staff at reception and breakfast was nice and super helpful. They took time to take care of us by being patient and answering any questions we asked. I would definitely recommend this hotel. Near the Tram and close to good restaurants.', '5');
+INSERT INTO `Review` (`No`, `Booking_ID`, `User_ID`, `Comment`, `Rate`) VALUES ('02', 'BK297283091842', 'proy_1', 'ที่พักดี..สะอาดสะดวกสบาย\nที่พักดี บริการน้องพนักงานดี ฟิสเนส สระว่ายน้ำสวยสะอาด น้องๆเป็นกันเองสะดวกสบายจิงๆคร่า ..เดินทางไปไหนก็สะดวก ใกล้ร้านเสริมสวย ร้านนวด เตียงนอนใหญ่หลับสบาย ..ถ้าเลือกได้กลับมาพักที่นี่อีกแน่นอนคร่า', '5');
+INSERT INTO `Review` (`No`, `Booking_ID`, `User_ID`, `Comment`, `Rate`) VALUES ('03', 'BK372349328402', 'Harry_2002', '\"Highly recommended hotel\"\nThe hotel is in a great location and it is quiet. It is very clean and has great staff. The breakfast buffet is also very good. Good clean pool.', '4');
 
 /********************************* Today_Price ****************************************************/
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE EXECUTIVE KING BED', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE EXECUTIVE TWIN BED', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE URBAN KING BED', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE URBAN TWIN BED', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'MARINA SUITE', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'OCEAN JUNIOR SUITE', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'PREMIER LUX KING BED', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'PREMIER LUX TWIN BED', '5');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Summer Doom', 'MARINA SUITE', '10');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Summer Doom', 'OCEAN JUNIOR SUITE', '10');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Valentine Lovely', 'PREMIER LUX KING BED', '14');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Valentine Lovely', 'DELUXE URBAN KING BED', '14');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Valentine Lovely', 'DELUXE EXECUTIVE KING BED', '14');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Winter Special', 'PREMIER LUX TWIN BED', '15');
-INSERT INTO `Hotel_Management`.`Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Winter Special', 'PREMIER LUX KING BED', '15');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE EXECUTIVE KING BED', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE EXECUTIVE TWIN BED', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE URBAN KING BED', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'DELUXE URBAN TWIN BED', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'MARINA SUITE', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'OCEAN JUNIOR SUITE', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'PREMIER LUX KING BED', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('HAPPY TIME', 'PREMIER LUX TWIN BED', '5');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Summer Doom', 'MARINA SUITE', '10');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Summer Doom', 'OCEAN JUNIOR SUITE', '10');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Valentine Lovely', 'PREMIER LUX KING BED', '14');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Valentine Lovely', 'DELUXE URBAN KING BED', '14');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Valentine Lovely', 'DELUXE EXECUTIVE KING BED', '14');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Winter Special', 'PREMIER LUX TWIN BED', '15');
+INSERT INTO `Today_Price` (`Season_Name`, `RoomType_Name`, `Discount`) VALUES ('Winter Special', 'PREMIER LUX KING BED', '15');

@@ -14,13 +14,15 @@ CREATE TABLE `RoomType` (
   `Price`  float(24) NOT NULL,
   `Limit_Guest`  int NOT NULL,
   `Description`  longtext NOT NULL,
+  `Service`	longtext NOT NULL, 
+  `SpecialService`	longtext DEFAULT NULL,
    PRIMARY KEY (`RoomType_Name`)  
 );
 
 DROP TABLE IF EXISTS Booking;
 
 CREATE TABLE `Booking` (
-  `Booking_ID`  char(13) NOT NULL UNIQUE,
+  `Booking_ID`  char(14) NOT NULL UNIQUE,
   `User_ID`  varchar(16) NOT NULL,
   `Checkin`  date NOT NULL,
   `Checkout`  date NOT NULL,
@@ -33,7 +35,7 @@ CREATE TABLE `Booking` (
 DROP TABLE IF EXISTS Booking_Detail;
 
 CREATE TABLE `Booking_Detail` (
-  `Booking_ID`  char(13) NOT NULL ,
+  `Booking_ID`  char(14) NOT NULL ,
   `RoomType_Name`  varchar(40) NOT NULL,
   `Number_of_Room`  int NOT NULL DEFAULT 1,
    PRIMARY KEY (`Booking_ID`, `RoomType_Name`)
@@ -45,7 +47,7 @@ CREATE TABLE `Booked_History` (
   `No`  bigint(255) AUTO_INCREMENT,
   `Guest_ID`  bigint(255) NOT NULL,
   `Room_ID`  char(5) NOT NULL,
-  `Booking_ID`  char(13) NOT NULL,
+  `Booking_ID`  char(14) NOT NULL,
    PRIMARY KEY (`No`)
 );
 
@@ -100,8 +102,9 @@ DROP TABLE IF EXISTS Payment;
 CREATE TABLE `Payment` (
   `No`  bigint(255) AUTO_INCREMENT NOT NULL,
   `Method`  varchar(15) NOT NULL DEFAULT 'Online',
-  `Booking_ID`  char(13) NOT NULL,
+  `Booking_ID`  char(14) NOT NULL,
   `Code_ID`  varchar(15) DEFAULT NULL,
+  `Total` double NOT NULL DEFAULT 0,
   `Date`  timestamp NOT NULL,
    PRIMARY KEY (`No`)
 );
@@ -112,7 +115,7 @@ CREATE TABLE `CodePromo` (
   `Code_ID`  varchar(15) NOT NULL UNIQUE,
   `Code_Name`  varchar(50) NOT NULL,
   `StartDate`  datetime NOT NULL,
-  `ExpireDate`  datetime NOT NULL,
+  `ExpireDate`  datetime DEFAULT NULL,
   `Discount`  float(24) NOT NULL,
   `Limit`  int NOT NULL,
    PRIMARY KEY (`Code_ID`)
@@ -152,7 +155,7 @@ DROP TABLE IF EXISTS Review;
 
 CREATE TABLE `Review` (
   `No`  bigint(255) AUTO_INCREMENT,
-  `Booking_ID`  char(13) NOT NULL,
+  `Booking_ID`  char(14) NOT NULL,
   `User_ID` varchar(16) NOT NULL,
   `Comment`  longtext DEFAULT NULL,
   `Rate` int DEFAULT NULL,
