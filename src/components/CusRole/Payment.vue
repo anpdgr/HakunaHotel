@@ -14,7 +14,7 @@
             <h5>Booking details</h5>
             <!-- Bill   use global           -->
             <p>
-              Booking ID: BKXXXXXX
+              Booking ID: {{this.BookID}}
               <span class="tab"
                 >Booking date: {{ this.$store.getters.getBookCkin }}</span
               >
@@ -91,6 +91,7 @@
               >Check code</b-button
             >
           </div>
+          <div>{{value}}  {{this.$store.getters.getBKID}}</div>
         </div>
       </b-card>
       <!-- <div>{{Allcode}}</div> -->
@@ -171,15 +172,29 @@ export default {
       UserName:{
         userid:""
       },
+      UptoDB:{
+        bookid:null,
+        userid:null,
+        checkIn:null,
+        checkOut:null,
+        numguest:null,
+        method:null,
+        codeid:null,
+
+      },
 
       // about time 
       t1:null,
       t2:null,
       DiffDay:null,
 
+      BookID: null,
+      HisNo: null
+
     };
   },
   mounted() {
+    
     this.rooms = this.$store.getters.getBookType;
     this.UserName.userid = this.$store.getters.getUser;
     this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=user",this.UserName,"User");
@@ -188,6 +203,7 @@ export default {
     this.t1 = new Date(this.$store.getters.getBookCkin).getTime();
     this.t2 = new Date(this.$store.getters.getBookCkout).getTime();
     this.DiffDay = this.CalDiffTime();
+    this.BookID += this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=hisNo",this.UserName,"HisNo");
     // console.log(moment(Date()).format('YYYY-MM-DD hh:mm:ss') < "2020-05-12 12:00:00");
     // this.$store.getters.getBookCkin
   },
@@ -273,6 +289,14 @@ export default {
         else if(code == "User"){
           this.UserName = response.data.Data[0];
         }
+        else if(code == "HisNo"){
+          this.HisNo = response.data.Data[0].Count;
+          this.BookID = "BK";
+          this.BookID = this.BookID + moment( Date()).format('MM') + "0" + this.$store.getters.getBKID 
+                      + this.rooms.length + this.SumRoom() + this.DiffDay + this.HisNo;
+          console.log(this.BookID);
+          return response.data.Data[0].Count;
+        }
       });
     },
     toFormData(obj) {
@@ -309,11 +333,37 @@ export default {
     check() {
       if (this.value === null) {
         this.makeToast("danger", "Please select one payment method.");
-      } else {
+      } 
+      else {
+        this.setToUpdate();
         this.$store.dispatch("AcBook", false);
         this.makeToast("success", "Success");
         setTimeout(() => this.$router.push({ path: "/" }), 1500);
       }
+    },
+
+    setToUpdate(){
+
+    },
+
+    SumRoom(){
+      var sum = 0;
+      for(var i=0 ; i < this.rooms.length ; i++){
+        sum += this.rooms[i].num_room;
+      }
+      if(sum<10){
+        return "0"+sum;
+      }
+      else
+        return sum
+    },
+
+    GenCode(){
+      this.BookID = "BK";
+      this.BookID = this.BookID + moment( Date()).format('MM') + "0" + this.$store.getters.getBKID 
+                    + this.rooms.length + this.SumRoom() + this.DiffDay;
+      this.BookID += this.GetDB("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=hisNo",this.UserName,"HisNo");
+      console.log(this.BookID);
     },
 
     // make toast 

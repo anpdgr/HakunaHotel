@@ -1,148 +1,126 @@
 <template>
-  <body id="regis">
-    <!-- sign up box -->
-    <div id="box">
-      <b-card border-varient="Primary" class="container" style="padding:5px; margin:50px">
-        <div id="left" class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Sign up</h3>
-          </div>
-          <!-- Form regis -->
-          <!-- User regis -->
-          <b-form @submit="onSubmit">
-            <br />
-            <!-- input email -->
-            <b-form-group id="ipg-email">
-              <b-form-input
-                id="ip-email"
-                v-model="form.email"
-                type="email"
-                required
-                placeholder="Email"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- input User name -->
-            <b-form-group id="ipg-uname">
-              <b-form-input
-                id="ip-uname"
-                v-model="form.username"
-                required
-                placeholder="Username"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- input password -->
-            <b-form-group id="ipg-pass">
-              <b-form-input
-                type="password"
-                id="ip-pass"
-                v-model="form.password"
-                required
-                placeholder="Password"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- input confirm password -->
-            <b-form-group id="ipg-cpass">
-              <b-form-input
-                type="password"
-                id="ip-cpass"
-                v-model="form.cpassword"
-                required
-                placeholder="Confirm your password"
-              ></b-form-input>
-            <!-- Details regis -->
-            </b-form-group>
-            <div style="margin-top:30px; margin-bottom:30px"><hr /></div>
-            <h5>Personal information</h5>
-            <div style="margin-bottom:20px"></div>
-            <b-form-group id="ipg-title">
-
-              <!-- radio selete name title -->
-              <b-form-select
-                id="ip-title"
-                v-model="form.title"
-                :options="title"
-                required
-              ></b-form-select>
-            </b-form-group>
-
-            <!-- input first name -->
-            <b-form-group id="ipg-fname">
-              <b-form-input
-                id="ip-fname"
-                v-model="form.fname"
-                required
-                placeholder="First name"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- input last name -->
-            <b-form-group id="ipg-lname">
-              <b-form-input
-                id="ip-lname"
-                v-model="form.lname"
-                required
-                placeholder="Last name"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- input birthday -->
-            <b-form-group id="ipg-birthday">
-              <b-form-datepicker
-                id="ip-birthday"
-                v-model="form.birthday"
-                required
-                placeholder="Date of birth"
-              ></b-form-datepicker>
-            </b-form-group>
-
-            <!-- input telephone numeber -->
-            <b-form-group id="ipg-tel">
-              <b-form-input
-                id="ip-tel"
-                v-model="form.tel"
-                type="tel"
-                required
-                placeholder="Phone number"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- input country -->
-            <b-form-group id="ipg-country">
-              <b-form-input
-                id="ip-country"
-                v-model="form.country"
-                required
-                placeholder="Country"
-              ></b-form-input>
-            </b-form-group>
-
-            <!-- Button -->
-            <div style="float: left;">
-              
-              <!-- sign up button -->
-              <b-button formtarget="_blank" @click.alt="UseDev" type="submit"  style="background-color:#6096a8"
-                >Sign up</b-button
-              >
-
-              <!-- alert button -->
-              <!-- <b-button formtarget="_blank" @click="UseDev">dummy</b-button> -->
-
-            </div>
-          </b-form>
+<body id="regis">
+  <!-- sign up box -->
+  <div id="box">
+    <b-card border-varient="Primary" class="container" style="padding:5px; margin:50px">
+      <div id="left" class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sign up</h3>
         </div>
-        <br /><br />
-        <!-- return to home page -->
-        <div id="back">
-          <button id="btn"  style="color:#809aa1" @click="login">I already have an account</button>
+        <!-- Form regis -->
+        <!-- User regis -->
+        <b-form @submit="onSubmit">
           <br />
-          <button id="btn"  style="color:#809aa1" @click="home">Back to home</button>
-        </div>
-      </b-card>
-    </div>
-  </body>
+          <!-- input email -->
+          <b-form-group id="ipg-email">
+            <b-form-input
+              id="ip-email"
+              v-model="form.email"
+              type="email"
+              required
+              placeholder="Email"
+            ></b-form-input>
+          </b-form-group>
+
+          <!-- input User name -->
+          <b-form-group id="ipg-uname">
+            <b-form-input id="ip-uname" v-model="form.username" required placeholder="Username"></b-form-input>
+          </b-form-group>
+
+          <!-- input password -->
+          <b-form-group id="ipg-pass">
+            <b-form-input
+              type="password"
+              id="ip-pass"
+              v-model="form.password"
+              required
+              placeholder="Password"
+            ></b-form-input>
+          </b-form-group>
+
+          <!-- input confirm password -->
+          <b-form-group id="ipg-cpass">
+            <b-form-input
+              type="password"
+              id="ip-cpass"
+              v-model="form.cpassword"
+              required
+              placeholder="Confirm your password"
+            ></b-form-input>
+            <!-- Details regis -->
+          </b-form-group>
+          <div style="margin-top:30px; margin-bottom:30px">
+            <hr />
+          </div>
+          <h5>Personal information</h5>
+          <div style="margin-bottom:20px"></div>
+          <b-form-group id="ipg-title">
+            <!-- radio selete name title -->
+            <b-form-select id="ip-title" v-model="form.title" :options="title" required></b-form-select>
+          </b-form-group>
+
+          <!-- input first name -->
+          <b-form-group id="ipg-fname">
+            <b-form-input id="ip-fname" v-model="form.fname" required placeholder="First name"></b-form-input>
+          </b-form-group>
+
+          <!-- input last name -->
+          <b-form-group id="ipg-lname">
+            <b-form-input id="ip-lname" v-model="form.lname" required placeholder="Last name"></b-form-input>
+          </b-form-group>
+
+          <!-- input birthday -->
+          <b-form-group id="ipg-birthday">
+            <b-form-datepicker
+              id="ip-birthday"
+              v-model="form.birthday"
+              required
+              placeholder="Date of birth"
+            ></b-form-datepicker>
+          </b-form-group>
+
+          <!-- input telephone numeber -->
+          <b-form-group id="ipg-tel">
+            <b-form-input
+              id="ip-tel"
+              v-model="form.tel"
+              type="tel"
+              required
+              placeholder="Phone number"
+            ></b-form-input>
+          </b-form-group>
+
+          <!-- input country -->
+          <b-form-group id="ipg-country">
+            <b-form-input id="ip-country" v-model="form.country" required placeholder="Country"></b-form-input>
+          </b-form-group>
+
+          <!-- Button -->
+          <div style="float: left;">
+            <!-- sign up button -->
+            <b-button
+              formtarget="_blank"
+              @click.alt="UseDev"
+              type="submit"
+              style="background-color:#6096a8"
+            >Sign up</b-button>
+
+            <!-- alert button -->
+            <!-- <b-button formtarget="_blank" @click="UseDev">dummy</b-button> -->
+          </div>
+        </b-form>
+      </div>
+      <br />
+      <br />
+      <!-- return to home page -->
+      <div id="back">
+        <button id="btn" style="color:#809aa1" @click="login">I already have an account</button>
+        <br />
+        <button id="btn" style="color:#809aa1" @click="home">Back to home</button>
+      </div>
+    </b-card>
+  </div>
+</body>
 </template>
 
 <script>
@@ -150,9 +128,9 @@ export default {
   data() {
     return {
       fetchuser: {
-        userid : ""
+        userid: ""
       },
-      fetchlenght:0,
+      fetchlenght: 0,
       // for form register
       form: {
         email: "",
@@ -161,12 +139,12 @@ export default {
         cpassword: "",
         tel: "",
         title: null,
-        name:"",
+        name: "",
         fname: "",
         lname: "",
         birthday: "",
-        // data: null,//??????? 
-        country: "",
+        // data: null,//???????
+        country: ""
       },
       title: [{ text: "Name title", value: null }, "Mr.", "Ms.", "Miss"],
       show: true,
@@ -182,19 +160,18 @@ export default {
         country: "",
         DOB: ""
       }
-      
     };
   },
   methods: {
     //  method for เปลี่ยนหน้า
-    login(){
-          this.$router.push('login')
-       },
-    home(){
-          this.$router.push('/')
-       },
+    login() {
+      this.$router.push("login");
+    },
+    home() {
+      this.$router.push("/");
+    },
     // default user easy click
-    UseDev(){
+    UseDev() {
       this.form = {
         email: "test@mail.com",
         username: "testuser",
@@ -205,8 +182,8 @@ export default {
         fname: "Unknow",
         lname: "Unknow",
         birthday: "2020-05-05",
-        country: "Astera",
-      }
+        country: "Astera"
+      };
     },
     onSubmit(evt) {
       evt.preventDefault();
@@ -221,19 +198,6 @@ export default {
       } else {
         this.setNewUser();
         this.fetchUsers();
-        if(this.fetchlenght>0){
-          this.makeToast(
-          "danger",
-          "This User_ID has already used"
-          );
-        }
-        else{
-        this.addUser();
-        this.makeToast("success", "Register complete");
-        setTimeout(() => {
-          this.$router.push("login");
-        }, 1500);
-        }
       }
     },
     makeToast(variant = null, text) {
@@ -241,12 +205,12 @@ export default {
         title: "Notice!",
         variant: variant,
         solid: true,
-        toaster: "b-toaster-bottom-center",
+        toaster: "b-toaster-bottom-center"
       });
     },
     // set user from form
-    setNewUser(){
-      this.newUser= {
+    setNewUser() {
+      this.newUser = {
         userid: this.form.username,
         pass: this.form.password,
         title: this.form.title,
@@ -257,28 +221,43 @@ export default {
         country: this.form.country,
         DOB: this.form.birthday
       };
-      this.fetchuser ={
+      this.fetchuser = {
         userid: this.form.username
-      }
+      };
     },
     fetchUsers() {
       var formData = this.toFormData(this.fetchuser);
       this.axios
         .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=read",formData)
+          "http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=read",
+          formData
+        )
         .then(response => {
           this.fetchuser = response.data.data;
           // this.user = this.user[0];
-          this.fetchlenght = this.fetchuser.length
+          this.fetchlenght = this.fetchuser.length;
+          if (this.fetchlenght !== 0) {
+            this.makeToast("danger", "This User_ID has already used");
+          } 
+          else {
+            this.addUser();
+            this.makeToast("success", "Register complete");
+            setTimeout(() => {
+              this.$router.push("login");
+            }, 1500);
+          }
           // console.log(this.fetchlenght);
           // console.log(response.data);
         });
     },
     // axios post data
-    addUser(){
+    addUser() {
       var formData = this.toFormData(this.newUser);
       this.axios
-        .post("http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=add",formData)
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/regis.php?action=add",
+          formData
+        )
         .then(response => {
           //set var to default
           // console.log(response);
@@ -292,9 +271,9 @@ export default {
             fname: "",
             lname: "",
             birthday: "",
-            country: "",
+            country: ""
           };
-          this.newUser= {
+          this.newUser = {
             userid: "",
             pass: "",
             title: "",
@@ -303,25 +282,24 @@ export default {
             tel: "",
             email: "",
             country: "",
-            DOB : ""
+            DOB: ""
           };
-          if(response.data.error){
+          if (response.data.error) {
             console.log(response.data.error);
-          }
-          else{
+          } else {
             console.log(response.data.message);
           }
         });
     },
-    // make obj type FormData 
-    toFormData(obj){
+    // make obj type FormData
+    toFormData(obj) {
       var fd = new FormData();
-      for(var i in obj){
-        fd.append(i,obj[i]);
+      for (var i in obj) {
+        fd.append(i, obj[i]);
       }
       return fd;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -352,12 +330,11 @@ body {
 }
 #btn {
   border: none;
-  background-color:transparent;
+  background-color: transparent;
   padding: 0px;
   font-size: 16px;
   cursor: pointer;
   display: inline-block;
-  color: #2688D9;
-  
+  color: #2688d9;
 }
 </style>
