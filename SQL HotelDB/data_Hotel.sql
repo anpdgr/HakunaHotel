@@ -208,7 +208,6 @@ INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Disc
 INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Discount`, `Limit`) VALUES ('FGX76D', 'Thank True', '2020-01-01', '2020-12-31', '15', '1');
 INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Discount`, `Limit`) VALUES ('FGK77D', 'Thank True', '2020-01-01', '2020-12-31', '15', '1');
 INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Discount`, `Limit`) VALUES ('FGL78D', 'Thank True', '2020-01-01', '2020-12-31', '15', '1');
-INSERT INTO `CodePromo`(`Code_ID`, `Code_Name`, `StartDate`, `ExpireDate`, `Discount`, `Limit`) VALUES ('-', 'NOT USED', '2020-01-01', '', '0', '-1');
 
 /********************************* Booking_Detail ****************************************************/
 INSERT INTO `Booking_Detail`(`Booking_ID`, `RoomType_Name`, `Number_of_Room`) VALUES ('BK800020030294', 'DELUXE URBAN TWIN BED', '1');
@@ -257,9 +256,9 @@ INSERT INTO `History_Account` (`No`, `Staff_ID`, `Password`, `Update_time`, `Ava
 
 /********************************* Payment ****************************************************/
 INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('1', 'Online', 'BK112000213234', 'FGJ67D', '4220', '2020-01-11');
-INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('2', 'Online', 'BK297283091842', '-', '7472', '2020-01-29');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('2', 'Online', 'BK297283091842', null, '7472', '2020-01-29');
 INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('3', 'Online', 'BK372349328402', 'C3425', '4041', '2020-02-28');
-INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('4', 'Walk-in', 'BK483729475212', '-', '4957', '2020-04-02');
+INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('4', 'Walk-in', 'BK483729475212', null, '4957', '2020-04-02');
 INSERT INTO `Payment` (`No`, `Method`, `Booking_ID`, `Code_ID`, `Total`, `Date`) VALUES ('5', 'Online', 'BK509324856172', 'FGK68D', '7450', '2020-04-14');
 
 /********************************* Review ****************************************************/

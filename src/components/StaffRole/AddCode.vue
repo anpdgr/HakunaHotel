@@ -25,7 +25,7 @@
         <!-- form for add code  -->
         <b-form inline id="idname">
           <!-- input code id -->
-          <b-form-group class="mb-0" label="Code ID:" label-for="id">
+          <b-form-group class="mb-0" label="Code ID: " label-for="id">
             <b-form-input
               id="id"
               required
@@ -35,7 +35,7 @@
             ></b-form-input>
           </b-form-group>
           <!-- input code name  -->
-          <b-form-group class="mb-0" label="Code name:" label-for="name">
+          <b-form-group class="mb-0" label="Code name: " label-for="name">
             <b-form-input
               id="name"
               v-model="code.codename"
@@ -47,7 +47,7 @@
         <br />
         <b-form inline id="discountlimit">
           <!-- input discount  -->
-          <b-form-group class="mb-0" label="Discount:" label-for="discount">
+          <b-form-group class="mb-0" label="Discount: " label-for="discount">
             <b-form-input
               id="discount"
               v-model="code.discount"
@@ -56,7 +56,7 @@
             ></b-form-input>
           </b-form-group>
           <!-- input limit  -->
-          <b-form-group class="mb-0" label="Limit:" label-for="limit">
+          <b-form-group class="mb-0" label="Limit: " label-for="limit">
             <b-form-input
               id="limit"
               v-model="code.limit"
@@ -68,7 +68,7 @@
         <br />
         <b-form inline id="dateform">
           <!-- input start date -->
-          <b-form-group class="mb-0" label="Start date:" label-for="StartDate">
+          <b-form-group class="mb-0" label="Start date: " label-for="StartDate">
             <b-form-datepicker
               id="StartDate"
               v-model="code.SDate"
@@ -79,7 +79,7 @@
           <!-- input ex date -->
           <b-form-group
             class="mb-0"
-            label="Expired date:"
+            label="Expired date: "
             label-for="ExpiredDate"
           >
             <b-form-datepicker
@@ -194,30 +194,22 @@ export default {
       // post code promotion ที่มีใน db 
       items: [
         {
-          id: "FIRST100",
-          Cname: "First use",
-          discount: "THB 100",
-          limit: null,
-          sDate: "07/02/19",
-          eDate: "08/02/19",
-        },
-        {
-          id: "LIMIT5",
-          Cname: "Limit for 5 users",
-          discount: "THB 50",
-          limit: 5,
-          sDate: "01/05/20",
-          eDate: "06/05/20",
-        },
+          codeid: "",
+          codename: "",
+          discount: "",
+          limit: "",
+          SDate: "",
+          ExDate: "",
+        }
       ],
 
       fields: [
-        { key: "id", label: "Code ID", sortable: true },
-        { key: "Cname", label: "Code name", sortable: true },
-        { key: "discount", label: "Discount", sortable: true },
-        { key: "limit", label: "Limit used", sortable: true },
-        { key: "sDate", label: "Start Date", sortable: true },
-        { key: "eDate", label: "Expired Date", sortable: true },
+        { key: "Code_ID", label: "Code ID", sortable: true },
+        { key: "Code_Name", label: "Code name", sortable: true },
+        { key: "Discount", label: "Discount", sortable: true },
+        { key: "Limit", label: "Limit used", sortable: true },
+        { key: "StartDate", label: "Start Date", sortable: true },
+        { key: "ExpireDate", label: "Expired Date", sortable: true },
       ],
 
       totalRows: 1,
@@ -239,6 +231,7 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
+    this.fetchCode();
   },
 
   methods: {
@@ -269,6 +262,23 @@ export default {
         solid: true,
         toaster: "b-toaster-bottom-center",
       });
+    },
+    fetchCode()
+    {
+      var formData = this.toFormData(this.items);
+      this.axios
+      .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=read",formData
+        )
+        .then(response => {
+          this.items = response.data.data;
+        
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
+        });
     },
     AddCode(){
       var formData = this.toFormData(this.code);
