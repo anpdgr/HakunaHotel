@@ -105,6 +105,7 @@ export default {
         (this.form.checkout_date == null) |
         (this.form.num_guest == null)
       ) {
+        this.makeToast("danger", "Please select number of guests.");
         if (
           (this.form.checkin_date == null) |
           (this.form.checkout_date == null)
