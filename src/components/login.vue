@@ -80,8 +80,8 @@ export default {
   },
   mounted() {
     this.fetchUsers();
-    console.log(Date());
-    console.log(Date("Tomorrow"));
+    // console.log(Date());
+    // console.log(Date("Tomorrow"));
   },
   methods: {
     //  method for เปลี่ยนหน้า
@@ -135,8 +135,8 @@ export default {
         .get("http://hakuna-hotel.kmutt.me/phpapi/login.php?action=read")
         .then(response => {
           this.users = response.data.data;
-          console.log(this.users);
-          console.log(response.data);
+          // console.log(this.users);
+          // console.log(response.data);
         });
     },
     // ตัว test

@@ -23,6 +23,17 @@
             $result['Data'] = $users;
             
         }
+
+        if($action == 'user'){
+            $userid = $_POST['userid'];
+            $sql = $con->query("SELECT Customer_FirstName, Customer_LastName FROM Customer WHERE User_ID='$userid' ");
+            $users = array();
+
+            while($row = $sql->fetch_assoc()){
+                array_push($users,$row);
+            }
+            $result['Data'] = $users;
+        }
         
         if($action == 'seasondis'){
             $S_Name = $_POST['S_Name'];
@@ -36,14 +47,21 @@
         }
 
         if($action == 'codepromo'){
-            $Code = $_POST['code'];
-            $sql = $con->query("SELECT * FROM CodePromo WHERE Code_ID = '$Code' ");
+            $sql = $con->query("SELECT * FROM CodePromo ");
             $users = array();
 
             while($row = $sql->fetch_assoc()){
                 array_push($users,$row);
             }
             $result['Data'] = $users;
+
+            if($sql){
+                $result['message'] = "code successfully";
+            }
+            else {
+                $result['error'] = true;
+                $result['massage'] = "code fail";
+            }
         }
 
         if($action == 'usecode'){
