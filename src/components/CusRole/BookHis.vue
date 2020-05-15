@@ -11,7 +11,7 @@
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
-                    >Booking ID: BKxxxxxxx
+                    >Booking ID: {{}}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
@@ -190,7 +190,18 @@ export default {
   data() {
     return {
       rateStar: null,
-      comment:''
+      comment:'',
+      bookDetail:{
+        bookid:'',
+        checkin:'',
+        checkout:'',
+        numguest:'',
+        room:''
+      },
+      payment:{
+        payid:'',
+        total:''
+      }
     };
   },
   components: {

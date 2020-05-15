@@ -129,9 +129,14 @@ export default {
       for (let i = 0; i < this.selected.length; i++) {
         this.count += this.selected[i];
         }
-        if (this.count<=this.$store.getters.getBookNumG&&this.count>=(this.$store.getters.getBookNumG%4)+(Math.floor(this.$store.getters.getBookNumG/4))) {
+        if(this.$store.getters.getBookNumG<=4&&this.count<=this.$store.getters.getBookNumG)
+        {
+          this.isFail = false
+        }
+        if(this.count*4>=this.$store.getters.getBookNumG&&this.count<=this.$store.getters.getBookNumG){
           this.isFail = false;
         }
+        
       return this.isFail;
     },
     // fetch data from DB

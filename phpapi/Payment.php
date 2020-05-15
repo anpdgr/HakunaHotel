@@ -46,10 +46,11 @@
             $method = $_POST['method'];                                    # +
             $bookid = $_POST['bookid'];                                    # +
             $codeid = $_POST['codeid'];                                    # +
+            $total = $_POST['total'];
             $date = $_POST['date'];                                        # +
 
             #edit sql command here
-            $sql = $con->query("INSERT INTO Payment VALUES ('$no', '$method', '$bookid', '$codeid', '$date')") ; # +
+            $sql = $con->query("INSERT INTO Payment VALUES ('$no', '$method', '$bookid', '$codeid', '$total', '$date')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
@@ -71,11 +72,12 @@
             $method = $_POST['method'];                                     # +
             $bookid = $_POST['bookid'];                                     # +
             $codeid = $_POST['codeid'];                                     # +
+            $total = $_POST['total'];
             $date = $_POST['date'];                                         # +
 
             #edit sql command here
             $sql = $con->query(" UPDATE Payment SET No = '$no', Method = '$method',                # +
-                                 Booking_ID = '$bookid', Code_ID = '$codeid', Date = '$date'
+                                 Booking_ID = '$bookid', Code_ID = '$codeid', Total='$total', Date = '$date'
                                  WHERE No = '$no' ");                                              # +
             
             # return status likes console log
