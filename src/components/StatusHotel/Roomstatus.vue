@@ -124,54 +124,19 @@ export default {
       // post room detail
       items: [
         {
-          Type: "Premier Lux Twin Bed",
-          RoomID: 10000,
-          Tel: "02-4445555",
-          Status: "Available",
-        },
-        {
-          Type: "Ocean Junior Suite",
-          RoomID: 10001,
-          Tel: "02-3322441",
-          Status: "Available",
-        },
-        {
-          Type: "Dulux Urban King Bed",
-          RoomID: 10002,
-          Tel: "02-3322455",
-          Status: "Reserved",
-        },
-        {
-          Type: "Dulux Urban King Bed",
-          RoomID: 10003,
-          Tel: "02-6724550",
-          Status: "Reserved",
-        },
-        {
-          Type: "Ocean Junior Suite",
-          RoomID: 10004,
-          Tel: "02-3388441",
-          Status: "Available",
-        },
-        {
-          Type: "Urban Junior Suite",
-          RoomID: 10005,
-          Tel: "02-0022455",
-          Status: "Reserved",
-        },
-        {
-          Type: "Dulux Urban King Bed",
-          RoomID: 10006,
-          Tel: "02-6024550",
-          Status: "Available",
-        },
+          roomid:"",
+          type:"",
+          available:"",
+          tel:""
+        }
       ],
-
+      rtype:[{
+      },],
       fields: [
-        { key: "Type", sortable: true },
-        { key: "RoomID", sortable: true },
-        { key: "Tel", sortable: true },
-        { key: "Status", sortable: true },
+        { key: "RoomType_Name", sortable: true },
+        { key: "Room_ID", sortable: true },
+        { key: "Telephone_No", sortable: true },
+        { key: "Available", sortable: true },
       ],
 
       totalRows: 1,
@@ -189,6 +154,8 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
+    this.fetchRoom();
+    // this.fetchRoomType();
   },
   methods: {
     onFiltered(filteredItems) {
@@ -196,17 +163,52 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-
-        onSelect() {
-        this.filter = this.selected_type;
+    onSelect() {
+      this.filter = this.selected_type;
     },
     showModal() {
-        this.$refs['my-modal'].show()
-      },
-      hideModal() {
-        this.$refs['my-modal'].hide()
-      },
+      this.$refs['my-modal'].show()
+    },
+    hideModal() {
+      this.$refs['my-modal'].hide()
+    },
+    fetchRoom(){
+      var formData = this.toFormData(this.items);
+      this.axios
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/Room.php?action=read",formData)
+        .then(response => {
+        this.items = response.data.data;
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+            }
+        });
+    },
+    // fetchRoomType(){
+    //   var formData = this.toFormData(this.rtype);
+    //   this.axios
+    //   .post(
+    //     "http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read",formData)
+    //     .then(response => {
+    //     this.rtype = response.data.data[0];
+    //       if (response.data.error) {
+    //         console.log(response.data.error);
+    //       } else {
+    //         console.log(response.data.message);
+    //         }
+    //     });
+    // },
+    toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
+    }
   },
+
 };
 </script>
 

@@ -263,6 +263,7 @@ export default {
         toaster: "b-toaster-bottom-center",
       });
     },
+    //show code in db
     fetchCode()
     {
       var formData = this.toFormData(this.items);
@@ -280,6 +281,7 @@ export default {
           }
         });
     },
+    //Add code to db
     AddCode(){
       var formData = this.toFormData(this.code);
       this.axios

@@ -36,7 +36,7 @@
             }
             $result['data'] = $rooms;                                      # -
         }
-
+        
         # insert command
         if($action == 'add'){                                              # -
             # edit var here
