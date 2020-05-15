@@ -289,7 +289,7 @@ export default {
         { key: "sDate", label: "Start date", sortable: true },
         { key: "eDate", label: "End date", sortable: true },
       ],
-      totalRows: 1,
+      //totalRows: 1,
       currentPage: 1,
       perPage: 5,
       pageOptions: [5, 10, 15],
@@ -307,6 +307,9 @@ export default {
     };
   },
   computed: {
+    totalRows() {
+        return this.items.length
+      },
     sortOptions() {
       // Create an options list from our fields
       return this.fields

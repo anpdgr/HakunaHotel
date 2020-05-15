@@ -117,10 +117,32 @@
                 </b-input-group-append>
               </b-input-group>
             </b-col>
+
+            <!-- <b-col sm="5" md="6" class="my-1">
+              <b-form-group
+                label="Per page"
+                label-cols-sm="6"
+                label-cols-md="4"
+                label-cols-lg="3"
+                label-align-sm="right"
+                label-size="sm"
+                label-for="perPageSelect"
+                class="mb-0"
+              >
+                <b-form-select
+                  v-model="perPage"
+                  id="perPageSelect"
+                  size="sm"
+                  :options="pageOptions"
+                ></b-form-select>
+              </b-form-group>
+            </b-col> -->
+
           </b-row>
         </div>
         <!-- Main table element -->
         <b-table
+          id="my-table"
           show-empty
           stacked="md"
           :items="items"
@@ -133,7 +155,7 @@
         >
         </b-table>
 
-        <b-col class="my-1">
+        <b-col  class="my-1">
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
@@ -141,10 +163,12 @@
             pills
             align="center"
             class="my-0"
+            aria-controls="my-table"
           ></b-pagination>
           <br />
           <hr />
         </b-col>
+        
       </b-container>
     </div>
   </div>
@@ -212,13 +236,23 @@ export default {
         { key: "ExpireDate", label: "Expired Date", sortable: true },
       ],
 
-      totalRows: 1,
+      //totalRows: 1,
       currentPage: 1,
-      perPage: 10,
+      perPage: 5,
+      pageOptions: [5, 10, 15],
       filter: null,
+      
+     
+      sortDesc: false,
+      sortDirection: "asc",
+      filterOn: [],
+      
     };
   },
   computed: {
+    totalRows() {
+        return this.items.length
+      },
     sortOptions() {
       // Create an options list from our fields
       return this.fields
