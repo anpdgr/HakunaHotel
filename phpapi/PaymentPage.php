@@ -89,11 +89,12 @@
 
             $method = $_POST['method'];
             $codeid = $_POST['codeid'];
+            $total = $_POST['total'];
             $date = date("Y-m-d");
             
             $sql = $con->query("INSERT INTO Booking VALUES ('$bookid', '$userid', '$checkIn', '$checkOut', '$date', '$numguest', '$status')") ;
             
-            $sql = $con->query("INSERT INTO Payment(`Method`,`Booking_ID`,`Code_ID`,`Date`) VALUES ('$method', '$bookid', '$codeid', '$date')") ;
+            $sql = $con->query("INSERT INTO Payment(`Method`,`Booking_ID`,`Code_ID`,`Total`,`Date`) VALUES ('$method', '$bookid', '$codeid', '$total', '$date')") ;
 
             if($sql){
                 $result['message'] = "added successfully";
