@@ -17,3 +17,6 @@ PS. x = แก้แล้ว
 8/5/2563 by Waru
  - Nav พอใช้ this.$router เเล้วกด room services contact แล้วไม่ขยับตาม
  - กำลังจะระเบิดข้อมูล user ใหม่หมดตอนนี้ใช้ไม่ได้
+
+15/5/2563 by Noey
+ - เนยทำ bookhis ใน cus บึ้ม5555555
