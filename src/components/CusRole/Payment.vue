@@ -85,7 +85,7 @@
               @click="checkCode"
             >Check code</b-button>
           </div>
-          <div>{{value}} {{this.$store.getters.getBKID}}</div>
+          <!-- <div>{{value}} {{this.$store.getters.getBKID}}</div> -->
         </div>
       </b-card>
       <!-- <div>{{Allcode}}</div> -->

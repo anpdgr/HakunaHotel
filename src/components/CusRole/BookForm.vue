@@ -123,7 +123,7 @@ export default {
     // check num room
     checkNull() {
       for (let i = 0; i < this.selected.length; i++) {
-        if (this.selected[i] != 0) {
+        if (this.selected[i] != null) {
           this.isZero = false;
         }
       }
@@ -133,7 +133,8 @@ export default {
     checkRoom() {
       this.count = 0;
       for (let i = 0; i < this.selected.length; i++) {
-        this.count += this.selected[i];
+        if(this.selected[i] != null)
+          this.count += this.selected[i];
       }
       this.$store.dispatch("AcNRoom", this.count);
       if (
