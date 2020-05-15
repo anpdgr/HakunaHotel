@@ -5,27 +5,28 @@
     <br />
     <br />
     <div id="CARD">
-      <b-card border-variant="success" bg-variant="light" style="margin: 30px;" title="Billing">
+      <b-card
+        border-variant="success"
+        bg-variant="light"
+        style="margin: 30px;"
+        title="Billing"
+      >
         <div id="content">
           <div>
             <h5>Booking details</h5>
             <!-- Bill   use global           -->
-            <p>
-              Booking ID: {{this.BookID}}
-              <span
-                class="tab"
-              >Booking date: {{ this.$store.getters.getBookCkin }}</span>
-              <br />Check-in date: 11/08/43
-              <span
-                class="tab"
-              >Check-out date: {{ this.$store.getters.getBookCkout }}</span>
-              <br />
-              Number of guests: {{ this.$store.getters.getBookNumG }}
-              <span
-                class="tab"
-              >Billing name: {{ UserName.Customer_FirstName }} {{ UserName.Customer_LastName }}</span>
-              <br />
-            </p>
+            <div class="row">
+              <div class="column">
+                <p>Booking ID: {{ this.BookID }}</p>
+                <p>Booking date: {{ this.$store.getters.getBookCkin }}</p>
+                <p>Check-in date: {{ this.$store.getters.getBookCkin }}</p>
+              </div>
+              <div class="column">
+                <p>Billing name: {{ UserName.Customer_FirstName }} {{ UserName.Customer_LastName }}</p>
+                <p>Number of guests: {{ this.$store.getters.getBookNumG }}</p>
+                <p>Check-out date: {{ this.$store.getters.getBookCkout }}</p>
+              </div>
+            </div>
           </div>
 
           <!-- Room -->
@@ -34,7 +35,9 @@
             <div v-for="(room, index) in rooms" :key="index">
               <h6>
                 {{ room.type }}
-                <div style="float:right;">฿ {{ room.price * room.num_room *DiffDay}}</div>
+                <div style="float:right;">
+                  ฿ {{ room.price * room.num_room * DiffDay }}
+                </div>
               </h6>
               <p>{{ room.num_room }} rooms</p>
             </div>
@@ -45,24 +48,40 @@
             <h5>Discount</h5>
             <!-- ตัวอย่างข้อมูล -->
             <h6>
-              Code promotion: {{ code }}
-              <div div style="float:right;">฿ {{ Cdis }}</div>
-            </h6>
-            <h6>
               Season discount : {{ season }}
               <div style="float:right;">฿ {{ Sdis }}</div>
             </h6>
+            <h6>
+              Code promotion: {{ code }}
+              <div div style="float:right;">฿ {{ Cdis }}</div>
+            </h6>
+
+            <div style="text-align:left">
+              <input
+                v-model="inputcode"
+                type="text"
+                placeholder="Code promotion"
+              />
+              <b-button
+                variant="light"
+                type="button"
+                size="sm"
+                style="margin-left:10px"
+                @click="checkCode"
+                >Check code</b-button
+              >
+            </div>
           </div>
           <br />
           <div>
             <!-- ตัวอย่างข้อมูล -->
             <h5>
               Subtotal
-              <div style="float:right;">฿ {{Tdis}}</div>
+              <div style="float:right;">฿ {{ Tdis }}</div>
             </h5>
             <h5>
               Tax 7%
-              <div style="float:right;">฿ {{sum*0.07}}</div>
+              <div style="float:right;">฿ {{ sum * 0.07 }}</div>
             </h5>
           </div>
           <hr />
@@ -76,14 +95,6 @@
                 <div style="float:right;">฿{{ Tprice }}</div>
               </b>
             </h4>
-            <input v-model="inputcode" type="text" placeholder="Code promotion" />
-            <b-button
-              variant="light"
-              type="button"
-              size="sm"
-              style="margin-left:10px"
-              @click="checkCode"
-            >Check code</b-button>
           </div>
           <!-- <div>{{value}} {{this.$store.getters.getBKID}}</div> -->
         </div>
@@ -99,15 +110,20 @@
           :state="state"
           name="radio-validation"
         >
-          <b-form-invalid-feedback :state="state">Please select one payment method</b-form-invalid-feedback>
-          <b-form-valid-feedback
-            :state="state"
-          >Further information about payment will be sent to your email.</b-form-valid-feedback>
+          <b-form-invalid-feedback :state="state"
+            >Please select one payment method</b-form-invalid-feedback
+          >
+          <b-form-valid-feedback :state="state"
+            >Further information about payment will be sent to your
+            email.</b-form-valid-feedback
+          >
         </b-form-radio-group>
       </div>
     </div>
     <div style="margin-top: 30px; margin-bottom:30px">
-      <b-button id="Cancel" variant="secondary" @click="cancelButton()">Cancel</b-button>
+      <b-button id="Cancel" variant="secondary" @click="cancelButton()"
+        >Cancel</b-button
+      >
       <b-button
         v-b-tooltip.hover
         title="Please make sure that your information is correct"
@@ -115,7 +131,8 @@
         type="submit"
         variant="success"
         @click="check()"
-      >Confirm</b-button>
+        >Confirm</b-button
+      >
     </div>
   </div>
 </template>
@@ -125,7 +142,7 @@ import NavLO from "../NavLO.vue";
 import moment from "moment";
 export default {
   components: {
-    NavLO
+    NavLO,
   },
   data() {
     return {
@@ -149,17 +166,17 @@ export default {
       options: [
         { text: "Cash (hotel counter)", value: "counter" },
         { text: "Online banking", value: "online" },
-        { text: "Credit card", value: "card" }
+        { text: "Credit card", value: "card" },
       ],
 
       // DB
       rooms: [],
       season: null,
       Bill: {
-        S_Name: ""
+        S_Name: "",
       },
       UserName: {
-        userid: ""
+        userid: "",
       },
       UptoDB: {
         bookid: null,
@@ -169,7 +186,7 @@ export default {
         numguest: null,
         method: null,
         code: null,
-        limit: null
+        limit: null,
       },
 
       // about time
@@ -178,7 +195,7 @@ export default {
       DiffDay: null,
 
       BookID: null,
-      HisNo: null
+      HisNo: null,
     };
   },
   mounted() {
@@ -212,7 +229,7 @@ export default {
   computed: {
     state() {
       return Boolean(this.value);
-    }
+    },
   },
   methods: {
     // Different time
@@ -252,7 +269,7 @@ export default {
     fetchSeason() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=read")
-        .then(response => {
+        .then((response) => {
           // this.season = response.data.Name;
           // console.log(response.data.Data);
           this.CheckDateSeason(response.data.Data);
@@ -280,7 +297,7 @@ export default {
     // All link to DB
     GetDB(URL, Data, code) {
       var formData = this.toFormData(Data);
-      this.axios.post(URL, formData).then(response => {
+      this.axios.post(URL, formData).then((response) => {
         // console.log(response.data.Data);
         if (code == "Sum") {
           this.Sum(this.rooms, response.data.Data);
@@ -304,7 +321,7 @@ export default {
           this.BookID += this.DiffDay < 10 ? "0" + this.DiffDay : this.DiffDay;
           this.BookID += this.HisNo < 10 ? "0" + this.HisNo : this.HisNo;
           // console.log(this.BookID);
-        } 
+        }
         // else if(code == "Booking"){
         //   console.log(response.data);
         // }
@@ -316,7 +333,7 @@ export default {
               this.UptoDB,
               "Usecode"
             );
-            
+
             // console.log(this.code);
           }
           this.UpdateBookDetail();
@@ -329,10 +346,9 @@ export default {
             numguest: null,
             method: null,
             code: null,
-            limit: null
+            limit: null,
           };
-        }
-        else if(code == "Bookdetail"){
+        } else if (code == "Bookdetail") {
           console.log(response.data);
         }
       });
@@ -418,28 +434,28 @@ export default {
         method: this.value,
         code: this.code,
         total: this.Tprice,
-        limit: this.limit
+        limit: this.limit,
       };
     },
 
-    UpdateBookDetail(){
-      var detail ={
+    UpdateBookDetail() {
+      var detail = {
         bookid: this.BookID,
-        typename:null,
-        numroom:null
+        typename: null,
+        numroom: null,
       };
-      for(var i=0 ; i<this.rooms.length ; i++){
+      for (var i = 0; i < this.rooms.length; i++) {
         detail = {
           bookid: this.BookID,
           typename: this.rooms[i].type,
-          numroom: this.rooms[i].num_room
-        }
+          numroom: this.rooms[i].num_room,
+        };
         console.log(detail);
         this.GetDB(
-              "http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=bookdetail",
-              detail,
-              "Bookdetail"
-            );
+          "http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=bookdetail",
+          detail,
+          "Bookdetail"
+        );
       }
     },
     // SumRoom(){
@@ -468,14 +484,27 @@ export default {
         title: "Notice!",
         variant: variant,
         solid: true,
-        toaster: "b-toaster-bottom-center"
+        toaster: "b-toaster-bottom-center",
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
+* {
+  box-sizing: border-box;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 #CARD {
   max-width: 800px;
   margin: auto;

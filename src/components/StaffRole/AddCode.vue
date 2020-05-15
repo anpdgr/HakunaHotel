@@ -102,7 +102,7 @@
         <!-- User Interface controls -->
         <div style="margin:auto; margin-top:20px;">
           <b-row>
-            <b-col lg="3" class="my-1">
+            <b-col lg="4" class="my-1">
               <b-input-group>
                 <b-form-input
                   v-model="filter"
@@ -117,13 +117,10 @@
                 </b-input-group-append>
               </b-input-group>
             </b-col>
-
-            <!-- <b-col sm="5" md="6" class="my-1">
+            <b-col sm="5" class="my-1">
               <b-form-group
                 label="Per page"
-                label-cols-sm="6"
-                label-cols-md="4"
-                label-cols-lg="3"
+                label-cols-sm="9"
                 label-align-sm="right"
                 label-size="sm"
                 label-for="perPageSelect"
@@ -134,9 +131,10 @@
                   id="perPageSelect"
                   size="sm"
                   :options="pageOptions"
+                  style=" width:120px"
                 ></b-form-select>
               </b-form-group>
-            </b-col> -->
+            </b-col>
 
           </b-row>
         </div>
@@ -155,7 +153,7 @@
         >
         </b-table>
 
-        <b-col  class="my-1">
+        <b-col class="my-1">
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
@@ -168,7 +166,6 @@
           <br />
           <hr />
         </b-col>
-        
       </b-container>
     </div>
   </div>
@@ -207,15 +204,15 @@ export default {
         },
         color: ["#127ac2"],
       },
-      code:{
-      codeid: null,
-      codename: null,
-      discount: null,
-      limit: null,
-      SDate: null,
-      ExDate: null
+      code: {
+        codeid: null,
+        codename: null,
+        discount: null,
+        limit: null,
+        SDate: null,
+        ExDate: null,
       },
-      // post code promotion ที่มีใน db 
+      // post code promotion ที่มีใน db
       items: [
         {
           codeid: "",
@@ -224,7 +221,7 @@ export default {
           limit: "",
           SDate: "",
           ExDate: "",
-        }
+        },
       ],
 
       fields: [
@@ -241,18 +238,16 @@ export default {
       perPage: 5,
       pageOptions: [5, 10, 15],
       filter: null,
-      
-     
+
       sortDesc: false,
       sortDirection: "asc",
       filterOn: [],
-      
     };
   },
   computed: {
     totalRows() {
-        return this.items.length
-      },
+      return this.items.length;
+    },
     sortOptions() {
       // Create an options list from our fields
       return this.fields
@@ -298,16 +293,16 @@ export default {
       });
     },
     //show code in db
-    fetchCode()
-    {
+    fetchCode() {
       var formData = this.toFormData(this.items);
       this.axios
-      .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=read",formData
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=read",
+          formData
         )
-        .then(response => {
+        .then((response) => {
           this.items = response.data.data;
-        
+
           if (response.data.error) {
             console.log(response.data.error);
           } else {
@@ -316,22 +311,23 @@ export default {
         });
     },
     //Add code to db
-    AddCode(){
+    AddCode() {
       var formData = this.toFormData(this.code);
       this.axios
-      .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=add",formData
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=add",
+          formData
         )
-        .then(response => {
+        .then((response) => {
           //set var to default
           console.log(response);
           this.code = {
-          codeid: null,
-          codename: null,
-          discount: null,
-          limit: null,
-          SDate: null,
-          ExDate: null
+            codeid: null,
+            codename: null,
+            discount: null,
+            limit: null,
+            SDate: null,
+            ExDate: null,
           };
           if (response.data.error) {
             console.log(response.data.error);
@@ -339,9 +335,9 @@ export default {
             console.log(response.data.message);
           }
         });
-      },
-      // convert to formdata
-      toFormData(obj) {
+    },
+    // convert to formdata
+    toFormData(obj) {
       var fd = new FormData();
       for (var i in obj) {
         fd.append(i, obj[i]);
