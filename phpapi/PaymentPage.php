@@ -123,7 +123,7 @@
 
         if($action == 'hisNo'){
             $userid = $_POST['userid'];
-            $sql = $con->query('SELECT COUNT(*) AS Count FROM Booked_History');
+            $sql = $con->query('SELECT COUNT(*) AS Count FROM Booking');
             $users = array();
 
             while($row = $sql->fetch_assoc()){
