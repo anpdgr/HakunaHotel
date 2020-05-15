@@ -11,7 +11,6 @@
 
         <!-- Form sign in -->
         <b-form @submit="onSubmit">
-
           <!-- input user -->
           <b-form-group id="ipg-uname">
             <b-form-input id="ip-uname" v-model="form.username" required placeholder="Username"></b-form-input>
@@ -29,9 +28,8 @@
           </b-form-group>
 
           <div style="float: left;">
-            
             <!-- sign in button -->
-            <b-button type="submit"  style="background-color:#6096a8; margin-right:10px">Sign in</b-button>
+            <b-button type="submit" style="background-color:#6096a8; margin-right:10px">Sign in</b-button>
 
             <!-- testuser button -->
             <b-button @click="TestUser" @click.alt="StaffUser" type="button">devuser</b-button>
@@ -41,13 +39,11 @@
       <br />
       <br />
       <div id="back" style="text-align: right;">
-
-       
         <!-- link to register page -->
         <button id="btn" @click="regis" style="color:#809aa1">I didn't have an account</button>
         <br />
-      
-       <!-- link to home -->
+
+        <!-- link to home -->
         <button id="btn" @click="home" style="color:#809aa1">Back to home</button>
       </div>
     </b-card>
@@ -101,21 +97,20 @@ export default {
       if (this.c === 0)
         this.makeToast("danger", "username or password incorrect");
       // alert("username or password incorrect");
-
       // sign in user
       else if (this.c === 1) {
         this.makeToast("success", "User login");
         // alert("User login");
 
         // go to payment
-        if(this.$store.getters.getBook){
+        if (this.$store.getters.getBook) {
           setTimeout(() => {
             this.$router.push("/payment");
           }, 1500);
         }
 
         // go to home
-        else{
+        else {
           setTimeout(() => {
             this.$router.push("/");
           }, 1500);
@@ -136,7 +131,6 @@ export default {
         .then(response => {
           this.users = response.data.data;
           // console.log(this.users);
-          // console.log(response.data);
         });
     },
     // ตัว test
@@ -155,23 +149,40 @@ export default {
 
     // foe loop user from DB
     CheckUser() {
-      this.users.forEach(this.checkUP);
-    },
-    // check login
-    checkUP(value) {
-      if (value["User_ID"] === this.form.username) {
-        if (value["Password"] == this.form.password) {
-          this.c = 1;
-          this.$store.dispatch("AcUser", value["User_ID"]);
-        }
-      } else if (value["Staff_ID"] === this.form.username) {
-        if (value["Password"] == this.form.password) {
-          this.c = 2;
-          this.$store.dispatch("AcUser", value["Staff_ID"]);
+      for (var i = 0; i < this.users.length; i++) {
+        if (this.users[i]["User_ID"] === this.form.username) {
+          if (this.users[i]["Password"] == this.form.password) {
+            this.c = 1;
+            this.$store.dispatch("AcUser", this.users[i]["User_ID"]);
+            this.$store.dispatch("AcBKID", this.users[i]["No"]);
+          }
+        } 
+        else if (this.users[i]["Staff_ID"] === this.form.username) {
+          if (this.users[i]["Password"] == this.form.password) {
+            this.c = 2;
+            this.$store.dispatch("AcUser", this.users[i]["Staff_ID"]);
+          }
         }
       }
-      // console.log(JSON.stringify(value["User_ID"]));
+
+      // this.users.forEach(this.checkUP);
     },
+    // // check login
+    // checkUP(value) {
+    //   if (value["User_ID"] === this.form.username) {
+    //     if (value["Password"] == this.form.password) {
+    //       this.c = 1;
+    //       this.$store.dispatch("AcUser", value["User_ID"]);
+    //       this.$store.dispatch("AcBKID", )
+    //     }
+    //   } else if (value["Staff_ID"] === this.form.username) {
+    //     if (value["Password"] == this.form.password) {
+    //       this.c = 2;
+    //       this.$store.dispatch("AcUser", value["Staff_ID"]);
+    //     }
+    //   }
+    //   // console.log(JSON.stringify(value["User_ID"]));
+    // },
     // สร้างกล่องข้อความ
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {

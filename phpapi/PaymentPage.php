@@ -121,6 +121,24 @@
             }
         }
 
+        if($action == 'hisNo'){
+            $userid = $_POST['userid'];
+            $sql = $con->query('SELECT COUNT(*) AS Count FROM Booking');
+            $users = array();
+
+            while($row = $sql->fetch_assoc()){
+                array_push($users,$row);
+            }
+            $result['Data'] = $users;
+            if($sql){
+                $result['message'] = "read successfully";
+            }
+            else {
+                $result['error'] = true;
+                $result['massage'] = "read fail";
+            }
+        }
+
         echo json_encode($result);
         
     }

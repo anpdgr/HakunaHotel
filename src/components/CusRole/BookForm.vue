@@ -2,18 +2,29 @@
   <div>
     <!--                          Bar                              -->
     <!-- before login -->
-    <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
+    <div v-if="$store.getters.getUser == null">
+      <NavLogIn />
+    </div>
     <!-- after  login -->
-    <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
-    <br /><br /><br /><br />
+    <div v-else-if="$store.getters.getUser != null">
+      <NavLogOut />
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
     <CheckAv />
     <br />
     <div id="CARD">
       <b-card title="Available room">
         <span>
-          <b>Date:</b> {{this.$store.getters.getBookCkin}} <b>to</b> {{this.$store.getters.getBookCkout}}
-          <b>Number of guests:</b> {{this.$store.getters.getBookNumG}}
-</span>
+          <b>Date:</b>
+          {{this.$store.getters.getBookCkin}}
+          <b>to</b>
+          {{this.$store.getters.getBookCkout}}
+          <b>Number of guests:</b>
+          {{this.$store.getters.getBookNumG}}
+        </span>
 
         <table class="table table-hover table-bordered">
           <thead>
@@ -28,37 +39,32 @@
           <tbody>
             <!-- ตัวอย่างข้อมูล -->
             <tr v-for="(room, index) in RoomType" :key="index">
-                <th scope="row" id="1">
-                  <div style="width:90%; margin:auto">
-                    <p>{{ room.RoomType_Name }}</p>
-                    <p style="font-size:small;">
-                      Description:
-                      {{ room.Service }}
-                    </p>
-                  </div>
-                </th>
-                <td id="2">{{ room.Limit_Guest }}</td>
-                <td id="3">{{ room.Price }}</td>
-                <td id="4">
-                  <div id="noRoom1">
-                    <b-form-select
-                      v-model="selected[index]"
-                      :options="options"
-                      size="sm"
-                      class="mb-3"
-                    ></b-form-select>
-                  </div>
-                </td>
-                <td>
-                  <div v-if="index === 0">
-                    <b-button
-                      id="reserve"
-                      type="submit"
-                      @click="check()"
-                      >Reserve all</b-button
-                    >
-                  </div>
-                </td>
+              <th scope="row" id="1">
+                <div style="width:90%; margin:auto">
+                  <p>{{ room.RoomType_Name }}</p>
+                  <p style="font-size:small;">
+                    Description:
+                    {{ room.Service }}
+                  </p>
+                </div>
+              </th>
+              <td id="2">{{ room.Limit_Guest }}</td>
+              <td id="3">{{ room.Price }}</td>
+              <td id="4">
+                <div id="noRoom1">
+                  <b-form-select
+                    v-model="selected[index]"
+                    :options="options"
+                    size="sm"
+                    class="mb-3"
+                  ></b-form-select>
+                </div>
+              </td>
+              <td>
+                <div v-if="index === 0">
+                  <b-button id="reserve" type="submit" @click="check()">Reserve all</b-button>
+                </div>
+              </td>
             </tr>
             <tr rowspan="8">
               <!-- rowspan = for ตามจน.รูมไทป์ -->
@@ -71,7 +77,7 @@
           roomtype1: {{ selected[0] }} rooms<br />
           roomtype2: {{ selected[1] }} rooms<br />
           roomtype3: {{ selected[2] }} rooms
-        </p> -->
+        </p>-->
         <p>{{ selected }}</p>
       </b-card>
     </div>
@@ -87,7 +93,7 @@ export default {
   components: {
     NavLogOut,
     NavLogIn,
-    CheckAv,
+    CheckAv
   },
   data() {
     return {
@@ -98,16 +104,16 @@ export default {
       // num room each roomtype
       selected: [],
       isFail: true,
-      count:0,
+      count: 0,
       // option selete
       options: [
         { value: 0, text: "0" },
         { value: 1, text: "1" },
         { value: 2, text: "2" },
         { value: 3, text: "3" },
-        { value: 4, text: "4" },
+        { value: 4, text: "4" }
       ],
-      bookdata: [],
+      bookdata: []
       //ตามจน.รูมไทป์ ฟอร์ไป (รอดาต้า)
     };
   },
@@ -118,33 +124,40 @@ export default {
     // check num room
     checkNull() {
       for (let i = 0; i < this.selected.length; i++) {
-        if (this.selected[i] != 0) {
+        if (this.selected[i] != null) {
           this.isZero = false;
         }
       }
       return this.isZero;
     },
     //check num guest and num room
-    checkRoom(){
-      this.count=0;
+    checkRoom() {
+      this.count = 0;
       for (let i = 0; i < this.selected.length; i++) {
-        this.count += this.selected[i];
-        }
-        if(this.$store.getters.getBookNumG<=4&&this.count<=this.$store.getters.getBookNumG)
-        {
-          this.isFail = false
-        }
-        if(this.count*4>=this.$store.getters.getBookNumG&&this.count<=this.$store.getters.getBookNumG){
-          this.isFail = false;
-        }
-        
+        if(this.selected[i] != null)
+          this.count += this.selected[i];
+      }
+      this.$store.dispatch("AcNRoom", this.count);
+      if (
+        this.$store.getters.getBookNumG <= 4 &&
+        this.count <= this.$store.getters.getBookNumG
+      ) {
+        this.isFail = false;
+      }
+      if (
+        this.count * 4 >= this.$store.getters.getBookNumG &&
+        this.count <= this.$store.getters.getBookNumG
+      ) {
+        this.isFail = false;
+      }
+
       return this.isFail;
     },
     // fetch data from DB
     fetchRoomType() {
       this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read")
-        .then((response) => {
+        .then(response => {
           this.RoomType = response.data.data;
           // console.log(this.RoomType);
           // console.log(response.data);
@@ -155,10 +168,12 @@ export default {
       if (this.checkNull()) {
         this.makeToast("danger", "Please select number of each room type.");
       }
-      if(this.checkRoom()){
-        this.makeToast("danger", "The Number of rooms are not match with number of guest.");
-      }
-       else {
+      if (this.checkRoom()) {
+        this.makeToast(
+          "danger",
+          "The Number of rooms are not match with number of guest."
+        );
+      } else {
         this.setData(this.RoomType, this.selected);
         // push global
         // this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
@@ -169,10 +184,13 @@ export default {
 
         // didn't login  make toast plz
         if (this.$store.getters.getUser == null) {
-          this.makeToast("danger","You didn't log in. Please login before payment");
+          this.makeToast(
+            "danger",
+            "You didn't log in. Please login before payment"
+          );
           setTimeout(() => {
-          this.$router.push("/login");
-        }, 2500);
+            this.$router.push("/login");
+          }, 2500);
         }
         // already login  make toast plz
         else {
@@ -187,7 +205,7 @@ export default {
           this.bookdata.push({
             type: Room[i].RoomType_Name,
             num_room: sel[i],
-            price: Room[i].Price,
+            price: Room[i].Price
           });
         }
       }
@@ -198,10 +216,10 @@ export default {
         title: "Notice!",
         variant: variant,
         solid: true,
-        toaster: "b-toaster-bottom-center",
+        toaster: "b-toaster-bottom-center"
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -228,8 +246,8 @@ table td {
   background-color: #513f2a;
   color: white;
 }
-thead{
-  background-color:#513f2a;
+thead {
+  background-color: #513f2a;
   color: aliceblue;
 }
 </style>

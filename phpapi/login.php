@@ -15,7 +15,7 @@
 
         if($action == 'read'){                                             # -
             # edit sql command here
-            $sql = $con->query('SELECT User_ID,Staff_ID,Password FROM History_Account WHERE Available = "Y"');           # +
+            $sql = $con->query('SELECT No,User_ID,Staff_ID,Password FROM History_Account WHERE Available = "Y"');           # +
             # var buff for data in database
             $users = array();                                              # -
             # fetch data from database

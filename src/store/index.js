@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // Global var
   state: {
+    BKID: null,
     booking:{
       check_in: null,
       check_out: null,
@@ -49,16 +50,13 @@ export default new Vuex.Store({
     },
     getBook(state){
       return state.book;
+    },
+    getBKID(state){
+      return state.BKID;
     }
   },
   // Function Global
   mutations: {
-    // add(state){
-    //   state.count++;
-    // },
-    // del(state){
-    //   state.count--;
-    // },
     setUser(state, user){
       state.user = user;
     },
@@ -85,6 +83,9 @@ export default new Vuex.Store({
     },
     setType(state,room){
       state.booking.type = room;
+    },
+    setBKID(state, id){
+      state.BKID = id;
     }
 
 
@@ -117,8 +118,10 @@ export default new Vuex.Store({
     },
     AcBook(context, status){
       context.commit('statusBook', status);
+    },
+    AcBKID(context, id){
+      context.commit('setBKID', id);
     }
-    
   },
   modules: {
   }
