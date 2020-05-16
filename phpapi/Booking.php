@@ -35,6 +35,14 @@
                 array_push($books,$row);                                   # -
             }
             $result['data'] = $books;                                      # -
+
+            if($sql){                                                      # -
+                $result['message'] = "read successfully";                 # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "read fail";                         # -
+            }
         }
 
         # insert command
