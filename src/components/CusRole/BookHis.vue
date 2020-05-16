@@ -93,7 +93,7 @@
                       <hr />
                       Room type :
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                        <br />{{i}}. {{room.RoomType_Name}} <br />
+                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
                         Room : {{room.Number_of_Room}}
                       </div> 
                       <div id="right">
