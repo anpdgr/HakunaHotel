@@ -8,7 +8,10 @@
                 <h1>Check-in</h1>
                 <div id='detail-head' style="text-align:left;">
                     <!-- show Bookingid ที่กำลัง check in -->
-                    <b style="font-size:120%;">Booking no. {{$store.getters.getBKID}}</b><br><br>
+                    <b-row>
+                        <b-col cols="2"><b style="font-size:120%;">Booking no.  </b></b-col>
+                        <b-col><p> {{$store.getters.getBKID}}</p></b-col><br>
+                    </b-row>
                 <b-row>
                     <!-- show cusdetail  -->
                     <b-col id='CusDetail'>
@@ -433,6 +436,7 @@ export default {
 <style>
     #all{
     margin: 100px 100px auto 300px;
+    
     
     }
     #card{
