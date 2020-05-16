@@ -104,7 +104,6 @@ export default {
       // num room each roomtype
       selected: [0,0,0,0,0,0,0,0],
       isFail: true,
-      count: 0,
       // option selete
       options: [
         { value: 0, text: "0" },
@@ -124,35 +123,30 @@ export default {
     // check num room
     checkNull() {
       for (let i = 0; i < this.selected.length; i++) {
-        if (this.selected[i] != null && this.selected[i] != 0) {
-          this.isZero = false;
+        if (this.selected[i] != 0) {
+          return false;
         }
       }
-      return this.isZero;
+      return true
     },
     //check num guest and num room
     checkRoom() {
       //if(!this.checkNull()){
-      this.count = 0;
+      var count = 0;
       for (let i = 0; i < this.selected.length; i++) {
-        if(this.selected[i] != null)
-          this.count += this.selected[i];
+          count += this.selected[i];
       }
-      this.$store.dispatch("AcNRoom", this.count);
-      if (
-        this.$store.getters.getBookNumG <= 4 &&
-        this.count <= this.$store.getters.getBookNumG
-      ) {
-        this.isFail = false;
+      this.$store.dispatch("AcNRoom", count);
+      console.log((this.$store.getters.getBookNumG % 4) + Math.floor((this.$store.getters.getBookNumG / 4)))
+      if ( count < (this.$store.getters.getBookNumG % 4) + Math.floor((this.$store.getters.getBookNumG / 4)) ) {
+        return true;
       }
-      if (
-        this.count * 4 >= this.$store.getters.getBookNumG &&
-        this.count <= this.$store.getters.getBookNumG
-      ) {
-        this.isFail = false;
+      else if ( count > this.$store.getters.getBookNumG ) {
+        return true;
       //}
       }
-      return this.isFail;
+      else
+        return false;
     },
     // fetch data from DB
     fetchRoomType() {
@@ -166,40 +160,40 @@ export default {
     },
     // check input
     check() {
-      console.log(this.isZero);
+      // console.log(this.isZero);
       if (this.checkNull()) {
         this.makeToast("danger", "Please select number of each room type.");
       }
-      if (this.checkRoom()) {
+      else if (this.checkRoom()) {
         this.makeToast(
           "danger",
           "The Number of rooms are not match with number of guest."
         );
-        console.log(this.isFail);
-      } else {
-        this.setData(this.RoomType, this.selected);
-        // push global
-        // this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
-        // this.$store.dispatch("AcNRoom", this.selected[index]);
-        this.$store.dispatch("AcSetRoom", this.bookdata);
-        this.$store.dispatch("AcBook", true);
-        // alert(this.$store.getters.getUser);
+      } 
+      else {
+          this.setData(this.RoomType, this.selected);
+          // push global
+          // this.$store.dispatch("AcType", this.RoomType[index].RoomType_Name);
+          // this.$store.dispatch("AcNRoom", this.selected[index]);
+          this.$store.dispatch("AcSetRoom", this.bookdata);
+          this.$store.dispatch("AcBook", true);
+          // alert(this.$store.getters.getUser);
 
-        // didn't login  make toast plz
-        if (this.$store.getters.getUser == null) {
-          this.makeToast(
-            "danger",
-            "You didn't log in. Please login before payment"
-          );
-          setTimeout(() => {
-            this.$router.push("/login");
-          }, 2500);
-        }
-        // already login  make toast plz
-        else {
-          setTimeout(() => {
-          this.$router.push("/payment");
-        }, 2500);
+          // didn't login  make toast plz
+          if (this.$store.getters.getUser == null) {
+            this.makeToast(
+              "danger",
+              "You didn't log in. Please login before payment"
+            );
+            setTimeout(() => {
+              this.$router.push("/login");
+            }, 2500);
+          }
+          // already login  make toast plz
+          else {
+            setTimeout(() => {
+            this.$router.push("/payment");
+          }, );
         }
         //
       }

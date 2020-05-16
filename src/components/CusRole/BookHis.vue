@@ -46,6 +46,7 @@
 
                         <b-modal
                           id="modal-cancle"
+                          ref="modal-cancle"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -118,6 +119,7 @@
                       <div id="right">
                         <div>
                           <b-modal
+                            ref="my-modalRv"
                             id="my-modalRv"
                             hide-footer
                             title="Review this room type"
@@ -152,11 +154,12 @@
                             </div>
                             <div style="margin-top:20px;">
                               <b-button
+                                @click="toggleModalRv"
                                 class="mt-2"
                                 pill
                                 variant="outline-warning"
                                 block
-                                @click="toggleModalRv"
+
                               >
                                 Review
                               </b-button>
