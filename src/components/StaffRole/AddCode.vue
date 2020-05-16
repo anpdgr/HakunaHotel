@@ -213,16 +213,7 @@ export default {
         ExDate: null,
       },
       // post code promotion ที่มีใน db
-      items: [
-        {
-          codeid: "",
-          codename: "",
-          discount: "",
-          limit: "",
-          SDate: "",
-          ExDate: "",
-        },
-      ],
+      items: [],
 
       fields: [
         { key: "Code_ID", label: "Code ID", sortable: true },

@@ -117,7 +117,7 @@
           <template v-slot:row-details="row">
             <b-card>
               <pre style="font-size:large; margin:0px">
-              <b>Date of Birth</b>: {{row.item.dob}}        <b>Address</b>: {{row.item.address}}        <b>Start date</b>: {{row.item.sDate}}        <b>End date</b>: {{row.item.eDate}}   
+              <b>Date of Birth</b>: {{row.item.Date_Of_Birth}}        <b>Address</b>: {{row.item.Address}}        <b>Start date</b>: {{row.item.Start_Date}}        <b>End date</b>: {{row.item.End_Date}}   
               </pre>
             </b-card>
           </template>
@@ -127,37 +127,37 @@
         <!-- Info edit modal ปล ถ้า  placeholder เป็นข้อมูลปัจจุบันก็ดีนะ ทุก edit-->
           <b-modal ref="editModal" title="Edit staff information" hide-footer>
               <div id="editST">
-                {{infoModalContent}}
+                <!-- {{infoModalContent}} -->
                 <b-form-group label="Position:" label-for="ip-position">
                   <b-form-input
                     id="ip-position"
-                    v-model="editPosition"
+                    v-model="formEdit.Position"
                     placeholder="Enter new position" 
                   
                   ></b-form-input>
                 </b-form-group>
-
+                <!-- {{infoModalContent.Salary}} -->
                 <b-form-group label="Salary:" label-for="ip-salary">
                   <b-form-input
                     id="ip-salary"
-                    v-model="editSalary"
+                    v-model="formEdit.Salary"
                     placeholder="Enter new salary"
                     required=""
                   ></b-form-input>
                 </b-form-group>
-
+                <!-- {{infoModalContent.Start_Date}} -->
                 <b-form-group label="Start date:" label-for="ip-sDate">
                   <b-form-datepicker
                     id="ip-sDate"
-                    v-model="editSDate"
+                    v-model="formEdit.SDate"
                     placeholder="-- select date --"
                   ></b-form-datepicker>
                 </b-form-group>
-
+                <!-- {{infoModalContent.End_Date}} -->
                 <b-form-group label="End date:" label-for="ip-eDate">
                   <b-form-datepicker
                     id="ip-eDate"
-                    v-model="editEDate"
+                    v-model="formEdit.EDate"
                     placeholder="-- select date --"
                   ></b-form-datepicker>
                 </b-form-group>
@@ -224,70 +224,23 @@ export default {
         color: ["#127ac2"],
       },
       // staff info 
-      items: [
-        {
-          id: "ST_0002",
-          sName: { title: "Mrs.", name: "Suthada Haha" },
-          position: "IT",
-          salary: 28000,
-          email: "ST_0002@mail.hotel.com",
-          tel: "0659666687",
-          dob: "1999-12-02",
-          address: "The mall tha phra",
-          sDate: "2020-05-03",
-          eDate: "2020-05-04",
-        },
-        {
-          id: "ST_0001",
-          sName: { title: "Mr.", name: "Ananya Gaga" },
-          position: "housekeeper",
-          salary: 3000,
-          email: "ST_0001@mail.hotel.com",
-          tel: "0629398559",
-          dob: "2000-08-11",
-          address: "Taksin 33",
-          sDate: "2020-05-03",
-          eDate: "",
-        },
-        {
-          id: "ST_0003",
-          sName: { title: "Miss", name: "Piyaluk Rukkorn" },
-          position: "DBA",
-          salary: 28000,
-          email: "ST_0003@mail.hotel.com",
-          tel: "0889965789",
-          dob: "1999-09-16",
-          address: "Pchut 33",
-          sDate: "2020-05-03",
-          eDate: "",
-        },
-        {
-          id: "ST_0004",
-          sName: { title: "Mr.", name: "Warakorn Norneeklaew" },
-          position: "Full stack dev",
-          salary: 500000,
-          email: "ST_0004@mail.hotel.com",
-          tel: "0128596458",
-          dob: "1999-00-00",
-          address: "Cosmo",
-          sDate: "2020-05-02",
-          eDate: "2021-06-08",
-        },
-      ],
+      items: [],
       fields: [
-        { key: "id", label: "Staff ID", sortable: true },
-        { key: "sName", label: "(title) Staff name", sortable: true },
-        { key: "position", label: "Position", sortable: true },
-        { key: "salary", label: "Salary", sortable: true },
-        { key: "email", label: "Email", sortable: true },
-        { key: "tel", label: "TelNo", sortable: true },
+        { key: "Staff_ID", label: "Staff ID", sortable: true },
+        { key: "Name_Title", label: "Title", sortable: true },
+        { key: "Staff_FirstName", label: "First name", sortable: true },
+        { key: "Staff_LastName", label: "Last name", sortable: true },
+        { key: "Position", label: "Position", sortable: true },
+        { key: "Salary", label: "Salary", sortable: true },
+        { key: "Email", label: "Email", sortable: true },
+        { key: "Tel_No", label: "TelNo", sortable: true },
         { key: "actions", label: "Actions" },
       ],
       fieldsMore: [
-        { key: "dob", label: "Date of Birth", sortable: true },
-        { key: "address", label: "Address", sortable: true },
-        { key: "sDate", label: "Start date", sortable: true },
-        { key: "eDate", label: "End date", sortable: true },
+        { key: "Date_Of_Birth", label: "Date of Birth", sortable: true },
+        { key: "Address", label: "Address", sortable: true },
+        { key: "Start_Date", label: "Start date", sortable: true },
+        { key: "End_Date", label: "End date", sortable: true },
       ],
       //totalRows: 1,
       currentPage: 1,
@@ -299,11 +252,15 @@ export default {
       filter: null,
       filterOn: [],
       //edit prmt
-      editPosition: null,
-      editSalary: null,
-      editSDate: null,
-      editEDate: null,
+      formEdit:{
+        staffid: null,
+        Position: null,
+        Salary: null,
+        SDate: null,
+        EDate: null
+      },
       show: true,
+      
     };
   },
   computed: {
@@ -322,8 +279,15 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.items.length;
+    this.fetchStaff();
+   //this.MergeName();
   },
   methods: {
+    // MergeName(){
+    //   for(var i=0; i<this.items.length; i++){
+    //     this.items.name=this.items[i].Name_Title + this.items[i].Staff_FirstName +this.items[i].Staff_LastName;
+    //   }
+    // },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
@@ -331,6 +295,12 @@ export default {
     },
     showModal(item) {
       this.infoModalContent=item;
+      console.log(this.infoModalContent.Staff_ID);
+      this.formEdit.staffid=this.infoModalContent.Staff_ID;
+      this.formEdit.Position=this.infoModalContent.Position;
+      this.formEdit.Salary=this.infoModalContent.Salary;
+      this.formEdit.SDate=this.infoModalContent.Start_Date;
+      this.formEdit.EDate=this.infoModalContent.End_Date;
       this.$refs["editModal"].show();
     },
     hideModal() {
@@ -339,13 +309,14 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       if (
-        this.editPosition === null &&
-        this.editSalary === null &&
-        this.editSDate === null &&
-        this.editEDate === null
+        this.formEdit.Position === null &&
+        this.formEdit.Salary === null &&
+        this.formEdit.SDate === null &&
+        this.formEdit.EDate === null
       ) {
         this.makeToast("danger", "Nothing updated");
       } else {
+        this.updateStaff();
         this.makeToast("success", "Information has been updated.");
       }
       this.hideModal();
@@ -353,14 +324,87 @@ export default {
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.editPosition = "";
-      this.editSalary = "";
-      this.editSDate = "";
-      this.editEDate = "";
+      this.formEdit.Position = "";
+      this.formEdit.Salary = "";
+      this.formEdit.SDate = "";
+      this.formEdit.EDate = "";
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
+    },
+    fetchStaff(){
+      var formData = this.toFormData(this.items);
+      this.axios
+      .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/Staff.php?action=read",formData
+        )
+        .then(response => {
+          //set var to default
+          this.items=response.data.data;
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
+        });
+      },
+    updateStaff() {
+      console.log(this.formEdit.EDate);
+      if(this.formEdit.EDate==null){
+        var formData1 = this.toFormData(this.formEdit);
+        this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/editourteam.php?action=update",formData1
+        )
+        .then(response => {
+          //set var to default
+          console.log(response);
+          this.formEdit = {
+            staffid: null,
+            Position: null,
+            Salary: null,
+            SDate: null,
+            EDate: null
+          };
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
+        });
+      }
+      else{
+        var formData2 = this.toFormData(this.formEdit);
+        this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/editourteam.php?action=updateED",formData2
+        )
+        .then(response => {
+          //set var to default
+          console.log(response);
+          this.formEdit = {
+            staffid: null,
+            Position: null,
+            Salary: null,
+            SDate: null,
+            EDate: null
+          };
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
+        });
+      }
+    },
+      // convert to formdata
+      toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
     },
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {
