@@ -30,8 +30,8 @@
             <!-- filter type  -->
               <b-input-group size="sm">
                 <b-form-select
-                  v-model="selected_type"
                   id="selectType"
+                  v-model="selected_type"
                   :options="type_options"
                   class="w-75"
                   @change="onSelect"
@@ -128,10 +128,9 @@ export default {
             },
             color: ['#127ac2']
         },
-        // fix!!!
+      
         // post roomtype name's data
-      type_options: [{value:"",
-                      text:""}],
+      type_options: [],
       // post room detail
       items: [
         {
@@ -142,7 +141,6 @@ export default {
         }
       ],
       rtype:[],
-      // rtype:{name:[null]},
       fields: [
         { key: "RoomType_Name", sortable: true },
         { key: "Room_ID", sortable: true },
@@ -170,29 +168,13 @@ export default {
   },
   mounted() {
     // Set the initial number of items
-    
+    this.fetchRoomType();
+    console.log(this.type_options);
     this.totalRows = this.items.length;
     this.fetchRoom();
-    this.fetchRoomType();
-    // fixxxxx
-    this.fetchType_op();
+    
   },
   methods: {
-    
-    // fix
-    fetchType_op(){
-      for(var i = 0; i<=this.rtype.length; i++){
-        if(i==0){
-            this.type_options[i].value = null;
-            this.type_options[i].text = "All";
-        }
-        else{
-          // this.type_options.append({value:this.rtype[i-1],text:this.rtype[i-1]});
-            this.type_options[i].value = this.rtype[i-1];
-            this.type_options[i].text = this.rtype[i-1];
-        }
-      }
-    },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
@@ -227,11 +209,13 @@ export default {
       .post(
         "http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read",formData)
         .then(response => {
-            // console.log(response.data.data);
-          for(var i = 0; i<response.data.data.length; i++){
-            this.rtype[i] = response.data.data[i].RoomType_Name;
-          }
-          // console.log(this.rtype);
+            var type = [];
+            type.push({value:null, text: "All"});
+            for(var i=0; i<response.data.data.length; i++){
+              type.push({ value: response.data.data[i].RoomType_Name, text: response.data.data[i].RoomType_Name })
+            }
+           console.log(type);
+           this.type_options=type;
           if (response.data.error) {
             console.log(response.data.error);
           } else {
