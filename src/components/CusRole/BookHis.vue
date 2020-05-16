@@ -11,28 +11,12 @@
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
-<<<<<<< HEAD
-                    >Booking ID: 
-=======
                     >Booking ID: {{BookID.Booking_ID}}
->>>>>>> 1d8669c97bccd1349580117de8a59a29248a48eb
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
                 <b-collapse id="collapse-2">
                   <b-card border-variant="info">
-<<<<<<< HEAD
-                    Check-in date: 
-                    <br />
-                    Check-out date: <br />
-                    Number of guests: 
-                    <hr />
-                    Room type 1: 
-                    <hr />
-                    Payment ID: 
-                    <br />
-                    Total price: 
-=======
                     Check-in date: {{BookID.Checkin}}
                     <br />
                     Check-out date: {{BookID.Checkout}}<br />
@@ -47,7 +31,6 @@
                     Payment ID: {{BookID.No}}
                     <br />
                     Total price: {{BookID.Total}}
->>>>>>> 1d8669c97bccd1349580117de8a59a29248a48eb
                     <div id="onbook">
                       <div>
                         <b-button
