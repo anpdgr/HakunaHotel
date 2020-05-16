@@ -1,13 +1,10 @@
 <template>
   <!-- first step booking -->
   <b-card id="card" bg-variant="default">
-
     <!-- box -->
     <b-form inline id="dateform">
-
       <!-- Checkin Date block -->
       <b-form-group id="ipg-cin" label="Check-in Date:" style="margin-right:20px; width: 17rem;">
-        
         <!--                               input box checkin date                               -->
 
         <!--<b-form-datepicker
@@ -24,9 +21,8 @@
 
       <!-- Checkout Date block -->
       <b-form-group id="ipg-cout" label="Check-out Date:" style="margin-right:20px; width: 17rem;">
-        
         <!--                                    input checkout date                                -->
-        
+
         <!--<b-form-datepicker
           id="ip-cout"
           v-model="form.checkout_date"
@@ -49,7 +45,6 @@
       <!-- submit button -->
       <b-button id="button" variant="dark" @click="checkNull()">Check available</b-button>
       <!-- variant="success" -->
-
 
       <!-- <h1>{{this.$store.getters.getBookCkin}}   {{this.$store.getters.getBookCkout}}  {{this.$store.getters.getBookNumG}}</h1> -->
     </b-form>
@@ -87,7 +82,7 @@ export default {
       form: {
         checkin_date: null,
         checkout_date: null,
-        num_guest: null
+        num_guest: 0
       },
       // ?? didn't use
       show: true
@@ -101,32 +96,29 @@ export default {
   methods: {
     checkNull() {
       if (
-        (this.form.checkin_date == null) |
-        (this.form.checkout_date == null) |
-        (this.form.num_guest == null)
+        (this.form.checkin_date == null) &&
+        (this.form.checkout_date == null) &&
+        (this.form.num_guest == 0)
       ) {
+        this.makeToast("danger", "Please input data.");
+      } else if (
+        (this.form.checkin_date == null) |
+        (this.form.checkout_date == null)
+      ) {
+        this.makeToast("danger", "Please select date.");
+      } else if (this.form.num_guest == 0) {
         this.makeToast("danger", "Please select number of guests.");
-        if (
-          (this.form.checkin_date == null) |
-          (this.form.checkout_date == null)
-        ) {
-          this.makeToast("danger", "Please select date.");
-        } else {
-          this.makeToast("danger", "Please select number of guests.");
-        }
       } else {
         // check date
         if (this.form.checkin_date > this.form.checkout_date) {
           // use method makeToast
           this.makeToast("danger", "Invalid date");
         } else {
-
           // push t global
           this.$store.dispatch("AcCkIn", this.form.checkin_date);
-          this.$store.dispatch("AcCkOut",  this.form.checkout_date);
+          this.$store.dispatch("AcCkOut", this.form.checkout_date);
           this.$store.dispatch("AcNumG", this.form.num_guest);
           // console.log(this.form.checkin_date+"  "+this.form.checkout_date+"  "+this.form.num_guest);
-
 
           // go booking page
           // this port is so good

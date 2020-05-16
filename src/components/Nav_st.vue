@@ -25,7 +25,7 @@
             </li>
             <!-- link to My account -->
             <li class="nav-item">
-              <button id="btn" class="nav-link js-scroll-trigger" @click="account">My account</button>
+              <button id="btn" class="nav-link js-scroll-trigger" @click="account">{{$store.getters.getUser}}</button>
             </li>
             <!-- link to home page if sign out -->
             <li class="nav-item">

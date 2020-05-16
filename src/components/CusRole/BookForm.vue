@@ -102,7 +102,7 @@ export default {
       // check num room
       isZero: true,
       // num room each roomtype
-      selected: [],
+      selected: [0,0,0,0,0,0,0,0],
       isFail: true,
       count: 0,
       // option selete
