@@ -14,12 +14,12 @@
               >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
-                  <b-button variant="info" v-b-toggle.collapse class="m-1"
+                  <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
                     >Booking ID: {{ BookID.Booking_ID }}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse id="collapse">
+                <b-collapse id="collapse-2">
                   <b-card border-variant="info">
                     Check-in date: {{ BookID.Checkin }}
                     <br />
@@ -40,12 +40,12 @@
                         <b-button
                           variant="outline-secondary"
                           id="toggle-btn"
-                          v-b-modal.my-modal
+                          v-b-modal.modal-cancle
                           >Cancel Booking
                         </b-button>
 
                         <b-modal
-                          ref="my-modal"
+                          id="modal-cancle"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -103,58 +103,66 @@
                       Room type :
                       <div v-for="(room, i) in BookID.rooms" :key="i">
                         <br />{{ i }}. {{ room.RoomType_Name }}
-                        <a id="show-btn" href="#" @click="showModalRv">
-                          <font color="#FDA50F">Click to review</font>
-                        </a>
-                        <br />
+                        <b-button
+                          id="show-btn"
+                          href="#"
+                          v-b-modal.my-modalRv
+                          style="background-color: transparent; border-color:transparent; cursor: pointer; float:right; margin-right: 10px;"
+                        >
+                          <font color="#FDA50F"
+                            >Click to review</font
+                          > </b-button
+                        ><br />
                         Room : {{ room.Number_of_Room }}
                       </div>
                       <div id="right">
-                        <b-modal
-                          ref="my-modalRv"
-                          hide-footer
-                          title="Review room type 1"
-                        >
-                          <div class="d-block text-center">
-                            <div id="reviewSection">
-                              <div>
+                        <div>
+                          <b-modal
+                            id="my-modalRv"
+                            hide-footer
+                            title="Review this room type"
+                          >
+                            <div class="d-block text-center">
+                              <div id="reviewSection">
                                 <div>
-                                  <label for="rating-inline">Rate:</label>
-                                  <b-form-rating
-                                    id="rating-inline"
-                                    v-model="rateStar"
-                                    inline
-                                    value="4"
-                                    no-border
-                                    size="lg"
-                                    color="#ff8800"
-                                  ></b-form-rating>
-                                  {{ rateStar }}
+                                  <div>
+                                    <label for="rating-inline">Rate:</label>
+                                    <b-form-rating
+                                      id="rating-inline"
+                                      v-model="rateStar"
+                                      inline
+                                      value="4"
+                                      no-border
+                                      size="lg"
+                                      color="#ff8800"
+                                    ></b-form-rating>
+                                    {{ rateStar }}
 
-                                  <b-form-textarea
-                                    id="textarea"
-                                    v-model="comment"
-                                    placeholder="Enter something..."
-                                    rows="3"
-                                    max-rows="6"
-                                    style="margin-top:10px;"
-                                  ></b-form-textarea>
+                                    <b-form-textarea
+                                      id="textarea"
+                                      v-model="comment"
+                                      placeholder="Enter something..."
+                                      rows="3"
+                                      max-rows="6"
+                                      style="margin-top:10px;"
+                                    ></b-form-textarea>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div style="margin-top:20px;">
-                            <b-button
-                              class="mt-2"
-                              pill
-                              variant="outline-warning"
-                              block
-                              @click="toggleModalRv"
-                            >
-                              Review
-                            </b-button>
-                          </div>
-                        </b-modal>
+                            <div style="margin-top:20px;">
+                              <b-button
+                                class="mt-2"
+                                pill
+                                variant="outline-warning"
+                                block
+                                @click="toggleModalRv"
+                              >
+                                Review
+                              </b-button>
+                            </div>
+                          </b-modal>
+                        </div>
                       </div>
                       <hr />
                       Payment ID: {{ BookID.No }}
@@ -345,13 +353,5 @@ export default {
 }
 #onbook {
   margin-top: 20px;
-}
-#right {
-  float: right;
-  margin-right: 30px;
-}
-#show-btn {
-  float: right;
-  margin-right: 30px;
 }
 </style>
