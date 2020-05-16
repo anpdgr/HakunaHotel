@@ -256,10 +256,11 @@ export default {
     // split AllBooking to each status
     splitStatus(){
       for(var i=0 ; i < this.bookDetail.length ; i++){
-        if(this.bookDetail[i].Statue == "CheckOut"){
+        console.log(this.bookDetail[i]);
+        if(this.bookDetail[i].Status == "CheckOut"){
           this.BDone.push(this.bookDetail[i]);
         }
-        else if(this.bookDetail[i].Statue == "Cancel"){
+        else if(this.bookDetail[i].Status == "Cancel"){
           this.BCanceled.push(this.bookDetail[i]);
         }
         else{

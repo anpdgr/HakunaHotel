@@ -11,10 +11,10 @@
       <!-- before login -->
       <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
       <!-- after  login -->
-      <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
+      <div v-else-if="$store.getters.getUser != null && $store.getters.getIsS == false"><NavLogOut /></div>
 
       <!-- login as staff -->
-      <div v-else-if="$store.getters.getUser != null"><stNav /></div>
+      <div v-else-if="$store.getters.getUser != null && $store.getters.getIsS == true"><stNav /></div>
 
       <!-- && $store.getters.getIsS == false -->
     </div>
