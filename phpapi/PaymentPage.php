@@ -88,7 +88,7 @@
             $status = "Booking";
 
             $method = $_POST['method'];
-            $codeid = $_POST['codeid'];
+            $codeid = $_POST['code'];
             $total = $_POST['total'];
             $date = date("Y-m-d");
             
@@ -136,6 +136,25 @@
             else {
                 $result['error'] = true;
                 $result['massage'] = "read fail";
+            }
+        }
+
+        if($action == 'pay'){
+            $bookid = $_POST['bookid'];
+            $method = $_POST['method'];
+            $codeid = $_POST['code'];
+            $total = $_POST['total'];
+            $date = date("Y-m-d");
+            
+            $sql = $con->query("INSERT INTO Payment(`Method`,`Booking_ID`,`Code_ID`,`Total`,`Date`) 
+                                VALUES ('$method', '$bookid', '$codeid', '$total', '$date')") ;
+
+            if($sql){
+                $result['message'] = "added successfully";
+            }
+            else {
+                $result['error'] = true;
+                $result['massage'] = "added fail";
             }
         }
 

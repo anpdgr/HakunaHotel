@@ -119,6 +119,7 @@ export default {
       } else if (this.c === 2) {
         this.makeToast("success", "Staff login");
         // alert("Staff login");
+        
         setTimeout(() => {
           this.$router.push("/shome");
         }, 1500);
@@ -160,29 +161,26 @@ export default {
         else if (this.users[i]["Staff_ID"] === this.form.username) {
           if (this.users[i]["Password"] == this.form.password) {
             this.c = 2;
+            this.$store.dispatch("AcIsS", true);
             this.$store.dispatch("AcUser", this.users[i]["Staff_ID"]);
           }
         }
       }
 
-      // this.users.forEach(this.checkUP);
     },
-    // // check login
-    // checkUP(value) {
-    //   if (value["User_ID"] === this.form.username) {
-    //     if (value["Password"] == this.form.password) {
-    //       this.c = 1;
-    //       this.$store.dispatch("AcUser", value["User_ID"]);
-    //       this.$store.dispatch("AcBKID", )
-    //     }
-    //   } else if (value["Staff_ID"] === this.form.username) {
-    //     if (value["Password"] == this.form.password) {
-    //       this.c = 2;
-    //       this.$store.dispatch("AcUser", value["Staff_ID"]);
-    //     }
-    //   }
-    //   // console.log(JSON.stringify(value["User_ID"]));
-    // },
+// GetDB(URL, Data, code) {
+//       var formData = this.toFormData(Data);
+//       this.axios.post(URL, formData).then(response => {
+//       });
+//       },
+// toFormData(obj) {
+//       var fd = new FormData();
+//       for (var i in obj) {
+//         fd.append(i, obj[i]);
+//       }
+//       return fd;
+//     },
+
     // สร้างกล่องข้อความ
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {

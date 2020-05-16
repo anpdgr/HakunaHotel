@@ -11,7 +11,12 @@
       <!-- before login -->
       <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
       <!-- after  login -->
-      <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
+      <div v-else-if="$store.getters.getUser != null && $store.getters.getIsS == false"><NavLogOut /></div>
+
+      <!-- login as staff -->
+      <div v-else-if="$store.getters.getUser != null && $store.getters.getIsS == true"><stNav /></div>
+
+      <!-- && $store.getters.getIsS == false -->
     </div>
 
     <!-- use component slide -->
@@ -80,6 +85,8 @@ import checkavi from "./CheckAvi.vue";//+
 import roomSec from "./RoomSection.vue";//+
 import serviceSec from "./Services.vue";//+
 import contactSec from "./ContactUs.vue";//+
+import stNav from '../Nav_st.vue'
+
 
 
 export default {
@@ -93,6 +100,7 @@ export default {
     roomSec,
     serviceSec,
     contactSec,
+    stNav,
   },
   props: {
     msg: String,

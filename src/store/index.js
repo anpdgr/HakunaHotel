@@ -6,6 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   // Global var
   state: {
+    staff:{
+      isstaff:false,
+      role:null
+    },
     BKID: null,
     booking:{
       check_in: null,
@@ -53,6 +57,12 @@ export default new Vuex.Store({
     },
     getBKID(state){
       return state.BKID;
+    },
+    getIsS(state){
+      return state.staff.isstaff;
+    },
+    getSRole(state){
+      return state.staff.role;
     }
   },
   // Function Global
@@ -86,6 +96,12 @@ export default new Vuex.Store({
     },
     setBKID(state, id){
       state.BKID = id;
+    },
+    setIsS(state, status){
+      state.staff.isstaff = status;
+    },
+    setSRole(state, role){
+      state.staff.role = role;
     }
 
 
@@ -121,7 +137,14 @@ export default new Vuex.Store({
     },
     AcBKID(context, id){
       context.commit('setBKID', id);
+    },
+    AcIsS(context, status){
+      context.commit('setIsS', status);
+    },
+    AcSRole(context, role){
+      context.commit('setSRole', role);
     }
+
   },
   modules: {
   }
