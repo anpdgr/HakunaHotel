@@ -36,7 +36,7 @@
                       <h5>{{item.type}}</h5>
                       <p>price : {{item.price}}</p>
                        
-                      <b-button  variant="outline-secondary" @click="show(index)" v-b-modal.modal-scrollable>view more</b-button>
+                      <b-button  variant="outline-secondary" @click="index1 = index" v-b-modal.modal-scrollable>view more</b-button>
                       <b-modal  v-if="index===index1" id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
                         <b-button style="float:right" href="#review">see review</b-button>
                         <!-- {{index}} -->
@@ -156,9 +156,6 @@ export default {
 
   },
   methods:{
-    show(index){
-      this.index1 = index;
-    },
     scrollIntoView(evt) {
       evt.preventDefault();
       const href = evt.target.getAttribute("href");
