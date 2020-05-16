@@ -124,7 +124,7 @@ export default {
     // check num room
     checkNull() {
       for (let i = 0; i < this.selected.length; i++) {
-        if (this.selected[i] != null) {
+        if (this.selected[i] != null && this.selected[i] != 0) {
           this.isZero = false;
         }
       }
@@ -132,6 +132,7 @@ export default {
     },
     //check num guest and num room
     checkRoom() {
+      //if(!this.checkNull()){
       this.count = 0;
       for (let i = 0; i < this.selected.length; i++) {
         if(this.selected[i] != null)
@@ -149,8 +150,8 @@ export default {
         this.count <= this.$store.getters.getBookNumG
       ) {
         this.isFail = false;
+      //}
       }
-
       return this.isFail;
     },
     // fetch data from DB
@@ -165,6 +166,7 @@ export default {
     },
     // check input
     check() {
+      console.log(this.isZero);
       if (this.checkNull()) {
         this.makeToast("danger", "Please select number of each room type.");
       }
@@ -173,6 +175,7 @@ export default {
           "danger",
           "The Number of rooms are not match with number of guest."
         );
+        console.log(this.isFail);
       } else {
         this.setData(this.RoomType, this.selected);
         // push global
@@ -194,7 +197,9 @@ export default {
         }
         // already login  make toast plz
         else {
+          setTimeout(() => {
           this.$router.push("/payment");
+        }, 2500);
         }
         //
       }

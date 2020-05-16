@@ -11,22 +11,22 @@
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
-                    >Booking ID: {{bookDetail.bookid[0]}}
+                    >Booking ID: 
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
                 <b-collapse id="collapse-2">
                   <b-card border-variant="info">
-                    Check-in date: {{bookDetail.checkIn[0]}}
+                    Check-in date: 
                     <br />
-                    Check-out date: {{bookDetail.checkOut[0]}}<br />
-                    Number of guests: {{bookDetail.numguest[0]}}
+                    Check-out date: <br />
+                    Number of guests: 
                     <hr />
-                    Room type {{rooms.type[0]}}: {{rooms.num_room[0]}}
+                    Room type 1: 
                     <hr />
-                    Payment ID: {{payment.no[0]}}
+                    Payment ID: 
                     <br />
-                    Total price: {{payment.total[0]}}
+                    Total price: 
                     <div id="onbook">
                       <div>
                         <b-button
