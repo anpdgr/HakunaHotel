@@ -14,7 +14,7 @@
       <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
 
       <!-- login as staff -->
-      <div v-else-if="$store.getters.getUser != null"><STnav /></div>
+      <div v-else-if="$store.getters.getUser != null"><stNav /></div>
 
       <!-- && $store.getters.getIsS == false -->
     </div>
@@ -85,7 +85,7 @@ import checkavi from "./CheckAvi.vue";//+
 import roomSec from "./RoomSection.vue";//+
 import serviceSec from "./Services.vue";//+
 import contactSec from "./ContactUs.vue";//+
-import STnav from '../StaffRole/SideTopNav_st.vue';
+import stNav from '../Nav_st.vue'
 
 
 
@@ -100,7 +100,7 @@ export default {
     roomSec,
     serviceSec,
     contactSec,
-    STnav,
+    stNav,
   },
   props: {
     msg: String,
