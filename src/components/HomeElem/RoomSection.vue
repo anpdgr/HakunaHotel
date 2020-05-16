@@ -36,10 +36,10 @@
                       <h5>{{item.type}}</h5>
                       <p>price : {{item.price}}</p>
                        
-                      <b-button  variant="outline-secondary" v-b-modal.modal-scrollable>view more</b-button>
-                      <b-modal  v-if="index===0" id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
+                      <b-button  variant="outline-secondary" @click="show(index)" v-b-modal.modal-scrollable>view more</b-button>
+                      <b-modal  v-if="index===index1" id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
                         <b-button style="float:right" href="#review">see review</b-button>
-                        {{index}}
+                        <!-- {{index}} -->
                         <h5>{{item.type}}</h5>
                         <p>price per night : {{item.price}} </p>
                         <img :src="item.img" style="width:100%"/>
@@ -116,7 +116,7 @@
 export default {
   data(){
     return{
-      
+      index1:0,
       items:[
         { type: "Delux Executive King Bed", limit:4,price:4957,
           des:'Sitting over ten stories, all Deluxe Executive King Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy. Upscale room design with a perfect amount of space is trivial features compared to the handsome furnishings and fixtures adorning this charming space. Service: -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Babysitter -Gym -Spa -Sauna -Access for disabled people -Jaccuzzi -Wifi',
@@ -156,6 +156,9 @@ export default {
 
   },
   methods:{
+    show(index){
+      this.index1 = index;
+    },
     scrollIntoView(evt) {
       evt.preventDefault();
       const href = evt.target.getAttribute("href");
