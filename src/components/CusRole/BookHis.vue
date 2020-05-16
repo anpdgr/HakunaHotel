@@ -40,13 +40,13 @@
                         <b-button
                           variant="outline-secondary"
                           id="toggle-btn"
-                          v-b-modal.modal-cancle
+                          v-b-modal.modal-cancel
                           >Cancel Booking
                         </b-button>
 
                         <b-modal
-                          id="modal-cancle"
-                          ref="modal-cancle"
+                          id="modal-cancel"
+                          ref="modal-cancel"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -255,14 +255,16 @@ export default {
   },
   methods: {
     showModal() {
-      this.$refs["my-modal"].show();
+      this.$refs["modal-cancel"].show();
     },
     hideModal() {
       this.makeToast("success", "Your booking has been canceled");
-      this.$refs["my-modal"].hide();
+      //this.$refs["modal-cancel"].hide();
+      this.$bvModal.hide("modal-cancel") ;
     },
     toggleModal() {
-      this.$refs["my-modal"].toggle("#toggle-btn");
+      //this.$refs["modal-cancel"].toggle("#toggle-btn");
+      this.$bvModal.hide("modal-cancel") ;
     },
     showModalRv() {
       this.$refs["my-modalRv"].show();
@@ -274,7 +276,8 @@ export default {
         else{
         this.AddReview();
         this.makeToast('success','Thank you for your review.')
-        setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
+        this.$bvModal.hide("my-modalRv")    // hide modal
+        //setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
         }
     },
     sentInfo(BookID){
