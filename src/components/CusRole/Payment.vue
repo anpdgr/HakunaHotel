@@ -199,8 +199,9 @@ export default {
     };
   },
   mounted() {
-    this.rooms = this.$store.getters.getBookType;
-    console.log(this.rooms);
+    this.getRoom();
+    // this.rooms = this.$store.getters.getBookType;
+    // console.log(this.rooms);
     this.UserName.userid = this.$store.getters.getUser;
     this.GetDB(
       "http://hakuna-hotel.kmutt.me/phpapi/PaymentPage.php?action=user",
@@ -240,6 +241,14 @@ export default {
       // console.log(DiffDay);
     },
 
+    getRoom(){
+      var Rooms = this.$store.getters.getBookType;
+      for(var i=0 ; i<Rooms.length ; i++){
+        if(Rooms[i].num_room != 0){
+          this.rooms.push(Rooms[i]);
+        }
+      }
+    },
     // Sum Total price before codepromo
     Sum(room, type) {
       this.sum = 0;
@@ -403,8 +412,11 @@ export default {
 
     // cancel payment
     cancelButton() {
+      this.$store.dispatch("AcCkIn", null);
+      this.$store.dispatch("AcCkOut", null);
+      this.$store.dispatch("AcNumG", 0);
       this.$store.dispatch("AcBook", false);
-      this.$router.push("/booking");
+      this.$router.push("/");
     },
 
     // confirm payment
@@ -420,6 +432,10 @@ export default {
         );
         this.$store.dispatch("AcBook", false);
         this.makeToast("success", "Success");
+        this.$store.dispatch("AcCkIn", null);
+        this.$store.dispatch("AcCkOut", null);
+        this.$store.dispatch("AcNumG", 0);
+        this.$store.dispatch("AcBook", false);
         setTimeout(() => this.$router.push({ path: "/" }), 1500);
       }
     },

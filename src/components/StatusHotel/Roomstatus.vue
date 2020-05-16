@@ -42,10 +42,30 @@
           </b-form>
         </b-col>
 
+      <!-- <b-col lg="4" class="my-1">
+              <b-form-group
+                label="Per page"
+                label-cols-sm="9"
+                label-align-sm="right"
+                label-size="sm"
+                label-for="perPageSelect"
+                class="mb-0"
+              >
+                <b-form-select
+                  v-model="perPage"
+                  id="perPageSelect"
+                  size="sm"
+                  :options="pageOptions"
+                  style=" width:120px"
+                ></b-form-select>
+              </b-form-group>
+            </b-col> -->
+
       </b-row>
 <br>
       <!-- Main table element -->
       <b-table
+        id="my-table"
         show-empty
         stacked="md"
         :items="items"
@@ -54,6 +74,7 @@
         :per-page="perPage"
         :filter="filter"
         @filtered="onFiltered"
+        
       >
       </b-table>
       <!-- pagination -->
@@ -65,6 +86,7 @@
           pills
           align="center"
           class="my-0"
+          aria-controls="my-table"
         ></b-pagination>
         <br />
         <hr />
@@ -128,9 +150,9 @@ export default {
         { key: "Available", sortable: true },
       ],
 
-      totalRows: 1,
+      //totalRows: 1,
       currentPage: 1,
-      perPage: 5,
+      perPage: 10,
       pageOptions: [5, 10, 15],
       selected_type: "",
       sortDesc: false,
@@ -140,8 +162,15 @@ export default {
       sortOptions: ["Dic", "G", "O"],
     };
   },
+  computed: {
+    totalRows() {
+      return this.items.length;
+    },
+    
+  },
   mounted() {
     // Set the initial number of items
+    
     this.totalRows = this.items.length;
     this.fetchRoom();
     this.fetchRoomType();
@@ -149,6 +178,7 @@ export default {
     this.fetchType_op();
   },
   methods: {
+    
     // fix
     fetchType_op(){
       for(var i = 0; i<=this.rtype.length; i++){

@@ -42,6 +42,7 @@
 
                         <b-modal
                           id="modal-cancle"
+                          ref="modal-cancle"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -101,6 +102,7 @@
                             <font color='#FDA50F'>Click to review</font>
                           </b-button>
                           <b-modal
+                            ref="my-modalRv"
                             id="my-modalRv"
                             hide-footer
                             title="Review room type 1"
@@ -135,10 +137,11 @@
                             </div>
                             <div style="margin-top:20px;">
                               <b-button
+                                @click="toggleModalRv"
                                 class="mt-2"
                                 pill variant="outline-warning"
                                 block
-                                @click="toggleModalRv"
+
                               >
                                 Review
                               </b-button>
@@ -234,7 +237,7 @@ export default {
     },
     hideModal() {
       this.makeToast('success','Your booking has been canceled')
-      this.$refs["my-modal"].hide();
+      this.$refs["modal-cancle"].hide();
     },
     toggleModal() {
       this.$refs["my-modal"].toggle("#toggle-btn");
@@ -249,6 +252,7 @@ export default {
         else{
         this.makeToast('success','Thank you for your review.')
         setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"), 1000);
+       
         }
     },
     

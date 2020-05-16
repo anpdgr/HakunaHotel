@@ -100,6 +100,10 @@ export default {
     },
     logout() {
       this.makeToast('success','you already sign out');
+      this.$store.dispatch("AcCkIn", null);
+      this.$store.dispatch("AcCkOut", null);
+      this.$store.dispatch("AcNumG", 0);
+      this.$store.dispatch("AcBook", false);
       setTimeout(() => {
         this.$store.dispatch("AcUser", null);
         this.home();

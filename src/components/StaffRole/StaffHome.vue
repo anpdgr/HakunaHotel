@@ -61,10 +61,9 @@ export default {
         .post(
           "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=read",formData)
         .then(response => {
-          this.staff = response.data.data;
-          this.staff = this.staff[0];
-          console.log(this.staff);
-          console.log(response.data);
+          this.staff = response.data.data[0];
+          this.$store.dispatch("AcSRole",this.staff.Position);
+          // console.log(this.staff);
         });
     },
     // convert to formdata
