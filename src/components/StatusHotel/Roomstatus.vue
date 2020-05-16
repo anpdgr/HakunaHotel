@@ -106,19 +106,10 @@ export default {
             },
             color: ['#127ac2']
         },
+        // fix!!!
         // post roomtype name's data
-      type_options: [
-        { value: null, text: "All" },
-        { value: "Dulux Urban Twin Bed", text: "Dulux Urban Twin Bed" },
-        { value: "Dulux Urban King Bed", text: "Dulux Urban King Bed" },
-        { value: "Dulux Executive Twin Bed", text: "Dulux Executive Twin Bed" },
-        { value: "Dulux Executive Twin Bed", text: "Dulux Executive Twin Bed" },
-        { value: "Premier Lux Twin Bed", text: "Premier Lux Twin Bed" },
-        { value: "Premier Lux King Bed", text: "Premier Lux King Bed" },
-        { value: "Urban Junior Suite", text: "Urban Junior Suite" },
-        { value: "Ocean Junior Suite", text: "Ocean Junior Suite" },
-        { value: "Marina Suite", text: "Marina Suite" },
-      ],
+      type_options: [{value:"",
+                      text:""}],
       // post room detail
       items: [
         {
@@ -128,8 +119,8 @@ export default {
           tel:""
         }
       ],
-      rtype:[{
-      },],
+      rtype:[],
+      // rtype:{name:[null]},
       fields: [
         { key: "RoomType_Name", sortable: true },
         { key: "Room_ID", sortable: true },
@@ -153,9 +144,25 @@ export default {
     // Set the initial number of items
     this.totalRows = this.items.length;
     this.fetchRoom();
-    // this.fetchRoomType();
+    this.fetchRoomType();
+    // fixxxxx
+    this.fetchType_op();
   },
   methods: {
+    // fix
+    fetchType_op(){
+      for(var i = 0; i<=this.rtype.length; i++){
+        if(i==0){
+            this.type_options[i].value = null;
+            this.type_options[i].text = "All";
+        }
+        else{
+          // this.type_options.append({value:this.rtype[i-1],text:this.rtype[i-1]});
+            this.type_options[i].value = this.rtype[i-1];
+            this.type_options[i].text = this.rtype[i-1];
+        }
+      }
+    },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
@@ -184,20 +191,24 @@ export default {
             }
         });
     },
-    // fetchRoomType(){
-    //   var formData = this.toFormData(this.rtype);
-    //   this.axios
-    //   .post(
-    //     "http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read",formData)
-    //     .then(response => {
-    //     this.rtype = response.data.data[0];
-    //       if (response.data.error) {
-    //         console.log(response.data.error);
-    //       } else {
-    //         console.log(response.data.message);
-    //         }
-    //     });
-    // },
+    fetchRoomType(){
+      var formData = this.toFormData(this.rtype);
+      this.axios
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read",formData)
+        .then(response => {
+            // console.log(response.data.data);
+          for(var i = 0; i<response.data.data.length; i++){
+            this.rtype[i] = response.data.data[i].RoomType_Name;
+          }
+          // console.log(this.rtype);
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+            }
+        });
+    },
     toFormData(obj) {
       var fd = new FormData();
       for (var i in obj) {

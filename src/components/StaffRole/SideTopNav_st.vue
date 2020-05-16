@@ -6,7 +6,7 @@
     <div class="sidenav">
       <div id="head">
          <b-img id='pic' src=@/assets/security.jpg  ></b-img>
-         <button id="btn" style="font-size:20px; color: #818181;" @click="account">username</button>
+         <button id="btn" style="font-size:20px; color: #818181;" @click="account">{{$store.getters.getUser}}</button>
       </div>
       <div id='menu' >
         <button id="btn" style="font-size:20px; color:#2688D9" @click="edit">Edit profile</button><br><br>
