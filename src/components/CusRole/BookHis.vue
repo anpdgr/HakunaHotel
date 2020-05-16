@@ -10,12 +10,12 @@
               <div style="text-align:left;" v-for="(BookID, index) in BOnGoing" :key="index">
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
-                  <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
+                  <b-button variant="info" v-b-toggle.collapse class="m-1"
                     >Booking ID: {{BookID.Booking_ID}}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse id="collapse-2">
+                <b-collapse id="collapse">
                   <b-card border-variant="info">
                     Check-in date: {{BookID.Checkin}}
                     <br />
