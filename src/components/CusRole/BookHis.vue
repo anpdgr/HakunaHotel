@@ -35,13 +35,13 @@
                       <div>
                         <b-button
                           variant="outline-secondary"
-                          id="toggle-btn"
-                          @click="toggleModal"
+                          id="toggle-btn" 
+                          v-b-modal.modal-cancle
                           >Cancel Booking
                         </b-button>
 
                         <b-modal
-                          ref="my-modal"
+                          id="modal-cancle"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -97,12 +97,11 @@
                       </div> 
                       <div id="right">
                         <div>
-                          <a id="show-btn" href="#" @click="showModalRv">
+                          <b-button id="show-btn" href="#"  v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;">
                             <font color='#FDA50F'>Click to review</font>
-                          </a>
-
+                          </b-button>
                           <b-modal
-                            ref="my-modalRv"
+                            id="my-modalRv"
                             hide-footer
                             title="Review room type 1"
                           >
