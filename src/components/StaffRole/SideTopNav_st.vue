@@ -10,7 +10,7 @@
       </div>
       <div id='menu' >
         <button id="btn" style="font-size:20px; color:#2688D9" @click="edit">Edit profile</button><br><br>
-        <button id="btn" style="font-size:20px; color:#2688D9" @click="home">Sign out</button>
+        <button id="btn" style="font-size:20px; color:#2688D9" @click="logout">Sign out</button>
         <!--อย่าลืม check in -->
       </div>
     </div>
@@ -94,6 +94,23 @@ export default {
         edit(){
           this.$router.push('sedit')
        },
+       logout() {
+      this.makeToast('success','you already sign out');
+      setTimeout(() => {
+        this.$store.dispatch("AcUser", null);
+        this.$store.dispatch("AcIsS", false);
+        this.$store.dispatch("AcSRole", null);
+        this.home();
+      }, 1500);
+    },
+    makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center"
+      });
+    }
        
    }
   

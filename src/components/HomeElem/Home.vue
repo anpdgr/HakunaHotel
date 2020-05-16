@@ -12,6 +12,7 @@
       <div v-if="$store.getters.getUser == null"><NavLogIn /></div>
       <!-- after  login -->
       <div v-else-if="$store.getters.getUser != null"><NavLogOut /></div>
+      <!-- && $store.getters.getIsS == false -->
     </div>
 
     <!-- use component slide -->

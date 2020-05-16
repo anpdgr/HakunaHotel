@@ -7,26 +7,30 @@
         <b-card no-body>
           <b-tabs card>
             <b-tab title="Ongoing" active>
-              <div style="text-align:left;">
+              <div style="text-align:left;" v-for="(BookID, index) in BOnGoing" :key="index">
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
-                    >Booking ID: {{bookDetail.bookid[0]}}
+                    >Booking ID: {{BookID.Booking_ID}}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
                 <b-collapse id="collapse-2">
                   <b-card border-variant="info">
-                    Check-in date: {{bookDetail.checkIn[0]}}
+                    Check-in date: {{BookID.Checkin}}
                     <br />
-                    Check-out date: {{bookDetail.checkOut[0]}}<br />
-                    Number of guests: {{bookDetail.numguest[0]}}
+                    Check-out date: {{BookID.Checkout}}<br />
+                    Number of guests: {{BookID.Number_Of_Guest}}
                     <hr />
-                    Room type {{rooms.type[0]}}: {{rooms.num_room[0]}}
+                    Room type : 
+                    <div v-for="(room, i) in BookID.rooms" :key="i">
+                        <br />{{i}}. {{room.RoomType_Name}} <br />
+                        Room : {{room.Number_of_Room}}
+                    </div> 
                     <hr />
-                    Payment ID: {{payment.no[0]}}
+                    Payment ID: {{BookID.No}}
                     <br />
-                    Total price: {{payment.total[0]}}
+                    Total price: {{BookID.Total}}
                     <div id="onbook">
                       <div>
                         <b-button
@@ -70,23 +74,27 @@
             </b-tab>
 
             <b-tab title="Done">
-              <div style="text-align:left;">
+              <div style="text-align:left;" v-for="(BookID, index) in BDone" :key="index" >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="dark" v-b-toggle.collapse-2 class="m-1"
-                    >Booking ID: BKxxxxxxx
+                    >Booking ID: {{BookID.Booking_ID}}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
                 <b-collapse id="collapse-2">
                   <b-card border-variant="dark">
                     <div id="info">
-                      Check-in date:
+                      Check-in date: {{BookID.Checkin}}
                       <br />
-                      Check-out date: <br />
-                      Number of guests:
+                      Check-out date: {{BookID.Checkout}} <br />
+                      Number of guests: {{BookID.Number_Of_Guest}}
                       <hr />
-                      Room type 1: 2 rooms
+                      Room type :
+                      <div v-for="(room, i) in BookID.rooms" :key="i">
+                        <br />{{i}}. {{room.RoomType_Name}} <br />
+                        Room : {{room.Number_of_Room}}
+                      </div> 
                       <div id="right">
                         <div>
                           <a id="show-btn" href="#" @click="showModalRv">
@@ -140,9 +148,9 @@
                         </div>
                       </div>
                       <hr />
-                      Payment ID:
+                      Payment ID: {{BookID.No}}
                       <br />
-                      Total price:
+                      Total price: {{BookID.Total}}
                     </div>
                   </b-card>
                 </b-collapse>
@@ -150,26 +158,30 @@
             </b-tab>
 
             <b-tab title="Canceled">
-              <div style="text-align:left;">
+              <div style="text-align:left;" v-for="(BookID, index) in BCanceled" :key="index" >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button v-b-toggle.collapse-2 class="m-1"
-                    >Booking ID: BKxxxxxxx
+                    >Booking ID: {{BookID.Booking_ID}}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
                 <b-collapse id="collapse-2">
                   <b-card border-variant="secondary">
-                    Check-in date:
+                    Check-in date: {{BookID.Checkin}}
                     <br />
-                    Check-out date: <br />
-                    Number of guests:
+                    Check-out date: {{BookID.Checkout}} <br />
+                    Number of guests: {{BookID.Number_Of_Guest}}
                     <hr />
-                    Room type 1: 2 rooms
+                    Room type :
+                    <div v-for="(room, i) in BookID.rooms" :key="i">
+                        <br />{{i}}. {{room.RoomType_Name}} <br />
+                        Room : {{room.Number_of_Room}}
+                    </div> 
                     <hr />
-                    Payment ID:
+                    Payment ID: {{BookID.No}}
                     <br />
-                    Total price:
+                    Total price: {{BookID.Total}}
                   </b-card>
                 </b-collapse>
               </div>
@@ -191,24 +203,14 @@ export default {
     return {
       rateStar: null,
       comment:'',
+      // for fetch data and manage
       bookDetail:{
-        bookid:'',
         userid:'',
-        checkIn:'',
-        checkOut:'',
-        date:'',
-        numguest:'',
-        status:''
       },
-      room:[],
-      payment:{
-        no:'',
-        method:'',
-        bookid:'',
-        codeid:'',
-        total:'',
-        date:''
-      }
+      // for show
+      BOnGoing:[],
+      BDone:[],
+      BCanceled:[],
     };
   },
   components: {
@@ -216,11 +218,16 @@ export default {
     NavLO,
   },
   mounted() {
-    this.room = this.$store.getters.getBookType;
     this.bookDetail.userid = this.$store.getters.getUser;
-    this.payment.bookid = this.bookDetail.bookid;
-    this.fetchBookDetail();
-    this.fetchPayment();
+    this.fetchBooking();
+
+    setTimeout(() => {
+      this.setBookdetail();
+    }, 800);
+
+    setTimeout(() => {
+      this.splitStatus();
+    }, 1000);
   },
   methods: {
     showModal() {
@@ -245,36 +252,52 @@ export default {
         setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"), 1000);
         }
     },
-    makeToast(variant = null, text) {
-      this.$bvToast.toast(text, {
-        title: "Notice!",
-        variant: variant,
-        solid: true,
-        toaster: "b-toaster-bottom-center",
-      });
+    
+    // split AllBooking to each status
+    splitStatus(){
+      for(var i=0 ; i < this.bookDetail.length ; i++){
+        if(this.bookDetail[i].Statue == "CheckOut"){
+          this.BDone.push(this.bookDetail[i]);
+        }
+        else if(this.bookDetail[i].Statue == "Cancel"){
+          this.BCanceled.push(this.bookDetail[i]);
+        }
+        else{
+          this.BOnGoing.push(this.bookDetail[i]);
+        }
+      }
+      // console.log(this.BOnGoing);
     },
-    fetchBookDetail(){
+
+    // Add room to bookDetail
+    setBookdetail(){
+      for(var i=0 ; i < this.bookDetail.length ; i++){
+        this.fetchBookDetail(this.bookDetail[i],i);
+      }
+    },
+    fetchBookDetail(data,i){
+      var formData = this.toFormData(data);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CusBooking.php?action=fbookdetail",formData)
+        .then(response => {
+          this.bookDetail[i].rooms = response.data.data;
+          // console.log(this.bookDetail[i]);
+          
+        });
+    },
+
+    // fetch Booking & Payment from DB
+    fetchBooking(){
       var formData = this.toFormData(this.bookDetail);
       this.axios
         .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/Booking.php?action=read",formData)
+          "http://hakuna-hotel.kmutt.me/phpapi/CusBooking.php?action=fbookid",formData)
         .then(response => {
           this.bookDetail = response.data.data;
-          // console.log(this.user);
-          // console.log(response.data);
+          // console.log(response.data.data);
+          
         });
-    },
-    fetchPayment(){
-      var formData = this.toFormData(this.payment);
-      this.axios
-        .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/Payment.php?action=read",formData)
-        .then(response => {
-          this.payment = response.data.data;
-          // console.log(this.user);
-          // console.log(response.data);
-        }
-        );
     },
     // convert to formdata
     toFormData(obj) {
@@ -284,6 +307,17 @@ export default {
       }
       return fd;
     },
+    // make Toast
+    makeToast(variant = null, text) {
+      this.$bvToast.toast(text, {
+        title: "Notice!",
+        variant: variant,
+        solid: true,
+        toaster: "b-toaster-bottom-center",
+      });
+    },
+
+
   },
 };
 </script>
