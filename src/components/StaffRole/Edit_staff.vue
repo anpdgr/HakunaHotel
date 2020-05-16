@@ -116,6 +116,7 @@
     data() {
       return {
         form: {
+          staffid:"",
           email: '',
           tel:'',
           title: null,
@@ -139,6 +140,11 @@
         show: true
       }
     },
+    mounted() {
+    // Set the initial number of items
+    this.form.staffid = this.$store.getters.getUser;
+    this.fetchUsers();
+  },
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
@@ -215,6 +221,24 @@
           } else {
             console.log(response.data.message);
           }
+        });
+      },
+      fetchUsers() {
+      var formData = this.toFormData(this.form);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/staffprofile.php?action=read",formData)
+        .then(response => {
+          this.form.email = response.data.data[0].Email;
+          this.form.tel = response.data.data[0].Tel_No;
+          this.form.title = response.data.data[0].Name_Title;
+          this.form.fname = response.data.data[0].Staff_FirstName;
+          this.form.lname = response.data.data[0].Staff_LastName;
+          this.form.dob = response.data.data[0].Date_Of_Birth;
+          this.form.address = response.data.data[0].Address;
+          //this.user = this.user[0];
+          console.log(this.form);
+          // console.log(response.data);
         });
       },
       // convert to formdata

@@ -42,14 +42,13 @@
             # edit var here
             # create var for insert to database and key in axios
             #var               key
-            $no = $_POST['no'];
             $bookid = $_POST['bookid'];
             $userid = $_POST['userid'];                                    # +
             $comment = $_POST['comment'];                                  # +
             $rate = $_POST['rate'];                                        # +
            
             #edit sql command here
-            $sql = $con->query("INSERT INTO Customer VALUES ('$no', '$bookid', '$userid', '$comment', '$rate')") ; # +
+            $sql = $con->query("INSERT INTO Review (`Booking_ID`,`User_ID`,`Comment`,`Rate`)VALUES ('$bookid', '$userid', '$comment', '$rate')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -

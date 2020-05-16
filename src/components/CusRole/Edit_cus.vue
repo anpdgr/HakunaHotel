@@ -93,6 +93,7 @@ export default {
     return {
       // for form edit
       form: {
+        userid: "",
         email: "",
         tel: "",
         title: null,
@@ -116,7 +117,11 @@ export default {
       show: true
     };
   },
-
+  mounted() {
+    // Set the initial number of items
+    this.form.userid = this.$store.getters.getUser;
+    this.fetchUsers();
+  },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
@@ -156,6 +161,24 @@ export default {
         country: this.form.country,
         DOB: this.form.birthday
       };
+    },
+    fetchUsers() {
+      var formData = this.toFormData(this.form);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/myprofileuser.php?action=read",formData)
+        .then(response => {
+          this.form.email = response.data.data[0].Email;
+          this.form.tel = response.data.data[0].Tel_No;
+          this.form.title = response.data.data[0].Name_Title;
+          this.form.fname = response.data.data[0].Customer_FirstName;
+          this.form.lname = response.data.data[0].Customer_LastName;
+          this.form.birthday = response.data.data[0].DoB;
+          this.form.country = response.data.data[0].Customer_Country;
+          //this.user = this.user[0];
+          console.log(this.form);
+          // console.log(response.data);
+        });
     },
     UpdateUser() {
       var formData = this.toFormData(this.CurrentUser);
