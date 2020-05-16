@@ -119,10 +119,10 @@
 
           <template v-slot:cell(actions)="row">
             <div v-if="row.item.status == 'Booking'">
-              <button id="btn" size="sm" @click="checkin(row.item.bookid)">check-in</button>
+              <button id="btn" size="sm" @click="checkin(row.item.bookid)" style="color:#2688D9">check-in</button>
             </div>
             <div v-if="row.item.status == 'CheckIn'">
-              <a size="sm" @click="done()">check-out</a>
+              <button  id="btn" size="sm" @click="done()" style="color:#E74C3C">check-out</button>
             </div>
           </template>
 
@@ -232,7 +232,7 @@ export default {
         { key: "actions", label: "Actions" },
         { key: "info", label: "Info" }
       ],
-      totalRows: 1,
+      //totalRows: 1,
       currentPage: 1,
       perPage: 5,
       pageOptions: [5, 10, 15],
@@ -256,7 +256,10 @@ export default {
         .map(f => {
           return { text: f.label, value: f.key };
         });
-    }
+    },
+    totalRows() {
+      return this.items.length;
+    },
   },
   methods: {
     info(item, index, button) {

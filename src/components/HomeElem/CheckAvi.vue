@@ -102,9 +102,8 @@ export default {
       ) {
         this.makeToast("danger", "Please input data.");
       } else if (
-        (this.form.checkin_date == null) |
-        (this.form.checkout_date == null) |
-        (this.form.num_guest == 0)
+        (this.form.checkin_date == null) ||
+        (this.form.checkout_date == null)
       ) {
         this.makeToast("danger", "Please select date.");
       } else if (this.form.num_guest == 0) {

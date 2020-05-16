@@ -181,6 +181,7 @@ export default {
     
     // fix
     fetchType_op(){
+      console.log(this.rtype);
       for(var i = 0; i<=this.rtype.length; i++){
         if(i==0){
             this.type_options[i].value = null;
@@ -188,10 +189,10 @@ export default {
         }
         else{
           // this.type_options.append({value:this.rtype[i-1],text:this.rtype[i-1]});
-            this.type_options[i].value = this.rtype[i-1];
-            this.type_options[i].text = this.rtype[i-1];
+            this.type_options.push({value:this.rtype[i-1],text: this.rtype[i-1]});
         }
       }
+      console.log(this.type_options);
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering

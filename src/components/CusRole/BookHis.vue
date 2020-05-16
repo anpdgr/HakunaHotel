@@ -28,9 +28,9 @@
                     <hr />
                     Room type :
                     <div v-for="(room, i) in BookID.rooms" :key="i">
-                      <br />{{ i }}. {{ room.RoomType_Name }} <br />
-                      Room : {{ room.Number_of_Room }}
-                    </div>
+                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
+                        Room : {{room.Number_of_Room}}
+                    </div> 
                     <hr />
                     Payment ID: {{ BookID.No }}
                     <br />
@@ -40,13 +40,13 @@
                         <b-button
                           variant="outline-secondary"
                           id="toggle-btn"
-                          v-b-modal.modal-cancle
+                          v-b-modal.modal-cancel
                           >Cancel Booking
                         </b-button>
 
                         <b-modal
-                          id="modal-cancle"
-                          ref="modal-cancle"
+                          id="modal-cancel"
+                          ref="modal-cancel"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -103,21 +103,19 @@
                       <hr />
                       Room type :
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                        <br />{{ i }}. {{ room.RoomType_Name }}
-                        <b-button
-                          id="show-btn"
-                          href="#"
-                          v-b-modal.my-modalRv
-                          style="background-color: transparent; border-color:transparent; cursor: pointer; float:right; margin-right: 10px;"
-                        >
-                          <font color="#FDA50F"
-                            >Click to review</font
-                          > </b-button
-                        ><br />
-                        Room : {{ room.Number_of_Room }}
-                      </div>
+                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
+                        Room : {{room.Number_of_Room}} 
+                        <br /><br />
+                        <b-button id="show-btn" href="#"  v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
+                        @click="sentInfo(BookID)">
+                            <font color='#FDA50F'>Click to review</font>
+                          </b-button>
+                      </div> 
                       <div id="right">
                         <div>
+                          <!-- <b-button id="show-btn" href="#"  v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;">
+                            <font color='#FDA50F'>Click to review</font>
+                          </b-button> -->
                           <b-modal
                             ref="my-modalRv"
                             id="my-modalRv"
@@ -126,23 +124,22 @@
                           >
                             <div class="d-block text-center">
                               <div id="reviewSection">
-                                <div>
                                   <div>
                                     <label for="rating-inline">Rate:</label>
                                     <b-form-rating
                                       id="rating-inline"
-                                      v-model="rateStar"
+                                      v-model="review.rate"
                                       inline
                                       value="4"
                                       no-border
                                       size="lg"
                                       color="#ff8800"
                                     ></b-form-rating>
-                                    {{ rateStar }}
+                                    {{ review.rate}}
 
                                     <b-form-textarea
                                       id="textarea"
-                                      v-model="comment"
+                                      v-model="review.comment"
                                       placeholder="Enter something..."
                                       rows="3"
                                       max-rows="6"
@@ -150,8 +147,8 @@
                                     ></b-form-textarea>
                                   </div>
                                 </div>
-                              </div>
                             </div>
+                          
                             <div style="margin-top:20px;">
                               <b-button
                                 @click="toggleModalRv"
@@ -159,7 +156,6 @@
                                 pill
                                 variant="outline-warning"
                                 block
-
                               >
                                 Review
                               </b-button>
@@ -199,9 +195,9 @@
                     <hr />
                     Room type :
                     <div v-for="(room, i) in BookID.rooms" :key="i">
-                      <br />{{ i }}. {{ room.RoomType_Name }} <br />
-                      Room : {{ room.Number_of_Room }}
-                    </div>
+                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
+                        Room : {{room.Number_of_Room}}
+                    </div> 
                     <hr />
                     Payment ID: {{ BookID.No }}
                     <br />
@@ -225,8 +221,12 @@ import Cusnav from "./SideTopNav_cus.vue";
 export default {
   data() {
     return {
-      rateStar: null,
-      comment: "",
+      review:{
+      bookid:null,
+      userid:null,
+      rate: null,
+      comment:null
+      },
       // for fetch data and manage
       bookDetail: {
         userid: "",
@@ -242,7 +242,7 @@ export default {
     NavLO,
   },
   mounted() {
-    this.bookDetail.userid = this.$store.getters.getUser;
+    this.bookDetail.userid = this.review.userid=this.$store.getters.getUser;
     this.fetchBooking();
 
     setTimeout(() => {
@@ -255,27 +255,35 @@ export default {
   },
   methods: {
     showModal() {
-      this.$refs["my-modal"].show();
+      this.$refs["modal-cancel"].show();
     },
     hideModal() {
       this.makeToast("success", "Your booking has been canceled");
-      this.$refs["my-modal"].hide();
+      //this.$refs["modal-cancel"].hide();
+      this.$bvModal.hide("modal-cancel") ;
     },
     toggleModal() {
-      this.$refs["my-modal"].toggle("#toggle-btn");
+      //this.$refs["modal-cancel"].toggle("#toggle-btn");
+      this.$bvModal.hide("modal-cancel") ;
     },
     showModalRv() {
       this.$refs["my-modalRv"].show();
     },
     toggleModalRv() {
-      if (this.rateStar === null) {
-        this.makeToast("danger", "You have not done your review.");
-      } else {
-        this.makeToast("success", "Thank you for your review.");
-        setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"), 1000);
-      }
+        if(this.review.rate===null){
+            this.makeToast('danger','You have not done your review.')
+        }
+        else{
+        this.AddReview();
+        this.makeToast('success','Thank you for your review.')
+        this.$bvModal.hide("my-modalRv")    // hide modal
+        //setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
+        }
     },
-
+    sentInfo(BookID){
+      this.review.bookid = BookID.Booking_ID;
+      console.log(this.review.bookid);
+    },
     // split AllBooking to each status
     splitStatus() {
       for (var i = 0; i < this.bookDetail.length; i++) {
@@ -321,6 +329,29 @@ export default {
         .then((response) => {
           this.bookDetail = response.data.data;
           // console.log(response.data.data);
+        });
+    },
+    AddReview(){
+      var formData = this.toFormData(this.review);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=add",
+          formData
+        )
+        .then((response) => {
+          //set var to default
+          console.log(response);
+          this.review = {
+            bookid:null,
+            userid:null,
+            rate: null,
+            comment:null
+          };
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
         });
     },
     // convert to formdata
