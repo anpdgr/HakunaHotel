@@ -39,8 +39,8 @@
                             </div>
                             <b v-if=" roomsucces==1"  style="float:right; color:MediumSeaGreen">checked</b>
                             <div v-for='i in item.Qroom' :key="i" style="float:left">   
-                                <b-button v-b-modal.modal-center style="margin:0px 20px 0px 0px">room {{i}}</b-button>
-                                    <div id="roomdetail" v-if="index === 0">
+                                <b-button v-b-modal.modal-center  @click="index1 = index" style="margin:0px 20px 0px 0px">room {{i}}</b-button>
+                                    <div id="roomdetail" v-if="index === index1">
                                         <b-modal id="modal-center" centered title="Add information"  hide-footer>
                                             <div id="guest form">
                                                 <!-- เลือกเลขห้อง -->
@@ -303,6 +303,7 @@ export default {
     },
   data() {
     return {
+      index1:0,
       roomsucces:0,
     //   booked roomtype 
       items: [
