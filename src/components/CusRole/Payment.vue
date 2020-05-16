@@ -412,8 +412,11 @@ export default {
 
     // cancel payment
     cancelButton() {
+      this.$store.dispatch("AcCkIn", null);
+      this.$store.dispatch("AcCkOut", null);
+      this.$store.dispatch("AcNumG", 0);
       this.$store.dispatch("AcBook", false);
-      this.$router.push("/booking");
+      this.$router.push("/");
     },
 
     // confirm payment
@@ -429,6 +432,10 @@ export default {
         );
         this.$store.dispatch("AcBook", false);
         this.makeToast("success", "Success");
+        this.$store.dispatch("AcCkIn", null);
+        this.$store.dispatch("AcCkOut", null);
+        this.$store.dispatch("AcNumG", 0);
+        this.$store.dispatch("AcBook", false);
         setTimeout(() => this.$router.push({ path: "/" }), 1500);
       }
     },
