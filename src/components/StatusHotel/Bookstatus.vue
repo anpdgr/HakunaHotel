@@ -87,7 +87,7 @@
       </b-col>
     </b-row>
 
-    <!-- Main table element -->
+    <!-- Main table element    Action & Info-->
     <b-table
       show-empty
       small
@@ -115,8 +115,8 @@
       </template>
 
       <template v-slot:cell(actions)="row">
-         <div v-if="row.item.status == 'booking'">
-          <button id="btn" size="sm" @click="checkin">check-in</button>
+         <div v-if="row.item.status == 'Booking'">
+          <button id="btn" size="sm" @click="checkin(row.item.bookid)">check-in</button>
         </div>
         <div v-if="row.item.status == 'check-in'">
           <a size="sm" @click="done()">check-out</a>
@@ -171,7 +171,7 @@ export default {
     },
     //for chart summary
     mounted:function(){
-      
+      this.fetchBook();
       this.totalRows = this.items.length // Set the initial number of items
     },
     
@@ -199,18 +199,19 @@ export default {
             },
             color: ['#127ac2']
         },
-        items: [
-          { status: 'cancle', cusid: 'CUS0001', bookid: 'A1000' },
-          { status: 'check-in', cusid: 'CUS0001', bookid: 'A1001'  },
-          { status: 'check-in', cusid: 'CUS0202', bookid: 'A1002' },
-          { status: 'cancle', cusid: 'CUS0003', bookid: 'A1003'  },
-          { status: 'booking', cusid: 'CUS1004', bookid: 'A1004'  },
-          { status: 'check-in', cusid: 'CUS0005', bookid: 'A1005' },
-          { status: 'booking', cusid: 'CUS1007', bookid: 'A1007'  },
-          { status: 'booking', cusid: 'CUS2002', bookid: 'B2002'  },
-          { status: 'booking', cusid: 'CUS2011', bookid: 'B2001'  },
-          { status: 'check-out', cusid: 'CUS2045', bookid: 'B2000'  }
-        ],
+        items:[],// ไปใช้ใน DB
+        // items: [
+        //   { status: 'cancle', cusid: 'CUS0001', bookid: 'A1000' },
+        //   { status: 'check-in', cusid: 'CUS0001', bookid: 'A1001'  },
+        //   { status: 'check-in', cusid: 'CUS0202', bookid: 'A1002' },
+        //   { status: 'cancle', cusid: 'CUS0003', bookid: 'A1003'  },
+        //   { status: 'booking', cusid: 'CUS1004', bookid: 'A1004'  },
+        //   { status: 'check-in', cusid: 'CUS0005', bookid: 'A1005' },
+        //   { status: 'booking', cusid: 'CUS1007', bookid: 'A1007'  },
+        //   { status: 'booking', cusid: 'CUS2002', bookid: 'B2002'  },
+        //   { status: 'booking', cusid: 'CUS2011', bookid: 'B2001'  },
+        //   { status: 'check-out', cusid: 'CUS2045', bookid: 'B2000'  }
+        // ],
         fields: [
           { key: 'bookid', label: 'Booking ID', sortable: true, sortDirection: 'desc' },
           { key: 'cusid', label: 'Customer ID', sortable: true, class: 'text-center' },
@@ -240,7 +241,8 @@ export default {
           id: 'info-modal',
           title: '',
           content: ''
-        }
+        },
+        AllBook:[],
       }
     },
     computed: {
@@ -279,10 +281,23 @@ export default {
         this.$refs['my-modal'].hide()
       },
       //เปลี่ยนหน้า
-      checkin(){
+      checkin(bookid){
+          this.$store.dispatch("AcBKID", bookid);
           this.$router.push('checkin')
        },
-      
+      fetchBook() {
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/Booking.php?action=read")
+        .then(response => {
+          var Books = response.data.data;
+
+          for(var i=0 ; i < Books.length ; i++){
+            this.items.push({ status: Books[i].Status, cusid: Books[i].User_ID, bookid: Books[i].Booking_ID });
+          }
+
+          console.log(this.AllBook);
+        });
+    },
     }
     
   
