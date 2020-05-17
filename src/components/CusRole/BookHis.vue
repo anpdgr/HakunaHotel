@@ -136,9 +136,9 @@
                           id="show-btn"
                           href="#"
                           v-b-modal.my-modalRv
-                          v-if="BookID.Booking_ID == RVavi[index].id && RVavi[index].r[i] != true"
+                          v-if="RVavi[index].r[i] != true"
                           style="background-color: transparent; border-color:transparent; cursor: pointer;"
-                          @click="check(BookID, room ,i)"
+                          @click="check(BookID, room ,index, i)"
                         >
                           <font color="#FDA50F">Click to review</font>
                         </b-button>
@@ -303,6 +303,10 @@ export default {
     setTimeout(() => {
       this.prepareRV();
     }, 1200);
+    setTimeout(() => {
+      this.loopCkRv();
+    }, 1250);
+    
   },
   methods: {
     // checkModal(index) {
@@ -311,14 +315,30 @@ export default {
     prepareRV(){
       for(var i=0 ; i<this.BDone.length ; i++){
         this.RVavi.push({id:null});
+        this.reviewAlready.push({id:null});
         this.RVavi[i].id = this.BDone[i].Booking_ID;
+        this.reviewAlready[i].id = this.BDone[i].Booking_ID;
         for(var j=0 ; j<this.BDone[i].rooms.length ; j++){
           var ravi = [];
           ravi.push(false);
         }
         this.RVavi[i].r = ravi;
+        this.reviewAlready[i].r = ravi;
       }
       // console.log(this.RVavi);
+    },
+
+    loopCkRv(){
+      for(var i=0 ; i<this.BDone.length ; i++){
+        for(var j=0 ; j<this.BDone[i].rooms.length ; j++){
+          var data = {
+            bookid: this.BDone[i].Booking_ID,
+            rtype: this.BDone[i].rooms[j].RoomType_Name
+          };
+          console.log(data);
+          this.checkRV(data,i,j);
+        }
+      }
     },
 
     showModal() {
@@ -348,12 +368,13 @@ export default {
       this.$refs["my-modalRv"].show();
     },
     toggleModalRv(index) {
-      console.log(index + " " + this.ibuff);
+      // console.log(index + " " + this.ibuff);
       if (this.review.rate === null || this.review.comment === null) {
         this.makeToast("danger", "You have not done your review.");
       } 
       else {
-        this.AddReview();
+        if(!this.reviewAlready[index].r[this.ibuff])
+          this.AddReview();
         this.RVavi[index].id = this.review.bookid;
         this.RVavi[index].r[this.ibuff] = true;
 
@@ -366,28 +387,44 @@ export default {
       }
     },
     //Check ว่ารีวิวแล้วยัง
-    checkRV() {
-      var formData = this.toFormData(this.review);
+    checkRV(data,index,i) {
+      var formData = this.toFormData(data);
       this.axios
       .post(
         "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
       )
       .then((response)=> {
-          // console.log(response.data.data.length);
-          this.isNotRV=response.data.data.length;
+          console.log(response.data.data.length);
+          console.log("index " + index + " i " + i);
+          if(response.data.data.length != 0){
+            this.reviewAlready[index].id = data.bookid;
+            this.reviewAlready[index].r[i] = true;
+          }
+          else{
+            this.reviewAlready[index].id = data.bookid;
+            this.reviewAlready[index].r[i] = false;
+          }
+          console.log(this.RVavi)
         });
-      if (this.isNotRV == 0) {
-        return false;
-      } else {
-        return true;
-      }
+      // if (this.isNotRV == 0) {
+      //   return false;
+      // } else {
+      //   return true;
+      // }
     },
     //ฝากปรอย fixxxx
-    check(BookID, room, i) {
-      // console.log(BookID);
+    check(BookID, room, index, i) {
       this.ibuff = i;
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
+
+      if(this.reviewAlready[index].r[i] == true){
+        this.makeToast("danger", "this room already comment");
+        this.RVavi[index].id = this.review.bookid;
+        this.RVavi[index].r[this.ibuff] = true;
+      }
+      // console.log(BookID);
+      
       // console.log(this.review.rtype);
       //console.log(this.isNotrv);
       // if (this.checkRV()) {
