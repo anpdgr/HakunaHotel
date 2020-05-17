@@ -15,11 +15,13 @@
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
                   <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
+                    @click="index1 = index"
                     >Booking ID: {{ BookID.Booking_ID }}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse id="collapse-2">
+                <b-collapse id="collapse-2"
+                 v-if="index == index1">
                   <b-card border-variant="info">
                     Check-in date: {{ BookID.Checkin }}
                     <br />
@@ -41,18 +43,20 @@
                           variant="outline-secondary"
                           id="toggle-btn"
                           v-b-modal.modal-cancel
+                          @click="index1 = index"
                           >Cancel Booking
                         </b-button>
 
                         <b-modal
                           id="modal-cancel"
+                          v-if="index == index1"
                           ref="modal-cancel"
                           hide-footer
                           title="Confirm to Cancel"
                         >
                           <div class="d-block text-center">
                             <h3>
-                              Are you sure you want to cancel this booking?
+                              Are you sure you want to cancel this booking? {{index}}
                             </h3>
                           </div>
                           <!-- delete this book from db in hideModal function -->
@@ -61,7 +65,7 @@
                             pill
                             variant="outline-danger"
                             block
-                            @click="hideModal"
+                            @click="hideModal(BookID)"
                             >Yes</b-button
                           >
                           <b-button
@@ -237,7 +241,9 @@ export default {
       BOnGoing: [],
       BDone: [],
       BCanceled: [],
-      isNotRV:0
+      isNotRV:0,
+
+      index1:null
     };
   },
   components: {
@@ -260,10 +266,21 @@ export default {
     showModal() {
       this.$refs["modal-cancel"].show();
     },
-    hideModal() {
+    hideModal(BookID) {
+      // console.log(BookID);
+      var formData = this.toFormData(BookID);
+      this.axios
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/bookhis.php?action=cancel",formData
+      );
+
       this.makeToast("success", "Your booking has been canceled");
       //this.$refs["modal-cancel"].hide();
       this.$bvModal.hide("modal-cancel") ;
+      // setTimeout(() => {
+      //   this.$router.push("mybook");
+      // }, 1500);
+      
     },
     toggleModal() {
       //this.$refs["modal-cancel"].toggle("#toggle-btn");
@@ -292,7 +309,7 @@ export default {
         "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
       )
       .then((response)=> {
-          console.log(response.data.data.length);
+          // console.log(response.data.data.length);
           this.isNotRV=response.data.data.length;
         });
         if(this.isNotRV==0){
@@ -306,7 +323,7 @@ export default {
     check(BookID,room){
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
-      console.log(this.review.rtype);
+      // console.log(this.review.rtype);
       //console.log(this.isNotrv);
       if(this.checkRV()){
         this.makeToast('danger','You have already reviewed !!');
@@ -319,7 +336,7 @@ export default {
     // split AllBooking to each status
     splitStatus() {
       for (var i = 0; i < this.bookDetail.length; i++) {
-        console.log(this.bookDetail[i]);
+        // console.log(this.bookDetail[i]);
         if (this.bookDetail[i].Status == "CheckOut") {
           this.BDone.push(this.bookDetail[i]);
         } else if (this.bookDetail[i].Status == "Cancel") {
