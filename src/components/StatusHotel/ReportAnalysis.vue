@@ -3,17 +3,16 @@
     <STnav />
     <Side style="margin-top:100px" />
     <div id="all">
-      <h1 style="margin-top:30px; padding-right:130px">
+      <h1 style="margin-top:30px; ">
         Report Analysis
       </h1>
       <div id="1">
-        <h5 style="margin-top:30px; float:left;">
-          1. ลำดับ Room type ที่ถูกจองในปี 2019
-          เรียงจากจำนวนครั้งที่จองจากมากไปน้อย
-        </h5>
-        <b-container fluid style="margin-top:20px;">
+        <b-container fluid style="margin-top:20px; width:900px ">
+          <h5 style="margin-top:30px; float:left;">
+            1. Number of booking of each room types.
+          </h5>
           <b-table
-            id="my-table"
+            id="first-table"
             stacked="md"
             :items="items1"
             :fields="fields1"
@@ -24,18 +23,77 @@
       </div>
 
       <div id="2">
-        <h5 style="margin-top:30px; float:left;">
-          2. ลำดับของ Room type เรียงจาก Rating
-        </h5>
-        <b-container fluid style="margin-top:20px;">
+        <b-container fluid style="margin-top:20px; width:900px">
+          <h5 style="margin-top:30px; float:left;">
+            2. Number of booking of each room types in January 2020.
+          </h5>
           <b-table
-            id="my-table"
+            id="second-table"
             stacked="md"
             :items="items2"
             :fields="fields2"
             style="margin-top:30px"
           >
           </b-table>
+        </b-container>
+      </div>
+
+      <div id="3">
+        <b-container fluid style="margin-top:20px; width:900px">
+          <h5 style="margin-top:30px; float:left;">
+            3. Rating of each room types.
+          </h5>
+          <b-table
+            id="third-table"
+            stacked="md"
+            :items="items3"
+            :fields="fields3"
+            style="margin-top:30px"
+          >
+          </b-table>
+        </b-container>
+      </div>
+
+      <div id="4">
+        <b-container fluid style="margin-top:20px; width:900px">
+          <h5 style="margin-top:30px; float:left;">
+            4. Top 5 code promotions which were used most.
+          </h5>
+          <b-table
+            id="fourth-table"
+            stacked="md"
+            :items="items4"
+            :fields="fields4"
+            style="margin-top:30px"
+          >
+          </b-table>
+        </b-container>
+      </div>
+
+            <div id="5">
+        <b-container fluid style="margin-top:20px; width:900px">
+          <h5 style="margin-top:30px; float:left;">
+            5. Top 5 Staff with highest salary.
+          </h5>
+          <b-table
+            id="fifth-table"
+            stacked="md"
+            :items="items5"
+            :fields="fields5"
+            style="margin-top:30px"
+          >
+          </b-table>
+        </b-container>
+      </div>
+
+      <div id="6">
+        <b-container fluid style="margin-top:20px; width:900px">
+          <h5 style="margin-top:30px; float:left;">
+            5. Top 5 Staff with highest salary.
+          </h5>
+          <div class="chart-wrapper">
+            <chart :options="chartOptionsBar" style="float:center;"></chart>
+          </div>
         </b-container>
       </div>
     </div>
@@ -57,8 +115,46 @@ export default {
       items2: [],
       fields2: [
         { key: "Room_Type", label: "Room type", sortable: true },
+        { key: "Num_Book", label: "Number of booking", sortable: true },
+      ],
+      items3: [],
+      fields3: [
+        { key: "Room_Type", label: "Room type", sortable: true },
         { key: "Rating", label: "Rating", sortable: true },
       ],
+      items4: [],
+      fields4: [
+        { key: "Code_Name", label: "Code name" },
+        { key: "NoUsed", label: "Number of using" },
+      ],
+            items5: [],
+      fields5: [
+        { key: "Staff_Name", label: "Staff name" },
+        { key: "Salary", label: "Salary" },
+      ],
+
+      chartOptionsBar: {
+        xAxis: {
+          data: ["Dev", "Housekeeper"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            type: "bar",
+            data: [3, 2],
+          },
+        ],
+        title: {
+          text: "Quarterly Sales Results",
+          x: "center",
+          textStyle: {
+            fontSize: 24,
+          },
+        },
+        color: ["#127ac2"],
+      },
     };
   },
 };
