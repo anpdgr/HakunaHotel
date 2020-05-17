@@ -70,7 +70,7 @@
         </b-container>
       </div>
 
-            <div id="5">
+      <div id="5">
         <b-container fluid style="margin-top:20px; width:900px">
           <h5 style="margin-top:30px; float:left;">
             5. Top 5 Staff with highest salary.
@@ -127,34 +127,44 @@ export default {
         { key: "Code_Name", label: "Code name" },
         { key: "NoUsed", label: "Number of using" },
       ],
-            items5: [],
+      items5: [],
       fields5: [
         { key: "Staff_Name", label: "Staff name" },
         { key: "Salary", label: "Salary" },
       ],
 
-      chartOptionsBar: {
-        xAxis: {
-          data: ["Dev", "Housekeeper"],
+      /*chartOptionsBar: {
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)",
         },
-        yAxis: {
-          type: "value",
+        legend: {
+          type: "scroll",
+          orient: "vertical",
+          right: 10,
+          top: 20,
+          bottom: 20,
+          data: data.legendData,
+
+          selected: data.selected,
         },
         series: [
           {
-            type: "bar",
-            data: [3, 2],
+            name: "姓名",
+            type: "pie",
+            radius: "55%",
+            center: ["40%", "50%"],
+            data: data.seriesData,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
           },
         ],
-        title: {
-          text: "Quarterly Sales Results",
-          x: "center",
-          textStyle: {
-            fontSize: 24,
-          },
-        },
-        color: ["#127ac2"],
-      },
+      },*/
     };
   },
 };
