@@ -106,8 +106,9 @@
                         <br />{{i+1}}. {{room.RoomType_Name}} <br />
                         Room : {{room.Number_of_Room}} 
                         <br /><br />
-                        <b-button id="show-btn" href="#"  v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
-                        @click="sentInfo(BookID)">
+                        <b-button id="show-btn" href="#" v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
+                        @click="check(BookID,room)">
+                        
                             <font color='#FDA50F'>Click to review</font>
                           </b-button>
                       </div> 
@@ -223,6 +224,7 @@ export default {
     return {
       review:{
       bookid:null,
+      rtype:null,
       userid:null,
       rate: null,
       comment:null
@@ -235,6 +237,7 @@ export default {
       BOnGoing: [],
       BDone: [],
       BCanceled: [],
+      isNotRV:0
     };
   },
   components: {
@@ -271,18 +274,47 @@ export default {
     },
     toggleModalRv() {
         if(this.review.rate===null){
-            this.makeToast('danger','You have not done your review.')
+            this.makeToast('danger','You have not done your review.');
         }
         else{
         this.AddReview();
-        this.makeToast('success','Thank you for your review.')
-        this.$bvModal.hide("my-modalRv")    // hide modal
+        this.makeToast('success','Thank you for your review.');
+        this.$bvModal.hide("my-modalRv");    // hide modal
         //setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
         }
     },
-    sentInfo(BookID){
+    //Check ว่ารีวิวแล้วยัง
+    checkRV()
+    {
+      var formData = this.toFormData(this.review);
+      this.axios
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
+      )
+      .then((response)=> {
+          console.log(response.data.data.length);
+          this.isNotRV=response.data.data.length;
+        });
+        if(this.isNotRV==0){
+          return false;
+        }
+        else{
+          return true;
+        }
+    },
+    //ฝากปรอย fixxxx
+    check(BookID,room){
       this.review.bookid = BookID.Booking_ID;
-      console.log(this.review.bookid);
+      this.review.rtype = room.RoomType_Name;
+      console.log(this.review.rtype);
+      //console.log(this.isNotrv);
+      if(this.checkRV()){
+        this.makeToast('danger','You have already reviewed !!');
+      }
+      // else{
+      //   this.showModalRv();
+      // }
+      
     },
     // split AllBooking to each status
     splitStatus() {
@@ -298,7 +330,7 @@ export default {
       }
       // console.log(this.BOnGoing);
     },
-
+    
     // Add room to bookDetail
     setBookdetail() {
       for (var i = 0; i < this.bookDetail.length; i++) {
@@ -317,7 +349,6 @@ export default {
           // console.log(this.bookDetail[i]);
         });
     },
-
     // fetch Booking & Payment from DB
     fetchBooking() {
       var formData = this.toFormData(this.bookDetail);
@@ -343,6 +374,7 @@ export default {
           console.log(response);
           this.review = {
             bookid:null,
+            rtype:null,
             userid:null,
             rate: null,
             comment:null

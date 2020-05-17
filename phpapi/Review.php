@@ -37,18 +37,56 @@
             $result['data'] = $reviews;                                    # -
         }
 
+        if($action == 'check'){                                             # -
+            # edit sql command here
+            $bookid = $_POST['bookid'];
+            $rtype = $_POST['rtype'];
+            $sql = $con->query("SELECT * FROM Review
+                                WHERE Booking_ID ='$bookid' AND RoomType_Name = '$rtype'");                    # +
+            # var buff for data in database
+            $reviews = array();                                            # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($reviews,$row);                                 # -
+            }
+            $result['data'] = $reviews;                                    # -
+        }
+
+        if($action == 'show'){                                             # -
+            # edit sql command here
+            $rtype = $_POST['rtype'];
+            $sql = $con->query("SELECT * FROM Review
+                                WHERE RoomType_Name = '$rtype'");                    # +
+            # var buff for data in database
+            $reviews = array();                                            # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($reviews,$row);                                 # -
+            }
+            $result['data'] = $reviews;  
+
+            if($sql){                                                      # -
+                $result['message'] = "show successfully";                 # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "show fail";                         # -
+            }            # -
+        }
+
         # insert command
         if($action == 'add'){                                              # -
             # edit var here
             # create var for insert to database and key in axios
             #var               key
             $bookid = $_POST['bookid'];
+            $rtype = $_POST['rtype'];
             $userid = $_POST['userid'];                                    # +
             $comment = $_POST['comment'];                                  # +
             $rate = $_POST['rate'];                                        # +
            
             #edit sql command here
-            $sql = $con->query("INSERT INTO Review (`Booking_ID`,`User_ID`,`Comment`,`Rate`)VALUES ('$bookid', '$userid', '$comment', '$rate')") ; # +
+            $sql = $con->query("INSERT INTO Review (`Booking_ID`,`RoomType_Name`,`User_ID`,`Comment`,`Rate`)VALUES ('$bookid', '$rtype', '$userid', '$comment', '$rate')") ; # +
             
             # return status likes console log
             if($sql){                                                      # -
