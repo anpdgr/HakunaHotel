@@ -335,7 +335,7 @@
           type="submit"
           variant="success"
           @click="confirm()"
-          style="float:right; margin:20px"
+          style="float:right; margin:10px"
         >Confirm</b-button>
 
         <b-button
@@ -345,7 +345,7 @@
           type="submit"
           variant="danger"
           @click="reset()"
-          style="float:right; margin:20px"
+          style="float:right; margin:10px"
         >reset</b-button>
       </b-card>
     </div>
@@ -757,5 +757,8 @@ export default {
 #roomtype_card {
   margin: 10px;
   padding: 10px 20px;
+}
+#RoomCheck{
+  margin:5px;
 }
 </style>
