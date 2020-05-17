@@ -154,9 +154,8 @@
                             id="show-btn"
                             href="#"
                             v-b-modal.my-modalRv
-                            v-if="RVavi[index].r[i] != true"
                             style="background-color: transparent; border-color:transparent; cursor: pointer;"
-                            @click="check(BookID, room ,i)"
+                            @click="check(BookID, room ,index, i)"
                           >
                             <font color="#FDA50F">Click to review</font>
                           </b-button>
@@ -437,7 +436,7 @@ export default {
       this.ibuff = i;
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
-
+      console.log(this.reviewAlready[index].r[i]);
       if(this.reviewAlready[index].r[i] == true){
         this.makeToast("danger", "this room already comment");
         this.RVavi[index].id = this.review.bookid;
