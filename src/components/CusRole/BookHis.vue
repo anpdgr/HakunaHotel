@@ -23,20 +23,29 @@
                 <b-collapse id="collapse-2"
                  v-if="index == index1">
                   <b-card border-variant="info">
-                    Check-in date: {{ BookID.Checkin }}
-                    <br />
-                    Check-out date: {{ BookID.Checkout }}<br />
-                    Number of guests: {{ BookID.Number_Of_Guest }}
+                    <h5>Booking details</h5>
+                    <div class="row">
+                      <div class="column">
+                        <p>Booking date: {{ BookID.Checkin }}</p>
+                        <p>Check-in date: {{ BookID.Checkin }}</p>
+                      </div>
+                      <div class="column">
+                        <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
+                        <p>Check-out date: {{ BookID.Checkout }}</p>
+                      </div>
+                    </div>
+
                     <hr />
-                    Room type :
+                    <h5>Room type</h5>
                     <div v-for="(room, i) in BookID.rooms" :key="i">
-                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
-                        Room : {{room.Number_of_Room}}
-                    </div> 
+                      {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                      Room : {{ room.Number_of_Room }}
+                    </div>
                     <hr />
+                    <h5>Billing details</h5>
                     Payment ID: {{ BookID.No }}
                     <br />
-                    Total price: {{ BookID.Total }}
+                    <b>Total price: {{ BookID.Total }}฿</b>
                     <div id="onbook">
                       <div>
                         <b-button
@@ -49,8 +58,8 @@
 
                         <b-modal
                           id="modal-cancel"
-                          v-if="index == index1"
                           ref="modal-cancel"
+                          v-if="index === index1"
                           hide-footer
                           title="Confirm to Cancel"
                         >
@@ -92,30 +101,47 @@
               >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
-                  <b-button variant="dark" v-b-toggle.collapse-2 class="m-1"
+                  <b-button
+                    variant="dark"
+                    v-b-toggle="'Done-' + index"
+                    class="m-1"
                     >Booking ID: {{ BookID.Booking_ID }}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse id="collapse-2">
+                <b-collapse :id="'Done-' + index">
                   <b-card border-variant="dark">
                     <div id="info">
-                      Check-in date: {{ BookID.Checkin }}
-                      <br />
-                      Check-out date: {{ BookID.Checkout }} <br />
-                      Number of guests: {{ BookID.Number_Of_Guest }}
-                      <hr />
-                      Room type :
+                                          <h5>Booking details</h5>
+
+                    <div class="row">
+                      <div class="column">
+                        <p>Booking date: {{ BookID.Checkin }}</p>
+                        <p>Check-in date: {{ BookID.Checkin }}</p>
+                      </div>
+                      <div class="column">
+                        <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
+                        <p>Check-out date: {{ BookID.Checkout }}</p>
+                      </div>
+                    </div>
+                    <hr>
+
+
+
+                      <h5>Room type</h5>
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
-                        Room : {{room.Number_of_Room}} 
-                        <br /><br />
-                        <b-button id="show-btn" href="#" v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
-                        @click="check(BookID,room)">
-                        
-                            <font color='#FDA50F'>Click to review</font>
-                          </b-button>
-                      </div> 
+                      {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                        Room : {{ room.Number_of_Room }} <br />
+                        <b-button
+                          id="show-btn"
+                          href="#"
+                          v-b-modal.my-modalRv
+                          style="background-color: transparent; border-color:transparent; cursor: pointer;"
+                          @click="check(BookID, room)"
+                        >
+                          <font color="#FDA50F">Click to review</font>
+                        </b-button>
+                      </div>
                       <div id="right">
                         <div>
                           <!-- <b-button id="show-btn" href="#"  v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;">
@@ -124,36 +150,37 @@
                           <b-modal
                             ref="my-modalRv"
                             id="my-modalRv"
+                            v-if="index === index1"
                             hide-footer
                             title="Review this room type"
                           >
                             <div class="d-block text-center">
                               <div id="reviewSection">
-                                  <div>
-                                    <label for="rating-inline">Rate:</label>
-                                    <b-form-rating
-                                      id="rating-inline"
-                                      v-model="review.rate"
-                                      inline
-                                      value="4"
-                                      no-border
-                                      size="lg"
-                                      color="#ff8800"
-                                    ></b-form-rating>
-                                    {{ review.rate}}
+                                <div>
+                                  <label for="rating-inline">Rate:</label>
+                                  <b-form-rating
+                                    id="rating-inline"
+                                    v-model="review.rate"
+                                    inline
+                                    value="4"
+                                    no-border
+                                    size="lg"
+                                    color="#ff8800"
+                                  ></b-form-rating>
+                                  {{ review.rate }}
 
-                                    <b-form-textarea
-                                      id="textarea"
-                                      v-model="review.comment"
-                                      placeholder="Enter something..."
-                                      rows="3"
-                                      max-rows="6"
-                                      style="margin-top:10px;"
-                                    ></b-form-textarea>
-                                  </div>
+                                  <b-form-textarea
+                                    id="textarea"
+                                    v-model="review.comment"
+                                    placeholder="Enter something..."
+                                    rows="3"
+                                    max-rows="6"
+                                    style="margin-top:10px;"
+                                  ></b-form-textarea>
                                 </div>
+                              </div>
                             </div>
-                          
+
                             <div style="margin-top:20px;">
                               <b-button
                                 @click="toggleModalRv"
@@ -168,10 +195,11 @@
                           </b-modal>
                         </div>
                       </div>
-                      <hr />
-                      Payment ID: {{ BookID.No }}
-                      <br />
-                      Total price: {{ BookID.Total }}
+                    <hr />
+                    <h5>Billing details</h5>
+                    Payment ID: {{ BookID.No }}
+                    <br />
+                    <b>Total price: {{ BookID.Total }}฿</b>
                     </div>
                   </b-card>
                 </b-collapse>
@@ -186,27 +214,36 @@
               >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
-                  <b-button v-b-toggle.collapse-2 class="m-1"
+                  <b-button v-b-toggle="'Cancel-' + index" class="m-1"
                     >Booking ID: {{ BookID.Booking_ID }}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse id="collapse-2">
+                <b-collapse :id="'Cancel-' + index">
                   <b-card border-variant="secondary">
-                    Check-in date: {{ BookID.Checkin }}
-                    <br />
-                    Check-out date: {{ BookID.Checkout }} <br />
-                    Number of guests: {{ BookID.Number_Of_Guest }}
+                    <h5>Booking details</h5>
+                    <div class="row">
+                      <div class="column">
+                        <p>Booking date: {{ BookID.Checkin }}</p>
+                        <p>Check-in date: {{ BookID.Checkin }}</p>
+                      </div>
+                      <div class="column">
+                        <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
+                        <p>Check-out date: {{ BookID.Checkout }}</p>
+                      </div>
+                    </div>
+
                     <hr />
-                    Room type :
+                    <h5>Room type</h5>
                     <div v-for="(room, i) in BookID.rooms" :key="i">
-                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
-                        Room : {{room.Number_of_Room}}
-                    </div> 
+                      {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                      Room : {{ room.Number_of_Room }}
+                    </div>
                     <hr />
+                    <h5>Billing details</h5>
                     Payment ID: {{ BookID.No }}
                     <br />
-                    Total price: {{ BookID.Total }}
+                    <b>Total price: {{ BookID.Total }}฿</b>
                   </b-card>
                 </b-collapse>
               </div>
@@ -226,12 +263,13 @@ import Cusnav from "./SideTopNav_cus.vue";
 export default {
   data() {
     return {
-      review:{
-      bookid:null,
-      rtype:null,
-      userid:null,
-      rate: null,
-      comment:null
+      index1: 0,
+      review: {
+        bookid: null,
+        rtype: null,
+        userid: null,
+        rate: null,
+        comment: null,
       },
       // for fetch data and manage
       bookDetail: {
@@ -243,7 +281,6 @@ export default {
       BCanceled: [],
       isNotRV:0,
 
-      index1:null
     };
   },
   components: {
@@ -251,18 +288,19 @@ export default {
     NavLO,
   },
   mounted() {
-    this.bookDetail.userid = this.review.userid=this.$store.getters.getUser;
+    this.bookDetail.userid = this.review.userid = this.$store.getters.getUser;
     this.fetchBooking();
-
     setTimeout(() => {
       this.setBookdetail();
     }, 800);
-
     setTimeout(() => {
       this.splitStatus();
     }, 1000);
   },
   methods: {
+    // checkModal(index) {
+    //   this.index1 = index;
+    // },
     showModal() {
       this.$refs["modal-cancel"].show();
     },
@@ -284,25 +322,23 @@ export default {
     },
     toggleModal() {
       //this.$refs["modal-cancel"].toggle("#toggle-btn");
-      this.$bvModal.hide("modal-cancel") ;
+      this.$bvModal.hide("modal-cancel");
     },
     showModalRv() {
       this.$refs["my-modalRv"].show();
     },
     toggleModalRv() {
-        if(this.review.rate===null){
-            this.makeToast('danger','You have not done your review.');
-        }
-        else{
+      if (this.review.rate === null) {
+        this.makeToast("danger", "You have not done your review.");
+      } else {
         this.AddReview();
-        this.makeToast('success','Thank you for your review.');
-        this.$bvModal.hide("my-modalRv");    // hide modal
+        this.makeToast("success", "Thank you for your review.");
+        this.$bvModal.hide("my-modalRv"); // hide modal
         //setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
-        }
+      }
     },
     //Check ว่ารีวิวแล้วยัง
-    checkRV()
-    {
+    checkRV() {
       var formData = this.toFormData(this.review);
       this.axios
       .post(
@@ -312,26 +348,24 @@ export default {
           // console.log(response.data.data.length);
           this.isNotRV=response.data.data.length;
         });
-        if(this.isNotRV==0){
-          return false;
-        }
-        else{
-          return true;
-        }
+      if (this.isNotRV == 0) {
+        return false;
+      } else {
+        return true;
+      }
     },
     //ฝากปรอย fixxxx
-    check(BookID,room){
+    check(BookID, room) {
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
       // console.log(this.review.rtype);
       //console.log(this.isNotrv);
-      if(this.checkRV()){
-        this.makeToast('danger','You have already reviewed !!');
+      if (this.checkRV()) {
+        this.makeToast("danger", "You have already reviewed !!");
       }
       // else{
       //   this.showModalRv();
       // }
-      
     },
     // split AllBooking to each status
     splitStatus() {
@@ -347,7 +381,7 @@ export default {
       }
       // console.log(this.BOnGoing);
     },
-    
+
     // Add room to bookDetail
     setBookdetail() {
       for (var i = 0; i < this.bookDetail.length; i++) {
@@ -379,7 +413,7 @@ export default {
           // console.log(response.data.data);
         });
     },
-    AddReview(){
+    AddReview() {
       var formData = this.toFormData(this.review);
       this.axios
         .post(
@@ -390,11 +424,11 @@ export default {
           //set var to default
           console.log(response);
           this.review = {
-            bookid:null,
-            rtype:null,
-            userid:null,
+            bookid: null,
+            rtype: null,
+            userid: null,
             rate: null,
-            comment:null
+            comment: null,
           };
           if (response.data.error) {
             console.log(response.data.error);
@@ -436,5 +470,15 @@ export default {
 }
 #onbook {
   margin-top: 20px;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 </style>
