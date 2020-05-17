@@ -103,15 +103,26 @@
                       <hr />
                       Room type :
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                        <br />{{i+1}}. {{room.RoomType_Name}} <br />
-                        Room : {{room.Number_of_Room}} 
-                        <br /><br />
-                        <b-button id="show-btn" href="#" v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
-                        @click="check(BookID,room)">
-                        
-                            <font color='#FDA50F'>Click to review</font>
-                          </b-button>
+                        <b-row>
+                          <b-col cols="9">
+                            <br />{{i+1}}. {{room.RoomType_Name}} <br />
+                            Room : {{room.Number_of_Room}} 
+                            <br /><br />
+                          </b-col>  
+                          <b-col>
+                             <br>
+                            <!-- ยังไม่รีวิว -->
+                            <b-button  v-if="checkRV(room.Booking_ID,room.RoomType_Name)===false" id="show-btn" href="#" v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
+                            >
+                                <font   color='#FDA50F'>Click to review</font>   
+                            </b-button>
+
+                            <!-- รีวิวละ -->
+                            <font  v-else-if="checkRV(room.Booking_ID,room.RoomType_Name)===true"  color='#97A7AF'>Reviewed</font>                           
+                          </b-col>
+                        </b-row>
                       </div> 
+                     
                       <div id="right">
                         <div>
                           <!-- <b-button id="show-btn" href="#"  v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;">
@@ -237,7 +248,8 @@ export default {
       BOnGoing: [],
       BDone: [],
       BCanceled: [],
-      isNotRV:0
+      isRV:0,
+      index1:0
     };
   },
   components: {
@@ -277,6 +289,7 @@ export default {
             this.makeToast('danger','You have not done your review.');
         }
         else{
+        this.isRV === 1;
         this.AddReview();
         this.makeToast('success','Thank you for your review.');
         this.$bvModal.hide("my-modalRv");    // hide modal
@@ -284,8 +297,10 @@ export default {
         }
     },
     //Check ว่ารีวิวแล้วยัง
-    checkRV()
+    checkRV(BookID,room)
     {
+      this.review.bookid = BookID;
+      this.review.rtype = room;
       var formData = this.toFormData(this.review);
       this.axios
       .post(
@@ -293,29 +308,31 @@ export default {
       )
       .then((response)=> {
           console.log(response.data.data.length);
-          this.isNotRV=response.data.data.length;
+          this.isRV=response.data.data.length;
         });
-        if(this.isNotRV==0){
-          return false;
+        if(this.isRV!=0){
+          return true;  //รัีวิวแล้ว
         }
         else{
-          return true;
+          return false;  //ยังไม่รีวิว
         }
     },
     //ฝากปรอย fixxxx
-    check(BookID,room){
+    /*check(BookID,room){
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
       console.log(this.review.rtype);
-      //console.log(this.isNotrv);
+      console.log(this.isNotrv);
       if(this.checkRV()){
         this.makeToast('danger','You have already reviewed !!');
+        return true;
       }
-      // else{
-      //   this.showModalRv();
-      // }
+      else{
+        this.showModalRv();
+        return false;
+      }
       
-    },
+    },*/
     // split AllBooking to each status
     splitStatus() {
       for (var i = 0; i < this.bookDetail.length; i++) {
@@ -385,6 +402,7 @@ export default {
             console.log(response.data.message);
           }
         });
+        this.checkRV(this.review.bookid,this.review.rtype)
     },
     // convert to formdata
     toFormData(obj) {
