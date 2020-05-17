@@ -36,7 +36,7 @@
                       <h5>{{item.type}}</h5>
                       <p>price : {{item.price}}</p>
                        
-                      <b-button  variant="outline-secondary" @click="index1 = index" v-b-modal.modal-scrollable>view more</b-button>
+                      <b-button  variant="outline-secondary" @click="check(index,item)" v-b-modal.modal-scrollable>view more</b-button>
                       <b-modal  v-if="index===index1" id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
                         <b-button style="float:right" href="#review">see review</b-button>
                         <!-- {{index}} -->
@@ -117,21 +117,25 @@ export default {
   data(){
     return{
       index1:0,
+      review:[],
+      Rtype:{
+        rtype:""
+      },
       items:[
-        { type: "Delux Executive King Bed", limit:4,price:4957,
+        { type: "Deluxe Executive King Bed", limit:4,price:4957,
           des:'Sitting over ten stories, all Deluxe Executive King Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy. Upscale room design with a perfect amount of space is trivial features compared to the handsome furnishings and fixtures adorning this charming space. Service: -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Babysitter -Gym -Spa -Sauna -Access for disabled people -Jaccuzzi -Wifi',
           img:require('@/assets/delux_e_k.jpg')
         },
         
-        { type: "Delux Executive Twin Bed",limit:4,price:4957,
+        { type: "Deluxe Executive Twin Bed",limit:4,price:4957,
           des:'Sitting over ten stories, all Deluxe Executive Twin Bed Rooms are equipped with gorgeous views of the bay and her golden coastline. Fitted with enough class and esteem, each room is a companion to comfortability and intimacy. Upscale room design with a perfect amount of space is trivial features compared to the handsome furnishings and fixtures adorning this charming space. Service: -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Babysitter -Gym -Spa -Sauna -Access for disabled people -Baby cots -Wifi',
           img:require('@/assets/delux_e_tw.jpg')},
         
-        { type: "Delux Urban King Bed",limit:4,price:4494,
+        { type: "Deluxe Urban King Bed",limit:4,price:4494,
           des:'Complete with sweeping cityscape views enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style. Service: -Wifi -Tourist Information / Ticket sale -Laundry service -Gym -Air conditioning -Spa -Sauna -Baby cots -Free Parking -Free outdoor bus parking',
           img:require('@/assets/delux_u_k.jpg')},
         
-        { type: "Delux Urban Twin Bed",limit:4,price:4494,
+        { type: "Deluxe Urban Twin Bed",limit:4,price:4494,
           des: 'Complete with sweeping cityscape views, enjoy a quiet and comfortable escape high above the hustle and bustle of the city. Stocked with all the luxury accommodations needed for an unforgettable retreat such as lavish furniture, gentle down bedding, inventive decorations and state of the art bathroom fixtures, this room calls to guests who want to get away in style. Service: -Wifi -Tourist Information / Ticket sale -Laundry / Dry Cleaner -Air conditioning -Gym -Spa -Sauna -Baby cots -Free Parking -Free outdoor parking',
           img:require('@/assets/delux_u_tw.jpg')},
 
@@ -163,6 +167,38 @@ export default {
       if (el) {
         this.$refs.content.scrollTop = el.offsetTop;
       }
+    },
+    check(index,item){
+      this.Rtype.rtype=item.type.toUpperCase();
+      this.fetchReview();
+      this.index1=index; 
+      console.log(this.Rtype.rtype);
+    },
+    fetchReview(){
+      var formData = this.toFormData(this.Rtype);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=show",
+          formData
+        )
+        .then((response) => {
+          //set var to default
+          this.review = response.data.data;
+           console.log(response.data);
+          if (response.data.error) {
+            console.log(response.data.error);
+          } else {
+            console.log(response.data.message);
+          }
+        });
+    },
+    // convert to formdata
+    toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
     }
   }
 }
