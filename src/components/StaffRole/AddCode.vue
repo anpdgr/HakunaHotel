@@ -1,8 +1,6 @@
 <template>
   <div>
     <STnav />
-    <br /><br /><br />
-    <hr />
     <Side />
     <!-- ปุ่ม summary code id แต่อยากให้เปลี่ยนเป็น code name  -->
     <div id="summary" style="float:right; margin-right:100px">
@@ -116,25 +114,6 @@
                 </b-input-group-append>
               </b-input-group>
             </b-col>
-            <b-col sm="5" class="my-1">
-              <b-form-group
-                label="Per page"
-                label-cols-sm="9"
-                label-align-sm="right"
-                label-size="sm"
-                label-for="perPageSelect"
-                class="mb-0"
-              >
-                <b-form-select
-                  v-model="perPage"
-                  id="perPageSelect"
-                  size="sm"
-                  :options="pageOptions"
-                  style=" width:120px"
-                ></b-form-select>
-              </b-form-group>
-            </b-col>
-
           </b-row>
         </div>
         <!-- Main table element -->
@@ -225,8 +204,8 @@ export default {
 
       //totalRows: 1,
       currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 10, 15],
+      perPage: 10,
+      //pageOptions: [5, 10, 15],
       filter: null,
 
       sortDesc: false,
@@ -359,7 +338,7 @@ export default {
   margin: auto;
 }
 #all {
-  margin: 20px 100px auto 300px;
+  margin: 100px 100px auto 300px;
 }
 canvas {
   max-width: 100%;

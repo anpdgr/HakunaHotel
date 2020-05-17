@@ -130,7 +130,8 @@
 
                       <h5>Room type</h5>
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                      {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                      
+                      <!-- {{ i + 1 }}. {{ room.RoomType_Name }} <br />
                         Room : {{ room.Number_of_Room }} <br />
                         <b-button
                           id="show-btn"
@@ -141,7 +142,26 @@
                           @click="check(BookID, room ,index, i)"
                         >
                           <font color="#FDA50F">Click to review</font>
-                        </b-button>
+                        </b-button> -->
+                      
+                      <b-row>
+                        <b-col>
+                          {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                            Room : {{ room.Number_of_Room }} <br />
+                        </b-col>
+                        <b-col>
+                          <b-button
+                            id="show-btn"
+                            href="#"
+                            v-b-modal.my-modalRv
+                            v-if="RVavi[index].r[i] != true"
+                            style="background-color: transparent; border-color:transparent; cursor: pointer;"
+                            @click="check(BookID, room ,i)"
+                          >
+                            <font color="#FDA50F">Click to review</font>
+                          </b-button>
+                        </b-col>
+                        </b-row>
                       </div>
                       <div id="right">
                         <div>
