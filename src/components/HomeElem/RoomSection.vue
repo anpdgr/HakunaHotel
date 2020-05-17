@@ -44,12 +44,106 @@
                         <p>price per night : {{item.price}} </p>
                         <img :src="item.img" style="width:100%"/>
                         <p class="my-4" ><b>Description</b><br>{{item.des}} </p>
-                        <section id="review">
+                        <section id="review" style="float:center">
                           
-                          <h5>Review</h5>
-                          
+                          <h5>Review</h5> 
+
+                          <div>
+                            <b-tabs content-class="mt-3" align="right" style="width:100%;">
+                              <b-tab title="5" active>
+                                <div  v-for='(review,i) in review' :key= "i">   
+                                  <div v-if="review.Rate>4.5">    
+                                    <b-card fluid="lg" style="width:100%">
+                                      <b-row>  
+                                        <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
+                                        <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
+                                      </b-row>
+                                      
+                                      <hr> 
+                                      <b v-if="(review.Comment.length!== 0)">{{review.Comment}}</b>
+                                      <!-- <b v-else>Ho</b> -->
+                                    </b-card> 
+                                    <br>
+                                  </div>
+                                </div>  
+                              </b-tab>
+                              
+                              <b-tab title="4">
+                                <div  v-for='(review,i) in review' :key= "i">    
+                                  <div v-if="review.Rate>3.5 && review.Rate<4.5">   
+                                    <b-card fluid="lg" style="margin:auto">
+                                      <b-row>  
+                                        <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
+                                        <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
+                                      </b-row>
+                                      
+                                      <hr> 
+                                      <b v-if="(review.Comment.length!== 0)">{{review.Comment}}</b>
+                                      <!-- <b v-else>Ho</b> -->
+                                    </b-card> 
+                                    <br>
+                                  </div>
+                                </div>
+                              </b-tab>
+
+                              <b-tab title="3">
+                                <div  v-for='(review,i) in review' :key= "i">    
+                                  <div v-if="review.Rate>2.5 && review.Rate<3.5">   
+                                    <b-card fluid="lg" style="margin:auto">
+                                      <b-row>  
+                                        <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
+                                        <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
+                                      </b-row>
+                                      
+                                      <hr> 
+                                      <b v-if="(review.Comment.length!== 0)">{{review.Comment}}</b>
+                                      <!-- <b v-else>Ho</b> -->
+                                    </b-card> 
+                                    <br>
+                                  </div>
+                                </div>
+                              </b-tab>
+
+                              <b-tab title="2">
+                                <div  v-for='(review,i) in review' :key= "i"> 
+                                  <div v-if="review.Rate>1.5 && review.Rate<2.5">
+                                    <b-card fluid="lg" style="margin:auto">
+                                      <b-row>  
+                                        <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
+                                        <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
+                                      </b-row>
+                                      
+                                      <hr> 
+                                      <b v-if="(review.Comment.length!== 0)">{{review.Comment}}</b>
+                                      <!-- <b v-else>Ho</b> -->
+                                    </b-card> 
+                                    <br>
+                                  </div>
+                                </div>
+                              </b-tab>
+                              
+                              <b-tab title="1">
+                                <div  v-for='(review,i) in review' :key= "i">    
+                                  <div v-if="review.Rate>0.5 && review.Rate<1.5"> 
+                                    <b-card fluid="lg" style="margin:auto">
+                                      <b-row>  
+                                        <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
+                                        <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
+                                      </b-row>
+                                      
+                                      <hr> 
+                                      <b v-if="(review.Comment.length!== 0)">{{review.Comment}}</b>
+                                      <!-- <b v-else>Ho</b> -->
+                                    </b-card> 
+                                    <br>
+                                  </div>
+                                </div>
+                              </b-tab>
+                              
+                            </b-tabs>
+                          </div>
+                         
                         </section>
-                        
                       </b-modal>
                       
                     </div>
@@ -116,6 +210,10 @@
 export default {
   data(){
     return{
+      perPage: 5,
+      currentPage: 1,
+      
+      rate:0,
       index1:0,
       review:[],
       Rtype:{
