@@ -9,9 +9,11 @@
         <div id="detail-head" style="text-align:left;">
           <!-- show Bookingid ที่กำลัง check in -->
           <b-row>
-                        <b-col cols="2"><b style="font-size:120%;">Booking no.  </b></b-col>
-                        <b-col><p> {{$store.getters.getBKID}}</p></b-col><br>
-                    </b-row>
+            <b-col cols="2"><b style="font-size:120%;">Booking no. </b></b-col>
+            <b-col
+              ><p>{{ $store.getters.getBKID }}</p></b-col
+            ><br />
+          </b-row>
           <b-row>
             <!-- show cusdetail  -->
             <b-col id="CusDetail">
@@ -27,8 +29,8 @@
               <b style="font-size:120%;">Payment detail</b>
               <br />
               <br />
-              <p>Method : {{bookDetail.Method}}</p>
-              <p>Total : {{bookDetail.Total}}</p>
+              <p>Method : {{ bookDetail.Method }}</p>
+              <p>Total : {{ bookDetail.Total }}</p>
             </b-col>
           </b-row>
           <hr style="width:100%" />
@@ -38,33 +40,75 @@
           <b style="font-size:120%;">Booking Detail</b>
           <br />
           <!-- show roomtype ที่จอง -->
-          <div v-for="(item,index) in items" :key="index">
+          <div v-for="(item, index) in items" :key="index">
             <b-card id="roomtype_card">
               <div style="text-align:left;">
                 <p>
-                  <b style="font-size:105%;">{{item.roomtype}} {{index}} :</b>
-                  {{item.Qroom}} rooms
+                  <b style="font-size:105%;"
+                    >{{ item.roomtype }} {{ index }} :</b
+                  >
+                  {{ item.Qroom }} rooms
                 </p>
-                <p style="font-size:80%; text-align:left">* Click button to add information</p>
+                <p style="font-size:80%; text-align:left">
+                  * Click button to add information
+                </p>
               </div>
-              <b v-if=" roomsucces[index]==1" style="float:right; color:MediumSeaGreen">checked</b>
+              <b
+                v-if="roomsucces == 1"
+                style="float:right; color:MediumSeaGreen"
+                >checked</b
+              >
               <div v-for="i in item.Qroom" :key="i" style="float:left">
-
-                <b-button
-                
-                id="roombutton"
+                <!-- <b-button
                   v-b-modal.modal-center
-                  @click="location.index = index,location.i = i"
-                  style="margin:0px 20px 0px 0px"
-                >room {{i}}</b-button>
+                  @click="(location.index = index), (location.i = i)"
+                  id="RoomCheck"
+                  >room {{ i }}</b-button
+                > -->
+
+                <div v-if="checkError === '1'">
+                  <b-button
+                    v-b-modal.modal-center
+                    @click="(location.index = index), (location.i = i)"
+                    id="RoomCheck"
+                    style="background-color:green"
+                    >room {{ i }}</b-button
+                  >
+                </div>
+                <div v-else-if="checkError === '0'">
+                  <b-button
+                    v-b-modal.modal-center
+                    @click="(location.index = index), (location.i = i)"
+                    id="RoomCheck"
+                    style="background-color:red"
+                    >room {{ i }}</b-button
+                  >
+                </div>
+                <div v-else-if="checkError === null">
+                  <b-button
+                    v-b-modal.modal-center
+                    @click="(location.index = index), (location.i = i)"
+                    id="RoomCheck"
+                    >room {{ i }}</b-button
+                  >
+                </div>
+
 
                 <!-- เปิดฟอร์มสำหรับกรอก ? -->
-                <div id="roomdetail" v-if="index === location.index && i === location.i">
-                  <b-modal id="modal-center" centered title="Add information" hide-footer>
+                <div
+                  id="roomdetail"
+                  v-if="index === location.index && i === location.i"
+                >
+                  <b-modal
+                    id="modal-center"
+                    centered
+                    title="Add information"
+                    hide-footer
+                  >
                     <div id="guest form">
                       <!-- เลือกเลขห้อง -->
                       <div>
-                        <h6>Select room ID {{index}} : {{i}}</h6>
+                        <h6>Select room ID {{ index }} : {{ i }}</h6>
                         <b-form-select
                           style="width:8rem; margin:10px"
                           v-model="selectroomid"
@@ -116,7 +160,11 @@
                             </b-form-group>
 
                             <b-form-group label="Country:">
-                              <b-form-input id="ip-country 1" v-model="form1.country" required></b-form-input>
+                              <b-form-input
+                                id="ip-country 1"
+                                v-model="form1.country"
+                                required
+                              ></b-form-input>
                             </b-form-group>
                           </b-form>
                         </b-tab>
@@ -159,7 +207,11 @@
                             </b-form-group>
 
                             <b-form-group label="Country:">
-                              <b-form-input id="ip-country 2" v-model="form2.country" required></b-form-input>
+                              <b-form-input
+                                id="ip-country 2"
+                                v-model="form2.country"
+                                required
+                              ></b-form-input>
                             </b-form-group>
                           </b-form>
                         </b-tab>
@@ -202,7 +254,11 @@
                             </b-form-group>
 
                             <b-form-group label="Country:">
-                              <b-form-input id="ip-country 3" v-model="form3.country" required></b-form-input>
+                              <b-form-input
+                                id="ip-country 3"
+                                v-model="form3.country"
+                                required
+                              ></b-form-input>
                             </b-form-group>
                           </b-form>
                         </b-tab>
@@ -245,7 +301,11 @@
                             </b-form-group>
 
                             <b-form-group label="Country:">
-                              <b-form-input id="ip-country 4" v-model="form4.country" required></b-form-input>
+                              <b-form-input
+                                id="ip-country 4"
+                                v-model="form4.country"
+                                required
+                              ></b-form-input>
                             </b-form-group>
                           </b-form>
                         </b-tab>
@@ -257,7 +317,8 @@
                         variant="outline-primary"
                         @click="check(index,i)"
                         style="float:right; margin:20px"
-                      >submit</b-button>
+                        >submit</b-button
+                      >
                     </div>
                   </b-modal>
                 </div>
@@ -298,14 +359,15 @@ import Side from "./Side_statusH.vue";
 export default {
   components: {
     STnav,
-    Side
+    Side,
     //guest
   },
   data() {
     return {
-      index1:0,
-      roomsucces:0,
-    //   booked roomtype 
+      checkError: null,
+      index1: 0,
+      roomsucces: 0,
+      //   booked roomtype
       items: [
         // { roomtype: "Dulux Executive Twin Bed", Qroom: 1 },
         // { roomtype: "Premier Lux Twin Bed", Qroom: 3 },
@@ -328,7 +390,7 @@ export default {
         fname: null,
         lname: null,
         country: null,
-        roomid: null
+        roomid: null,
       },
       form2: {
         id: null,
@@ -337,7 +399,7 @@ export default {
         fname: null,
         lname: null,
         country: null,
-        roomid: null
+        roomid: null,
       },
       form3: {
         id: null,
@@ -346,7 +408,7 @@ export default {
         fname: null,
         lname: null,
         country: null,
-        roomid: null
+        roomid: null,
       },
       form4: {
         id: null,
@@ -355,16 +417,16 @@ export default {
         fname: null,
         lname: null,
         country: null,
-        roomid: null
+        roomid: null,
       },
       guest: [],
       title: [{ text: "Select One", value: null }, "Mr.", "Mrs.", "Ms.", "Miss"],
       bookDetail: {
-        bookid: null
+        bookid: null,
       },
       location: {
         index: 0,
-        i: 0
+        i: 0,
       },
       R: {
         rtype: null
@@ -412,7 +474,7 @@ export default {
           "http://hakuna-hotel.kmutt.me/phpapi/CheckIn.php?action=read",
           formData
         )
-        .then(response => {
+        .then((response) => {
           this.bookDetail = response.data.data[0];
           // console.log(this.bookDetail);
           this.fetchBookDetail();
@@ -426,14 +488,14 @@ export default {
           "http://hakuna-hotel.kmutt.me/phpapi/CheckIn.php?action=fbookdetail",
           formData
         )
-        .then(response => {
+        .then((response) => {
           var rooms = response.data.data;
           this.bookDetail.rooms = rooms;
           // console.log(this.bookDetail);
           for (var i = 0; i < rooms.length; i++) {
             this.items.push({
               roomtype: rooms[i].RoomType_Name,
-              Qroom: Number(rooms[i].Number_of_Room)
+              Qroom: Number(rooms[i].Number_of_Room),
             });
             // let data = {
             //     rtype:rooms[i].RoomType_Name
@@ -446,7 +508,7 @@ export default {
     fetchRoom() {
       for (var i = 0; i < this.bookDetail.rooms.length; i++) {
         var R = {
-          rtype: this.bookDetail.rooms[i].RoomType_Name
+          rtype: this.bookDetail.rooms[i].RoomType_Name,
         };
         // console.log(R);
         var formData = this.toFormData(R);
@@ -455,11 +517,11 @@ export default {
             "http://hakuna-hotel.kmutt.me/phpapi/CheckIn.php?action=room",
             formData
           )
-          .then(response => {
+          .then((response) => {
             var rooms = response.data.data;
-            var type=[];
-            for(var i=0 ; i<rooms.length ; i++){
-                type.push({ value: rooms[i].Room_ID, text: rooms[i].Room_ID })
+            var type = [];
+            for (var i = 0; i < rooms.length; i++) {
+              type.push({ value: rooms[i].Room_ID, text: rooms[i].Room_ID });
             }
             this.op_roomid.push(type);
             // console.log( this.op_roomid);
@@ -670,7 +732,7 @@ export default {
       this.$bvToast.toast(text, {
         variant: variant,
         solid: true,
-        toaster: "b-toaster-top-center"
+        toaster: "b-toaster-top-center",
       });
     },
     toFormData(obj) {
@@ -679,8 +741,8 @@ export default {
         fd.append(i, obj[i]);
       }
       return fd;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -696,5 +758,4 @@ export default {
   margin: 10px;
   padding: 10px 20px;
 }
-
 </style>

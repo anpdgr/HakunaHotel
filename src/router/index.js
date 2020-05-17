@@ -8,6 +8,7 @@ import LogIn from '../components/login.vue'
 import Bookstatus from '../components/StatusHotel/Bookstatus.vue'
 import Roomstatus from '../components/StatusHotel/Roomstatus.vue'
 import Ourteam from '../components/StatusHotel/Ourteam.vue'
+import report from '../components/StatusHotel/ReportAnalysis.vue'
 
 import sHome from '../components/StaffRole/StaffHome.vue'
 import sEdit from '../components/StaffRole/Edit_staff.vue'
@@ -120,6 +121,11 @@ const routes = [
         path: '/payment',         //customer's payment
         name: 'Payment',
         component: payment,
+    },
+    {
+        path: '/report',         //customer's payment
+        name: 'Report',
+        component: report,
     },
 ]
 

@@ -16,7 +16,6 @@
     </div>
 
     <div id="all">
-      <div></div>
       <div id="addSection">
         <h1>Add code</h1>
         <br />

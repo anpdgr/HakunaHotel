@@ -117,7 +117,7 @@
         :filterIncludedFields="filterOn"
         @filtered="onFiltered"
         
-        style="margin-top:110px"
+        style="margin-top:150px"
       >
         <template v-slot:table-colgroup="scope">
           <col
