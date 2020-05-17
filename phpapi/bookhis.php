@@ -105,6 +105,44 @@
             }
         }
 
+        if($action == 'cancel'){                                           # -
+            # edit var here
+            # create var for update to database and key in axios
+            #var               key
+            $bookid = $_POST['Booking_ID'];                                    # +
+
+            #edit sql command here
+            $sql = $con->query(" UPDATE Booking SET Status = 'Cancel' WHERE Booking_ID = '$bookid' ");                                                       # +
+            
+            # return status likes console log
+            if($sql){                                                      # -
+                $result['message'] = "updated successfully";               # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "updated fail";                       # -
+            }
+        }
+
+        if($action == 'done'){                                           # -
+            # edit var here
+            # create var for update to database and key in axios
+            #var               key
+            $bookid = $_POST['bookid'];                                    # +
+
+            #edit sql command here
+            $sql = $con->query(" UPDATE Booking SET Status = 'CheckOut' WHERE Booking_ID = '$bookid' ");                                                       # +
+            
+            # return status likes console log
+            if($sql){                                                      # -
+                $result['message'] = "updated successfully";               # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "updated fail";                       # -
+            }
+        }
+
         #return data in page Don't edit!!!
         echo json_encode($result);                                         # -
         

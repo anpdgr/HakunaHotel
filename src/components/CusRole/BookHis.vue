@@ -14,15 +14,14 @@
               >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
-                  <b-button
-                    variant="info"
-                    v-b-toggle="'Ongoing-' + index"
-                    class="m-1"
+                  <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
+                    @click="index1 = index"
                     >Booking ID: {{ BookID.Booking_ID }}
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse :id="'Ongoing-' + index">
+                <b-collapse id="collapse-2"
+                 v-if="index == index1">
                   <b-card border-variant="info">
                     <h5>Booking details</h5>
                     <div class="row">
@@ -53,7 +52,7 @@
                           variant="outline-secondary"
                           id="toggle-btn"
                           v-b-modal.modal-cancel
-                          @click="checkModal(index)"
+                          @click="index1 = index"
                           >Cancel Booking
                         </b-button>
 
@@ -66,7 +65,7 @@
                         >
                           <div class="d-block text-center">
                             <h3>
-                              Are you sure you want to cancel this booking?
+                              Are you sure you want to cancel this booking? {{index}}
                             </h3>
                           </div>
                           <!-- delete this book from db in hideModal function -->
@@ -75,7 +74,7 @@
                             pill
                             variant="outline-danger"
                             block
-                            @click="hideModal"
+                            @click="hideModal(BookID)"
                             >Yes</b-button
                           >
                           <b-button
@@ -138,7 +137,7 @@
                           href="#"
                           v-b-modal.my-modalRv
                           style="background-color: transparent; border-color:transparent; cursor: pointer;"
-                          @click="check(BookID, room, index)"
+                          @click="check(BookID, room)"
                         >
                           <font color="#FDA50F">Click to review</font>
                         </b-button>
@@ -280,7 +279,8 @@ export default {
       BOnGoing: [],
       BDone: [],
       BCanceled: [],
-      isNotRV: 0,
+      isNotRV:0,
+
     };
   },
   components: {
@@ -298,16 +298,27 @@ export default {
     }, 1000);
   },
   methods: {
-    checkModal(index) {
-      this.index1 = index;
-    },
+    // checkModal(index) {
+    //   this.index1 = index;
+    // },
     showModal() {
       this.$refs["modal-cancel"].show();
     },
-    hideModal() {
+    hideModal(BookID) {
+      // console.log(BookID);
+      var formData = this.toFormData(BookID);
+      this.axios
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/bookhis.php?action=cancel",formData
+      );
+
       this.makeToast("success", "Your booking has been canceled");
       //this.$refs["modal-cancel"].hide();
-      this.$bvModal.hide("modal-cancel");
+      this.$bvModal.hide("modal-cancel") ;
+      // setTimeout(() => {
+      //   this.$router.push("mybook");
+      // }, 1500);
+      
     },
     toggleModal() {
       //this.$refs["modal-cancel"].toggle("#toggle-btn");
@@ -330,13 +341,12 @@ export default {
     checkRV() {
       var formData = this.toFormData(this.review);
       this.axios
-        .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",
-          formData
-        )
-        .then((response) => {
-          console.log(response.data.data.length);
-          this.isNotRV = response.data.data.length;
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
+      )
+      .then((response)=> {
+          // console.log(response.data.data.length);
+          this.isNotRV=response.data.data.length;
         });
       if (this.isNotRV == 0) {
         return false;
@@ -345,11 +355,10 @@ export default {
       }
     },
     //ฝากปรอย fixxxx
-    check(BookID, room, index) {
+    check(BookID, room) {
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
-      this.index1 = index;
-      console.log(this.review.rtype);
+      // console.log(this.review.rtype);
       //console.log(this.isNotrv);
       if (this.checkRV()) {
         this.makeToast("danger", "You have already reviewed !!");
@@ -361,7 +370,7 @@ export default {
     // split AllBooking to each status
     splitStatus() {
       for (var i = 0; i < this.bookDetail.length; i++) {
-        console.log(this.bookDetail[i]);
+        // console.log(this.bookDetail[i]);
         if (this.bookDetail[i].Status == "CheckOut") {
           this.BDone.push(this.bookDetail[i]);
         } else if (this.bookDetail[i].Status == "Cancel") {
