@@ -122,7 +122,7 @@
               <button id="btn" size="sm" @click="checkin(row.item.bookid)" style="color:#2688D9">check-in</button>
             </div>
             <div v-if="row.item.status == 'CheckIn'">
-              <button  id="btn" size="sm" @click="done()" style="color:#E74C3C">check-out</button>
+              <button  id="btn" size="sm" @click="done(row)" style="color:#E74C3C">check-out</button>
             </div>
           </template>
 
@@ -276,8 +276,13 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    done() {
-      this.row.item.status = "cancle";
+    done(row) {
+      console.log(row.item);
+      var formData = this.toFormData(row.item);
+      this.axios
+      .post(
+        "http://hakuna-hotel.kmutt.me/phpapi/bookhis.php?action=done",formData
+      );
     },
     //for model
     showModal() {
@@ -305,9 +310,18 @@ export default {
             });
           }
 
-          console.log(this.AllBook);
+          // console.log(this.AllBook);
         });
-    }
+    },
+
+    // convert to formdata
+    toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
+    },
   }
 };
 </script>

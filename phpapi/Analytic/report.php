@@ -42,34 +42,35 @@
         }
 
         # update command
-        if($action == 'update'){                                           # -
-            # edit var here
-            # create var for update to database and key in axios
-            #var               key
-            $staffid = $_POST['staffid'];                                  # +
-            $title = $_POST['title'];                                      # +
-            $STFname = $_POST['STFname'];                                  # +
-            $STLname = $_POST['STLname'];                                  # +
-            $tel = $_POST['tel'];                                          # +
-            $email = $_POST['email'];                                      # +
-            $address = $_POST['address'];                                  # +
-            $DOB = $_POST['DOB'];                                          # +
-            #edit sql command here
-            $sql = $con->query(" UPDATE Staff SET Name_Title = '$title', Staff_FirstName = '$STFname', 
-                                 Staff_LastName = '$STLname', Tel_No = '$tel',                     # +
-                                 Email = '$email', Address = '$address', Date_Of_Birth = '$DOB'                    # +
-                                 WHERE Staff_ID = '$staffid' ");                                                        # +
-            
-            # return status likes console log
-            if($sql){                                                      # -
-                $result['message'] = "updated successfully";               # -
+        if($action == 'RoomRating'){        
+            # edit sql command here
+            $sql = $con->query("SELECT rt.RoomType_Name, AVG(r.Rate) AS AVGRating
+                                FROM RoomType rt JOIN Review r ON r.RoomType_Name=rt.RoomType_Name
+                                GROUP BY r.RoomType_Name
+                                ORDER BY AVGRating DESC");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
             }
-            else {
-                $result['error'] = true;                                   # -
-                $result['massage'] = "updated fail";                       # -
-            }
+            $result['data'] = $data;                                     # -
         }
         
+        if($action == 'useCode'){        
+            # edit sql command here
+            $sql = $con->query("SELECT Code_Name,COUNT(p.Code_ID) AS Number_of_Using
+                                FROM Payment p RIGHT JOIN CodePromo c ON p.Code_ID=c.Code_ID
+                                GROUP BY c.Code_Name
+                                ORDER BY Number_of_Using DESC");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
+            }
+            $result['data'] = $data;                                     # -
+        }
         #return data in page Don't edit!!!
         echo json_encode($result);                                         # -
     }

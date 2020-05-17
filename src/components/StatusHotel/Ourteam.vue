@@ -93,7 +93,7 @@
     </div>
 
     <div id="table" >
-      <b-table
+      <!-- <b-table
         show-empty
         stacked="md"
         :items="items"
@@ -105,6 +105,19 @@
         @filtered="onFiltered"
         :tbody-tr-class="rowClass"
         style="margin-top:110px"
+      > -->
+      <b-table
+        show-empty
+        stacked="md"
+        :items="items"
+        :fields="fields"
+        :current-page="currentPage"
+        :per-page="perPage"
+        :filter="filter"
+        :filterIncludedFields="filterOn"
+        @filtered="onFiltered"
+        
+        style="margin-top:150px"
       >
         <template v-slot:table-colgroup="scope">
           <col
@@ -299,7 +312,7 @@ export default {
     },
     showModal(item) {
       this.infoModalContent = item;
-      console.log(this.infoModalContent.Staff_ID);
+      // console.log(this.infoModalContent.Staff_ID);
       this.formEdit.staffid = this.infoModalContent.Staff_ID;
       this.formEdit.Position = this.infoModalContent.Position;
       this.formEdit.Salary = this.infoModalContent.Salary;
@@ -347,15 +360,15 @@ export default {
         .then((response) => {
           //set var to default
           this.items = response.data.data;
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-          }
+          // if (response.data.error) {
+          //   console.log(response.data.error);
+          // } else {
+          //   console.log(response.data.message);
+          // }
         });
     },
     updateStaff() {
-      console.log(this.formEdit.EDate);
+      // console.log(this.formEdit.EDate);
       if (this.formEdit.EDate == null) {
         var formData1 = this.toFormData(this.formEdit);
         this.axios
@@ -363,22 +376,30 @@ export default {
             "http://hakuna-hotel.kmutt.me/phpapi/editourteam.php?action=update",
             formData1
           )
-          .then((response) => {
-            //set var to default
-            console.log(response);
-            this.formEdit = {
+          // .then((response) => {
+          //   //set var to default
+          //   console.log(response);
+          //   this.formEdit = {
+          //     staffid: null,
+          //     Position: null,
+          //     Salary: null,
+          //     SDate: null,
+          //     EDate: null,
+          //   };
+          //   if (response.data.error) {
+          //     console.log(response.data.error);
+          //   } else {
+          //     console.log(response.data.message);
+          //   }
+          // })
+          ;
+          this.formEdit = {
               staffid: null,
               Position: null,
               Salary: null,
               SDate: null,
               EDate: null,
             };
-            if (response.data.error) {
-              console.log(response.data.error);
-            } else {
-              console.log(response.data.message);
-            }
-          });
       } else {
         var formData2 = this.toFormData(this.formEdit);
         this.axios
@@ -386,22 +407,30 @@ export default {
             "http://hakuna-hotel.kmutt.me/phpapi/editourteam.php?action=updateED",
             formData2
           )
-          .then((response) => {
-            //set var to default
-            console.log(response);
-            this.formEdit = {
+          // .then((response) => {
+          //   //set var to default
+          //   console.log(response);
+          //   this.formEdit = {
+          //     staffid: null,
+          //     Position: null,
+          //     Salary: null,
+          //     SDate: null,
+          //     EDate: null,
+          //   };
+          //   if (response.data.error) {
+          //     console.log(response.data.error);
+          //   } else {
+          //     console.log(response.data.message);
+          //   }
+          // })
+          // ;
+          this.formEdit = {
               staffid: null,
               Position: null,
               Salary: null,
               SDate: null,
               EDate: null,
             };
-            if (response.data.error) {
-              console.log(response.data.error);
-            } else {
-              console.log(response.data.message);
-            }
-          });
       }
     },
     // convert to formdata

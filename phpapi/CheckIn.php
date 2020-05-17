@@ -130,6 +130,27 @@
                 $result['massage'] = "read fail";
             }
         }
+
+        if($action == 'bookhis'){
+            
+            $bookid = $_POST['bookid'];
+            $guestid = $_POST['guestid'];
+            $roomid = $_POST['roomid'];
+
+            $sql = $con->query("INSERT INTO Booked_History(`Guest_ID`, `Room_ID`, `Booking_ID`) 
+                                VALUES ('$guestid', '$roomid', '$bookid')");
+
+            $sql = $con->query("UPDATE Booking SET Status = 'CheckIn' WHERE Booking_ID = '$bookid' ");
+           
+
+            if($sql){
+                $result['message'] = "added successfully";
+            }
+            else {
+                $result['error'] = true;
+                $result['massage'] = "added fail";
+            }
+        }
        
         echo json_encode($result);                                         # -
         

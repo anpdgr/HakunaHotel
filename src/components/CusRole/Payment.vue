@@ -36,7 +36,7 @@
               <h6>
                 {{ room.type }}
                 <div style="float:right;">
-                  ฿ {{ room.price * room.num_room * DiffDay }}
+                  ฿ {{ (room.price * room.num_room * DiffDay).toFixed(2) }}
                 </div>
               </h6>
               <p>{{ room.num_room }} rooms</p>
@@ -49,11 +49,11 @@
             <!-- ตัวอย่างข้อมูล -->
             <h6>
               Season discount : {{ season }}
-              <div style="float:right;">฿ {{ Sdis }}</div>
+              <div style="float:right;">฿ {{ Sdis.toFixed(2) }}</div>
             </h6>
             <h6>
               Code promotion: {{ code }}
-              <div div style="float:right;">฿ {{ Cdis }}</div>
+              <div div style="float:right;">฿ {{ Cdis.toFixed(2) }}</div>
             </h6>
 
             <div style="text-align:left">
@@ -77,11 +77,11 @@
             <!-- ตัวอย่างข้อมูล -->
             <h5>
               Subtotal
-              <div style="float:right;">฿ {{ Tdis }}</div>
+              <div style="float:right;">฿ {{ Tdis.toFixed(2) }}</div>
             </h5>
             <h5>
               Tax 7%
-              <div style="float:right;">฿ {{ sum * 0.07 }}</div>
+              <div style="float:right;">฿ {{ (sum * 0.07).toFixed(2) }}</div>
             </h5>
           </div>
           <hr />
@@ -92,7 +92,7 @@
             <h4>
               <b>
                 Total
-                <div style="float:right;">฿{{ Tprice }}</div>
+                <div style="float:right;">฿{{ Tprice.toFixed(2) }}</div>
               </b>
             </h4>
           </div>

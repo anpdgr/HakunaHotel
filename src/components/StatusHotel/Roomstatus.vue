@@ -169,7 +169,7 @@ export default {
   mounted() {
     // Set the initial number of items
     this.fetchRoomType();
-    console.log(this.type_options);
+    // console.log(this.type_options);
     this.totalRows = this.items.length;
     this.fetchRoom();
     
@@ -196,11 +196,11 @@ export default {
         "http://hakuna-hotel.kmutt.me/phpapi/Room.php?action=read",formData)
         .then(response => {
         this.items = response.data.data;
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-            }
+          // if (response.data.error) {
+          //   console.log(response.data.error);
+          // } else {
+          //   console.log(response.data.message);
+          //   }
         });
     },
     fetchRoomType(){
@@ -214,13 +214,13 @@ export default {
             for(var i=0; i<response.data.data.length; i++){
               type.push({ value: response.data.data[i].RoomType_Name, text: response.data.data[i].RoomType_Name })
             }
-           console.log(type);
+          //  console.log(type);
            this.type_options=type;
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-            }
+          // if (response.data.error) {
+          //   console.log(response.data.error);
+          // } else {
+          //   console.log(response.data.message);
+          //   }
         });
     },
     toFormData(obj) {
