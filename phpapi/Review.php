@@ -52,6 +52,28 @@
             $result['data'] = $reviews;                                    # -
         }
 
+        if($action == 'show'){                                             # -
+            # edit sql command here
+            $rtype = $_POST['rtype'];
+            $sql = $con->query("SELECT * FROM Review
+                                WHERE RoomType_Name = '$rtype'");                    # +
+            # var buff for data in database
+            $reviews = array();                                            # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($reviews,$row);                                 # -
+            }
+            $result['data'] = $reviews;  
+
+            if($sql){                                                      # -
+                $result['message'] = "show successfully";                 # -
+            }
+            else {
+                $result['error'] = true;                                   # -
+                $result['massage'] = "show fail";                         # -
+            }            # -
+        }
+
         # insert command
         if($action == 'add'){                                              # -
             # edit var here

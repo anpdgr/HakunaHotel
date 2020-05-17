@@ -19,7 +19,7 @@
               <br />
               <br />
               <p>ID : {{bookDetail.User_ID}}</p>
-              <p>Name : {{bookDetail.Name_Title}} {{bookDetail.Customer_FirstName}} {{bookDetail.Customer_LastName}}</p>
+              <p>Name : {{bookDetail.Name_Title}} {{bookDetail.Customer_FirstName}} {{bookDetail.Customer_Lastname}}</p>
               <p>Phone : {{bookDetail.Tel_No}}</p>
             </b-col>
             <!-- show payment detail  -->
@@ -47,9 +47,12 @@
                 </p>
                 <p style="font-size:80%; text-align:left">* Click button to add information</p>
               </div>
-              <b v-if=" roomsucces==1" style="float:right; color:MediumSeaGreen">checked</b>
+              <b v-if=" roomsucces[index]==1" style="float:right; color:MediumSeaGreen">checked</b>
               <div v-for="i in item.Qroom" :key="i" style="float:left">
+
                 <b-button
+                
+                id="roombutton"
                   v-b-modal.modal-center
                   @click="location.index = index,location.i = i"
                   style="margin:0px 20px 0px 0px"
@@ -252,7 +255,7 @@
                         id="Confirm"
                         type="submit"
                         variant="outline-primary"
-                        @click="check"
+                        @click="check(index,i)"
                         style="float:right; margin:20px"
                       >submit</b-button>
                     </div>
@@ -273,6 +276,16 @@
           @click="confirm()"
           style="float:right; margin:20px"
         >Confirm</b-button>
+
+        <b-button
+          v-b-tooltip.hover
+          title="Please make sure that your information is correct"
+          id="Confirm"
+          type="submit"
+          variant="danger"
+          @click="reset()"
+          style="float:right; margin:20px"
+        >reset</b-button>
       </b-card>
     </div>
   </div>
@@ -345,7 +358,7 @@ export default {
         roomid: null
       },
       guest: [],
-      title: [{ text: "Select One", value: null }, "Mr.", "Ms.", "Miss"],
+      title: [{ text: "Select One", value: null }, "Mr.", "Mrs.", "Ms.", "Miss"],
       bookDetail: {
         bookid: null
       },
@@ -355,7 +368,11 @@ export default {
       },
       R: {
         rtype: null
-      }
+      },
+      inputGuest:[],
+      prepareRoom:[],
+      bookhis:[],
+      duplicated:false,
     };
   },
   mounted() {
@@ -363,9 +380,31 @@ export default {
     this.fetchBooking();
     setTimeout(() => {
       this.fetchRoom();
+      this.prepareBookhis();
     }, 1000);
   },
   methods: {
+
+    prepareBookhis(){
+      this.bookhis=[];
+      for(var i=0 ; i<this.bookDetail.rooms.length ; i++){
+        this.bookhis.push({});
+        var obj=[];
+        for(var j=0 ; j<this.bookDetail.rooms[i].Number_of_Room ; j++){
+          obj.push(null);
+          
+        }
+        this.bookhis[i]= obj;
+      }
+      // console.log(this.bookhis);
+    },
+
+    reset(){
+      this.inputGuest = [];
+      this.prepareBookhis();
+      // console.log(this.inputGuest);
+    },
+
     fetchBooking() {
       var formData = this.toFormData(this.bookDetail);
       this.axios
@@ -375,7 +414,7 @@ export default {
         )
         .then(response => {
           this.bookDetail = response.data.data[0];
-        //   console.log(this.bookDetail);
+          // console.log(this.bookDetail);
           this.fetchBookDetail();
         });
     },
@@ -428,19 +467,118 @@ export default {
       }
     },
 
-    confirm() {
-      this.makeToast("success", "Check-in success !");
+    CheckAndAddGuest(data){
+      var form={
+          gtitle:data.title,
+          gfname:data.fname,
+          glname:data.lname,
+          gtel:data.tel,
+          gcountry:data.country
+      }
+      var formData = this.toFormData(form);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CheckIn.php?action=ckguest",
+          formData
+        )
+        .then(response => {
+            this.duplicated = false;
+            for(var i=0 ; i<this.inputGuest.length ; i++){
+              if(response.data.data[0].Guest_ID == this.inputGuest[i].id){
+                this.duplicated = true;
+                // console.log(this.duplicated);
+              }
+            }
+            if(!this.duplicated) {
+              this.inputGuest.push({id:response.data.data[0].Guest_ID , Name : data.title + " " + data.fname + " " + data.lname});
+              this.prepareRoom.push(response.data.data[0].Guest_ID);
+            }
+            else{
+              this.makeToast("danger", "Guest " + i + " is already input");
+            }
+            // console.log(response.data);
+        });
     },
+
+    confirm(){
+      if(this.inputGuest.length != this.bookDetail.Number_Of_Guest){
+        this.makeToast("danger", "Number of guest in booking don't match inputguest");
+      }
+      else{
+        var empty = false;
+        var error = false;
+        for(var i=0 ; i<this.bookhis.length ; i++){
+          for(var j=0 ; j<this.bookhis[i].length ; j++){
+            if(this.bookhis[i][j].error){
+              error = true;
+            }
+            else if(this.bookhis[i][j].guest.length == 0){
+              empty = true;
+            }
+          }
+        }
+        if(error){
+          this.makeToast("danger", "please set input again");
+        }
+        else if(empty){
+          this.makeToast("danger", "have room don't have guest");
+        }
+        else{
+          this.ManageData();
+          setTimeout(() => {
+            this.makeToast("success", "Check-in success !");
+            this.$router.push('bookstatus');
+          }, 1500);
+          
+        }
+      }
+    },
+
+    ManageData(){
+      var data = {};
+      for(var i=0 ; i<this.bookhis.length ; i++){
+        for(var j=0 ; j<this.bookhis[i].length ; j++){
+          for(var k=0 ; k<this.bookhis[i][j].guest.length ; k++){
+            data = {
+                guestid: this.bookhis[i][j].guest[k],
+                roomid: this.bookhis[i][j].room,
+                bookid: this.bookDetail.Booking_ID
+            };
+            this.SentBookHis(data);
+            // console.log("room : " + this.bookhis[i][j].room + " guest : " + this.bookhis[i][j].guest[k]);
+          }
+        }
+      }
+    },
+
+    SentBookHis(data){
+      var formData = this.toFormData(data);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/CheckIn.php?action=bookhis",
+          formData
+        )
+        // .then(response => {
+        //     console.log(response.data);
+        // });       
+    },
+    // confirm() {
+
+    //   this.makeToast("success", "Check-in success !");
+    // },
     //   check ว่ามีการกรอกฟอร์มม้าย
-    check() {
+    check(index,i) {
+      this.prepareRoom = [];
       if (this.form1 === null) {
         this.makeToast("danger", "1 guest for minimum");
         this.roomsucces = 0;
-      } else {
+      } 
+      else {
         if (this.selectroomid === null) {
           this.makeToast("danger", "please select room id");
           this.roomsucces = 0;
-        } else if (
+        } 
+        else if (
           this.form1.tel === null ||
           this.form1.title === null ||
           this.form1.fname === null ||
@@ -449,12 +587,13 @@ export default {
         ) {
           this.makeToast("danger", "please fill out all fields");
           this.roomsucces = 0;
-        } else {
+        } 
+        else {
           this.hideModal();
-
-          this.form1.roomid = this.selectroomid;
-          this.guest.push(this.form1);
-
+          console.log(index +" "+ i);
+          this.CheckAndAddGuest(this.form1,1);
+        //   this.form1.roomid = this.selectroomid;
+        //   this.guest.push(this.form1);
           if (
             this.form2.tel != null ||
             this.form2.title != null ||
@@ -462,8 +601,9 @@ export default {
             this.form2.lname != null ||
             this.form2.country != null
           ) {
-            this.form2.roomid = this.selectroomid;
-            this.guest.push(this.form2);
+              this.CheckAndAddGuest(this.form2,2);
+            // this.form2.roomid = this.selectroomid;
+            // this.guest.push(this.form2);
             if (
               this.form3.tel != null ||
               this.form3.title != null ||
@@ -471,8 +611,9 @@ export default {
               this.form3.lname != null ||
               this.form3.country != null
             ) {
-              this.form3.roomid = this.selectroomid;
-              this.guest.push(this.form3);
+                this.CheckAndAddGuest(this.form3,3);
+            //   this.form3.roomid = this.selectroomid;
+            //   this.guest.push(this.form3);
               if (
                 this.form4.tel != null ||
                 this.form4.title != null ||
@@ -480,16 +621,44 @@ export default {
                 this.form4.lname != null ||
                 this.form4.country != null
               ) {
-                this.form4.roomid = this.selectroomid;
-                this.guest.push(this.form4);
+                  this.CheckAndAddGuest(this.form4,4);
+                // this.form4.roomid = this.selectroomid;
+                // this.guest.push(this.form4);
+                // this.guest.push({RoomID:this.selectroomid,Guest:this.inputGuest});
+                
               }
             }
           }
-          this.roomsucces = 1;
+          // this.roomsucces = 1;
           //alert(JSON.stringify(this.guest))
-
-          alert(this.roomsucces);
-          this.makeToast("success", "Add information this room success !");
+          setTimeout(() => {
+            if(this.duplicated){
+              this.bookhis[index][i-1] = {room: this.selectroomid ,
+                                          guest: this.prepareRoom ,
+                                          error: true};
+            }
+            else{
+              this.bookhis[index][i-1] = {room: this.selectroomid ,
+                                          guest: this.prepareRoom ,
+                                          error: false};
+            }
+            if(!this.duplicated){
+              this.makeToast("success", "Add information this room success !");
+              // document.getElementById("roombutton").className = "btn btn-success";
+            }
+            else{
+              // document.getElementById("roombutton").className = "btn btn-danger";
+            }
+          }, 1000);
+          
+          
+          this.form1 = {id: null, tel: null, title: null, fname: null, lname: null, country: null, roomid: null};
+          this.form2 = {id: null, tel: null, title: null, fname: null, lname: null, country: null, roomid: null};
+          this.form3 = {id: null, tel: null, title: null, fname: null, lname: null, country: null, roomid: null};
+          this.form4 = {id: null, tel: null, title: null, fname: null, lname: null, country: null, roomid: null};
+          // console.log(this.bookhis);
+          // alert(this.roomsucces);
+          
         }
       }
     },
@@ -516,19 +685,16 @@ export default {
 </script>
 
 <style>
-    #all{
-    margin: 100px 100px auto 300px;
-    
-    
-    }
-    #card{
-        padding: 20px 50px;
-    }
-    
-    
-    #roomtype_card{
-        margin: 10px;
-        padding: 10px 20px;
-        
-    }
+#all {
+  margin: 100px 100px auto 300px;
+}
+#card {
+  padding: 20px 50px;
+}
+
+#roomtype_card {
+  margin: 10px;
+  padding: 10px 20px;
+}
+
 </style>

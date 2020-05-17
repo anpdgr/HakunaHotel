@@ -6,6 +6,8 @@
     <div class="sidenav">
       <div id="head">
          <b-img id='pic' src=@/assets/security.jpg  ></b-img>
+        <br />
+        <br />
          <button id="btn" style="font-size:20px; color: #818181;" @click="account">{{$store.getters.getUser}}</button>
       </div>
       <div id='menu' >
@@ -24,6 +26,7 @@
   padding: 0px;
   font-size: 16px;
   cursor: pointer;
+  align-items: center;
   display: inline-block;
   
 }
