@@ -273,11 +273,11 @@ export default {
         .then((response) => {
           this.items = response.data.data;
 
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-          }
+          // if (response.data.error) {
+          //   console.log(response.data.error);
+          // } else {
+          //   console.log(response.data.message);
+          // }
         });
     },
     //Add code to db
@@ -288,10 +288,25 @@ export default {
           "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=add",
           formData
         )
-        .then((response) => {
-          //set var to default
-          console.log(response);
-          this.code = {
+        // .then((response) => {
+        //   //set var to default
+        //   // console.log(response);
+        //   this.code = {
+        //     codeid: null,
+        //     codename: null,
+        //     discount: null,
+        //     limit: null,
+        //     SDate: null,
+        //     ExDate: null,
+        //   };
+        //   // if (response.data.error) {
+        //   //   console.log(response.data.error);
+        //   // } else {
+        //   //   console.log(response.data.message);
+        //   // }
+        // })
+        ;
+        this.code = {
             codeid: null,
             codename: null,
             discount: null,
@@ -299,12 +314,6 @@ export default {
             SDate: null,
             ExDate: null,
           };
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-          }
-        });
     },
     // convert to formdata
     toFormData(obj) {

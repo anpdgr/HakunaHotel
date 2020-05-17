@@ -305,7 +305,7 @@ export default {
             });
           }
 
-          console.log(this.AllBook);
+          // console.log(this.AllBook);
         });
     }
   }
