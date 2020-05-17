@@ -138,12 +138,11 @@ export default {
       }
       this.$store.dispatch("AcNRoom", count);
       console.log((this.$store.getters.getBookNumG % 4) + Math.floor((this.$store.getters.getBookNumG / 4)))
-      if ( count < (this.$store.getters.getBookNumG % 4) + Math.floor((this.$store.getters.getBookNumG / 4)) ) {
+      if(count>this.$store.getters.getBookNumG){
         return true;
       }
-      else if ( count > this.$store.getters.getBookNumG ) {
+      if (this.$store.getters.getBookNumG>count*4) {
         return true;
-      //}
       }
       else
         return false;
