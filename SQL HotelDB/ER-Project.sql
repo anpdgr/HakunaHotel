@@ -156,6 +156,7 @@ DROP TABLE IF EXISTS Review;
 CREATE TABLE `Review` (
   `No`  bigint(255) AUTO_INCREMENT,
   `Booking_ID`  char(14) NOT NULL,
+  `RoomType_Name`  varchar(40) NOT NULL,
   `User_ID` varchar(16) NOT NULL,
   `Comment`  longtext DEFAULT NULL,
   `Rate` int DEFAULT NULL,
@@ -177,6 +178,8 @@ ALTER TABLE `Today_Price` ADD FOREIGN KEY (`RoomType_Name`) REFERENCES `RoomType
 ALTER TABLE `Today_Price` ADD FOREIGN KEY (`Season_Name`) REFERENCES `Season` (`Season_Name`);
 
 ALTER TABLE `Review` ADD FOREIGN KEY (`Booking_ID`) REFERENCES `Booking` (`Booking_ID`); 
+
+ALTER TABLE `Review` ADD FOREIGN KEY (`RoomType_Name`) REFERENCES `Booking_Detail` (`RoomType_Name`); 
 
 ALTER TABLE `Booked_History` ADD FOREIGN KEY (`Booking_ID`) REFERENCES `Booking` (`Booking_ID`);
 
