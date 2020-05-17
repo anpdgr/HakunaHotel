@@ -65,7 +65,7 @@
                         >
                           <div class="d-block text-center">
                             <h3>
-                              Are you sure you want to cancel this booking? {{index}}
+                              Are you sure you want to cancel this booking?
                             </h3>
                           </div>
                           <!-- delete this book from db in hideModal function -->
@@ -130,17 +130,38 @@
 
                       <h5>Room type</h5>
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                      {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                      
+                      <!-- {{ i + 1 }}. {{ room.RoomType_Name }} <br />
                         Room : {{ room.Number_of_Room }} <br />
                         <b-button
                           id="show-btn"
                           href="#"
                           v-b-modal.my-modalRv
+                          v-if="RVavi[index].r[i] != true"
                           style="background-color: transparent; border-color:transparent; cursor: pointer;"
-                          @click="check(BookID, room)"
+                          @click="check(BookID, room ,index, i)"
                         >
                           <font color="#FDA50F">Click to review</font>
-                        </b-button>
+                        </b-button> -->
+                      
+                      <b-row>
+                        <b-col>
+                          {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                            Room : {{ room.Number_of_Room }} <br />
+                        </b-col>
+                        <b-col>
+                          <b-button
+                            id="show-btn"
+                            href="#"
+                            v-b-modal.my-modalRv
+                            v-if="RVavi[index].r[i] != true"
+                            style="background-color: transparent; border-color:transparent; cursor: pointer;"
+                            @click="check(BookID, room ,i)"
+                          >
+                            <font color="#FDA50F">Click to review</font>
+                          </b-button>
+                        </b-col>
+                        </b-row>
                       </div>
                       <div id="right">
                         <div>
@@ -183,7 +204,7 @@
 
                             <div style="margin-top:20px;">
                               <b-button
-                                @click="toggleModalRv"
+                                @click="toggleModalRv(index)"
                                 class="mt-2"
                                 pill
                                 variant="outline-warning"
@@ -264,6 +285,7 @@ export default {
   data() {
     return {
       index1: 0,
+      ibuff: 0,
       review: {
         bookid: null,
         rtype: null,
@@ -271,6 +293,7 @@ export default {
         rate: null,
         comment: null,
       },
+      reviewAlready :[],
       // for fetch data and manage
       bookDetail: {
         userid: "",
@@ -281,6 +304,7 @@ export default {
       BCanceled: [],
       isNotRV:0,
 
+      RVavi:[],
     };
   },
   components: {
@@ -296,11 +320,47 @@ export default {
     setTimeout(() => {
       this.splitStatus();
     }, 1000);
+    setTimeout(() => {
+      this.prepareRV();
+    }, 1200);
+    setTimeout(() => {
+      this.loopCkRv();
+    }, 1250);
+    
   },
   methods: {
     // checkModal(index) {
     //   this.index1 = index;
     // },
+    prepareRV(){
+      for(var i=0 ; i<this.BDone.length ; i++){
+        this.RVavi.push({id:null});
+        this.reviewAlready.push({id:null});
+        this.RVavi[i].id = this.BDone[i].Booking_ID;
+        this.reviewAlready[i].id = this.BDone[i].Booking_ID;
+        for(var j=0 ; j<this.BDone[i].rooms.length ; j++){
+          var ravi = [];
+          ravi.push(false);
+        }
+        this.RVavi[i].r = ravi;
+        this.reviewAlready[i].r = ravi;
+      }
+      // console.log(this.RVavi);
+    },
+
+    loopCkRv(){
+      for(var i=0 ; i<this.BDone.length ; i++){
+        for(var j=0 ; j<this.BDone[i].rooms.length ; j++){
+          var data = {
+            bookid: this.BDone[i].Booking_ID,
+            rtype: this.BDone[i].rooms[j].RoomType_Name
+          };
+          console.log(data);
+          this.checkRV(data,i,j);
+        }
+      }
+    },
+
     showModal() {
       this.$refs["modal-cancel"].show();
     },
@@ -327,42 +387,69 @@ export default {
     showModalRv() {
       this.$refs["my-modalRv"].show();
     },
-    toggleModalRv() {
-      if (this.review.rate === null) {
+    toggleModalRv(index) {
+      // console.log(index + " " + this.ibuff);
+      if (this.review.rate === null || this.review.comment === null) {
         this.makeToast("danger", "You have not done your review.");
-      } else {
-        this.AddReview();
+      } 
+      else {
+        if(!this.reviewAlready[index].r[this.ibuff])
+          this.AddReview();
+        this.RVavi[index].id = this.review.bookid;
+        this.RVavi[index].r[this.ibuff] = true;
+
+        this.review.rate = null;
+        this.review.comment = null;
+
         this.makeToast("success", "Thank you for your review.");
         this.$bvModal.hide("my-modalRv"); // hide modal
         //setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
       }
     },
     //Check ว่ารีวิวแล้วยัง
-    checkRV() {
-      var formData = this.toFormData(this.review);
+    checkRV(data,index,i) {
+      var formData = this.toFormData(data);
       this.axios
       .post(
         "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
       )
       .then((response)=> {
-          // console.log(response.data.data.length);
-          this.isNotRV=response.data.data.length;
+          console.log(response.data.data.length);
+          console.log("index " + index + " i " + i);
+          if(response.data.data.length != 0){
+            this.reviewAlready[index].id = data.bookid;
+            this.reviewAlready[index].r[i] = true;
+          }
+          else{
+            this.reviewAlready[index].id = data.bookid;
+            this.reviewAlready[index].r[i] = false;
+          }
+          console.log(this.RVavi)
         });
-      if (this.isNotRV == 0) {
-        return false;
-      } else {
-        return true;
-      }
+      // if (this.isNotRV == 0) {
+      //   return false;
+      // } else {
+      //   return true;
+      // }
     },
     //ฝากปรอย fixxxx
-    check(BookID, room) {
+    check(BookID, room, index, i) {
+      this.ibuff = i;
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
+
+      if(this.reviewAlready[index].r[i] == true){
+        this.makeToast("danger", "this room already comment");
+        this.RVavi[index].id = this.review.bookid;
+        this.RVavi[index].r[this.ibuff] = true;
+      }
+      // console.log(BookID);
+      
       // console.log(this.review.rtype);
       //console.log(this.isNotrv);
-      if (this.checkRV()) {
-        this.makeToast("danger", "You have already reviewed !!");
-      }
+      // if (this.checkRV()) {
+      //   this.makeToast("danger", "You have already reviewed !!");
+      // }
       // else{
       //   this.showModalRv();
       // }
@@ -379,7 +466,7 @@ export default {
           this.BOnGoing.push(this.bookDetail[i]);
         }
       }
-      // console.log(this.BOnGoing);
+      // console.log(this.BDone);
     },
 
     // Add room to bookDetail
