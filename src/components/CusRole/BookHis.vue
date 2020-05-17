@@ -88,7 +88,7 @@
               >
                 <!-- Using modifiers -->
                 <div style="padding-left:60px">
-                  <b-button variant="dark" v-b-toggle.collapse-2 class="m-1"
+                  <b-button variant="dark" v-b-toggle.collapse-2 class="m-1" 
                     >Booking ID: {{ BookID.Booking_ID }}
                   </b-button>
                 </div>
@@ -102,12 +102,12 @@
                       Number of guests: {{ BookID.Number_Of_Guest }}
                       <hr />
                       Room type :
-                      <div v-for="(room, i) in BookID.rooms" :key="i">
+                      <div v-for="(room, i) in BookID.rooms" :key="i" >
                         <br />{{i+1}}. {{room.RoomType_Name}} <br />
                         Room : {{room.Number_of_Room}} 
                         <br /><br />
                         <b-button id="show-btn" href="#" v-b-modal.my-modalRv style="background-color: transparent; border-color:transparent; cursor: pointer;" 
-                        @click="check(BookID,room)">
+                        >
                         
                             <font color='#FDA50F'>Click to review</font>
                           </b-button>
@@ -229,6 +229,10 @@ export default {
       rate: null,
       comment:null
       },
+      data:[{
+        bookid:"",
+        rtype:""
+      }],
       // for fetch data and manage
       bookDetail: {
         userid: "",
@@ -237,7 +241,7 @@ export default {
       BOnGoing: [],
       BDone: [],
       BCanceled: [],
-      isNotRV:0
+      isNotRV:[]
     };
   },
   components: {
@@ -284,23 +288,33 @@ export default {
         }
     },
     //Check ว่ารีวิวแล้วยัง
-    checkRV()
+    checkRV(BookID,room)
     {
-      var formData = this.toFormData(this.review);
+      this.review.bookid = BookID.Booking_ID;
+      this.review.rtype = room.RoomType_Name;
+      for(var i=0;i<room.RoomType_Name.length;i++){
+        this.data[i]={
+          bookid: BookID.Booking_ID,
+          rtype: room.RoomType_Name[i]
+        }
+        console.log(this.data[i])
+      var formData = this.toFormData(this.data[i]);
       this.axios
       .post(
         "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
       )
       .then((response)=> {
-          console.log(response.data.data.length);
-          this.isNotRV=response.data.data.length;
+          this.isNotRV[i]=response.data.data.length;
+          
         });
-        if(this.isNotRV==0){
-          return false;
-        }
-        else{
-          return true;
-        }
+        console.log(this.isNotRV);
+      }
+        // if(this.isNotRV==0){
+        //   return false;
+        // }
+        // else{
+        //   return true;
+        // }
     },
     //ฝากปรอย fixxxx
     check(BookID,room){

@@ -24,7 +24,7 @@
   
     <!-- use component checkavi -->
     <section id="checkavi" style="padding:50px; margin:-350px 50px 50px ">
-      <checkavi />
+      <checkavi v-if="$store.getters.getIsS==false"/>
     </section>  
 
     <!-- use component weltx -->
