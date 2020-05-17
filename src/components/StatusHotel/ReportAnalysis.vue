@@ -89,7 +89,7 @@
       <div id="6">
         <b-container fluid style="margin-top:20px; width:900px">
           <h5 style="margin-top:30px; float:left;">
-            5. Top 5 Staff with highest salary.
+            6. Number of employees of each position.
           </h5>
           <div class="chart-wrapper">
             <chart :options="chartOptionsBar" style="float:center;"></chart>
@@ -132,39 +132,22 @@ export default {
         { key: "Staff_Name", label: "Staff name" },
         { key: "Salary", label: "Salary" },
       ],
-
-      /*chartOptionsBar: {
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)",
+      
+      chartOptionsBar: {
+        xAxis: {
+          data: ["Housekeeper", "Dev","..."],
         },
-        legend: {
-          type: "scroll",
-          orient: "vertical",
-          right: 10,
-          top: 20,
-          bottom: 20,
-          data: data.legendData,
-
-          selected: data.selected,
+        yAxis: {
+          type: "value",
         },
         series: [
           {
-            name: "姓名",
-            type: "pie",
-            radius: "55%",
-            center: ["40%", "50%"],
-            data: data.seriesData,
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
-            },
+            type: "bar",
+            data: [15, 20, 50],
           },
         ],
-      },*/
+        color: ["#b98672"],
+      },
     };
   },
 };
