@@ -154,9 +154,8 @@
                             id="show-btn"
                             href="#"
                             v-b-modal.my-modalRv
-                            v-if="RVavi[index].r[i] != true"
                             style="background-color: transparent; border-color:transparent; cursor: pointer;"
-                            @click="check(BookID, room ,i)"
+                            @click="check(BookID, room ,index, i)"
                           >
                             <font color="#FDA50F">Click to review</font>
                           </b-button>
@@ -355,7 +354,7 @@ export default {
             bookid: this.BDone[i].Booking_ID,
             rtype: this.BDone[i].rooms[j].RoomType_Name
           };
-          console.log(data);
+          // console.log(data);
           this.checkRV(data,i,j);
         }
       }
@@ -414,8 +413,8 @@ export default {
         "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
       )
       .then((response)=> {
-          console.log(response.data.data.length);
-          console.log("index " + index + " i " + i);
+          // console.log(response.data.data.length);
+          // console.log("index " + index + " i " + i);
           if(response.data.data.length != 0){
             this.reviewAlready[index].id = data.bookid;
             this.reviewAlready[index].r[i] = true;
@@ -424,7 +423,7 @@ export default {
             this.reviewAlready[index].id = data.bookid;
             this.reviewAlready[index].r[i] = false;
           }
-          console.log(this.RVavi)
+          // console.log(this.RVavi)
         });
       // if (this.isNotRV == 0) {
       //   return false;
@@ -437,7 +436,7 @@ export default {
       this.ibuff = i;
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
-
+      // console.log(this.reviewAlready[index].r[i]);
       if(this.reviewAlready[index].r[i] == true){
         this.makeToast("danger", "this room already comment");
         this.RVavi[index].id = this.review.bookid;
@@ -507,22 +506,30 @@ export default {
           "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=add",
           formData
         )
-        .then((response) => {
-          //set var to default
-          console.log(response);
-          this.review = {
+        // .then((response) => {
+        //   //set var to default
+        //   console.log(response);
+        //   this.review = {
+        //     bookid: null,
+        //     rtype: null,
+        //     userid: null,
+        //     rate: null,
+        //     comment: null,
+        //   };
+        //   if (response.data.error) {
+        //     console.log(response.data.error);
+        //   } else {
+        //     console.log(response.data.message);
+        //   }
+        // })
+        ;
+        this.review = {
             bookid: null,
             rtype: null,
             userid: null,
             rate: null,
             comment: null,
-          };
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-          }
-        });
+        };
     },
     // convert to formdata
     toFormData(obj) {
