@@ -9,7 +9,9 @@
             <!-- link to code Promotion  -->
             <button class="btn" @click="code()"><p style="color:#2688D9">Code Promotion</p></button><br><br>
             <!-- link to our team -->
-            <button class="btn" @click="team()" v-if="$store.getters.getSRole == 'Manager'"><p style="color:#2688D9">Our team</p></button>
+            <button class="btn" @click="team()" v-if="$store.getters.getSRole == 'Manager'"><p style="color:#2688D9">Our team</p></button><br><br>
+            <!-- link to Report -->
+            <button class="btn" @click="reportAna()" v-if="$store.getters.getSRole == 'Manager'"><p style="color:#2688D9">Report Analysis</p></button>
         </div>
      </b-card>
     </div>
@@ -30,6 +32,9 @@ export default {
        },
         team(){
           this.$router.push('ourteam')
+       },
+       reportAna(){
+          this.$router.push('report')
        },
        
    }
