@@ -270,7 +270,7 @@ export default {
       this.Tprice = this.sum;
       this.Sdis *= this.DiffDay;
       this.Tdis = this.Sdis;
-      this.Tprice -= this.Sdis + this.sum * 0.07;
+      this.Tprice -= Math.floor(this.Sdis + this.sum * 0.07);
       // this.PriceBfCode = this.Tprice;
     },
 
