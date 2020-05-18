@@ -154,7 +154,7 @@
                             id="show-btn"
                             href="#"
                             v-b-modal.my-modalRv
-                            style="background-color: transparent; border-color:transparent; cursor: pointer;"
+                            style="background-color: transparent; border-color:transparent; cursor: pointer; float:right;"
                             @click="check(BookID, room ,index, i)"
                           >
                             <font color="#FDA50F">Click to review</font>
