@@ -109,7 +109,7 @@
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse :id="'Done-' + index">
+                <b-collapse :id="'Done-' + index" style="max-width: 80%; margin: auto;">
                   <b-card border-variant="dark">
                     <div id="info">
                                           <h5>Booking details</h5>
@@ -239,7 +239,7 @@
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse :id="'Cancel-' + index">
+                <b-collapse :id="'Cancel-' + index" style="max-width: 80%; margin: auto;">
                   <b-card border-variant="secondary">
                     <h5>Booking details</h5>
                     <div class="row">
@@ -283,6 +283,7 @@ import Cusnav from "./SideTopNav_cus.vue";
 export default {
   data() {
     return {
+      disReview:false,
       index1: 0,
       ibuff: 0,
       review: {
@@ -438,7 +439,7 @@ export default {
       this.review.rtype = room.RoomType_Name;
       // console.log(this.reviewAlready[index].r[i]);
       if(this.reviewAlready[index].r[i] == true){
-        this.makeToast("danger", "this room already comment");
+        this.makeToast("danger", "You have already reviewed this room.");
         this.RVavi[index].id = this.review.bookid;
         this.RVavi[index].r[this.ibuff] = true;
       }

@@ -17,6 +17,8 @@
             :items="items1"
             :fields="fields1"
             style="margin-top:30px"
+            bordered
+            hover
           >
           </b-table>
         </b-container>
@@ -33,6 +35,8 @@
             :items="items2"
             :fields="fields2"
             style="margin-top:30px"
+                        bordered
+            hover
           >
           </b-table>
         </b-container>
@@ -49,6 +53,8 @@
             :items="items3"
             :fields="fields3"
             style="margin-top:30px"
+                        bordered
+            hover
           >
           </b-table>
         </b-container>
@@ -65,6 +71,8 @@
             :items="items4"
             :fields="fields4"
             style="margin-top:30px"
+                        bordered
+            hover
           >
           </b-table>
         </b-container>
@@ -92,7 +100,7 @@
             5. Number of employees of each position.
           </h5>
           <div class="chart-wrapper">
-            <chart :options="chartOptionsBar"  style="float:center;"></chart>
+            <chart :options="chartOptionsBar" ></chart>
           </div>
         </b-container>
       </div>
