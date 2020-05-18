@@ -159,7 +159,7 @@
                               style="background-color: transparent; border-color:transparent; cursor: pointer; float:right;"
                               @click="check(BookID, room, index, i)"
                             >
-                              <font color="#FDA50F">Click to review</font>
+                              <font color="#FDA50F" v-if="!RVavi[index].r[i]">Click to review</font>
                             </b-button>
                           </b-col>
                         </b-row>
@@ -324,13 +324,15 @@ export default {
     }, 800);
     setTimeout(() => {
       this.splitStatus();
-    }, 1000);
-    setTimeout(() => {
       this.prepareRV();
-    }, 1200);
-    setTimeout(() => {
       this.loopCkRv();
-    }, 1250);
+    }, 1000);
+    // setTimeout(() => {
+    //   this.prepareRV();
+    // }, 1200);
+    // setTimeout(() => {
+    //   this.loopCkRv();
+    // }, 1250);
   },
   methods: {
     // checkModal(index) {
@@ -395,7 +397,8 @@ export default {
       if (this.review.rate === null || this.review.comment === null) {
         this.makeToast("danger", "You have not done your review.");
       } else {
-        if (!this.reviewAlready[index].r[this.ibuff]) this.AddReview();
+        if (!this.reviewAlready[index].r[this.ibuff]) 
+          this.AddReview();
         this.RVavi[index].id = this.review.bookid;
         this.RVavi[index].r[this.ibuff] = true;
 
