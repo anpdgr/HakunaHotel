@@ -91,7 +91,7 @@
         <!-- Main table element -->
         <b-table
           show-empty
-          small
+        
           stacked="md"
           :items="items"
           :fields="fields"

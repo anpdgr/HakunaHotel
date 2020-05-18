@@ -12,85 +12,87 @@
                 v-for="(BookID, index) in BOnGoing"
                 :key="index"
               >
-                <!-- Using modifiers -->
-                <div style="padding-left:60px">
-                  <b-button variant="info" v-b-toggle.collapse-2 class="m-1"
-                    @click="index1 = index"
-                    >Booking ID: {{ BookID.Booking_ID }}
-                  </b-button>
+                  <!-- Using modifiers -->
+                  <div style="padding-left:60px">
+                    <b-button
+                      variant="info"
+                      v-b-toggle.collapse-2
+                      class="m-1"
+                      @click="index1 = index"
+                      >Booking ID: {{ BookID.Booking_ID }}
+                    </b-button>
+                  </div>
+                  <!-- Element to collapse -->
+                  <b-collapse id="collapse-2" v-if="index == index1">
+                    <b-card border-variant="info">
+                      <h5>Booking details</h5>
+                      <div class="row">
+                        <div class="column">
+                          <p>Booking date: {{ BookID.Checkin }}</p>
+                          <p>Check-in date: {{ BookID.Checkin }}</p>
+                        </div>
+                        <div class="column">
+                          <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
+                          <p>Check-out date: {{ BookID.Checkout }}</p>
+                        </div>
+                      </div>
+
+                      <hr />
+                      <h5>Room type</h5>
+                      <div v-for="(room, i) in BookID.rooms" :key="i">
+                        {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                        Room : {{ room.Number_of_Room }}
+                      </div>
+                      <hr />
+                      <h5>Billing details</h5>
+                      Payment ID: {{ BookID.No }}
+                      <br />
+                      <b>Total price: {{ BookID.Total }}฿</b>
+                      <div id="onbook">
+                        <div>
+                          <b-button
+                            variant="outline-secondary"
+                            id="toggle-btn"
+                            v-b-modal.modal-cancel
+                            @click="index1 = index"
+                            >Cancel Booking
+                          </b-button>
+
+                          <b-modal
+                            id="modal-cancel"
+                            ref="modal-cancel"
+                            v-if="index === index1"
+                            hide-footer
+                            title="Confirm to Cancel"
+                          >
+                            <div class="d-block text-center">
+                              <h3>
+                                Are you sure you want to cancel this booking?
+                              </h3>
+                            </div>
+                            <!-- delete this book from db in hideModal function -->
+                            <b-button
+                              class="mt-3"
+                              pill
+                              variant="outline-danger"
+                              block
+                              @click="hideModal(BookID)"
+                              >Yes</b-button
+                            >
+                            <b-button
+                              class="mt-2"
+                              pill
+                              variant="outline-warning"
+                              block
+                              @click="toggleModal"
+                              >No</b-button
+                            >
+                          </b-modal>
+                        </div>
+                      </div>
+                    </b-card>
+                  </b-collapse>
                 </div>
-                <!-- Element to collapse -->
-                <b-collapse id="collapse-2"
-                 v-if="index == index1">
-                  <b-card border-variant="info">
-                    <h5>Booking details</h5>
-                    <div class="row">
-                      <div class="column">
-                        <p>Booking date: {{ BookID.Checkin }}</p>
-                        <p>Check-in date: {{ BookID.Checkin }}</p>
-                      </div>
-                      <div class="column">
-                        <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
-                        <p>Check-out date: {{ BookID.Checkout }}</p>
-                      </div>
-                    </div>
-
-                    <hr />
-                    <h5>Room type</h5>
-                    <div v-for="(room, i) in BookID.rooms" :key="i">
-                      {{ i + 1 }}. {{ room.RoomType_Name }} <br />
-                      Room : {{ room.Number_of_Room }}
-                    </div>
-                    <hr />
-                    <h5>Billing details</h5>
-                    Payment ID: {{ BookID.No }}
-                    <br />
-                    <b>Total price: {{ BookID.Total }}฿</b>
-                    <div id="onbook">
-                      <div>
-                        <b-button
-                          variant="outline-secondary"
-                          id="toggle-btn"
-                          v-b-modal.modal-cancel
-                          @click="index1 = index"
-                          >Cancel Booking
-                        </b-button>
-
-                        <b-modal
-                          id="modal-cancel"
-                          ref="modal-cancel"
-                          v-if="index === index1"
-                          hide-footer
-                          title="Confirm to Cancel"
-                        >
-                          <div class="d-block text-center">
-                            <h3>
-                              Are you sure you want to cancel this booking?
-                            </h3>
-                          </div>
-                          <!-- delete this book from db in hideModal function -->
-                          <b-button
-                            class="mt-3"
-                            pill
-                            variant="outline-danger"
-                            block
-                            @click="hideModal(BookID)"
-                            >Yes</b-button
-                          >
-                          <b-button
-                            class="mt-2"
-                            pill
-                            variant="outline-warning"
-                            block
-                            @click="toggleModal"
-                            >No</b-button
-                          >
-                        </b-modal>
-                      </div>
-                    </div>
-                  </b-card>
-                </b-collapse>
-              </div>
             </b-tab>
 
             <b-tab title="Done">
@@ -109,29 +111,29 @@
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse :id="'Done-' + index" style="max-width: 80%; margin: auto;">
+                <b-collapse
+                  :id="'Done-' + index"
+                  style="max-width: 80%; margin: auto;"
+                >
                   <b-card border-variant="dark">
                     <div id="info">
-                                          <h5>Booking details</h5>
+                      <h5>Booking details</h5>
 
-                    <div class="row">
-                      <div class="column">
-                        <p>Booking date: {{ BookID.Checkin }}</p>
-                        <p>Check-in date: {{ BookID.Checkin }}</p>
+                      <div class="row">
+                        <div class="column">
+                          <p>Booking date: {{ BookID.Checkin }}</p>
+                          <p>Check-in date: {{ BookID.Checkin }}</p>
+                        </div>
+                        <div class="column">
+                          <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
+                          <p>Check-out date: {{ BookID.Checkout }}</p>
+                        </div>
                       </div>
-                      <div class="column">
-                        <p>Number of guests: {{ BookID.Number_Of_Guest }}</p>
-                        <p>Check-out date: {{ BookID.Checkout }}</p>
-                      </div>
-                    </div>
-                    <hr>
-
-
+                      <hr />
 
                       <h5>Room type</h5>
                       <div v-for="(room, i) in BookID.rooms" :key="i">
-                      
-                      <!-- {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+                        <!-- {{ i + 1 }}. {{ room.RoomType_Name }} <br />
                         Room : {{ room.Number_of_Room }} <br />
                         <b-button
                           id="show-btn"
@@ -143,23 +145,23 @@
                         >
                           <font color="#FDA50F">Click to review</font>
                         </b-button> -->
-                      
-                      <b-row>
-                        <b-col>
-                          {{ i + 1 }}. {{ room.RoomType_Name }} <br />
+
+                        <b-row>
+                          <b-col>
+                            {{ i + 1 }}. {{ room.RoomType_Name }} <br />
                             Room : {{ room.Number_of_Room }} <br />
-                        </b-col>
-                        <b-col>
-                          <b-button
-                            id="show-btn"
-                            href="#"
-                            v-b-modal.my-modalRv
-                            style="background-color: transparent; border-color:transparent; cursor: pointer; float:right;"
-                            @click="check(BookID, room ,index, i)"
-                          >
-                            <font color="#FDA50F">Click to review</font>
-                          </b-button>
-                        </b-col>
+                          </b-col>
+                          <b-col>
+                            <b-button
+                              id="show-btn"
+                              href="#"
+                              v-b-modal.my-modalRv
+                              style="background-color: transparent; border-color:transparent; cursor: pointer; float:right;"
+                              @click="check(BookID, room, index, i)"
+                            >
+                              <font color="#FDA50F">Click to review</font>
+                            </b-button>
+                          </b-col>
                         </b-row>
                       </div>
                       <div id="right">
@@ -215,11 +217,11 @@
                           </b-modal>
                         </div>
                       </div>
-                    <hr />
-                    <h5>Billing details</h5>
-                    Payment ID: {{ BookID.No }}
-                    <br />
-                    <b>Total price: {{ BookID.Total }}฿</b>
+                      <hr />
+                      <h5>Billing details</h5>
+                      Payment ID: {{ BookID.No }}
+                      <br />
+                      <b>Total price: {{ BookID.Total }}฿</b>
                     </div>
                   </b-card>
                 </b-collapse>
@@ -239,7 +241,10 @@
                   </b-button>
                 </div>
                 <!-- Element to collapse -->
-                <b-collapse :id="'Cancel-' + index" style="max-width: 80%; margin: auto;">
+                <b-collapse
+                  :id="'Cancel-' + index"
+                  style="max-width: 80%; margin: auto;"
+                >
                   <b-card border-variant="secondary">
                     <h5>Booking details</h5>
                     <div class="row">
@@ -283,7 +288,7 @@ import Cusnav from "./SideTopNav_cus.vue";
 export default {
   data() {
     return {
-      disReview:false,
+      disReview: false,
       index1: 0,
       ibuff: 0,
       review: {
@@ -293,7 +298,7 @@ export default {
         rate: null,
         comment: null,
       },
-      reviewAlready :[],
+      reviewAlready: [],
       // for fetch data and manage
       bookDetail: {
         userid: "",
@@ -302,9 +307,9 @@ export default {
       BOnGoing: [],
       BDone: [],
       BCanceled: [],
-      isNotRV:0,
+      isNotRV: 0,
 
-      RVavi:[],
+      RVavi: [],
     };
   },
   components: {
@@ -326,19 +331,18 @@ export default {
     setTimeout(() => {
       this.loopCkRv();
     }, 1250);
-    
   },
   methods: {
     // checkModal(index) {
     //   this.index1 = index;
     // },
-    prepareRV(){
-      for(var i=0 ; i<this.BDone.length ; i++){
-        this.RVavi.push({id:null});
-        this.reviewAlready.push({id:null});
+    prepareRV() {
+      for (var i = 0; i < this.BDone.length; i++) {
+        this.RVavi.push({ id: null });
+        this.reviewAlready.push({ id: null });
         this.RVavi[i].id = this.BDone[i].Booking_ID;
         this.reviewAlready[i].id = this.BDone[i].Booking_ID;
-        for(var j=0 ; j<this.BDone[i].rooms.length ; j++){
+        for (var j = 0; j < this.BDone[i].rooms.length; j++) {
           var ravi = [];
           ravi.push(false);
         }
@@ -348,15 +352,15 @@ export default {
       // console.log(this.RVavi);
     },
 
-    loopCkRv(){
-      for(var i=0 ; i<this.BDone.length ; i++){
-        for(var j=0 ; j<this.BDone[i].rooms.length ; j++){
+    loopCkRv() {
+      for (var i = 0; i < this.BDone.length; i++) {
+        for (var j = 0; j < this.BDone[i].rooms.length; j++) {
           var data = {
             bookid: this.BDone[i].Booking_ID,
-            rtype: this.BDone[i].rooms[j].RoomType_Name
+            rtype: this.BDone[i].rooms[j].RoomType_Name,
           };
           // console.log(data);
-          this.checkRV(data,i,j);
+          this.checkRV(data, i, j);
         }
       }
     },
@@ -367,18 +371,17 @@ export default {
     hideModal(BookID) {
       // console.log(BookID);
       var formData = this.toFormData(BookID);
-      this.axios
-      .post(
-        "http://hakuna-hotel.kmutt.me/phpapi/bookhis.php?action=cancel",formData
+      this.axios.post(
+        "http://hakuna-hotel.kmutt.me/phpapi/bookhis.php?action=cancel",
+        formData
       );
 
       this.makeToast("success", "Your booking has been canceled");
       //this.$refs["modal-cancel"].hide();
-      this.$bvModal.hide("modal-cancel") ;
+      this.$bvModal.hide("modal-cancel");
       // setTimeout(() => {
       //   this.$router.push("mybook");
       // }, 1500);
-      
     },
     toggleModal() {
       //this.$refs["modal-cancel"].toggle("#toggle-btn");
@@ -391,10 +394,8 @@ export default {
       // console.log(index + " " + this.ibuff);
       if (this.review.rate === null || this.review.comment === null) {
         this.makeToast("danger", "You have not done your review.");
-      } 
-      else {
-        if(!this.reviewAlready[index].r[this.ibuff])
-          this.AddReview();
+      } else {
+        if (!this.reviewAlready[index].r[this.ibuff]) this.AddReview();
         this.RVavi[index].id = this.review.bookid;
         this.RVavi[index].r[this.ibuff] = true;
 
@@ -407,20 +408,20 @@ export default {
       }
     },
     //Check ว่ารีวิวแล้วยัง
-    checkRV(data,index,i) {
+    checkRV(data, index, i) {
       var formData = this.toFormData(data);
       this.axios
-      .post(
-        "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",formData
-      )
-      .then((response)=> {
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=check",
+          formData
+        )
+        .then((response) => {
           // console.log(response.data.data.length);
           // console.log("index " + index + " i " + i);
-          if(response.data.data.length != 0){
+          if (response.data.data.length != 0) {
             this.reviewAlready[index].id = data.bookid;
             this.reviewAlready[index].r[i] = true;
-          }
-          else{
+          } else {
             this.reviewAlready[index].id = data.bookid;
             this.reviewAlready[index].r[i] = false;
           }
@@ -438,13 +439,13 @@ export default {
       this.review.bookid = BookID.Booking_ID;
       this.review.rtype = room.RoomType_Name;
       // console.log(this.reviewAlready[index].r[i]);
-      if(this.reviewAlready[index].r[i] == true){
+      if (this.reviewAlready[index].r[i] == true) {
         this.makeToast("danger", "You have already reviewed this room.");
         this.RVavi[index].id = this.review.bookid;
         this.RVavi[index].r[this.ibuff] = true;
       }
       // console.log(BookID);
-      
+
       // console.log(this.review.rtype);
       //console.log(this.isNotrv);
       // if (this.checkRV()) {
@@ -502,35 +503,33 @@ export default {
     },
     AddReview() {
       var formData = this.toFormData(this.review);
-      this.axios
-        .post(
-          "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=add",
-          formData
-        )
-        // .then((response) => {
-        //   //set var to default
-        //   console.log(response);
-        //   this.review = {
-        //     bookid: null,
-        //     rtype: null,
-        //     userid: null,
-        //     rate: null,
-        //     comment: null,
-        //   };
-        //   if (response.data.error) {
-        //     console.log(response.data.error);
-        //   } else {
-        //     console.log(response.data.message);
-        //   }
-        // })
-        ;
-        this.review = {
-            bookid: null,
-            rtype: null,
-            userid: null,
-            rate: null,
-            comment: null,
-        };
+      this.axios.post(
+        "http://hakuna-hotel.kmutt.me/phpapi/Review.php?action=add",
+        formData
+      );
+      // .then((response) => {
+      //   //set var to default
+      //   console.log(response);
+      //   this.review = {
+      //     bookid: null,
+      //     rtype: null,
+      //     userid: null,
+      //     rate: null,
+      //     comment: null,
+      //   };
+      //   if (response.data.error) {
+      //     console.log(response.data.error);
+      //   } else {
+      //     console.log(response.data.message);
+      //   }
+      // })
+      this.review = {
+        bookid: null,
+        rtype: null,
+        userid: null,
+        rate: null,
+        comment: null,
+      };
     },
     // convert to formdata
     toFormData(obj) {

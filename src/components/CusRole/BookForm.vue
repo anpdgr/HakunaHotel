@@ -78,7 +78,6 @@
           roomtype2: {{ selected[1] }} rooms<br />
           roomtype3: {{ selected[2] }} rooms
         </p>-->
-        <p>{{ selected }}</p>
       </b-card>
     </div>
   </div>
@@ -186,7 +185,7 @@ export default {
             );
             setTimeout(() => {
               this.$router.push("/login");
-            }, 2500);
+            }, 2000);
           }
           // already login  make toast plz
           else {
