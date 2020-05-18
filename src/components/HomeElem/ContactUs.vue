@@ -3,24 +3,40 @@
     
       <div class="row" >
         <div id="text" class="col-lg-8 mx-auto" style="padding:0px; margin:auto">
-          <h2 style="text-align:center">Contact us</h2><br>
-          <b-row>
-          <b-col>
-            <b-icon icon="phone" class="h4 mb-2" ></b-icon>
-            <p class="lead">Tel : 02 444 4444</p>
-          </b-col>
-
-          <b-col>
-            <b-icon icon="envelope" class="h4 mb-2"   ></b-icon>
-            <p class="lead">Email : <a style="color:#ffffff" href="https://mail.google.com/mail/u/0/#inbox">Hakuna@mail.hotel.com</a></p>
-          </b-col>
-
-          <b-col>
-            <b-icon icon="geo-alt" class="h4 mb-2"   ></b-icon>
-            <p class="lead">Location : <a  style="color:#ffffff" href="https://www.google.co.th/maps/place/HAKUNA+Park/@7.8511402,-76.6121182,17z/data=!3m1!4b1!4m5!3m4!1s0x8e500d0f13a2ca09:0xee47a8e851876790!8m2!3d7.8511402!4d-76.6099295">click</a></p>
+          <br><h2 style="text-align:center">Contact Us</h2><br>
+          
+          <div style="float:center">
             
-          </b-col>
-          </b-row> 
+            <b-row>
+
+            <b-col style="text-align:left; float:center">
+              <b style="margin:10px; font-size:15px">HAKUNA HOTEL</b><br><br>
+              <p style="margin:10px">Tel : 02 444 4444</p>
+              <p style="margin:10px">Email : <a style="color:#ffffff" href="https://mail.google.com/mail/u/0/#inbox">Hakuna@mail.hotel.com</a></p>
+              <br>
+            </b-col>
+
+            <b-col>
+              <b style="font-size:15px">FOLLOW US</b><br><br>
+              <b-img style="width:27px; margin:10px 20px" src="@/assets/fb.png"></b-img>
+              <b-img style="width:27px; margin:10px 20px" src="@/assets/tw.png"></b-img>
+              <b-img style="width:27px; margin:10px 20px" src="@/assets/ig.png"></b-img>
+            </b-col>
+
+            <b-col>
+              <b style="font-size:15px">LOCATION</b><br><br>
+              <a style="text-align:left; color:#fff"
+              href="https://www.google.co.th/maps/place/HAKUNA+Park/@7.8511402,-76.6121182,17z/data=!3m1!4b1!4m5!3m4!1s0x8e500d0f13a2ca09:0xee47a8e851876790!8m2!3d7.8511402!4d-76.6099295">
+              Vereda Churido Medio, <br>Apartadó,Antioquia, Colombia</a><br>
+            </b-col>
+
+            </b-row>
+
+
+         
+          </div>
+          
+        
         
            
         </div>
