@@ -71,6 +71,51 @@
             }
             $result['data'] = $data;                                     # -
         }
+
+        if($action == 'May'){        
+            # edit sql command here
+            $sql = $con->query("SELECT COUNT(d.Booking_ID)AS Num_of_Booking, d.RoomType_Name 
+                                FROM Booking_Detail d
+                                JOIN Booking b ON b.Booking_ID = d.Booking_ID
+                                WHERE b.Book_Date LIKE '2020-05%'
+                                GROUP BY d.RoomType_Name");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
+            }
+            $result['data'] = $data;                                     # -
+        }
+
+        if($action == 'staff'){        
+            # edit sql command here
+            $sql = $con->query("SELECT Position, COUNT(Position)AS Num_of_Staff  
+                                FROM Staff GROUP BY Position
+                                ORDER BY Num_of_Staff DESC");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
+            }
+            $result['data'] = $data;                                     # -
+        }
+
+        if($action == 'room'){        
+            # edit sql command here
+            $sql = $con->query("SELECT RoomType_Name, COUNT(Room_ID)AS Num_of_Room  
+                                FROM Room GROUP BY RoomType_Name
+                                ORDER BY Num_of_Room DESC");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
+            }
+            $result['data'] = $data;                                     # -
+        }
+
         #return data in page Don't edit!!!
         echo json_encode($result);                                         # -
     }

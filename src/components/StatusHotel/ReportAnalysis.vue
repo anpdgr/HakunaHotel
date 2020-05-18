@@ -25,7 +25,7 @@
       <div id="2">
         <b-container fluid style="margin-top:20px; width:900px">
           <h5 style="margin-top:30px; float:left;">
-            2. Number of booking of each room types in January 2020.
+            2. Number of booking of each room types in May 2020.
           </h5>
           <b-table
             id="second-table"
@@ -70,7 +70,7 @@
         </b-container>
       </div>
 
-      <div id="5">
+      <!-- <div id="5">
         <b-container fluid style="margin-top:20px; width:900px">
           <h5 style="margin-top:30px; float:left;">
             5. Top 5 Staff with highest salary.
@@ -84,15 +84,15 @@
           >
           </b-table>
         </b-container>
-      </div>
+      </div> -->
 
       <div id="6">
         <b-container fluid style="margin-top:20px; width:900px">
           <h5 style="margin-top:30px; float:left;">
-            6. Number of employees of each position.
+            5. Number of employees of each position.
           </h5>
           <div class="chart-wrapper">
-            <chart :options="chartOptionsBar" style="float:center;"></chart>
+            <chart :options="chartOptionsBar"  style="float:center;"></chart>
           </div>
         </b-container>
       </div>
@@ -109,23 +109,23 @@ export default {
     return {
       items1: [],
       fields1: [
-        { key: "Room_Type", label: "Room type", sortable: true },
-        { key: "Num_Book", label: "Number of booking", sortable: true },
+        { key: "RoomType_Name", label: "Room type", sortable: true },
+        { key: "Number_of_Booking", label: "Number of booking", sortable: true },
       ],
       items2: [],
       fields2: [
-        { key: "Room_Type", label: "Room type", sortable: true },
-        { key: "Num_Book", label: "Number of booking", sortable: true },
+        { key: "RoomType_Name", label: "Room type", sortable: true },
+        { key: "Num_of_Booking", label: "Number of booking", sortable: true },
       ],
       items3: [],
       fields3: [
-        { key: "Room_Type", label: "Room type", sortable: true },
-        { key: "Rating", label: "Rating", sortable: true },
+        { key: "RoomType_Name", label: "Room type", sortable: true },
+        { key: "AVGRating", label: "Rating", sortable: true },
       ],
       items4: [],
       fields4: [
         { key: "Code_Name", label: "Code name" },
-        { key: "NoUsed", label: "Number of using" },
+        { key: "Number_of_Using", label: "Number of using" },
       ],
       items5: [],
       fields5: [
@@ -135,22 +135,64 @@ export default {
       
       chartOptionsBar: {
         xAxis: {
-          data: ["Housekeeper", "Dev","..."],
+          data: [],
         },
         yAxis: {
           type: "value",
         },
-        series: [
+        series: 
           {
             type: "bar",
-            data: [15, 20, 50],
+            data: [],
           },
-        ],
+        
         color: ["#b98672"],
       },
     };
   },
+  mounted(){
+      this.fetchReport();
+  },
+  methods:{
+  fetchReport(){
+    this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=TopRoomType")
+        .then((response) => {
+          this.items1=response.data.data;
+        });
+    this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=May")
+        .then((response) => {
+          this.items2=response.data.data;
+        });
+    this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=RoomRating")
+        .then((response) => {
+          this.items3=response.data.data;
+        });
+    this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=useCode")
+        .then((response) => {
+          this.items4=response.data.data;
+        });
+    this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=staff")
+        .then((response) => {
+          var data1=[];
+          var data2=[];
+          for(var i=0; i<response.data.data.length; i++){
+          data1.push(response.data.data[i].Position);
+          data2.push(parseInt(response.data.data[i].Num_of_Staff));
+        }
+        console.log(data1);
+          this.chartOptionsBar.xAxis.data=data1;
+          this.chartOptionsBar.series.data=data2;
+        });
+        
+  },
+  }
 };
+
 </script>
 
 <style>
