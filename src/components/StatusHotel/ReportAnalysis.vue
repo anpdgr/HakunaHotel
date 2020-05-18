@@ -9,7 +9,7 @@
       <div id="1">
         <b-container fluid style="margin-top:20px; width:900px ">
           <h5 style="margin-top:30px; float:left;">
-            1. Number of booking of each room types.
+            1. Number of room of each room types in 2020.
           </h5>
           <b-table
             id="first-table"
