@@ -295,7 +295,7 @@ export default {
       this.Rtype.rtype=item.type.toUpperCase();
       this.fetchReview();
       this.index1=index; 
-      console.log(this.Rtype.rtype);
+      // console.log(this.Rtype.rtype);
     },
 
     fetchRoomType(){
@@ -316,7 +316,7 @@ export default {
             this.items[i].des = data[i].Description;
             this.items[i].Service = data[i].Service;
           }
-           console.log(response.data.data);
+          //  console.log(response.data.data);
           
         });
     },
@@ -332,7 +332,7 @@ export default {
         .then((response) => {
           //set var to default
           this.review = response.data.data;
-           console.log(this.review);
+          //  console.log(this.review);
           
         });
     },
