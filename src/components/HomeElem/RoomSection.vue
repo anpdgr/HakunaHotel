@@ -45,6 +45,7 @@
                         <p>price per night : {{item.price}} </p>
                         <img :src="item.img" style="width:100%"/>
                         <p class="my-4" ><b>Description</b><br>{{item.des}} </p>
+                        <p class="my-4" ><b>Service</b><br>{{item.Service}} </p>
                         <section id="review" style="float:center">
                           
                           <p style="margin:auto auto 0px auto;"><b>Review</b></p>
@@ -278,6 +279,9 @@ export default {
     }
 
   },
+  mounted() {
+    this.fetchRoomType();
+  },
   methods:{
     scrollIntoView(evt) {
       evt.preventDefault();
@@ -293,6 +297,30 @@ export default {
       this.index1=index; 
       console.log(this.Rtype.rtype);
     },
+
+    fetchRoomType(){
+      this.review=null;
+      var formData = this.toFormData(this.Rtype);
+      this.axios
+        .post(
+          "http://hakuna-hotel.kmutt.me/phpapi/RoomType.php?action=read",
+          formData
+        )
+        .then((response) => {
+          //set var to default
+          var data = response.data.data;
+          for(var i=0 ; i<data.length ; i++){ 
+            this.items[i].type = data[i].RoomType_Name;
+            this.items[i].limit = data[i].Limit_Guest;
+            this.items[i].price = data[i].Price;
+            this.items[i].des = data[i].Description;
+            this.items[i].Service = data[i].Service;
+          }
+           console.log(response.data.data);
+          
+        });
+    },
+
     fetchReview(){
       this.review=null;
       var formData = this.toFormData(this.Rtype);
