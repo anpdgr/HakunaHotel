@@ -48,9 +48,10 @@
                         <section id="review" style="float:center">
                           
                           <p style="margin:auto auto 0px auto;"><b>Review</b></p>
+                          <span style="margint-buttom:0px;  color:#6C7979; font-size:15px">( select rate )</span>
                          
                           <div>
-                            <b-tabs content-class="mt-3" align="right" style="width:100%;">
+                            <b-tabs content-class="mt-3" align="left" style="width:100%;">
                               <b-tab title="5" active>
                                 <div  v-for='(review,i) in review' :key= "i">   
                                   <div v-if="review.Rate>4.5">    
