@@ -18,9 +18,9 @@
 
             <b-col>
               <b style="font-size:15px">FOLLOW US</b><br><br>
-              <b-img style="width:27px; margin:10px 20px" src="@/assets/fb.png"></b-img>
-              <b-img style="width:27px; margin:10px 20px" src="@/assets/tw.png"></b-img>
-              <b-img style="width:27px; margin:10px 20px" src="@/assets/ig.png"></b-img>
+              <b-button pill href="https://www.facebook.com/" id="link" ><b-img style="width:27px;" src="@/assets/fb.png"></b-img></b-button>
+              <b-button pill href="https://www.twitter.com/" id="link" ><b-img style="width:27px;" src="@/assets/tw.png"></b-img></b-button>
+              <b-button pill href="https://www.instagram.com/" id="link" ><b-img style="width:27px; " src="@/assets/ig.png"></b-img></b-button>
             </b-col>
 
             <b-col>
@@ -51,8 +51,12 @@
     padding: 25px;
   }
   #text{
-    color: white;
-    
-    
+    color: white; 
+  }
+  #link{
+    background: transparent;
+    margin:10px 15px;
+    border: transparent;
+
   }
 </style>
