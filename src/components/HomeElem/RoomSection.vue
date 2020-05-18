@@ -275,6 +275,7 @@ export default {
       console.log(this.Rtype.rtype);
     },
     fetchReview(){
+      this.review=null;
       var formData = this.toFormData(this.Rtype);
       this.axios
         .post(
@@ -284,12 +285,8 @@ export default {
         .then((response) => {
           //set var to default
           this.review = response.data.data;
-           console.log(response.data);
-          if (response.data.error) {
-            console.log(response.data.error);
-          } else {
-            console.log(response.data.message);
-          }
+           console.log(this.review);
+          
         });
     },
     // convert to formdata

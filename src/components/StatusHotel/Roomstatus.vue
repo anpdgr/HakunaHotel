@@ -108,7 +108,7 @@ export default {
     return {
       chartOptionsBar: {
             xAxis: {
-                data: ['avaiable', 'reserved']
+                data: ['reserved','avaiable']
             },
             yAxis: {
                 type: 'value'
@@ -116,7 +116,7 @@ export default {
             series: [
                 {
                 type: 'bar',
-                data: [200, 47]
+                data: [],
                 }
             ],
             title: {
@@ -169,9 +169,11 @@ export default {
   mounted() {
     // Set the initial number of items
     this.fetchRoomType();
+    this.fetchsummary();
     // console.log(this.type_options);
     this.totalRows = this.items.length;
     this.fetchRoom();
+    
     
   },
   methods: {
@@ -184,7 +186,8 @@ export default {
       this.filter = this.selected_type;
     },
     showModal() {
-      this.$refs['my-modal'].show()
+      this.$refs['my-modal'].show();
+      
     },
     hideModal() {
       this.$refs['my-modal'].hide()
@@ -196,11 +199,17 @@ export default {
         "http://hakuna-hotel.kmutt.me/phpapi/Room.php?action=read",formData)
         .then(response => {
         this.items = response.data.data;
-          // if (response.data.error) {
-          //   console.log(response.data.error);
-          // } else {
-          //   console.log(response.data.message);
-          //   }
+        });
+    },
+    fetchsummary(){
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=room")
+        .then((response) => {
+          var data2=[];
+          for(var i=0; i<response.data.data.length; i++){
+          data2.push(parseInt(response.data.data[i].Num_of_Room));
+        }
+          this.chartOptionsBar.series[0].data=data2;
         });
     },
     fetchRoomType(){

@@ -104,9 +104,36 @@
 
         if($action == 'room'){        
             # edit sql command here
-            $sql = $con->query("SELECT RoomType_Name, COUNT(Room_ID)AS Num_of_Room  
-                                FROM Room GROUP BY RoomType_Name
-                                ORDER BY Num_of_Room DESC");            # +
+            $sql = $con->query("SELECT Available, COUNT(Available)AS Num_of_Room  
+                                FROM Room GROUP BY Available");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
+            }
+            $result['data'] = $data;                                     # -
+        }
+        
+        if($action == 'code'){     
+            $date = date("Y-m-d H:i:s");   
+            # edit sql command here
+            $sql = $con->query("SELECT Code_Name, COUNT(Code_Name)AS Num_of_Code  
+                                FROM CodePromo WHERE ExpireDate>='$date'AND CodePromo.Limit!=0
+                                GROUP BY Code_Name");            # +
+            # var buff for data in database
+            $data = array();                                             # -
+            # fetch data from database
+            while($row = $sql->fetch_assoc()){                             # -
+                array_push($data,$row);                                  # -
+            }
+            $result['data'] = $data;                                     # -
+        }
+        
+        if($action == 'booking'){        
+            # edit sql command here
+            $sql = $con->query("SELECT Status, COUNT(Status)AS Num_of_Book  
+                                FROM Booking GROUP BY Status");            # +
             # var buff for data in database
             $data = array();                                             # -
             # fetch data from database

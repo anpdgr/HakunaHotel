@@ -162,7 +162,7 @@ export default {
     return {
       chartOptionsBar: {
         xAxis: {
-          data: ["FIRST100", "LIMIT5"],
+          data: [],
         },
         yAxis: {
           type: "value",
@@ -170,7 +170,7 @@ export default {
         series: [
           {
             type: "bar",
-            data: [63, 5],
+            data: [],
           },
         ],
         title: {
@@ -230,6 +230,7 @@ export default {
     // Set the initial number of items
     this.totalRows = this.items.length;
     this.fetchCode();
+    this.fetchsummary();
   },
 
   methods: {
@@ -253,6 +254,20 @@ export default {
         this.makeToast("success", "Already added code");
       }
     },
+    fetchsummary(){
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=code")
+        .then((response) => {
+          var data1=[];
+          var data2=[];
+          for(var i=0; i<response.data.data.length; i++){
+          data1.push(response.data.data[i].Code_Name);
+          data2.push(parseInt(response.data.data[i].Num_of_Code));
+        }
+          this.chartOptionsBar.xAxis.data=data1;
+          this.chartOptionsBar.series[0].data=data2;
+        });
+    },
     makeToast(variant = null, text) {
       this.$bvToast.toast(text, {
         title: "Notice!",
@@ -271,12 +286,6 @@ export default {
         )
         .then((response) => {
           this.items = response.data.data;
-
-          // if (response.data.error) {
-          //   console.log(response.data.error);
-          // } else {
-          //   console.log(response.data.message);
-          // }
         });
     },
     //Add code to db
@@ -286,25 +295,7 @@ export default {
         .post(
           "http://hakuna-hotel.kmutt.me/phpapi/CodePromo.php?action=add",
           formData
-        )
-        // .then((response) => {
-        //   //set var to default
-        //   // console.log(response);
-        //   this.code = {
-        //     codeid: null,
-        //     codename: null,
-        //     discount: null,
-        //     limit: null,
-        //     SDate: null,
-        //     ExDate: null,
-        //   };
-        //   // if (response.data.error) {
-        //   //   console.log(response.data.error);
-        //   // } else {
-        //   //   console.log(response.data.message);
-        //   // }
-        // })
-        ;
+        );
         this.code = {
             codeid: null,
             codename: null,

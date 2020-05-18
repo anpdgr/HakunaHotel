@@ -167,6 +167,7 @@ export default {
   //for chart summary
   mounted: function() {
     this.fetchBook();
+    this.fetchsummary();
     this.totalRows = this.items.length; // Set the initial number of items
   },
 
@@ -174,7 +175,7 @@ export default {
     return {
       chartOptionsBar: {
         xAxis: {
-          data: ["booking", "check-in", "check-out", "cancel"]
+          data: []
         },
         yAxis: {
           type: "value"
@@ -182,7 +183,7 @@ export default {
         series: [
           {
             type: "bar",
-            data: [63, 75, 24, 92]
+            data: []
           }
         ],
         title: {
@@ -194,18 +195,7 @@ export default {
         },
         color: ["#127ac2"]
       },
-      items: [
-        // { status: "cancel", cusid: "CUS0001", bookid: "A1000" },
-        // { status: "check-in", cusid: "CUS0001", bookid: "A1001" },
-        // { status: "check-in", cusid: "CUS0202", bookid: "A1002" },
-        // { status: "cancel", cusid: "CUS0003", bookid: "A1003" },
-        // { status: "booking", cusid: "CUS1004", bookid: "A1004" },
-        // { status: "check-in", cusid: "CUS0005", bookid: "A1005" },
-        // { status: "booking", cusid: "CUS1007", bookid: "A1007" },
-        // { status: "booking", cusid: "CUS2002", bookid: "B2002" },
-        // { status: "booking", cusid: "CUS2011", bookid: "B2001" },
-        // { status: "check-out", cusid: "CUS2045", bookid: "B2000" },
-      ],
+      items: [],
       fields: [
         {
           key: "bookid",
@@ -295,6 +285,20 @@ export default {
     checkin(bookid) {
       this.$store.dispatch("AcBKID", bookid);
       this.$router.push("checkin");
+    },
+    fetchsummary(){
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=booking")
+        .then((response) => {
+          var data1=[];
+          var data2=[];
+          for(var i=0; i<response.data.data.length; i++){
+          data1.push(response.data.data[i].Status);
+          data2.push(parseInt(response.data.data[i].Num_of_Book));
+        }
+          this.chartOptionsBar.xAxis.data=data1;
+          this.chartOptionsBar.series[0].data=data2;
+        });
     },
     fetchBook() {
       this.axios

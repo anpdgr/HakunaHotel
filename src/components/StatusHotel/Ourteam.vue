@@ -224,7 +224,7 @@ export default {
     return {
       chartOptionsBar: {
         xAxis: {
-          data: ["IT", "housekeeper", "DBA", "dev"],
+          data: [],
         },
         yAxis: {
           type: "value",
@@ -232,7 +232,7 @@ export default {
         series: [
           {
             type: "bar",
-            data: [63, 5, 45, 9],
+            data: [],
           },
         ],
         title: {
@@ -295,6 +295,7 @@ export default {
   },
   mounted() {
     // Set the initial number of items
+    this.fetchsummary();
     this.totalRows = this.items.length;
     this.fetchStaff();
     //this.MergeName();
@@ -407,23 +408,6 @@ export default {
             "http://hakuna-hotel.kmutt.me/phpapi/editourteam.php?action=updateED",
             formData2
           )
-          // .then((response) => {
-          //   //set var to default
-          //   console.log(response);
-          //   this.formEdit = {
-          //     staffid: null,
-          //     Position: null,
-          //     Salary: null,
-          //     SDate: null,
-          //     EDate: null,
-          //   };
-          //   if (response.data.error) {
-          //     console.log(response.data.error);
-          //   } else {
-          //     console.log(response.data.message);
-          //   }
-          // })
-          // ;
           this.formEdit = {
               staffid: null,
               Position: null,
@@ -432,6 +416,20 @@ export default {
               EDate: null,
             };
       }
+    },
+    fetchsummary(){
+      this.axios
+        .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=staff")
+        .then((response) => {
+          var data1=[];
+          var data2=[];
+          for(var i=0; i<response.data.data.length; i++){
+          data1.push(response.data.data[i].Position);
+          data2.push(parseInt(response.data.data[i].Num_of_Staff));
+        }
+          this.chartOptionsBar.xAxis.data=data1;
+          this.chartOptionsBar.series[0].data=data2;
+        });
     },
     // convert to formdata
     toFormData(obj) {
