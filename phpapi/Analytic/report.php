@@ -44,8 +44,8 @@
         # update command
         if($action == 'RoomRating'){        
             # edit sql command here
-            $sql = $con->query("SELECT rt.RoomType_Name, AVG(r.Rate) AS AVGRating
-                                FROM RoomType rt JOIN Review r ON r.RoomType_Name=rt.RoomType_Name
+            $sql = $con->query("SELECT RoomType_Name, AVG(Rate) AS AVGRating
+                                FROM Review r
                                 GROUP BY r.RoomType_Name
                                 ORDER BY AVGRating DESC");            # +
             # var buff for data in database

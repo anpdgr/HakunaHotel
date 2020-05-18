@@ -48,7 +48,7 @@
             <b-form-input
               id="discount"
               v-model="code.discount"
-              placeholder="Enter discount in THB"
+              placeholder="Enter discount in %"
               style="margin-left:7px; margin-right:100px; width: 15rem;"
             ></b-form-input>
           </b-form-group>
