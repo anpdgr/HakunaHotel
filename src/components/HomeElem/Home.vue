@@ -39,7 +39,7 @@
   <br><br>
 
     <!-- use component roomSec -->
-    <section id="room" style="padding:50px; margin-top:300px">
+    <section id="room">
       <roomSec />
     </section>
 
@@ -52,6 +52,7 @@
     <section id="contact">
       <contactSec />
     </section>
+    
 
 
     <!--           Test button login each users         -->
@@ -63,12 +64,13 @@
     <a href='mhome'> <button>Login as manager</button> </a> -->
 
     <!-- Footer -->
-    <footer class="py-5" style="background-color:#513f2a;">
+    <footer  id="foot">
       <div class="container">
         <br>
         <p class="m-0 text-center text-white" style="font-size:17px">
           Copyright &copy; ปจดตบกจกรร 2020
         </p>
+        <br>
       </div>
       <!-- /.container -->
     </footer>
@@ -143,7 +145,19 @@ export default {
 </script>
 
 <style scoped>
+#room{
+  padding: 0px 50px 50px 50px;
+  margin-top: 300px;
+}
 #services{
   background-color:antiquewhite;
+}
+#contact{
+  height: 40%;
+}
+#foot {
+  text-align: center;
+  padding: 5px;
+  background-color:#513f2a;
 }
 </style>
