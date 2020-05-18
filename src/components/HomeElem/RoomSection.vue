@@ -48,10 +48,29 @@
                         <section id="review" style="float:center">
                           
                           <p style="margin:auto auto 0px auto;"><b>Review</b></p>
+                          <span style="margint-buttom:0px;  color:#6C7979; font-size:15px">( select rate )</span>
                          
                           <div>
-                            <b-tabs content-class="mt-3" align="right" style="width:100%;">
-                              <b-tab title="5" active>
+                            <b-tabs content-class="mt-3" align="left" style="width:100%;">
+                              <b-tab title="All" active>
+                                <div  v-for='(review,i) in review' :key= "i">   
+                                 
+                                    <b-card fluid="lg" >
+                                      <b-row>  
+                                        <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
+                                        <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
+                                      </b-row>
+                                      
+                                      <hr> 
+                                      <b v-if="(review.Comment.length!== 0)">{{review.Comment}}</b>
+                                      <!-- <b v-else>Ho</b> -->
+                                    </b-card> 
+                                    <br>
+                                 
+                                </div>  
+                              </b-tab>
+                              
+                              <b-tab title="5">
                                 <div  v-for='(review,i) in review' :key= "i">   
                                   <div v-if="review.Rate>4.5">    
                                     <b-card fluid="lg" >

@@ -146,7 +146,7 @@ export default {
 
 <style scoped>
 #room{
-  padding: 0px 50px 50px 50px;
+  padding:50px;
   margin-top: 300px;
 }
 #services{
