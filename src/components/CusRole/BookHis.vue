@@ -6,7 +6,7 @@
       <div>
         <b-card no-body>
           <b-tabs card>
-            <b-tab title="Ongoing" active>
+            <b-tab title="Ongoing" active v-if="show[0]">
               <div
                 style="text-align:left;"
                 v-for="(BookID, index) in BOnGoing"
@@ -95,7 +95,7 @@
                 </div>
             </b-tab>
 
-            <b-tab title="Done">
+            <b-tab title="Done" v-if="show[1]">
               <div
                 style="text-align:left;"
                 v-for="(BookID, index) in BDone"
@@ -228,7 +228,7 @@
               </div>
             </b-tab>
 
-            <b-tab title="Canceled">
+            <b-tab title="Canceled" v-if="show[2]">
               <div
                 style="text-align:left;"
                 v-for="(BookID, index) in BCanceled"
@@ -310,6 +310,7 @@ export default {
       isNotRV: 0,
 
       RVavi: [],
+      show: [false,false,false],
     };
   },
   components: {
@@ -321,15 +322,17 @@ export default {
     this.fetchBooking();
     setTimeout(() => {
       this.setBookdetail();
-    }, 800);
+    }, 500);
     setTimeout(() => {
       this.splitStatus();
+    }, 700);
+    setTimeout(() => {
       this.prepareRV();
       this.loopCkRv();
     }, 1000);
-    // setTimeout(() => {
-    //   this.prepareRV();
-    // }, 1200);
+    setTimeout(() => {
+      this.show = [true,true,true];
+    }, 1200);
     // setTimeout(() => {
     //   this.loopCkRv();
     // }, 1250);
@@ -397,15 +400,19 @@ export default {
       if (this.review.rate === null || this.review.comment === null) {
         this.makeToast("danger", "You have not done your review.");
       } else {
-        if (!this.reviewAlready[index].r[this.ibuff]) 
+        if (!this.reviewAlready[index].r[this.ibuff]){
           this.AddReview();
+        }
+        else{
+          this.makeToast("success", "Thank you for your review.");
+        }
         this.RVavi[index].id = this.review.bookid;
         this.RVavi[index].r[this.ibuff] = true;
 
         this.review.rate = null;
         this.review.comment = null;
 
-        this.makeToast("success", "Thank you for your review.");
+        
         this.$bvModal.hide("my-modalRv"); // hide modal
         //setTimeout(() => this.$refs["my-modalRv"].toggle("#show-btn"),1000);
       }
@@ -419,6 +426,7 @@ export default {
           formData
         )
         .then((response) => {
+          // console.log(response.data.data);
           // console.log(response.data.data.length);
           // console.log("index " + index + " i " + i);
           if (response.data.data.length != 0) {

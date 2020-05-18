@@ -233,6 +233,7 @@ export default {
           formData
         )
         .then(response => {
+          console.log(response);
           this.fetchuser = response.data.data;
           // this.user = this.user[0];
           this.fetchlenght = this.fetchuser.length;
