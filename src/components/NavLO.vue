@@ -1,12 +1,12 @@
 <template>
   <div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg  fixed-top" id="mainNav">
 
      <!--                       bar after login                         -->
       <div class="container">
          <!--             link to home page               -->
-        <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
+        <button id="btn" class="navbar-brand js-scroll-trigger" @click="home"><b>HAKUNA HOTEL</b></button>
         <button
           class="navbar-toggler"
           type="button"
@@ -56,7 +56,10 @@
 <style scoped>
 #mainNav {
   padding: 15px 16px;
+  background-color: #513f2a ;
 }
+
+
 #btn {
   border: none;
   background-color: transparent;
@@ -64,6 +67,7 @@
   font-size: 16px;
   cursor: pointer;
   display: inline-block;
+  color: #fff;
 }
 h3 {
   margin: 40px 0 0;
@@ -77,7 +81,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #fff;
 }
 </style>
 

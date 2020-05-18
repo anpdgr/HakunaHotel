@@ -6,7 +6,7 @@
       <div class="container">
 
         <!-- Home -->
-        <button id="btn" class="navbar-brand js-scroll-trigger" @click="home">Hakuna Hotel</button>
+        <button id="btn" class="navbar-brand js-scroll-trigger" @click="home"><b>HAKUNA HOTEL</b></button>
         <!-- just show global state
         <p>{{$store.getters.getUser}}</p> -->
 

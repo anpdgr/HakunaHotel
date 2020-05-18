@@ -34,10 +34,10 @@
                 <div class="overlay">
                     <div class="text">
                       
-                      <h5>{{item.type}}</h5>
+                      <h5><b>{{item.type}}</b></h5>
                       <p>price : {{item.price}}</p>
                        
-                      <b-button  variant="outline-secondary" @click="check(index,item)" v-b-modal.modal-scrollable>view more</b-button>
+                      <b-button  id="viewmore"  @click="check(index,item)" v-b-modal.modal-scrollable>view more</b-button>
                       <b-modal  v-if="index===index1" id="modal-scrollable" size="lg" scrollable hide-footer hide-header style="padding:100px;">
                         <b-button style="float:right" href="#review">see review</b-button>
                         <!-- {{index}} -->
@@ -47,14 +47,14 @@
                         <p class="my-4" ><b>Description</b><br>{{item.des}} </p>
                         <section id="review" style="float:center">
                           
-                          <h5>Review</h5> 
-
+                          <p style="margin:auto auto 0px auto;"><b>Review</b></p>
+                         
                           <div>
                             <b-tabs content-class="mt-3" align="right" style="width:100%;">
                               <b-tab title="5" active>
                                 <div  v-for='(review,i) in review' :key= "i">   
                                   <div v-if="review.Rate>4.5">    
-                                    <b-card fluid="lg" style="width:100%">
+                                    <b-card fluid="lg" >
                                       <b-row>  
                                         <b-col cols="2"><p >{{review.User_ID}} </p></b-col>
                                         <b-col cols="2"><b-form-rating inline no-border variant="warning" v-model="review.Rate" readonly show-value></b-form-rating></b-col>
@@ -205,6 +205,7 @@
   text-align: center;
   width:340px;
 }
+
 </style>
 
 <script>

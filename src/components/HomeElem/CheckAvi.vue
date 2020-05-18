@@ -4,7 +4,7 @@
     <!-- box -->
     <b-form inline id="dateform">
       <!-- Checkin Date block -->
-      <b-form-group id="ipg-cin" label="Check-in Date:" style="margin-right:20px; width: 17rem;">
+      <b-form-group id="ipg-cin" label="Check-in Date" style="margin-right:20px; width: 17rem;">
         <!--                               input box checkin date                               -->
 
         <!--<b-form-datepicker
@@ -20,7 +20,7 @@
       </b-form-group>
 
       <!-- Checkout Date block -->
-      <b-form-group id="ipg-cout" label="Check-out Date:" style="margin-right:20px; width: 17rem;">
+      <b-form-group id="ipg-cout" label="Check-out Date" style="margin-right:20px; width: 17rem;">
         <!--                                    input checkout date                                -->
 
         <!--<b-form-datepicker
@@ -38,7 +38,7 @@
       <!--                                      Num guest block                                       -->
 
       <!-- input num guest -->
-      <b-form-group label="Number of guests: " style="margin-right:30px; width: 10rem;">
+      <b-form-group label="Number of guests " style="margin-right:30px; width: 10rem;">
         <b-form-spinbutton v-model="form.num_guest" min="1" max="100" placeholder="--" required></b-form-spinbutton>
       </b-form-group>
 
