@@ -176,8 +176,24 @@ export default {
     this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=RoomRating")
         .then((response) => {
-          this.items3=response.data.data;
+          var data=[];
+          for(var i=0; i<response.data.data.length; i++){
+            if(response.data.data[i].AVGRating==null){
+              data[i]={
+                RoomType_Name:response.data.data[i].RoomType_Name,
+                AVGRating:"No rating"
+              };
+            }
+            else{
+              data[i]={
+                RoomType_Name:response.data.data[i].RoomType_Name,
+                AVGRating: response.data.data[i].AVGRating
+              };
+            }
+          }
+          this.items3=data;
         });
+        
     this.axios
         .get("http://hakuna-hotel.kmutt.me/phpapi/report.php?action=useCode")
         .then((response) => {
@@ -192,7 +208,6 @@ export default {
           data1.push(response.data.data[i].Position);
           data2.push(parseInt(response.data.data[i].Num_of_Staff));
         }
-        console.log(data1);
           this.chartOptionsBar.xAxis.data=data1;
           this.chartOptionsBar.series.data=data2;
         });
